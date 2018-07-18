@@ -14,7 +14,7 @@ Monday, July 16th 2018, 21:10
 | Boolean | boolean | 1 byte | true \| false |
 
 ## 自动类型提升
-```java
+```java {.line-numbers}
 byte b = 1;
 int x = b + 1; //byte + int --> int + int ==> x(int)
 System.out.println(x);//2
@@ -26,4 +26,10 @@ byte x = b + c; // byte + byte --> int + int ==> x(byte)
 System.out.println(x);//error: incompatible types: possible lossy conversion from int to byte
 ```
 但是为什么直接写`byte b = 1`又是正确的呢?
-`1`是 **_常量_** , 在做上述运算时, 编译器会做范围检查(byte是-128 ~ 127), 满足就赋值, 否则`error: incompatible types: possible lossy conversion from int to byte`; 同样的, 在做`b + 1`运算时, 由于编译器不能确定`b + 1`的值(因为其可能发生越界:`b = 127`的情况), 因此不能完成赋值, 直接抛出错误.而由于编译器会对`+=`做特殊处理, 不会出现上述情况.
+`1`是 **_常量_** , 在做上述运算时, 编译器会做范围检查(byte是-128 ~ 127), 满足就赋值, 否则`error: incompatible types: possible lossy conversion from int to byte`; 同样的, 在做`b + 1`运算时, 由于编译器不能确定`b + 1`的值(因为其可能发生越界:`b = 127`的情况), 因此不能完成赋值, 直接抛出错误.而由于编译器会对`+=`做特殊处理`x += 1 --> (int)(x + 1)`, 不会出现上述情况.
+在进行二元操作时, 如果两个数的类型不一致则要先转换为同一类型,在进行运算.
+> 如果两个操作数中有一个是double类型, 另一个操作数就会转换为double类型.
+> 否则, 如果其中一个操作数是float类型, 另一个操作数就会转换为float类型.
+> 否则, 如果其中一个操作数是long类型, 另一个操作数就会转换为long类型.
+> 否则, 两个操作数都将被转换为int类型.<sup>Java核心技术卷I P<sub>41</sub></sup>
+![数值合法转换](assets/数值合法转换.png "数值合法转换")
