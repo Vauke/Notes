@@ -34,8 +34,8 @@ System.out.println(x);//error: incompatible types: possible lossy conversion fro
 > 否则, 如果其中一个操作数是float类型, 另一个操作数就会转换为float类型.<br/>
 > 否则, 如果其中一个操作数是long类型, 另一个操作数就会转换为long类型.<br/>
 > 否则, 两个操作数都将被转换为int类型.<sup>Java核心技术卷I P41</sup>
-![Java核心技术卷I P41 图3-1](assets/数值合法转换.png "数值合法转换")
-
+![Java核心技术卷I P41 图3-1](assets/数值合法转换.png "数值合法转换")<br/>
+**被final修饰的变量不会自动提升类型, 不属于以上情况**
 ***
 
 ## 位运算
@@ -55,10 +55,9 @@ int b = a << 2; // b = 12;
 ```
 <mark>
 a << n --> a = a * 2<sup>n</sup><br/>
-a >> n --> a = a / 2<sup>n</sup>
-</mark>
-
+a >> n --> a = a / 2<sup>n</sup><br/>
 位运算比常用的乘除效率更高
+</mark>
 
 交换两数的三种方式:
 ```java
@@ -77,3 +76,4 @@ a = a ^ b;
 b = a ^ b; // (a ^ b) ^ b ==> a
 a = a ^ b; // (a ^ b) ^ ((a ^ b) ^ b) ==> b
 ```
+使用`&`运算实现进制转换, 代码见:[RadixConversion.java](src/RadixConversion.java)<br/>
