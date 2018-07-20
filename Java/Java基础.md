@@ -2,6 +2,14 @@
 Monday, July 16th 2018, 21:10
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<!-- code_chunk_output -->
+
+* [Java基础.md](#java基础md)
+	* [数据类型](#数据类型)
+	* [自动类型提升](#自动类型提升)
+	* [位运算](#位运算)
+
+<!-- /code_chunk_output -->
 
 ## 数据类型
 | &nbsp; | 类型 | 占用空间 | 取值范围 |
