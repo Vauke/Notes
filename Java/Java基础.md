@@ -1,6 +1,8 @@
 # Java基础.md
 Monday, July 16th 2018, 21:10
 
+[TOC]
+
 ## 数据类型
 | &nbsp; | 类型 | 占用空间 | 取值范围 |
 | :---: | :---: | :---: | :---: |
@@ -35,7 +37,7 @@ System.out.println(x);//error: incompatible types: possible lossy conversion fro
 > 否则, 如果其中一个操作数是long类型, 另一个操作数就会转换为long类型.<br/>
 > 否则, 两个操作数都将被转换为int类型.<sup>Java核心技术卷I P41</sup>
 ![Java核心技术卷I P41 图3-1](assets/数值合法转换.png "数值合法转换")<br/>
-**被final修饰的变量不会自动提升类型, 不属于以上情况**
+**被final修饰的变量不会自动提升类型(是常量, 编译器会检查范围是否符合), 不属于以上情况**
 ***
 
 ## 位运算
@@ -76,4 +78,4 @@ a = a ^ b;
 b = a ^ b; // (a ^ b) ^ b ==> a
 a = a ^ b; // (a ^ b) ^ ((a ^ b) ^ b) ==> b
 ```
-使用`&`运算实现进制转换, 代码见:[RadixConversion.java](src/RadixConversion.java)<br/>
+使用`&`运算实现进制间转换, 代码见:[RadixConversion.java](src/RadixConversion.java)<br/>

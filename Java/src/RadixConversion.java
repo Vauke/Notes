@@ -8,14 +8,14 @@ public class RadixConversion {
 		int radix; // 进制
 		int and; // 参与 与 操作的数
 		int move; // 移位数
-		
+
 		while (true) {
 			System.out.println("pls input the number you want to convert:");
 			Scanner sc = new Scanner(System.in);
 			num = sc.nextInt();
 			System.out.println("pls input the target radix:only support 2,8,16 for now");
-			radix = sc.nextInt(); 
-			
+			radix = sc.nextInt();
+
 			if (radix == 2) {
 				and = 0x01; // 和1与
 				move = 1; // 2进制右移1位
@@ -29,7 +29,7 @@ public class RadixConversion {
 				System.out.println("the radix you input is illegal, pls try again...");
 				continue;
 			}
-			
+
 			convert(num, and, move); //转换
 //			System.out.println(num+"---"+radix);
 			// api
@@ -38,7 +38,7 @@ public class RadixConversion {
 //			System.out.println(Integer.toHexString(num)); // 16进制
 		}
 	}
-	
+
 	private static void convert(int num, int and, int move) {
 		StringBuffer sb = new StringBuffer();
 		int rst;
