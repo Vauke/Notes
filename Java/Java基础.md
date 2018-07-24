@@ -8,6 +8,7 @@ Monday, July 16th 2018, 21:10
 	* [数据类型](#数据类型)
 	* [自动类型提升](#自动类型提升)
 	* [位运算](#位运算)
+	* [字符串](#字符串)
 
 <!-- /code_chunk_output -->
 
@@ -87,3 +88,20 @@ b = a ^ b; // (a ^ b) ^ b ==> a
 a = a ^ b; // (a ^ b) ^ ((a ^ b) ^ b) ==> b
 ```
 使用`&`运算实现进制间转换, 代码见:[RadixConversion.java](src/RadixConversion.java)<br/>
+***
+
+## 字符串
+字符串是 ***不可变*** 类型.<br/>
+```java
+String all = "hello, java";
+all = all.substring(7, 11);// java [beginIndex, endIndex)
+String all = String.join("/", "S", "M", "L", "XL"); // S/M/L/XL
+```
+`equals()` & `==`
+> `equals()`比较的是内容, 而`==`比较的是地址值.<br/>
+> 一定不要使用`==`运算符检测两个字符串是否相等！这个运算符只能够确定两个字串
+> 是否放置在同一个位置上。当然，如果字符串放置在同一个位置上，它们必然相等。但是，完全有可能将内容相同的多个字符串的拷贝放置在不同的位置上。<sup>Java核心技术卷I P48</sup><br/>
+
+在使用`if`语句时, 条件中的字符串比较应改为以下方式, 以避免空指针.<br/>
+if ("aaa".equals(str)) :heavy_check_mark: <br/>
+if (str.equals("aaa")) :heavy_multiplication_x: <br/>
