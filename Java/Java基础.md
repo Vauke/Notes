@@ -91,7 +91,7 @@ a = a ^ b; // (a ^ b) ^ ((a ^ b) ^ b) ==> b
 ***
 
 ## 字符串
-字符串是 ***不可变*** 类型.<br/>
+字符串是 ***不可变*** 类型. Java字符串是由`char`类型的字符组成的序列.<br/>
 ```java
 String all = "hello, java";
 all = all.substring(7, 11);// java [beginIndex, endIndex)
@@ -105,3 +105,5 @@ String all = String.join("/", "S", "M", "L", "XL"); // S/M/L/XL
 在使用`if`语句时, 条件中的字符串比较应改为以下方式, 以避免空指针.<br/>
 if ("aaa".equals(str)) :heavy_check_mark: <br/>
 if (str.equals("aaa")) :heavy_multiplication_x: <br/>
+
+StringBuilder
