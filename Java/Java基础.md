@@ -34,7 +34,7 @@ System.out.println(x);//2
 
 byte b = 1;
 byte c = 2;
-//byte x = b + 1; // wrong, byte + int --> int + int ==> x(byte)
+byte x = b + 1; // wrong, byte + int --> int + int ==> x(byte)
 byte x = 1 + 2; // correct
 byte x = b + c; // wrong, byte + byte --> int + int ==> x(byte)
 System.out.println(x);//error: incompatible types: possible lossy conversion from int to byte
