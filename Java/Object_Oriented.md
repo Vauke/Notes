@@ -34,3 +34,4 @@ getType()//获取数据类型的class对象
 getReturnType()//返回Method类对象的返回值类型的class对象
 getParameterTypes()//返回参数列表类型的class对象数组
 ```
+以上方法的综合应用:[获取类的成员变量, 构造, 成员方法等信息](src/ObtainClassInfo.java)<sup>参考Java核心技术卷1 p195</sup>
