@@ -35,3 +35,13 @@ getReturnType()//返回Method类对象的返回值类型的class对象
 getParameterTypes()//返回参数列表类型的class对象数组
 ```
 以上方法的综合应用:[获取类的成员变量, 构造, 成员方法等信息](src/ObtainClassInfo.java)<sup>参考Java核心技术卷1 p195</sup>
+
+```java
+Student stu = new Student();
+stu.setName("vauke");
+
+Class stuClass = stu.getClass(); // 获取Student类class对象
+Field f = stuClass.getDeclaredField("name"); // 获取Class对象中的名称为 name 的域的Field对象
+String stuName = (String) f.get(stu); // 获取stu对象的域 name 的值
+```
+如果name是private修饰的, `f.get(...)`不能获取其值, 抛出IllegalAccessException
