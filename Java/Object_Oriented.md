@@ -11,4 +11,26 @@ Friday, July 20th 2018, 23:12
 > indexOf(String, int)<br/>
 > 返回类型不是方法签名的一部分。也就是说，不能有两个名字相同、参数类型也相同却返回不同类型值的方法。<sup>Java核心技术卷I P123</sup><br/>
 
+当父类有多个构造时, 须显示声明默认构造;<br/>
 当有继承关系时; 子类需能够访问到父类的无参构造(即不能没有或者使用`private`修饰)
+
+## 反射
+
+```java
+Class类:
+获取Class对象的3种方式:
+Class c1 = Object.class;
+Class c2 = obj.getClass();
+Class c3 = Class.forName("java.lang.Object");// 处理ClassNotFoundException
+
+getFields(), getMethods()将自身和父类的使用public修饰的域/方法装入数组返回
+getConstructors()将自身public修饰的构造装入数组返回
+getDeclaredFields(), getDeclaredConstructors(), getDeclaredMethods()返回自身所有域/构造/方法数组 不包括父类
+
+Class, Field, Constructor, Method类:
+getName()//获取名称
+getModifiers()//获取修饰符的16进制整数表示, 使用Modifier.toString(class.getModifiers())转成字符串
+getType()//获取数据类型的class对象
+getReturnType()//返回Method类对象的返回值类型的class对象
+getParameterTypes()//返回参数列表类型的class对象数组
+```
