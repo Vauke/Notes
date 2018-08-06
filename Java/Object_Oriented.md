@@ -12,11 +12,10 @@ Friday, July 20th 2018, 23:12
 > 返回类型不是方法签名的一部分。也就是说，不能有两个名字相同、参数类型也相同却返回不同类型值的方法。<sup>Java核心技术卷I P123</sup><br/>
 
 
-单继承, 多实现 <br/>
 当父类有多个构造时, 须显示声明默认构造;<br/>
 当有继承关系时; 子类需能够访问到父类的无参构造(即不能没有或者使用`private`修饰)<br/>
 
-接口是完全抽象的一个类, 不能有具体实现. 接口中的方法是抽象方法(且abstract和static不能共存), 接口不能有静态方法, 不能有成员变量, 可以有常量. 接口的定义模板:
+接口是完全抽象的, 不能有具体实现. 接口中的方法**默认**是抽象方法, (由于abstract和static不能共存), 接口不能有静态方法(jdk8以后可以有静态方法和其具体实现), 不能有成员变量, 可以有常量和默认方法(显式使用`default`声明). 接口的定义模板:
 ```java
 public interface InterfaceDemo {
     public static final int i = 1; // 任何时候常量都要先初始化
@@ -26,6 +25,9 @@ public interface InterfaceDemo {
 ```
 接口中的所有常量默认为`public static final`, 可省略;
 接口中的所有方法默认为`public`, 可省略不写; 但在实现接口时, 必须显式地给出, 否则编译器会认为是默认修饰符<br/>
+
+因为java是**单继承, 多实现**的, 因此接口的意义就在于存放公共的属性, 需要时可以多实现, 而由于继承是单继承的, 因此抽象类在这样的情形下, 不如接口方便. <br/>
+
 
 ## 反射
 
@@ -59,3 +61,27 @@ String stuName = (String) f.get(stu); // 获取stu对象的域 name 的值
 f.set(stu, "hyc");// 设置新值
 ```
 如果name是private修饰的, `f.get(...)`不能获取其值, 抛出`IllegalAccessException`, 可使用`f.setAccessible(true);`解决
+
+
+## Clone
+由于java中都是值传递, 对于基本类型或不可变对象(String, 包装类等), 变量的赋值更改并不会对原来的变量产生影响; 对于引用类型, 引用的赋值是地址值, 两个引用指向同一片内存空间, 一旦修改其中的内容, 则另一个也将受到影响.
+```java
+int i = 1;
+int copy = i;
+copy++; // i不会因为copy的改变而改变, copy也是
+
+Student stu = new Student();
+Student stuCopy = stu; // 现在stu和stuCopy指向同一片内存
+stu.setName("vauke");
+stuCopy.getName(); // vauke
+```
+重写Object类提供的`clone()`为`public`, 克隆对象, 可以解决引用类型之间的拷贝问题.
+![Selection_001](assets/引用赋值.png)
+![Selection_002](assets/对象克隆.png) <br/>
+普通赋值和clone的区别
+```java
+
+```
+
+#### 浅拷贝与深拷贝
+上面的
