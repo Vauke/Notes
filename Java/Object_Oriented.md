@@ -23,8 +23,8 @@ public interface InterfaceDemo {
     public String getString();
 }
 ```
-接口中的所有常量默认为`public static final`, 可省略;
-接口中的所有方法默认为`public`, 可省略不写; 但在实现接口时, 必须显式地给出, 否则编译器会认为是默认修饰符<br/>
+接口中的所有常量为**静态常量**, 用`public static final`修饰, 可省略;
+接口中的所有方法为**公有抽象方法**, 用`public abstract`修饰, 可省略不写; 但在实现接口时, 必须显式地给出`public`, 否则编译器会认为是默认修饰符<br/>
 
 因为java是**单继承, 多实现**的, 因此接口的意义就在于存放公共的属性, 需要时可以多实现, 而由于继承是单继承的, 因此抽象类在这样的情形下, 不如接口方便. <br/>
 
@@ -75,13 +75,32 @@ Student stuCopy = stu; // 现在stu和stuCopy指向同一片内存
 stu.setName("vauke");
 stuCopy.getName(); // vauke
 ```
-重写Object类提供的`clone()`为`public`, 克隆对象, 可以解决引用类型之间的拷贝问题.
+Object类提供的`clone()`, 克隆对象, 可以解决引用类型之间的拷贝问题.
 ![Selection_001](assets/引用赋值.png)
 ![Selection_002](assets/对象克隆.png) <br/>
-普通赋值和clone的区别
+<center>普通赋值和clone的区别</center>
+
 ```java
+Employee e = new Employee();
+Employee copy = e;
+Employee clone = e.clone();
 
+// 假设salary是基本类型或不可变类型
+copy.raiseSalary(); // e改变
+clone.raiseSalary(); // e不改变
 ```
+使用`clone()`时, 需要在类上实现`Clonable`标记接口(tagging interface), 并重写Object类中的`clone()`的访问权限为`public`
 
-#### 浅拷贝与深拷贝
-上面的
+#### 浅拷贝与深拷贝 shallow copy & deep copy
+默认`clone()`进行对象拷贝时, 是浅拷贝(只克隆了一个对象, 未克隆其中包含的子对象), 这种情况下, 当类中所有成员变量都是基本类型或不可变类型时, 修改是安全的(互不影响); 但是, 若有成员变量是另一个(可变)类的对象时; 当修改其属性时, 又会出现相同引用, 互相修改的问题; 于是, 可以再在这个可变类上实现`Clonable`标记接口, 并重写`clone()`, 修改修饰符为`public`, 这就是深拷贝(将一个对象及其包含的子对象全部克隆). 当子对象已经实现了接口和重写了方法时, 可以只在当前类上实现`Clonable`标记接口, 重写`clone()`:
+```java
+public class Employee implements Clonable {
+    ...
+    @override
+    public Employee clone() throws CloneNotSupportedException {
+        Employee e = (Employee) super.clone();
+        e.hireDay = (Date) hireDay.clone();
+        return e;
+    }
+}
+```
