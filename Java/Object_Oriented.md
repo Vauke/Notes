@@ -104,3 +104,4 @@ public class Employee implements Clonable {
     }
 }
 ```
+当在父类中重写了`clone()`时, 一般子类可直接调用, 但若子类有和父类不同的成员变量时, 子类需单独实现接口, 重写方法. 另所有数组都实现了`clone()`, 可用来直接克隆数组.
