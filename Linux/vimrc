@@ -1,0 +1,205 @@
+" VIM INIT CONFIG
+set showcmd			" Show (partial) command in status line.
+set showmatch		" Show matching brackets.
+set ignorecase		" Do case insensitive matching
+set smartcase		" Do smart case matching
+set incsearch		" Incremental search
+"set autowrite		" Automatically save before commands like :next and :make
+"set hidden			" Hide buffers when they are abandoned
+"set mouse=a			" Enable mouse usage (all modes)
+
+" CUSTOMED CONFIG
+syntax enable 		" 开启语法高亮
+syntax on      		" 允许用指定语法高亮配色方案替换默认方案
+set number     	 	" 显示行号
+"set relativenumber
+set ruler 			" 在编辑过程中，在右下角显示光标位置的状态行 
+set matchtime=1		" How many tenths of a second to blink when matching brackets
+
+" Tab相关
+set tabstop=4      	" 设置tab宽度
+"set softtabstop=4 	" 按退格键时可以一次删除4个空格
+set shiftwidth=4  	" 设置自动对齐空格数 
+set smarttab			" 一次backspace删除shiftwidth宽度
+set expandtab 		" 将Tab键自动转换成空格 真正需要Tab键时使用[Ctrl + V + Tab]
+%retab!				" 加!是用于处理非空白字符之后的TAB， 即所有的TAB；若不加， 则只处理行首的TAB
+
+" 设置缩进
+set autoindent		" 继承前一行的缩进方式，特别适用于多行注释
+set smartindent
+
+"set virtualedit=onemore         	" Allow for cursor beyond last character
+"set scrolljump=5					" Lines to scroll when cursor leaves screen
+set scrolloff=3						" Minimum lines to keep above and below cursor
+
+" REMOVE ANNOYING SOUND ON ERRORS
+set visualbell
+set t_vb=
+
+"set nowrap  		" 当一行文字很长时取消换行
+set lbr 			" 不在单词中间折行
+set showmode 		" 左下角显示当前Vim模式
+
+" HIGHLIGHT CURRENT LINE, IF SET THEMES, MAKE SURE THAT THIS LINE IS ABOVE THE THEME SETTING LINE
+set cursorline
+highlight CursorLine   cterm=NONE ctermbg=blue ctermfg=NONE guibg=NONE guifg=NONE
+
+" 搜索相关
+set hlsearch 		" 设置搜索高亮(hlsearch)
+set autoread 		" 文件修改之后自动读入
+
+" 文件相关
+filetype indent on 		" 针对不同的文件，采用不同的缩进方式  
+filetype plugin on 		" 允许插件
+
+"set nobackup			" 设置取消备份
+"set noswapfile			" 禁止临时文件生成
+set confirm      			" 未保存或者只读时，弹出确认
+
+" 设置字符编码                                                                
+set encoding=utf-8                                         
+set fileencodings=utf-8,gb2312,gb18030,latin1                      
+set termencoding=utf-8                                             
+
+" 设置代码折叠
+"set nofoldenable 		" 启动 vim 时关闭折叠代码
+set foldenable 			" 设置代码折叠
+set foldmethod=syntax
+"set foldlevel=99
+" 折叠方法
+" manual 手工折叠
+" indent 缩进折叠
+" expr 表达式折叠
+" syntax 语法折叠
+" diff 对没有更改的文件折叠
+" marker 标记折叠
+
+" VIM THEMES
+set background=dark             		" dark | light
+"colorscheme solarized          	 	" use solarized theme
+"let g:solarized_termcolors=256  	" if you are use terminal
+"let g:solarized_termtrans=1
+"set termguicolors
+
+" USE NeoSolarized INSTEAD TO GET A BETTER EXPERIENCE
+set t_Co=256 "在windows中用xshell连接打开vim可以显示色彩
+set termguicolors
+colorscheme NeoSolarized
+
+" SHORTCUTS"
+" SET PRESS F5 TO EXECUTE PYTHON CODES
+map <F5> :call RunPython()<CR>
+func! RunPython()
+	exec "W"
+	if &filetype == 'python'
+		exec "!time python3 %"
+	endif
+endfunc
+
+" PLUGINS INSTALL
+set nocompatible 	" 去除VI一致性,安装插件必须要添加
+filetype off 			" 检测文件类型,安装插件必须为off
+
+set rtp+=~/.vim/bundle/Vundle.vim 	" 设置包括vundle和初始化相关的runtime path
+call vundle#begin() 					" vundle初始化 
+
+Plugin 'VundleVim/Vundle.vim' 	" 让vundle管理插件版本,必须
+Plugin 'Yggdroot/indentLine'
+"Plugin 'altercation/vim-colors-solarized'   " solarized theme
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'icymind/NeoSolarized'
+
+call vundle#end()  				" 所有插件需要在这行之前 必须
+filetype plugin indent on   	" 必须 加载vim自带和插件相应的语法和文件类型相关脚本
+
+" 常用命令
+" :PluginList        - 查看已经安装的插件
+" :PluginInstall		- 安装插件
+" :PluginUpdate     	- 更新插件
+" :PluginSearch     	- 搜索插件，例如 :PluginSearch xml就能搜到xml相关的插件
+" :PluginClean      	- 删除插件，把安装插件对应行删除，然后执行这个命令即可
+" h: vundle         	- 获取帮助
+
+" PLUGINS CONFIG
+" INDENTlINE PLUGIN
+"let g:indentLine_enabled = 0 "Disable by default"
+":IndentLinesToggle "toggles lines on and off.
+let g:indentLine_enabled = 1
+let g:indentLine_char='┆'   "缩进指示线
+"let g:indentLine_char='¦'
+
+" VIM-AIRLINE PLUGIN
+" install powerline symbol font by text 'sudo apt install fonts-powerline' in terminal
+let g:airline_powerline_fonts = 1  	" 安装字体后 必须设置此项
+
+"let g:airline#extensions#tabline#enabled = 1 "默认是关闭的，打开后可以显示窗口tab和buffer
+set laststatus=2  "永远显示状态栏
+
+" VIM-AIRLINE THEMES
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+
+"let g:airline_theme='light theme'
+"let g:airline_theme='wombat'
+"let g:airline_theme='tomorrow'
+"let g:airline_theme='bubblegum'
+"let g:airline_theme="molokai"
+"let g:airline_theme='powerlineish theme'
+
+" SET COMMENT
+autocmd BufNewFile *.[ch],*.cpp,*.java,*.py,*.sh exec ':call SetComment()'
+
+func SetComment()
+	if expand('%:e') == 'py'
+    	call setline(1, '#!/usr/bin/env python')
+    	call append(1, '#-*- coding: utf-8 -*-')
+    	call SetInfo()
+    elseif expand('%:e') == 'sh'
+    	call setline(1, '#!/bin/sh')
+    	call SetInfo()
+    else
+    	call SetInfo2()
+    endif
+endfunc
+
+func SetInfo()
+	" move cursor
+    normal G
+	normal o
+	normal o
+	call setline(line('.'), '# Filename      : '. expand('%'))
+	call append(line('.'), '#')
+	call append(line('.')+1, '# Author        : Vauke')
+	call append(line('.')+2, '# Create        : '. strftime("%Y-%m-%d %H:%M:%S"))
+	call append(line('.')+3, '# Last Modified : '. strftime("%Y-%m-%d %H:%M:%S"))
+	normal G
+	normal o
+	normal o
+endfunc
+
+func SetInfo2()
+	call setline(line('.'), '/**')
+	call append(line('.'), ' * Filename      : '. expand('%'))
+	call append(line('.')+1, ' *')
+	call append(line('.')+2, ' * Author        : Vauke')
+	call append(line('.')+3, ' * Create        : '. strftime("%Y-%m-%d %H:%M:%S"))
+	call append(line('.')+4, ' * Last Modified : '. strftime("%Y-%m-%d %H:%M:%S"))
+	call append(line('.')+5, ' */')
+	normal G
+	normal o
+	normal o
+endfunc
+
+func DateModified()
+	call cursor(6,1)
+	if search('Last Modified') != 0
+		if expand('%:e') == 'py' || expand('%:e') == 'sh'
+			call setline(line('.'), '# Last Modified : '. strftime("%Y-%m-%d %H:%M:%S"))
+		else
+			call setline(line('.'), ' * Last Modified : '. strftime("%Y-%m-%d %H:%M:%S"))
+		endif
+	endif
+endfunc
+
+:autocmd FileWritePre,BufWritePre * ks | call DateModified() | 's

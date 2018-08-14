@@ -6,6 +6,7 @@ Monday, August 13th 2018, 23:26
 
 * [UbuntuInstallationGuide.md](#ubuntuinstallationguidemd)
 	* [安装gnome-tweak-tool](#安装gnome-tweak-tool)
+	* [chrome](#chrome)
 	* [搜狗输入法](#搜狗输入法)
 	* [安装plank](#安装plank)
 	* [修改grub等待时间](#修改grub等待时间)
@@ -37,6 +38,7 @@ Monday, August 13th 2018, 23:26
 	* [MySQL](#mysql)
 	* [Terminal](#terminal)
 	* [atom plugins](#atom-plugins)
+	* [sublime](#sublime)
 	* [ufw](#ufw)
 	* [ssh](#ssh)
 	* [nvidia](#nvidia)
@@ -53,7 +55,7 @@ Monday, August 13th 2018, 23:26
 ```shell
 sudo apt install gnome-tweak-tool
 
-sudo apt-get install chrome-gnome-shell
+sudo apt install chrome-gnome-shell
 ```
 安装插件 <br/>
 https://extensions.gnome.org </br>
@@ -80,6 +82,9 @@ sudo apt-get install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0  gir1.2-clutter-1
 安装图标主题 <br/>
 yosa-max <br/>
 ultra-flat-icons
+
+## chrome
+安装simsun.ttf解决chrome中文字体发虚
 
 ## 搜狗输入法
 ```shell
@@ -182,7 +187,8 @@ cd .aria2
 touch aria2.session
 chmod 777 aria2.session
 ```
-//指定aria2配置文件 --conf-path=/home/vauke/.aria2/aria2.conf
+//指定aria2配置文件 --conf-path=/home/vauke/.aria2/aria2.conf <br/>
+[aria2.conf](aria2.conf)
 
 ## apt-fast
 ```shell
@@ -250,6 +256,8 @@ sudo apt install uget-integrator
 ```
 
 ## vim
+安装vundle后, 将[vimrc](vimrc)放到`~/.vim/`下
+
 #### vundle
 ```shell
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -257,7 +265,6 @@ sudo apt-get install fonts-powerline
 ```
 
 #### powerline font
-
 https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation
 ```shell
 wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
@@ -333,6 +340,11 @@ sudo apt install tilda
 file-header设置日期格式:https://momentjs.com/docs/#/displaying/ <br/>
 file-header插件设置文件映射 <br/>
 ![file-header插件设置文件映射.png](assets/file-header插件设置文件映射.png)
+
+## sublime
+安装gbk支持: 先安装codecs33, 然后安装GBK4subl <br/>
+![gbk编码支持](assets/gbk编码支持.png) <br/>
+![sublime设置](assets/sublime设置.png)
 
 ## ufw
 ```shell
