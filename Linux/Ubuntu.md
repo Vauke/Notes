@@ -1,6 +1,54 @@
 # Ubuntu.md
 Monday, August 13th 2018, 23:26
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<!-- code_chunk_output -->
+
+* [Ubuntu.md](#ubuntumd)
+	* [安装gnome-tweak-tool](#安装gnome-tweak-tool)
+	* [搜狗输入法](#搜狗输入法)
+	* [安装plank](#安装plank)
+	* [修改grub等待时间](#修改grub等待时间)
+	* [albert](#albert)
+	* [diskmount](#diskmount)
+	* [git](#git)
+	* [git proxy](#git-proxy)
+	* [zsh](#zsh)
+	* [aria2](#aria2)
+	* [apt-fast](#apt-fast)
+	* [java](#java)
+	* [trim](#trim)
+	* [keepassxc](#keepassxc)
+	* [zeal](#zeal)
+	* [shutter](#shutter)
+	* [calibre](#calibre)
+	* [axel](#axel)
+	* [uget](#uget)
+	* [vim](#vim)
+			* [vundle](#vundle)
+			* [powerline font](#powerline-font)
+	* [取消错误通知](#取消错误通知)
+	* [vlc](#vlc)
+	* [y-ppa-manager](#y-ppa-manager)
+	* [meld](#meld)
+	* [jad](#jad)
+	* [GoldenDict](#goldendict)
+	* [Font](#font)
+	* [MySQL](#mysql)
+	* [Terminal](#terminal)
+	* [atom plugins](#atom-plugins)
+	* [ufw](#ufw)
+	* [ssh](#ssh)
+	* [nvidia](#nvidia)
+	* [neofetch](#neofetch)
+	* [vm](#vm)
+	* [htop](#htop)
+	* [catfish](#catfish)
+	* [tree](#tree)
+	* [music](#music)
+
+<!-- /code_chunk_output -->
+
 ## 安装gnome-tweak-tool
 ```shell
 sudo apt install gnome-tweak-tool
@@ -10,19 +58,19 @@ sudo apt-get install chrome-gnome-shell
 安装插件
 https://extensions.gnome.org</br>
 
-| extensions | author |
-| :---: | :---: |
-| Caffeine | by eon |
-| Clipboard Indicator | by Tudmotu |
-| Coverflow Alt-Tab | by p91paul |
-| Dynamic Top Bar | by AMDG |
-| OpenWeather | by jens |
-| Sound Input & Output Device Chooser | by kgshank |
-| Top Panel Workspace Scroll | by gfxmonk |
-| TopIcons Plus | by phocean |
-| User Themes | by fmuellner |
-| Workspace Indicator | by fmuellner |
-| system-monitor | by Cerin |
+|             extensions              |    author    |
+|:-----------------------------------:|:------------:|
+|              Caffeine               |    by eon    |
+|         Clipboard Indicator         |  by Tudmotu  |
+|          Coverflow Alt-Tab          |  by p91paul  |
+|           Dynamic Top Bar           |   by AMDG    |
+|             OpenWeather             |   by jens    |
+| Sound Input & Output Device Chooser |  by kgshank  |
+|     Top Panel Workspace Scroll      |  by gfxmonk  |
+|            TopIcons Plus            |  by phocean  |
+|             User Themes             | by fmuellner |
+|         Workspace Indicator         | by fmuellner |
+|           system-monitor            |   by Cerin   |
 
 安装system-monitor需要额外安装以下依赖:
 ```shell
@@ -209,7 +257,9 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 sudo apt-get install fonts-powerline
 ```
 
-#### powerline font https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation
+#### powerline font
+
+https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation
 ```shell
 wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
 wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
@@ -266,8 +316,23 @@ show grants;
 sudo apt install tilda
 
 ## atom plugins
-https://momentjs.com/docs/#/displaying/
-
+|          plugin           |    author    |
+| ------------------------- | ------------ |
+|        file-header        |   guiguan    |
+|        file-icons         |  file-icons  |
+|     language-markdown     | burodepeper  |
+| markdown-preview-enhanced |  shd101wyy   |
+|   markdown-table-editor   |    susisu    |
+|      markdown-writer      |   zhuochun   |
+|          minimap          | atom-minimap |
+|  platformio-ide-terminal  |  platformio  |
+|         tool-bar          |     suda     |
+| tool-bar-markdown-writer  |   zhuochun   |
+|       vim-mode-plus       |     t9md     |
+|   vim-mode-plus-ex-mode   |     t9md     |
+file-header设置日期格式:https://momentjs.com/docs/#/displaying/
+file-header插件设置文件映射
+![file-header插件设置文件映射.png](assets/file-header插件设置文件映射.png)
 
 ## ufw
 ```shell
