@@ -1,4 +1,4 @@
-# Ubuntu.md
+# UbuntuInstallationGuide.md
 Monday, August 13th 2018, 23:26
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
