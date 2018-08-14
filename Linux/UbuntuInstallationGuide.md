@@ -55,7 +55,7 @@ sudo apt install gnome-tweak-tool
 
 sudo apt-get install chrome-gnome-shell
 ```
-安装插件
+安装插件 <br/>
 https://extensions.gnome.org </br>
 
 |             extensions              |    author    |
@@ -77,7 +77,7 @@ https://extensions.gnome.org </br>
 sudo apt-get install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0  gir1.2-clutter-1.0
 ```
 
-安装图标主题
+安装图标主题 <br/>
 yosa-max <br/>
 ultra-flat-icons
 
