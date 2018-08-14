@@ -19,6 +19,7 @@ Monday, August 13th 2018, 23:26
 	* [apt-fast](#apt-fast)
 	* [java](#java)
 	* [trim](#trim)
+	* [wine-qq wechat](#wine-qq-wechat)
 	* [keepassxc](#keepassxc)
 	* [zeal](#zeal)
 	* [shutter](#shutter)
@@ -225,6 +226,11 @@ reboot or source /etc/profile
 ```shell
 sudo chmod +x trim
 ```
+
+## wine-qq wechat
+https://www.lulinux.com/archives/1319 <br/>
+https://github.com/wszqkzqk/deepin-wine-ubuntu <br/>
+// https://github.com/askme765cs/Wine-QQ-TIM
 
 ## keepassxc
 ```shell
