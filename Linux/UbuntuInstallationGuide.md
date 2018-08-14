@@ -4,7 +4,7 @@ Monday, August 13th 2018, 23:26
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
 
-* [Ubuntu.md](#ubuntumd)
+* [UbuntuInstallationGuide.md](#ubuntuinstallationguidemd)
 	* [安装gnome-tweak-tool](#安装gnome-tweak-tool)
 	* [搜狗输入法](#搜狗输入法)
 	* [安装plank](#安装plank)
@@ -56,7 +56,7 @@ sudo apt install gnome-tweak-tool
 sudo apt-get install chrome-gnome-shell
 ```
 安装插件
-https://extensions.gnome.org</br>
+https://extensions.gnome.org </br>
 
 |             extensions              |    author    |
 |:-----------------------------------:|:------------:|
@@ -78,7 +78,7 @@ sudo apt-get install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0  gir1.2-clutter-1
 ```
 
 安装图标主题
-yosa-max
+yosa-max <br/>
 ultra-flat-icons
 
 ## 搜狗输入法
@@ -87,9 +87,9 @@ sudo apt install fcitx
 // sudo apt install fcitx-bin fcitx-table
 reboot
 ```
-install sogou input method
-reboot
-![添加英文键盘](assets/添加英文键盘.png)
+install sogou input method <br/>
+reboot <br/>
+![添加英文键盘](assets/添加英文键盘.png) <br/>
 ![设置快捷键](assets/设置快捷键.png)
 
 ## 安装plank
@@ -123,7 +123,7 @@ sudo update-grub
 
 ## albert
 https://albertlauncher.github.io/ </br>
-https://software.opensuse.org/download.html?project=home:manuelschneid3r&package=albert </br>
+https://software.opensuse.org/download.html?project=home:manuelschneid3r&package=albert
 ```shell
 wget -nv https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_18.04/Release.key -O Release.key
 sudo apt-key add - < Release.key
@@ -135,9 +135,9 @@ sudo apt-get install albert
 ```
 
 ## diskmount
-[Ubuntu挂载ntfs硬盘.md](Ubuntu挂载ntfs硬盘.md)
-修改/etc/fstab, 参考[fstab](fstab)
-若是无写入权限, 先`umount`, `sudo ntfsfix /dev/sdX`, 或者进入win10->控制面板->电源->盖子, 电源按钮->更改不可用设置->取消勾选快速启动
+[Ubuntu挂载ntfs硬盘.md](Ubuntu挂载ntfs硬盘.md) <br/>
+修改/etc/fstab, 参考[fstab](fstab) <br/>
+若是无写入权限, 先`umount`, 然后`sudo ntfsfix /dev/sdX`, 或者进入win10->控制面板->电源->盖子, 电源按钮->更改不可用设置->取消勾选快速启动
 
 ## git
 安装zsh前安装
@@ -146,18 +146,18 @@ sudo apt install git
 ```
 
 ## git proxy
-git config --global https.proxy http://127.0.0.1:1080
-git config --global https.proxy https://127.0.0.1:1080
+git config --global https.proxy http://127.0.0.1:1080 <br/>
+git config --global https.proxy https://127.0.0.1:1080 <br/>
 
-//取消代理
-git config --global --unset http.proxy
-git config --global --unset https.proxy
+//取消代理 <br/>
+git config --global --unset http.proxy <br/>
+git config --global --unset https.proxy <br/>
 
-git config --global http.proxy 'socks5://127.0.0.1:1080'
-git config --global https.proxy 'socks5://127.0.0.1:1080'
+git config --global http.proxy 'socks5://127.0.0.1:1080' <br/>
+git config --global https.proxy 'socks5://127.0.0.1:1080' <br/>
 
-git config --global user.name "username"
-git config --global user.email "email"
+git config --global user.name "username" <br/>
+git config --global user.email "email" <br/>
 
 ## zsh
 https://ohmyz.sh/
@@ -182,8 +182,7 @@ cd .aria2
 touch aria2.session
 chmod 777 aria2.session
 ```
-//指定aria2配置文件
---conf-path=/home/vauke/.aria2/aria2.conf
+//指定aria2配置文件 --conf-path=/home/vauke/.aria2/aria2.conf
 
 ## apt-fast
 ```shell
@@ -330,8 +329,9 @@ sudo apt install tilda
 | tool-bar-markdown-writer  |   zhuochun   |
 |       vim-mode-plus       |     t9md     |
 |   vim-mode-plus-ex-mode   |     t9md     |
-file-header设置日期格式:https://momentjs.com/docs/#/displaying/
-file-header插件设置文件映射
+
+file-header设置日期格式:https://momentjs.com/docs/#/displaying/ <br/>
+file-header插件设置文件映射 <br/>
 ![file-header插件设置文件映射.png](assets/file-header插件设置文件映射.png)
 
 ## ufw
@@ -374,7 +374,7 @@ prime-select nvidia //nvidia
 ```
 
 解决画面撕裂:
-http://forum.ubuntu.org.cn/viewtopic.php?t=487744
+http://forum.ubuntu.org.cn/viewtopic.php?t=487744 <br/>
 [截图](assets/解决画面撕裂.png)
 ```shell
 sudo vi /etc/modprobe.d/nvidia-graphics-drivers.conf
@@ -394,11 +394,11 @@ sudo apt install neofetchneofetch
 ```
 
 ## vm
-安装vbox要额外装extension pack才能用u盘
-Settings->System->Motherboard->Enable I/O APIC
-Settings->Storage->Controller:SATA->Use Host I/O Cache
-Settings->Storage->xxx.vdi->Solid-State Drive
-粘贴拖拽功能不如vmware, 不能粘贴时在guest中调出任务管理器重启VboxGuestAddtions
+安装vbox要额外装extension pack才能用u盘 <br/>
+Settings->System->Motherboard->Enable I/O APIC <br/>
+Settings->Storage->Controller:SATA->Use Host I/O Cache <br/>
+Settings->Storage->xxx.vdi->Solid-State Drive <br/>
+粘贴拖拽功能不如vmware, 不能粘贴时在guest中调出任务管理器重启VboxGuestAddtions <br/>
 
 vmware启动慢, 功能更完善稳定
 
@@ -412,6 +412,6 @@ sudo apt install htop
 sudo apt install tree
 
 ## music
-iease music
-https://github.com/trazyn/ieaseMusic
+iease music <br/>
+https://github.com/trazyn/ieaseMusic <br/>
 https://github.com/sunzongzheng/music
