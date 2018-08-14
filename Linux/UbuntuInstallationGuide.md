@@ -330,7 +330,6 @@ sudo apt install tilda
 |       vim-mode-plus       |     t9md     |
 |   vim-mode-plus-ex-mode   |     t9md     |
 
-
 file-header设置日期格式:https://momentjs.com/docs/#/displaying/ <br/>
 file-header插件设置文件映射 <br/>
 ![file-header插件设置文件映射.png](assets/file-header插件设置文件映射.png)
