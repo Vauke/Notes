@@ -176,6 +176,17 @@ logout
 
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
+修改`~/.zshrc`
+```script
+alias rm="rm -i"
+
+setopt no_nomatch
+# setopt no_glob
+setopt EXTENDED_GLOB
+
+export http_proxy="http://127.0.0.1:11080"
+export https_proxy="https://127.0.0.1:11080"
+```
 
 ## aria2
 安装apt-fast前先安装aria2, 不然安装apt-fast时安装的aria2会导致uget不能使用aria2?(在uget中修改aria2c的路径为`whereis aria2c`获取到的, 可以解决)
