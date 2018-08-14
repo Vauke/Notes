@@ -7,10 +7,10 @@ sudo apt install gnome-tweak-tool
 
 sudo apt-get install chrome-gnome-shell
 ```
-
+安装插件
 https://extensions.gnome.org</br>
 
-| header 1 | header 2 |
+| extensions | author |
 | :---: | :---: |
 | Caffeine | by eon |
 | Clipboard Indicator | by Tudmotu |
@@ -28,6 +28,10 @@ https://extensions.gnome.org</br>
 ```shell
 sudo apt-get install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0  gir1.2-clutter-1.0
 ```
+
+安装图标主题
+yosa-max
+ultra-flat-icons
 
 ## 搜狗输入法
 ```shell
@@ -62,6 +66,10 @@ reboot
 ## 修改grub等待时间
 ```shell
 sudo vi /etc/default/grub
+// 将GRUB_TIMEOUT修改为0.1
+GRUB_TIMEOUT=0.1
+:wq
+
 sudo update-grub
 ```
 
@@ -79,6 +87,9 @@ sudo apt-get install albert
 ```
 
 ## diskmount
+[Ubuntu挂载ntfs硬盘.md](Ubuntu挂载ntfs硬盘.md)
+修改/etc/fstab, 参考[fstab](fstab)
+若是无写入权限, 先`umount`, `sudo ntfsfix /dev/sdX`, 或者进入win10->控制面板->电源->盖子, 电源按钮->更改不可用设置->取消勾选快速启动
 
 ## git
 安装zsh前安装
@@ -146,6 +157,17 @@ reboot or source /etc/profile
 ```
 
 ## trim
+将脚本[trim](trim)放在/etc/cron.weekly/下
+```shell
+sudo chmod +x trim
+```
+
+## keepassxc
+```shell
+sudo add-apt-repository ppa:phoerious/keepassxc
+sudo apt-get update
+sudo apt install keepassxc
+```
 
 ## zeal
 ```shell
@@ -182,12 +204,16 @@ sudo apt install uget-integrator
 
 ## vim
 #### vundle
+```shell
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 sudo apt-get install fonts-powerline
+```
 
 #### powerline font https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation
+```shell
 wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
 wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+```
 
 ## 取消错误通知
 ```shell
@@ -199,9 +225,11 @@ enabled=0
 sudo apt install vlc
 
 ## y-ppa-manager
+```shell
 sudo add-apt-repository ppa:webupd8team/y-ppa-manager
 sudo apt update
 sudo apt install y-ppa-manager
+```
 
 ## meld
 sudo apt install meld
@@ -302,6 +330,23 @@ sudo apt install neofetchneofetch
 
 ## vm
 安装vbox要额外装extension pack才能用u盘
+Settings->System->Motherboard->Enable I/O APIC
+Settings->Storage->Controller:SATA->Use Host I/O Cache
+Settings->Storage->xxx.vdi->Solid-State Drive
 粘贴拖拽功能不如vmware, 不能粘贴时在guest中调出任务管理器重启VboxGuestAddtions
 
 vmware启动慢, 功能更完善稳定
+
+## htop
+sudo apt install htop
+
+## catfish
+文件搜索
+
+## tree
+sudo apt install tree
+
+## music
+iease music
+https://github.com/trazyn/ieaseMusic
+https://github.com/sunzongzheng/music
