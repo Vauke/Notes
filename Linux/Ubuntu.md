@@ -182,13 +182,18 @@ http://jd.benow.ca/
 ## GoldenDict
 
 ## Font
+```shell
 sudo apt install ttf-mscorefonts-installer
 sudo fc-cache -f -v
+```
 
 ## MySQL
+```shell
 sudo apt install mysql-server
 
 mysql -u root -p
+```
+```sql
 show variables like 'char%';
 show engines;
 
@@ -196,7 +201,7 @@ create user 'vauke'@'localhost' identified by '123456';
 grant all privileges on *.* to 'vauke'@'localhost';
 flush privileges;
 show grants;
-
+```
 
 ## Termnal
 sudo apt install tilda
@@ -208,11 +213,51 @@ https://momentjs.com/docs/#/displaying/
 
 
 ## ufw
+```shell
 sudo apt install ufw
 
 sudo ufw enable
 sudo ufw status
+```
 
 ## ssh
+```shell
 ps -e | grep sshd
 sudo apt install openssh-server
+```
+
+## nvidia
+https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-18-04-bionic-beaver-linux
+```shell
+ubuntu-drivers devices
+
+//stable
+sudo  apt install nvidia-driver-390
+reboot
+
+//beta
+sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt update
+
+ubuntu-drivers devices
+sudo apt install nvidia-driver-396
+```
+解决画面撕裂:
+http://forum.ubuntu.org.cn/viewtopic.php?t=487744
+[截图](assets/解决画面撕裂.png)
+```shell
+sudo vi /etc/modprobe.d/nvidia-graphics-drivers.conf
+
+添加:
+options nvidia_drm modeset=1
+
+:wq
+sudo update-initramfs -u
+reboot
+```
+
+## neofetch
+```shell
+sudo apt insatll screenfetch
+sudo apt install neofetchneofetch
+```
