@@ -19,8 +19,8 @@ Monday, August 13th 2018, 23:26
 	* [apt-fast](#apt-fast)
 	* [java](#java)
 	* [trim](#trim)
-	* [wine-qq wechat](#wine-qq-wechat)
 	* [keepassxc](#keepassxc)
+	* [wine-qq wechat](#wine-qq-wechat)
 	* [zeal](#zeal)
 	* [shutter](#shutter)
 	* [calibre](#calibre)
@@ -30,7 +30,6 @@ Monday, August 13th 2018, 23:26
 			* [vundle](#vundle)
 			* [powerline font](#powerline-font)
 	* [取消错误通知](#取消错误通知)
-	* [vlc](#vlc)
 	* [y-ppa-manager](#y-ppa-manager)
 	* [meld](#meld)
 	* [jad](#jad)
@@ -49,6 +48,7 @@ Monday, August 13th 2018, 23:26
 	* [catfish](#catfish)
 	* [tree](#tree)
 	* [music](#music)
+	* [video](#video)
 
 <!-- /code_chunk_output -->
 
@@ -227,17 +227,17 @@ reboot or source /etc/profile
 sudo chmod +x trim
 ```
 
-## wine-qq wechat
-https://www.lulinux.com/archives/1319 <br/>
-https://github.com/wszqkzqk/deepin-wine-ubuntu <br/>
-// https://github.com/askme765cs/Wine-QQ-TIM
-
 ## keepassxc
 ```shell
 sudo add-apt-repository ppa:phoerious/keepassxc
 sudo apt-get update
 sudo apt install keepassxc
 ```
+
+## wine-qq wechat
+https://www.lulinux.com/archives/1319 <br/>
+https://github.com/wszqkzqk/deepin-wine-ubuntu <br/>
+// https://github.com/askme765cs/Wine-QQ-TIM
 
 ## zeal
 ```shell
@@ -293,9 +293,6 @@ wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbol
 sudo vi /etc/default/apport
 enabled=0
 ```
-
-## vlc
-sudo apt install vlc
 
 ## y-ppa-manager
 ```shell
@@ -356,7 +353,31 @@ sudo apt install tilda
 
 file-header设置日期格式:https://momentjs.com/docs/#/displaying/ <br/>
 file-header插件设置文件映射 <br/>
-![file-header插件设置文件映射.png](assets/file-header插件设置文件映射.png)
+![file-header插件设置文件映射.png](assets/file-header插件设置文件映射.png) <br/>
+
+Edit->Snippets...
+添加
+```cson
+'.text.md':
+  '<sup>':
+    'prefix':'sup'
+    'body':'<sup>$1</sup>$2'
+  '<sub>':
+    'prefix':'sub'
+    'body':'<sub>$1</sub>$2'
+  '<mark>':
+    'prefix':'mark'
+    'body':'<mark>$1</mark>$2'
+  '<center>':
+    'prefix':'center'
+    'body':'<center>$1</center>$2'
+  '<br>':
+    'prefix':'br'
+    'body':'<br/>$1'
+  '<hr>':
+    'prefix':'hr'
+    'body':'<hr/>$1'
+```
 
 ## sublime
 安装gbk支持: 先安装codecs33, 然后安装GBK4subl <br/>
@@ -444,3 +465,20 @@ sudo apt install tree
 iease music <br/>
 https://github.com/trazyn/ieaseMusic <br/>
 https://github.com/sunzongzheng/music
+
+## video
+```shell
+sudo apt install vlc
+
+sudo apt install mplayer //装smplayer前装mplayer或者mpv
+
+sudo add-apt-repository ppa:rvm/smplayer
+sudo apt-get update
+sudo apt-get install smplayer smplayer-themes smplayer-skins
+```
+vlc简单设置:
+打开所有设置: <br/>
+播放视频卡顿: Input / Codecs-> Advanced->File Caching 改为1000以上 <br/>
+内存占用大: Playlist -> Automatically preparse items 取消勾选 <br/>
+Video -> General video settings -> Drop late frames 去掉勾选 <br/>
+Video -> Window properties -> Source Aspect ratio 改为16:9
