@@ -389,7 +389,8 @@ Edit->Snippets...
 sudo apt install ufw
 
 sudo ufw enable
-sudo ufw allow tcp //protoc
+sudo ufw allow tcp // protocol
+sudo ufw allow 21 // port
 sudo ufw status
 ```
 
