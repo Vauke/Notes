@@ -478,7 +478,10 @@ sudo apt-get install smplayer smplayer-themes smplayer-skins
 ```
 vlc简单设置:
 打开所有设置: <br/>
-播放视频卡顿: Input / Codecs-> Advanced->File Caching 改为1000以上 <br/>
-内存占用大: Playlist -> Automatically preparse items 取消勾选 <br/>
+解决播放视频卡顿: Input / Codecs-> Advanced->File Caching 改为1000以上 <br/>
+解决内存占用大: Playlist -> Automatically preparse items 取消勾选 <br/>
 Video -> General video settings -> Drop late frames 去掉勾选 <br/>
-Video -> Window properties -> Source Aspect ratio 改为16:9
+Video -> Window properties -> Source Aspect ratio 改为16:9 <br/>
+简单设置页面: <br/>
+Input / Codecs: Hardware-accelerated decoding 选择VA-API video decoder(使用Intel核显)或者VDPAU(需安装nvidia驱动) <br/>
+Video: Display -> Output -> VDPAU output (codec选择VDPAU后才设置)
