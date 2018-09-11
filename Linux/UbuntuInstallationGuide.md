@@ -320,6 +320,11 @@ sudo fc-cache -f -v
 ```shell
 sudo apt install mysql-server
 
+#禁止启动
+sudo systemctl disable mysql
+#开机启动
+sudo systemctl enable mysql
+
 mysql -u root -p
 ```
 ```sql
