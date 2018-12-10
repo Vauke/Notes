@@ -491,3 +491,8 @@ Video -> Window properties -> Source Aspect ratio 改为16:9 <br/>
 简单设置页面: <br/>
 Input / Codecs: Hardware-accelerated decoding 选择VA-API video decoder(使用Intel核显)或者VDPAU(需安装nvidia驱动) <br/>
 Video: Display -> Output -> VDPAU output (codec选择VDPAU后才设置)
+
+## 打开不了设置
+```shell
+sudo apt install gnome-control-center
+```
