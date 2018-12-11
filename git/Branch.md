@@ -21,7 +21,8 @@ git checkout -b vauke origin/vauke # create local branch and associate with remo
 Branch 'vauke' set up to track remote branch 'vauke' from 'origin'.
 Switched to a new branch 'vauke'
 ```
-2. the needed branch not exists at remote
+
+2. the needed branch does not exists at remote
 ```shell
 git checkout -b <local_branch> # create a branch at local
 git push origin <local_branch>:<remote_branch> # push <local_branch> to remote's specified branch, if not exists at remote, it'll will be created automatically and build association
@@ -48,14 +49,12 @@ See git-pull(1) for details.
 If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream-to=origin/<branch> linux
-<<<<<<< Updated upstream
+
 # "git push", output:
 fatal: The current branch linux has no upstream branch.
 To push the current branch and set the remote as upstream, use
 
     git push --set-upstream origin linux
-=======
->>>>>>> Stashed changes
 
 # associate local and remote
 git push --set-upstream origin <local_branch>
