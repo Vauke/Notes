@@ -29,6 +29,30 @@ git push origin <local_branch>:<remote_branch> # push <local_branch> to remote's
 #i.e.
 git checkout -b dev_local
 git push origin dev_local:dev_remote
+# output:
+Total 0 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'linux' on GitHub by visiting:
+remote:      https://github.com/Vauke/Notes/pull/new/linux
+remote:
+To github.com:Vauke/Notes.git
+ * [new branch]      linux -> linux
+
+# then "git pull", output:
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> linux
+# "git push", output:
+fatal: The current branch linux has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin linux
 
 # associate local and remote
 git push --set-upstream origin <local_branch>
