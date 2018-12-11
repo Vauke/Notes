@@ -30,6 +30,7 @@ git push origin <local_branch>:<remote_branch> # push <local_branch> to remote's
 #i.e.
 git checkout -b dev_local
 git push origin dev_local:dev_remote
+
 # output:
 Total 0 (delta 0), reused 0 (delta 0)
 remote:
@@ -68,10 +69,14 @@ remote:
 To github.com:Vauke/Notes.git
  * [new branch]      spring -> spring
 Branch 'spring' set up to track remote branch 'spring' from 'origin'.
+```
 
+```shell
 # associate local and remote
+# before first push do:
 git push --set-upstream origin <local_branch>
 
+# before first pull do
 git branch --set-upstream-to=origin/<remote_branch> <local_branch>
 # output:
 Branch 'linux' set up to track remote branch 'linux' from 'origin'.
