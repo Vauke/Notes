@@ -12,15 +12,20 @@ git checkout -b <new_branch> # create and switch to the new branch named <new_br
 # associate branch with remote ones
 1. remote has the need branch, local not
 ```shell
-git checkout -b <local_branch> origin/<remote_branch> # name can be different
+# before execute the command below, you'd better execute "git pull" first to ensure your local repo has the "origin/<remote_branch>", use "git branch -a" to ckeck the remote branch list
+git checkout -b <local_branch> origin/<remote_branch> # name can be different, then association has been builded
 
 # i.e.
 git checkout -b vauke origin/vauke # create local branch and associate with remote's vauke repo
+# output:
+Branch 'vauke' set up to track remote branch 'vauke' from 'origin'.
+Switched to a new branch 'vauke'
 ```
-2. the needed branch not exists at remote
+
+2. the needed branch does not exists at remote
 ```shell
 git checkout -b <local_branch> # create a branch at local
-git push origin <local_branch>:<remote_branch> # push <local_branch> to remote's specified branch, if not exists at remote, it'll will be created automatically and build association
+git push origin <local_branch>:<remote_branch> # push <local_branch> to remote's specified branch, if not exists at remote, it'll will be created automatically but do not build association
 
 #i.e.
 git checkout -b dev_local
@@ -44,9 +49,33 @@ See git-pull(1) for details.
 If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream-to=origin/<branch> linux
+<<<<<<< HEAD
+=======
+
+# then "git branch --set-upstream-to=origin/<branch> linux", output:
+Branch 'linux' set up to track remote branch 'linux' from 'origin'.
+
+# "git push", output:
+fatal: The current branch linux has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin linux
+
+# then "git push --set-upstream origin spring", output:
+Total 0 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'spring' on GitHub by visiting:
+remote:      https://github.com/Vauke/Notes/pull/new/spring
+remote:
+To github.com:Vauke/Notes.git
+ * [new branch]      spring -> spring
+Branch 'spring' set up to track remote branch 'spring' from 'origin'.
+>>>>>>> spring
 
 # associate local and remote
 git push --set-upstream origin <local_branch>
 
 git branch --set-upstream-to=origin/<remote_branch> <local_branch>
+# output:
+Branch 'linux' set up to track remote branch 'linux' from 'origin'.
 ```
