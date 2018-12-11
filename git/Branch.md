@@ -60,4 +60,6 @@ To push the current branch and set the remote as upstream, use
 git push --set-upstream origin <local_branch>
 
 git branch --set-upstream-to=origin/<remote_branch> <local_branch>
+# output:
+Branch 'linux' set up to track remote branch 'linux' from 'origin'.
 ```
