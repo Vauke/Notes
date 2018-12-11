@@ -73,7 +73,7 @@ select 2 : switch to database3 <br/>
 `expire <key_name> <xxx_seconds>`: set the specified key expires in xxx seconds <br/>
 `ttl(time to live) <key_name>`: indicate the key `key_name`'s expire time(in seconds) <br/>
  note: the expired key is no longer in database
- 
+
 | 返回值 |  -1   |       -2        |               xxx               |
 | ------ | ----- | --------------- | ------------------------------- |
 |  描述  | never | already expired | expiring in another xxx seconds |
