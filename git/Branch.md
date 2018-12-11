@@ -49,9 +49,6 @@ See git-pull(1) for details.
 If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream-to=origin/<branch> linux
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
 
 # then "git branch --set-upstream-to=origin/<branch> linux", output:
 Branch 'linux' set up to track remote branch 'linux' from 'origin'.
@@ -71,9 +68,6 @@ remote:
 To github.com:Vauke/Notes.git
  * [new branch]      spring -> spring
 Branch 'spring' set up to track remote branch 'spring' from 'origin'.
->>>>>>> spring
-=======
->>>>>>> Stashed changes
 
 # associate local and remote
 git push --set-upstream origin <local_branch>
