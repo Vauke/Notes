@@ -17,6 +17,7 @@ git checkout -b <local_branch> origin/<remote_branch> # name can be different, t
 
 # i.e.
 git checkout -b vauke origin/vauke # create local branch and associate with remote's vauke repo
+
 # output:
 Branch 'vauke' set up to track remote branch 'vauke' from 'origin'.
 Switched to a new branch 'vauke'
@@ -51,7 +52,7 @@ If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream-to=origin/<branch> linux
 
-# then "git branch --set-upstream-to=origin/<branch> linux", output:
+# then "git branch --set-upstream-to=origin/linux linux", output:
 Branch 'linux' set up to track remote branch 'linux' from 'origin'.
 
 # "git push", output:
@@ -78,6 +79,7 @@ git push --set-upstream origin <local_branch>
 
 # before first pull do
 git branch --set-upstream-to=origin/<remote_branch> <local_branch>
+
 # output:
 Branch 'linux' set up to track remote branch 'linux' from 'origin'.
 ```
