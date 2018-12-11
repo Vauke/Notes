@@ -48,11 +48,14 @@ See git-pull(1) for details.
 If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream-to=origin/<branch> linux
+<<<<<<< Updated upstream
 # "git push", output:
 fatal: The current branch linux has no upstream branch.
 To push the current branch and set the remote as upstream, use
 
     git push --set-upstream origin linux
+=======
+>>>>>>> Stashed changes
 
 # associate local and remote
 git push --set-upstream origin <local_branch>
