@@ -50,6 +50,9 @@ If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream-to=origin/<branch> linux
 
+# then "git branch --set-upstream-to=origin/<branch> linux", output:
+Branch 'linux' set up to track remote branch 'linux' from 'origin'.
+
 # "git push", output:
 fatal: The current branch linux has no upstream branch.
 To push the current branch and set the remote as upstream, use
