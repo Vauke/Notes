@@ -77,7 +77,7 @@ Branch 'spring' set up to track remote branch 'spring' from 'origin'.
 # before first push do:
 git push --set-upstream origin <local_branch>
 
-# before first pull do
+# after at least one push do -- pull won't create branch at remote, push do
 git branch --set-upstream-to=origin/<remote_branch> <local_branch>
 
 # output:
