@@ -19,7 +19,7 @@ Monday, August 13th 2018, 23:26
 	* [apt-fast](#apt-fast)
 	* [java](#java)
 	* [trim](#trim)
-	* [keepassxc](#keepassxc)
+	* [password management](#password-management)
 	* [wine-qq wechat](#wine-qq-wechat)
 	* [zeal](#zeal)
 	* [shutter](#shutter)
@@ -49,6 +49,9 @@ Monday, August 13th 2018, 23:26
 	* [tree](#tree)
 	* [music](#music)
 	* [video](#video)
+	* [打开不了设置中心](#打开不了设置中心)
+	* [snap安装软件太慢](#snap安装软件太慢)
+	* [e-mail client](#e-mail-client)
 
 <!-- /code_chunk_output -->
 
@@ -227,12 +230,15 @@ reboot or source /etc/profile
 sudo chmod +x trim
 ```
 
-## keepassxc
+## password management
+keepassxc
 ```shell
 sudo add-apt-repository ppa:phoerious/keepassxc
 sudo apt-get update
 sudo apt install keepassxc
 ```
+bitwarden <br/>
+https://bitwarden.com
 
 ## wine-qq wechat
 https://www.lulinux.com/archives/1319 <br/>
@@ -492,7 +498,30 @@ Video -> Window properties -> Source Aspect ratio 改为16:9 <br/>
 Input / Codecs: Hardware-accelerated decoding 选择VA-API video decoder(使用Intel核显)或者VDPAU(需安装nvidia驱动) <br/>
 Video: Display -> Output -> VDPAU output (codec选择VDPAU后才设置)
 
-## 打开不了设置
+## 打开不了设置中心
 ```shell
 sudo apt install gnome-control-center
 ```
+
+## snap安装软件太慢
+```shell
+# search the app you want to install with snap
+snap search "app_name"
+
+# download the app to local
+snap download "app_name"
+
+# add the assertion to the system, auth may be required
+snap ack app_name.assert
+
+# install the snap app, auth may be required
+snap install app_name.snap
+
+# uninstall the snap app
+sudo snap remove app_name
+```
+
+## e-mail client
+mailspring <br/>
+https://github.com/Foundry376/Mailspring
+thunderbird
