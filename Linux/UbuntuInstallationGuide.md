@@ -523,5 +523,6 @@ sudo snap remove app_name
 
 ## e-mail client
 mailspring <br/>
-https://github.com/Foundry376/Mailspring
+https://github.com/Foundry376/Mailspring <br/>
+
 thunderbird
