@@ -476,7 +476,9 @@ sudo apt install tree
 ## music
 iease music <br/>
 https://github.com/trazyn/ieaseMusic <br/>
-https://github.com/sunzongzheng/music
+https://github.com/sunzongzheng/music <br/>
+
+spotify
 
 ## video
 ```shell
@@ -526,3 +528,6 @@ mailspring <br/>
 https://github.com/Foundry376/Mailspring <br/>
 
 thunderbird
+
+## chat all in one
+rambox.pro
