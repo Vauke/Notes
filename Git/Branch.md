@@ -10,7 +10,7 @@ git checkout <new_branch> # switch to it
 git checkout -b <new_branch> # create and switch to the new branch named <new_branch>
 ```
 # associate branch with remote ones
-1. remote has the need branch, local not
+1. remote has the needed branch, local not
 ```shell
 # before execute the command below, you'd better execute "git pull" first to ensure your local repo has the "origin/<remote_branch>", use "git branch -a" to ckeck the remote branch list
 git checkout -b <local_branch> origin/<remote_branch> # name can be different, then association has been builded
