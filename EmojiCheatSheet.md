@@ -1,6 +1,10 @@
 # EmojiCheatSheet.md
 Thursday, July 12th 2018, 11:41
 
+sub collection of emojis from :point_right: [Emoji Cheet Sheet](https://www.webfx.com/tools/emoji-cheat-sheet/)
+
+all the emojis that are supported by github(a RESTful API): https://api.github.com/emojis
+
 :sparkle:
 :sparkles:
 :star:
@@ -44,3 +48,7 @@ Thursday, July 12th 2018, 11:41
 :speech_balloon:
 :+1:
 :-1:
+:point_left:
+:point_right:
+:arrow_left:
+:arrow_right:

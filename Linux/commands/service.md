@@ -51,6 +51,7 @@ usage:
 ```shell
 update-rc.d [-f] <service_name> remove | defaults | defaults-disabled | disable | enable [S|2|3|4|5]
 ```
+`remove`: remove from auto startup
 
 `-f` means force
 
@@ -72,4 +73,4 @@ sudo update-rc.d [-f] hello remove
 
 [Mike的分享空间](http://www.mikewootc.com/wiki/linux/usage/ubuntu_service_usage.html)
 
-for more customization, see:[ufw](../assets/ufw)
+for more customization, see: :point_right: [ufw](../assets/ufw)
