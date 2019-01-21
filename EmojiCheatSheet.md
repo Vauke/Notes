@@ -3,7 +3,7 @@ Thursday, July 12th 2018, 11:41
 
 sub collection of emojis from :point_right: [Emoji Cheet Sheet](https://www.webfx.com/tools/emoji-cheat-sheet/)
 
-all the emojis that are supported by github(a RESTful API): https://api.github.com/emojis
+all the emojis that are supported by github(a RESTful API): [all supported emojis](https://api.github.com/emojis)
 
 :sparkle:
 :sparkles:
