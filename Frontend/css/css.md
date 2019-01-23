@@ -1,10 +1,11 @@
-# css.md {ignore=true}
+# css.md
 Wednesday, January 23rd 2019, 15:35
 
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
 
+* [css.md](#cssmd)
 * [Cascading Style Sheets](#cascading-style-sheets)
 	* [Inline CSS](#inline-css)
 	* [Embedded/Internal CSS](#embeddedinternal-css)
@@ -176,6 +177,4 @@ the priority of these 3 selectors is: id > class > type
 </style>
 ```
 
-based on [basic selectors](#basic-selectors),
-
-[TOC]
+based on [basic selectors](#basic-selectors), 
