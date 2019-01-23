@@ -5,7 +5,6 @@ Wednesday, January 23rd 2019, 15:35
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
 
-* [css.md](#cssmd)
 * [Cascading Style Sheets](#cascading-style-sheets)
 	* [Inline CSS](#inline-css)
 	* [Embedded/Internal CSS](#embeddedinternal-css)
