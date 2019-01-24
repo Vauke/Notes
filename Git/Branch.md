@@ -83,3 +83,29 @@ git branch --set-upstream-to=origin/<remote_branch> <local_branch>
 # output:
 Branch 'linux' set up to track remote branch 'linux' from 'origin'.
 ```
+
+# delete branch
+
+## delete remote branch
+
+delete a remote branch at local
+
+```shell
+git push origin --delete <branch_name>
+```
+
+follow the hint to delete it, then use `git branch -a` to check
+
+if continue working on the local branch which associated with the deleted one, you might see:
+
+```shell
+Switched to branch 'test'
+Your branch is based on 'origin/test', but the upstream is gone.
+  (use "git branch --unset-upstream" to fixup)
+```
+
+## delete local branch
+
+```shell
+git branch -d <branch_name>
+```
