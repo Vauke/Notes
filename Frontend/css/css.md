@@ -24,6 +24,10 @@ Wednesday, January 23rd 2019, 15:35
 	* [font related properties](#font-related-properties)
 	* [text related properties](#text-related-properties)
 	* [background related properties](#background-related-properties)
+	* [list related properties](#list-related-properties)
+	* [size related properties](#size-related-properties)
+	* [display related properties](#display-related-properties)
+	* [float properties](#float-properties)
 
 <!-- /code_chunk_output -->
 
@@ -298,7 +302,7 @@ Inheritance refers to the way properties flow through the page. Achild element w
 
 ## text related properties
 
-`color`
+`color`: name_of_color
 
 `text-decoration`: none | underline
 
@@ -314,7 +318,129 @@ a link on the web page often has a describe text with underline, just like this:
 
 `background-repeat`: 平铺方式
 
-*`repeat`: 横向, 纵向平铺
-*`no-repeat`: none
+* `repeat`: 横向, 纵向平铺
+* `no-repeat`: none
 * `repeat-y`: vertical
 * `repeat-x`: horizontal
+
+example:
+
+```html
+body{
+	background-color: black;
+	background-image: url("images/dog.gif");
+	background-repeat: repeat-y;
+}
+```
+
+## list related properties
+
+`list-style-type`: 列表项前面的标志, 圆点,方块...
+
+`list-style-image`: url("path_to_image") 列表项前的小图片
+
+example:
+
+```html
+<style type="text/css">
+	ul{list-style-type: decimal-leading-zero;} 01,02...
+	ul{list-style-image: url("images/forward.gif");} pic
+</style>
+```
+
+## size related properties
+
+`width`: width
+
+`height`: height
+
+## display related properties
+
+`display`: none | block | inline
+* none: hide
+* block: 块级显示
+* inline: 行级显示
+
+example:
+
+```html
+<script>
+	document.getElementById("username").onblur = function() {
+		document.getElementById("username_tips").style.display = "inline";
+	};
+</script>
+
+<style>
+	form span {
+		color: red;
+		display: none;
+	}
+</style>
+
+<form action="">
+	username: <input type="text" id="username" /> <span id="username_tips">username is required!</span> <br/>
+	password: <input type="password" id="password" /> <br/>
+	<input type="button" id="btn" value="submit" />
+</form>
+```
+
+上面的代码会在username输入框失去焦点时将span的display设置为inline, `username is required!` 就会显示到输入框后面, 如果`display="block"`, 则显示到输入框下面
+
+## float properties
+
+`float`: left | right 浮动是相对于父级元素的
+
+`clear`: left | rigth | both 清除浮动, 浮动可能会导致相邻或父级元素不能正常显示, 因此需要使用`clear`
+
+example:
+
+```html
+<style>
+    #d1{width: 100px;height: 100px;background-color: red;float: left;}
+    #d2{width: 100px;height: 100px;background-color: green;float: left;}
+</style>
+
+<div id="d1"></div>
+<div id="d2"></div>
+```
+
+这里的父级元素是`<body>`, `float="left"`, 因此会在页面的左边, 如果为right则在页面右边, d1 d2会并列显示:
+
+![并列显示](assets/并列显示.png)
+
+```html
+<style>
+    #d1{width: 100px;height: 100px;background-color: red;float: left;}
+    #d2{width: 100px;height: 100px;background-color: green;float: left;}
+    #d3{width: 100px;height: 100px;background-color: pink}
+</style>
+
+<div id="d1"></div>
+<div id="d2"></div>
+<div id="d3">this is d3</div>
+```
+
+d3不会显示, 因为被遮挡
+
+![float遮挡](assets/float遮挡.png)
+
+这时就需要使用`clear`来清除样式, 相当于在页面上划了一条分隔线, 分隔线以上的样式不会影响分隔线下方
+
+```html
+<style>
+    #d1 {width: 100px;height: 100px;background-color: red;float: left;}
+    #d2 {width: 100px;height: 100px;background-color: green;float: left;}
+    #d3 {width: 100px;height: 100px;background-color: pink}
+	#clear {clear: both}
+</style>
+
+<div id="d1"></div>
+<div id="d2"></div>
+<div id="clear">分隔线</div>
+<div id="d3">this is d3</div>
+```
+
+实际开发中使用空div:
+
+![分隔线示例](assets/分隔线示例.png)
+![分隔线示例2](assets/分隔线示例2.png)
