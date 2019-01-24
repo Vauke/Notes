@@ -109,3 +109,16 @@ Your branch is based on 'origin/test', but the upstream is gone.
 ```shell
 git branch -d <branch_name>
 ```
+
+if you are woring on the branch you want to delete, you might see:
+
+```shell
+error: Cannot delete branch 'test' checked out at '/media/Program/Notes'
+```
+
+if the branch working on is not merged with the deleting on, you might see:
+
+```shell
+error: The branch 'test' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D test'.
+```
