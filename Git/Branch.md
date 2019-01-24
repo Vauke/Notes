@@ -104,6 +104,18 @@ Your branch is based on 'origin/test', but the upstream is gone.
   (use "git branch --unset-upstream" to fixup)
 ```
 
+if you want to restore the remote branch, just use `git push`
+
+```shell
+Total 0 (delta 0), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'frontend' on GitHub by visiting:
+remote:      https://github.com/Vauke/Notes/pull/new/frontend
+remote:
+To github.com:Vauke/Notes.git
+ * [new branch]      frontend -> frontend
+```
+
 ## delete local branch
 
 ```shell
