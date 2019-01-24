@@ -314,7 +314,7 @@ a link on the web page often has a describe text with underline, just like this:
 
 `background-repeat`: 平铺方式
 
-* `repeat`: 横向, 纵向平铺
-* `no-repeat`: none
+*`repeat`: 横向, 纵向平铺
+*`no-repeat`: none
 * `repeat-y`: vertical
 * `repeat-x`: horizontal
