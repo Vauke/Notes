@@ -28,6 +28,7 @@ Wednesday, January 23rd 2019, 15:35
 	* [size related properties](#size-related-properties)
 	* [display related properties](#display-related-properties)
 	* [float properties](#float-properties)
+* [盒子模型](#盒子模型)
 
 <!-- /code_chunk_output -->
 
@@ -420,7 +421,7 @@ example:
 <div id="d3">this is d3</div>
 ```
 
-d3不会显示, 因为被遮挡
+d3不会显示, 这就是浮动属性的缺点
 
 ![float遮挡](assets/float遮挡.png)
 
@@ -444,3 +445,28 @@ d3不会显示, 因为被遮挡
 
 ![分隔线示例](assets/分隔线示例.png)
 ![分隔线示例2](assets/分隔线示例2.png)
+
+# 盒子模型
+
+`border`: 多个属性的简写, 多个属性值以空格分隔
+
+1. `border-width`: 边框的宽度
+2. `border-color`: 边框的颜色
+3. `border-style`: 边框的线型
+
+还可以单独为每个边设置:
+
+1. `border-top`
+2. `border-bottom`
+3. `border-left`
+4. `border-right`
+
+`padding`: 边框内壁与内部元素之间的距离
+
+1. `padding: 10px;`: 上右下左都是10px
+2. `padding: 1px 2px;`: 上下1 左右2
+3. `padding: 1px 2px 3px;` 上1 左右2 下3
+4. `padding: 1px 2px 3px 4px;`:上右下左依次是1 2 3 4, clockwise
+5. `padding-top`...
+
+`margin`: 边框外壁与外部元素之间的距离 属性设置同`padding`
