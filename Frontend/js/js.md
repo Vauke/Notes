@@ -97,13 +97,63 @@ number/boolean :point_right: string, use `x.toString()`
 string/boolean :point_right: number, use `parseInt(x)` or `parseFloat(x)`
 
 强制转换:
-    1. Boolean()
-    2. Number()
 
-### string
+1. Boolean(x)
+    * number: `Boolean(0) // false` `Boolean(非0) // true`
+    * string: `Boolean("") // 空串为false` `Boolean("非空") // true`
+2. Number(x)
+    * boolean: `Number(true) // 1` `Number(false) // 0`
+    * string: 结果为`NaN`
 
 ## reference data type
 
+java:
+
+```java
+Object o = new Object();
+```
+
+javascript:
+
+```javascript
+var obj = new Object();
+var num = new Number(); // num is an object
+```
+
 ## operators
 
+算术运算符(除`+`外, `+`为拼接字符串)在遇到字符串时, 会先将字符串(`"123"`)转为相应数字(类似`123abc`的字符串除外)
+
+```js
+x = "5", y = "123";
+x * y = 615; y = "123abc" // NaN
+```
+
+`===`: 全等 类型与值都相等时才为`true`
+
+```js
+"123" == 123 // true
+"123" === 123 // false
+```
+
+`void` 运算符: `<a href="javascript:void(0);">表示空链</a>`
+
+`typeof` 运算符: 判断数据类型并返回
+
+`instanceof` 运算符: 判断是否为指定类型并返回boolean
+
 ## logics
+
+`if`的条件: 非0数字, 非空串为true `if(1) // true`
+
+`switch`: 可以用字符串, java中是1.7之后才行
+
+`for in`:
+
+```js
+var arr = [1, true, "js"];
+
+for (index in arr) {
+    alert(arr[index]);
+}
+```
