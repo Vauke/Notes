@@ -469,4 +469,6 @@ d3不会显示, 这就是浮动属性的缺点
 4. `padding: 1px 2px 3px 4px;`:上右下左依次是1 2 3 4, clockwise
 5. `padding-top`...
 
+一般将左右设置为`auto`来达到居中的效果
+
 `margin`: 边框外壁与外部元素之间的距离 属性设置同`padding`
