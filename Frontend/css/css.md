@@ -8,7 +8,7 @@ Wednesday, January 23rd 2019, 15:35
 * [css.md](#cssmd)
 * [Cascading Style Sheets](#cascading-style-sheets)
 	* [Inline CSS](#inline-css)
-	* [Embedded/Internal CSS](#embeddedinternal-css)
+	* [Embedded / Internal CSS](#embedded-internal-css)
 	* [External CSS](#external-css)
 	* [use @import](#use-import)
 * [Syntax](#syntax)
@@ -55,7 +55,7 @@ write in HTML tags and just work in that tag
 <p style="color: green">"style='color: green'" is a inline styling css</p>
 ```
 
-## Embedded/Internal CSS
+## Embedded / Internal CSS
 
 write in `<style>` tag, inside the `<head>` section of a html page
 
