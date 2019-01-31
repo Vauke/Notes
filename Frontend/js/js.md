@@ -14,7 +14,6 @@ Thursday, January 31st 2019, 20:54
 	* [variables](#variables)
 	* [primitive data type](#primitive-data-type)
 		* [type convert](#type-convert)
-		* [string](#string)
 	* [reference data type](#reference-data-type)
 	* [operators](#operators)
 	* [logics](#logics)
