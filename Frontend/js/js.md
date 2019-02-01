@@ -193,14 +193,89 @@ var myBool = new Boolean(value);
 var myBool = Boolean(value);
 
 // 属性方法
+toString()
+valueOf()
 ```
 
 ## String
 
+```js
+// 创建方式
+var myStr = new String(value);
+var myStr = String(value);
+var myStr = "value";
+
+// 属性方法
+length
+
+charAt(): return character at specified index
+charCodeAt(): return character unicode at specified index
+indexOf(): return index of specified character
+lastIndexOf(): reverse version of indexOf()
+split(): split string to array
+substr(x, y): 从起始索引x开始截取指定数目y个字符
+substring(x, y): 截取两个指定索引之间[x, y)的字符
+```
+
 ## Array
+
+```js
+// 创建方式
+var myArr = new Array(); // empty array without size
+var myArr = new Array(size); // specified array's size 超出之后也可以加元素 和Java不同
+var myArr = new Array(element0, element1, element2...); // 创建并实例化
+var myArr = []; // same as first one
+var myArr = [element0, ...] // same as third one
+
+// 属性方法
+length
+
+join(x): 将数组中的所有元素放入字符串并用指定的分隔符x进行连接
+pop(): delete and return the last element of the array
+push(): append a new element to the tail and return new length
+reverse(): reverse array
+sort(): sort array, 所有元素都按照字典顺序排序, 数字在前
+```
 
 ## Date
 
+```js
+// 创建方式
+var myDate = new Date();
+var myDate = new Date(Millis);
+
+// 属性方法
+getFullYear()
+getMonth(): 0-11
+getDate(): 1-31
+getDay(): 星期中的天 0-6
+getTime(): 当前时间的milliseconds
+toLocaleString(): 当前时间的本地格式
+```
+
 ## Math
 
+```js
+// 创建方式
+Math不像Date和String那样是对象的类, 它没有构造函数Math(), 无需创建
+
+// 函数
+Math.PI
+
+Math.abs()
+Math.ceil(): 向上取整
+Math.floor(): 向下取整
+Math.pow(x, y): 取x的y次幂
+Math.random(): [0, 1)
+Math.round(): 四舍五入
+```
+
 ## RegExp
+
+```js
+// 创建方式
+var myReg = new RegExp(pattern);
+var myReg = /^regular expression$/;
+
+// 属性方法
+```
