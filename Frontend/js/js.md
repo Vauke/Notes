@@ -17,6 +17,14 @@ Thursday, January 31st 2019, 20:54
 	* [reference data type](#reference-data-type)
 	* [operators](#operators)
 	* [logics](#logics)
+* [js内建对象](#js内建对象)
+	* [Number](#number)
+	* [Boolean](#boolean)
+	* [String](#string)
+	* [Array](#array)
+	* [Date](#date)
+	* [Math](#math)
+	* [RegExp](#regexp)
 
 <!-- /code_chunk_output -->
 
@@ -55,12 +63,18 @@ write in `script` tag, inside the section `head` of a html page
 write in a independent file with format js
 
 ```html
-<script type="text/javascript" src="path_to_js"></script>
+<script type="text/javascript" src="path_to_js.js"></script>
 ```
 
 js代码可以放在html中的任何地方, 但是在不影响html显示和交互的前提下, js加载的越晚越好(放到body外面, 保证页面的加载不受js加载的影响, 某些js可能不需要在页面加载时立即被调用)
 
 如果要用js获取html中的元素, 那么js代码应该放在body标签的尾部或者外面
+
+> script标签中使用src**引入**js文件, link标签中使用href**引用**css文件 <br/>
+> src是source的缩写, 在加载和处理所引入的资源时, 浏览器会暂停渲染当前页面, 直到外部文件加载完成 <br/>
+> href是hypertext reference的缩写, 在加载所引用的资源时, 并行处理, 并不会暂停当前页面的渲染
+
+以上, 因此常常将js放在底部而不是头部 [reference](https://blog.csdn.net/annsheshira23/article/details/51133709)
 
 # Syntax
 
@@ -156,3 +170,37 @@ for (index in arr) {
     alert(arr[index]);
 }
 ```
+
+# js内建对象
+
+## Number
+
+```js
+// 创建方式:
+var myNum = new Number(value);
+var myNum = Number(value);
+
+// 属性方法
+toString();
+valueOf();
+```
+
+## Boolean
+
+```js
+// 创建方式
+var myBool = new Boolean(value);
+var myBool = Boolean(value);
+
+// 属性方法
+```
+
+## String
+
+## Array
+
+## Date
+
+## Math
+
+## RegExp
