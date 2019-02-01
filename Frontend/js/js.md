@@ -25,6 +25,7 @@ Thursday, January 31st 2019, 20:54
 	* [Date](#date)
 	* [Math](#math)
 	* [RegExp](#regexp)
+* [函数](#函数)
 
 <!-- /code_chunk_output -->
 
@@ -277,5 +278,75 @@ Math.round(): 四舍五入
 var myReg = new RegExp(pattern);
 var myReg = /^regular expression$/;
 
-// 属性方法
+// 正则写法
+[A-z]: 所有字母 比Java多的
+\d: 数字
+\D: 非数字
+\w: 单词字符
+\W: 非单词字符
+\s: 空白字符
+\S: 非空白字符
+n?: 规则n出现0或1次
+n+: 规则n出现1或多次
+n*: 规则n出现0或多次
+{n}: 出现n次
+{m, n}: m到n次
+
+// 方法
+test(str)
 ```
+
+# 函数
+
+## 定义方式
+
+```js
+// 一般方式
+function func_name(parameter list) {
+	...
+}
+
+func_name(); // 调用函数
+
+// 匿名函数
+function(parameter list) {
+	...
+}
+
+// 匿名函数无法调用, 一般使用变量来调用
+var func = function(...) {
+	...
+};
+
+func(); // 调用此匿名函数
+
+// 函数对象
+new Function(param1, param2,..., 函数体); // 参数和函数体以字符串形式给出
+
+var fn = new Function("a", "b", "alert(a + b)");
+fn(1, 2); // 结果为3
+```
+
+## 函数的参数
+
+1. 形参不需要var修饰
+2. 形参和实参个数可以不同
+3. 函数体类使用arguments数组获得所有实参
+
+```js
+var fn = function(a,b,c) {
+	for (var i = 0; i < arguments.length; i++) {
+		alert(arguments[i]);
+	}
+}
+
+fn(1,2,3,4);
+```
+
+## 返回值
+
+1. 不用在方法声明上添加返回值类型
+2. 仅仅通过`return`关键字说明有返回值
+3. `return`后的语句不执行
+
+function fn(a, b)
