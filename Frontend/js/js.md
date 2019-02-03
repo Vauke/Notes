@@ -26,6 +26,12 @@ Thursday, January 31st 2019, 20:54
 	* [Math](#math)
 	* [RegExp](#regexp)
 * [函数](#函数)
+	* [定义方式](#定义方式)
+	* [函数的参数](#函数的参数)
+	* [返回值](#返回值)
+	* [全局函数](#全局函数)
+		* [encode / decode](#encode-decode)
+		* [eval()](#eval)
 
 <!-- /code_chunk_output -->
 
@@ -115,9 +121,12 @@ string/boolean :point_right: number, use `parseInt(x)` or `parseFloat(x)`
 1. Boolean(x)
     * number: `Boolean(0) // false` `Boolean(非0) // true`
     * string: `Boolean("") // 空串为false` `Boolean("非空") // true`
+
 2. Number(x)
     * boolean: `Number(true) // 1` `Number(false) // 0`
     * string: 结果为`NaN`
+
+3. String()
 
 ## reference data type
 
@@ -350,3 +359,14 @@ fn(1,2,3,4);
 3. `return`后的语句不执行
 
 function fn(a, b)
+
+## 全局函数
+
+### encode / decode
+
+1. encodeURI() decodeURI() // 将字符串编码/解码为URI
+2. encodeURIComponent() decodeURIComponent() // 将字符串编码/解码为URI组件
+3. escape() unescape() // 将字符串编码/解码
+
+
+### eval()

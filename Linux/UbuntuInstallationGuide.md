@@ -50,8 +50,10 @@ Monday, August 13th 2018, 23:26
 	* [music](#music)
 	* [video](#video)
 	* [打开不了设置中心](#打开不了设置中心)
+	* [误删network-manager后无法联网](#误删network-manager后无法联网)
 	* [snap安装软件太慢](#snap安装软件太慢)
 	* [e-mail client](#e-mail-client)
+	* [chat all in one](#chat-all-in-one)
 
 <!-- /code_chunk_output -->
 
@@ -504,6 +506,34 @@ Video: Display -> Output -> VDPAU output (codec选择VDPAU后才设置)
 ```shell
 sudo apt install gnome-control-center
 ```
+
+## 误删network-manager后无法联网
+
+修改`/etc/network/interfaces`, 备份原来内容:
+
+```shell
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+```
+
+使用`ifconfig -a`查看到有线网口为`enp4s0f1`, 修改`/etc/network/interfaces`:
+
+```shell
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto enp4s0f1
+iface enp4s0f1 inet dhcp
+```
+
+`dhcp`会自动获取ip, 也可替换为`static`, 然后指定ip,netmask,gateway
+
+然后连接到路由器上, 重启即可联网
+
+```shell
+sudo apt install gnome-control-center
+```
+
+上条命令会连带安装`network-manager-gnome`, 如果没有, 则手动安装
 
 ## snap安装软件太慢
 ```shell
