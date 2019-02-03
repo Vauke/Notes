@@ -525,7 +525,7 @@ auto enp4s0f1
 iface enp4s0f1 inet dhcp
 ```
 
-`dhcp`会自动获取ip, 也可替换为`static`, 然后指定ip,netmask,gateway
+`dhcp`会自动获取ip, 也可替换为`static`, 然后指定ip, netmask, gateway
 
 然后连接到路由器上, 重启即可联网
 
