@@ -32,6 +32,8 @@ Thursday, January 31st 2019, 20:54
 	* [全局函数](#全局函数)
 		* [encode / decode](#encode-decode)
 		* [eval()](#eval)
+* [js events](#js-events)
+	* [事件的绑定方式](#事件的绑定方式)
 
 <!-- /code_chunk_output -->
 
@@ -388,4 +390,55 @@ example:
 var str = "var a = 2; var b = 3; alert(a + b);";
 
 eval(str); // 5
+```
+
+# js events
+
+reference: :point_right: http://www.w3school.com.cn/jsref/jsref_events.asp
+
+`onclick`
+
+`onchange`: 域内容改变时触发
+
+`onfocus`: 获得焦点时触发
+
+`onblur`: 失去焦点时触发
+
+`onmouseover`: 鼠标悬浮时触发
+
+`onmouseout`: 鼠标离开时触发
+
+`onload`: 加载完毕时触发
+
+## 事件的绑定方式
+
+1. 将事件和响应行为都内嵌到html中
+
+```js
+<input type="button" value="submit" onclick="alert('xxx')" />
+```
+
+2. 将事件内嵌到html中, 而响应行为使用函数封装
+
+```js
+<input type="button" value="submit" onclick="fn()" />
+
+<script>
+    function fn() {
+        alert('yyy');
+    }
+</script>
+```
+
+3. 将事件和响应行为与html标签完全分离
+```js
+<input type="button" value="submit" id="btn" />
+
+<script>
+    var btn = document.getElementById("btn");
+
+    btn.onclick = function() {
+        alert('zzz');
+    };
+</script>
 ```
