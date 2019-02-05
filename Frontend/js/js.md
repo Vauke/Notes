@@ -35,6 +35,7 @@ Thursday, January 31st 2019, 20:54
 * [js events](#js-events)
 	* [事件的绑定方式](#事件的绑定方式)
 	* [this关键字](#this关键字)
+	* [onfocus onblur](#onfocus-onblur)
 
 <!-- /code_chunk_output -->
 
@@ -464,6 +465,31 @@ reference: :point_right: http://www.w3school.com.cn/jsref/jsref_events.asp
 
     btn.onclick = function(obj) {
         alert(obj.type); // click
+    };
+</script>
+```
+
+## onfocus onblur
+
+```js
+<body>
+    <label for="txt">name: </label>
+    <input id="txt" type="text"> <span id="tips"></span>
+</body>
+<script>
+    var txt = document.getElementById("txt");
+	
+    txt.onfocus = function() {
+        var tips = document.getElementById("tips");
+        tips.style.color = "green";
+        tips.innerHTML = "username is longer than 8 characters";
+    };
+
+    txt.onblur = function() {
+        var tips = document.getElementById("tips");
+
+        tips.style.color = "red";
+        tips.innerHTML = "username has already been taken";
     };
 </script>
 ```
