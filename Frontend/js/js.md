@@ -368,5 +368,14 @@ function fn(a, b)
 2. encodeURIComponent() decodeURIComponent() // 将字符串编码/解码为URI组件
 3. escape() unescape() // 将字符串编码/解码
 
+example:
+
+```js
+var url = "https://www.baidu.com?name=张三&password=123456"
+
+encodeURI(url): https://www.baidu.com?name=%E5%BC%A0%E4%B8%89&password=123456
+encodeURIComponent(url): https%3A%2F%2Fwww.baidu.com%3Fname%3D%E5%BC%A0%E4%B8%89%26password%3D123456
+escape(url): https%3A//www.baidu.com%3Fname%3D%u5F20%u4E09%26password%3D123456
+```
 
 ### eval()
