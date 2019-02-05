@@ -379,3 +379,13 @@ escape(url): https%3A//www.baidu.com%3Fname%3D%u5F20%u4E09%26password%3D123456
 ```
 
 ### eval()
+
+将字符串当做js代码, 解析运行
+
+example:
+
+```js
+var str = "var a = 2; var b = 3; alert(a + b);";
+
+eval(str); // 5
+```
