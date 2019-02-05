@@ -34,6 +34,7 @@ Thursday, January 31st 2019, 20:54
 		* [eval()](#eval)
 * [js events](#js-events)
 	* [事件的绑定方式](#事件的绑定方式)
+	* [this关键字](#this关键字)
 
 <!-- /code_chunk_output -->
 
@@ -431,6 +432,7 @@ reference: :point_right: http://www.w3school.com.cn/jsref/jsref_events.asp
 ```
 
 3. 将事件和响应行为与html标签完全分离
+
 ```js
 <input type="button" value="submit" id="btn" />
 
@@ -439,6 +441,29 @@ reference: :point_right: http://www.w3school.com.cn/jsref/jsref_events.asp
 
     btn.onclick = function() {
         alert('zzz');
+    };
+</script>
+```
+
+## this关键字
+
+表示所出现位置的html标签
+
+```js
+<input type="button" value="submit" id="btn" onclick="fn(this)" />
+
+<script>
+	// 这里this表示html标签对象
+    function fn(obj) {
+        alert(obj.type); // button
+        alert(obj.value); // submit
+    }
+
+	// 表示click事件对象???
+	var btn = document.getElementById("btn");
+
+    btn.onclick = function(obj) {
+        alert(obj.type); // click
     };
 </script>
 ```
