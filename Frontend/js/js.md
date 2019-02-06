@@ -36,6 +36,7 @@ Thursday, January 31st 2019, 20:54
 	* [事件的绑定方式](#事件的绑定方式)
 	* [this关键字](#this关键字)
 	* [onfocus onblur](#onfocus-onblur)
+	* [onload](#onload)
 
 <!-- /code_chunk_output -->
 
@@ -478,7 +479,7 @@ reference: :point_right: http://www.w3school.com.cn/jsref/jsref_events.asp
 </body>
 <script>
     var txt = document.getElementById("txt");
-	
+
     txt.onfocus = function() {
         var tips = document.getElementById("tips");
         tips.style.color = "green";
@@ -492,4 +493,46 @@ reference: :point_right: http://www.w3school.com.cn/jsref/jsref_events.asp
         tips.innerHTML = "username has already been taken";
     };
 </script>
+```
+
+## onload
+
+window.onload事件表示当前页面加载完毕
+
+example:
+
+此时的`alert(span);`打印出的是null, 因为当加载到js代码时还未加载html(为什么? :point_right: [External js](#external-js))
+
+```js
+<head>
+	...
+	<script>
+		var span = document.getElementById("span");
+
+		alert(span); // null
+	</script>
+</head>
+<body>
+	<span id="span"></span>
+</body>
+```
+
+使用`window.onload`事件来做些改变
+
+```js
+<head>
+	...
+	<script>
+		window.onload = function() {
+			var span = document.getElementById("span");
+
+			alert(span); // [object HTMLSpanElement]
+
+			span.innerHTML = "hello onload"
+		};
+	</script>
+</head>
+<body>
+	<span id="span"></span>
+</body>
 ```
