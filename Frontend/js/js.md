@@ -39,6 +39,8 @@ Thursday, January 31st 2019, 20:54
 	* [onload](#onload)
 	* [阻止标签的默认事件](#阻止标签的默认事件)
 	* [阻止事件的传播](#阻止事件的传播)
+* [BOM](#bom)
+	* [window对象](#window对象)
 
 <!-- /code_chunk_output -->
 
@@ -616,3 +618,45 @@ others: `传递过来的事件对象.stopPropagation();`
 ```
 
 这样在点击inner div后, 阻止了点击事件向父级元素传递
+
+# BOM
+
+## window对象
+
+`alert("提示信息")`: window.alert()省略而来 无返回值
+
+`confirm("确认信息")`: 确认 返回true 取消 返回false
+
+```js
+var result = confirm("aaa");
+
+alert(result);
+```
+
+`prompt("提示信息")`: 提示信息和输入框, 确认 返回输入的值 取消 返回null
+
+`open("url")`: `open("../demo1.html");`新开一个pop-ups, 在新标签页打开demo1.html
+
+定时器:
+
+`setTimeout(函数, millis)`
+
+```js
+// 延时递归调用
+function fn() {
+	alert("a");
+	setTimeout(fn, 2000);
+};
+
+fn();
+```
+
+`clearTimeout(定时器的名称)`
+
+```js
+clearTimeout(fn);
+```
+
+`setInterval(函数, millis)`:
+
+`clearInterval(定时器的名称)`: 
