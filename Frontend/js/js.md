@@ -651,12 +651,10 @@ function fn() {
 fn();
 ```
 
-`clearTimeout(定时器的名称)`
+`clearTimeout(定时器的名称)`: `clearTimeout(fn);`
 
-```js
-clearTimeout(fn);
-```
+每隔一段时间定时一次:
 
-`setInterval(函数, millis)`:
+`setInterval(函数, millis)`
 
-`clearInterval(定时器的名称)`: 
+`clearInterval(定时器的名称)`
