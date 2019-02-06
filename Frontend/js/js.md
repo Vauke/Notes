@@ -37,6 +37,7 @@ Thursday, January 31st 2019, 20:54
 	* [this关键字](#this关键字)
 	* [onfocus onblur](#onfocus-onblur)
 	* [onload](#onload)
+	* [阻止标签的默认事件](#阻止标签的默认事件)
 
 <!-- /code_chunk_output -->
 
@@ -535,4 +536,33 @@ example:
 <body>
 	<span id="span"></span>
 </body>
+```
+
+## 阻止标签的默认事件
+
+标签的默认事件, 比如a标签的默认事件是点击就跳转页面
+
+IEs: `window.event.returnValue = false;`
+
+others:: `传递过来的事件对象.preventDefault();`
+
+```js
+<body>
+    <a href="https://www.baidu.com" onclick="fn(event)">click me</a>
+</body>
+<script>
+    function fn(e) {
+        alert('redirecting to baidu'); // 依旧会打印
+        // window.event.returnValue = false;
+        e.preventDefault(); // 不会跳转到baidu
+    };
+</script>
+```
+
+`fn(event)`: 这里不能写为fn(this), this表示a标签对象m, event关键字代表onclick事件
+
+通过事件`return false;`也可以阻止:
+
+```js
+<a href="https://www.baidu.com" onclick="return false;">click me</a>
 ```
