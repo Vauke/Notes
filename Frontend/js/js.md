@@ -38,6 +38,7 @@ Thursday, January 31st 2019, 20:54
 	* [onfocus onblur](#onfocus-onblur)
 	* [onload](#onload)
 	* [阻止标签的默认事件](#阻止标签的默认事件)
+	* [阻止事件的传播](#阻止事件的传播)
 
 <!-- /code_chunk_output -->
 
@@ -566,3 +567,52 @@ others:: `传递过来的事件对象.preventDefault();`
 ```js
 <a href="https://www.baidu.com" onclick="return false;">click me</a>
 ```
+
+## 阻止事件的传播
+
+事件的传播:
+
+```js
+<body>
+    <div onclick="fn1()" style="width:100px; height:100px; padding:50px; background-color: green">
+        <div onclick="fn2()" style="width:100px; height:100px; background-color: red"></div>
+    </div>
+</body>
+<script>
+    function fn1() {
+        alert("outter div");
+    };
+
+    function fn2() {
+        alert("inner div");
+    };
+</script>
+```
+
+以上代码, 当点击inner div时, 会先提示inner div, **接着** 会提示outter div, 这在开发中可能是有问题的, 应该阻止这样的事件传播行为
+
+传播行为产生的原因: 测试传播行为时, 发现事件的传播只发生在父子标签中, 且由子向父传播, 因此猜测是因为父级元素包含子级元素, 在视觉上子级元素"覆盖"了父级元素的一部分, 而实际上在该区域是共存了两个元素的, 因此点击子级元素时, 实际也是在点击父级元素, 而且是先点击到子级元素, 再"穿透"点击到父级元素
+
+IEs: `window.event.cancelBubble = true;`
+
+others: `传递过来的事件对象.stopPropagation();`
+
+```js
+<body>
+    <div onclick="fn1()" style="width:100px; height:100px; padding:50px; background-color: green">
+        <div onclick="fn2(event)" style="width:100px; height:100px; background-color: red"></div>
+    </div>
+</body>
+<script>
+    function fn1(e) {
+        alert("outter div");
+    };
+
+    function fn2(e) {
+        e.stopPropagation();
+        alert("inner div");
+    };
+</script>
+```
+
+这样在点击inner div后, 阻止了点击事件向父级元素传递
