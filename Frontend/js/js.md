@@ -667,7 +667,7 @@ fn();
     var i = 5;
     var seconds = function() {
         var span = document.getElementById("counter");
-		
+
         if (i > 0) span.innerHTML = i--;
         else {
             clearInterval(timer);
@@ -678,3 +678,13 @@ fn();
     var timer = setInterval(seconds, 1000);
 </script>
 ```
+
+`location`对象: `location.href = 'url'`
+
+`history`对象: 浏览器历史记录
+
+1. `history.back()`: 向之前一页
+2. `history.forward()`: 向之后一页
+3. `history.go(数字)`: 正负分别表示向后向前, 数值表示跳过的页数
+
+# DOM
