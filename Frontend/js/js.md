@@ -658,3 +658,23 @@ fn();
 `setInterval(函数, millis)`
 
 `clearInterval(定时器的名称)`
+
+```js
+<body>
+    注册成功, <span id="counter" style="color:red">5</span>秒后跳转到首页...
+</body>
+<script>
+    var i = 5;
+    var seconds = function() {
+        var span = document.getElementById("counter");
+		
+        if (i > 0) span.innerHTML = i--;
+        else {
+            clearInterval(timer);
+            location.href = "https://www.baidu.com";
+        }
+    }
+
+    var timer = setInterval(seconds, 1000);
+</script>
+```
