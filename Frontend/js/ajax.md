@@ -5,6 +5,11 @@ Thursday, February 7th 2019, 20:26
 <!-- code_chunk_output -->
 
 * [ajax.md](#ajaxmd)
+* [XMLHttpRequest对象](#xmlhttprequest对象)
+	* [构造方法](#构造方法)
+	* [方法](#方法)
+	* [属性](#属性)
+		* [onreadystatechange事件](#onreadystatechange事件)
 
 <!-- /code_chunk_output -->
 
@@ -24,3 +29,38 @@ if (window.XMLHttpRequest) {
     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 }
 ```
+
+## 方法
+
+向服务器发送请求使用`open()`和`send()`
+
+1. `open(method, url, async)`: 规定请求的类型, url, 是否异步处理请求
+    * method: 请求类型, GET | POST
+    * url: 文件在服务器上的位置
+    * async: true 异步 false 同步 default true 如果要用ajax, 此值**必须**为true
+2. `send(str)`: 将请求发送到服务器, str参数仅在使用POST方法时使用
+3. `sendRequestHeader(header, value)`: 向请求添加http头, header 头名 value 头值
+
+## 属性
+
+获得来自服务器的响应
+
+1. `responseText`: 获得字符串形式的响应数据
+2. `responseXML`: 获得XML形式的响应数据
+
+### onreadystatechange事件
+
+当请求发送到服务器后, 会触发一系列的请求处理, 每当`readyState`改变时, 都会触发`onreadystatechange`事件
+
+1. `readyState`: 存放XMLHttpRequest对象的状态 0-4
+    * `0`: 请求未初始化
+    * `1`: 服务器已建立连接
+    * `2`: 请求已接收
+    * `3`: 请求处理中
+    * `4`: 请求已完成, 且响应已就绪
+2. `status`: 响应码 200 404
+3. `onreadystatechange`: 存储函数(名), 每当readyState改变时, 就调用该函数
+
+当`readyState`为4且`status`为200时, 表示响应已就绪
+
+当`open()`的async参数为false时, 不需要编写onreadystatechange的函数, 直接把代码放到send()后面就行
