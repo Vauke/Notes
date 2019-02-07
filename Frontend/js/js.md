@@ -41,6 +41,7 @@ Thursday, January 31st 2019, 20:54
 	* [阻止事件的传播](#阻止事件的传播)
 * [BOM](#bom)
 	* [window对象](#window对象)
+* [DOM](#dom)
 
 <!-- /code_chunk_output -->
 
