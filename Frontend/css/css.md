@@ -8,11 +8,7 @@ Wednesday, January 23rd 2019, 15:35
 * [css.md](#cssmd)
 * [Cascading Style Sheets](#cascading-style-sheets)
 	* [Inline CSS](#inline-css)
-<<<<<<< HEAD
 	* [Embedded / Internal CSS](#embedded-internal-css)
-=======
-	* [Embedded/Internal CSS](#embeddedinternal-css)
->>>>>>> linux
 	* [External CSS](#external-css)
 	* [use @import](#use-import)
 * [Syntax](#syntax)
@@ -32,10 +28,7 @@ Wednesday, January 23rd 2019, 15:35
 	* [size related properties](#size-related-properties)
 	* [display related properties](#display-related-properties)
 	* [float properties](#float-properties)
-<<<<<<< HEAD
 * [盒子模型](#盒子模型)
-=======
->>>>>>> linux
 
 <!-- /code_chunk_output -->
 
@@ -62,11 +55,7 @@ write in HTML tags and just work in that tag
 <p style="color: green">"style='color: green'" is a inline styling css</p>
 ```
 
-<<<<<<< HEAD
 ## Embedded / Internal CSS
-=======
-## Embedded/Internal CSS
->>>>>>> linux
 
 write in `<style>` tag, inside the `<head>` section of a html page
 
@@ -432,11 +421,7 @@ example:
 <div id="d3">this is d3</div>
 ```
 
-<<<<<<< HEAD
 d3不会显示, 这就是浮动属性的缺点
-=======
-d3不会显示, 因为被遮挡
->>>>>>> linux
 
 ![float遮挡](assets/float遮挡.png)
 
@@ -460,7 +445,6 @@ d3不会显示, 因为被遮挡
 
 ![分隔线示例](assets/分隔线示例.png)
 ![分隔线示例2](assets/分隔线示例2.png)
-<<<<<<< HEAD
 
 # 盒子模型
 
@@ -488,5 +472,3 @@ d3不会显示, 因为被遮挡
 `margin`: 边框外壁与外部元素之间的距离 属性设置同`padding`
 
 设置div的margin时, 一般将左右设置为`auto`来达到居中的效果
-=======
->>>>>>> linux
