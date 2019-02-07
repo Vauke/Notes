@@ -702,7 +702,14 @@ fn();
 
 5. `getAttribute(attrName)`: 返回给定元素节点的值
 6. `setAttribute(attrName, attrVal)`: 为给定元素节点新增或改变其属性值
-7. 
+
+7. `createElement(element)`: 按照给定的标签名创建一个新的元素节点, 返回值是该元素节点
+8. `createTextNode(text)`: 创建一个包含给定文本的新文本节点
+9. `appendChild(childElement)`: 为给定元素添加一个子节点, 通常与createElement() createTextNode()配合使用
+
+10. `insertBefore(newNode, targetNode)`: 在目标节点前面插入新节点
+
+11. `removeChild(node)`: 在给定元素中删除一个子节点
 
 ## 属性
 
@@ -720,3 +727,5 @@ fn();
 	* 元素节点时, 返回null 为元素节点时, 虽然是读写属性, 但不能为其设置值
 	* 属性节点时, 返回属性值
 	* 文本节点时, 返回文本内容
+
+4. `innerHTML`
