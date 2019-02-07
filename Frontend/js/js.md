@@ -42,6 +42,9 @@ Thursday, January 31st 2019, 20:54
 * [BOM](#bom)
 	* [window对象](#window对象)
 * [DOM](#dom)
+	* [方法属性](#方法属性)
+		* [查找](#查找)
+		* [判断](#判断)
 
 <!-- /code_chunk_output -->
 
@@ -689,3 +692,35 @@ fn();
 3. `history.go(数字)`: 正负分别表示向后向前, 数值表示跳过的页数
 
 # DOM
+
+## 方法
+
+### 查找
+
+1. `getElementById()`
+2. `getElementsByName()`: 根据标签的`name`属性, 返回值是 **数组**, 元素是每个标签对象
+3. `getElementsByTagName()`: 根据标签名获得标签数组
+
+### 判断
+
+1. `hasChildNodes()`: 判断是否有子节点, 返回 有 true 无 false
+
+
+## 属性
+
+1. `nodeName`: 是一个**只读**属性
+	* 如果是一个元素节点, i.e. `input`标签 则nodeName = "input"
+	* 如果是属性节点, i.e. `href` 则 nodeName = "href"
+	* 如果是文本节点, nodeName返回一个内容为`#text`的字符串
+
+2. `nodeType`: 是一个**只读**属性, 返回一个整数, 数值代表给定节点的类型, 一共有12种, 3种常用
+	* Node.ELEMENT_NODE --1 元素节点
+	* Node.ATTRIBUTE_NODE --2 属性节点
+	* Node.TEXT_NODE --3 文本节点
+
+3. `nodeValue`: 是一个**读写**属性, 返回给定节点的当前值(字符串)
+	* 元素节点时, 返回null 为元素节点时, 虽然是读写属性, 但不能为其设置值
+	* 属性节点时, 返回属性值
+	* 文本节点时, 返回文本内容
+
+4. 
