@@ -58,7 +58,7 @@ if (window.XMLHttpRequest) {
     * `2`: 请求已接收 XMLHttpRequest对象请求发送完成(send()已调用, 服务器已接收到数据, 但还没有作出响应)
     * `3`: 请求处理中 XMLHttpRequest对象正在读取响应
     * `4`: 请求已完成, 且响应已接收
-2. `status`: 响应码 200 404
+2. `status`: 响应码 200 404 403无权限
 3. `onreadystatechange`: 存储函数(名), 每当readyState改变时, 就调用该函数
 
 当`readyState`为4且`status`为200时, 表示响应已就绪
