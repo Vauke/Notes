@@ -728,4 +728,5 @@ fn();
 	* 属性节点时, 返回属性值
 	* 文本节点时, 返回文本内容
 
-4. `innerHTML`
+4. `innerHTML`: 当做html代码处理
+5. `innerText`: 当做文本处理
