@@ -13,6 +13,6 @@ UUID=40D1-D531  /boot/efi       vfat    umask=0077      0       1
 UUID=a16e5023-0dad-494e-8a28-6f921fdb7558 /home           ext4    defaults,relatime        0       2
 # swap was on /dev/sda2 during installation
 UUID=bd6bd21b-a70a-4a12-aaba-1e6b0698091a none            swap    sw              0       0
-UUID=88A0F1B6A0F1AAB8 /media/Application ntfs defaults,utf8,uid=1000,gid=1000 0 0
-UUID=34669B45669B06B0 /media/Program ntfs defaults,utf8,uid=1000,gid=1000 0 0
-UUID=4680F7EC80F7DFFB /media/Recreation ntfs defaults,utf8,uid=1000,gid=1000 0 0
+UUID=88A0F1B6A0F1AAB8 /media/Application ntfs defaults,utf8,uid=1000,gid=1000,dmask=022,fmask=133 0 0
+UUID=34669B45669B06B0 /media/Program ntfs defaults,utf8,uid=1000,gid=1000,dmask=022,fmask=133 0 0
+UUID=4680F7EC80F7DFFB /media/Recreation ntfs defaults,utf8,uid=1000,gid=1000,dmask=022,fmask=133 0 0
