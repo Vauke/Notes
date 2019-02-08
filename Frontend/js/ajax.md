@@ -80,20 +80,21 @@ example:
 		var xmlhttp;
 		var nameField = document.getElementsByName("username")[0];
 		nameField.onblur = function() {
-			load("GET", "/ajax/test.txt", function() {
-			// this is the callback func
-			// 自定义响应
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				var tips = document.getElementById("tips");
+				load("GET", "/ajax/test.txt", function() {
+				// this is the callback function 用于自定义响应
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					var tips = document.getElementById("tips");
 
-				if ("true".equals(xmlhttp.responseText)) {
-					tips.innerHTML = "username is valid";
-				} else {
-					tips.innerHTML = "username has been taken";
-					tips.style.color = "red";
+					if ("true".equals(xmlhttp.responseText)) {
+						tips.innerHTML = "username is valid";
+						tips.style.color = "green";
+					} else {
+						tips.innerHTML = "username has been taken";
+						tips.style.color = "red";
+					}
 				}
-			}
-		})
+			});
+		}
 
 		// 复用函数
 		var load = function(method, url, callback) {
@@ -114,8 +115,8 @@ example:
 </head>
 <body>
 	<form action="" method="POST">
-		<input type="text" name="username"> <span id="tips"></span> <br>
-		<input type="button" value="submit">
+		<input type="text" name="username" /> <span id="tips"></span> <br>
+		<input type="button" value="submit" />
 	</form>
 </body>
 ```
