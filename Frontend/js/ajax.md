@@ -10,6 +10,7 @@ Thursday, February 7th 2019, 20:26
 	* [方法](#方法)
 	* [属性](#属性)
 		* [onreadystatechange事件](#onreadystatechange事件)
+	* [callback函数](#callback函数)
 
 <!-- /code_chunk_output -->
 
@@ -64,3 +65,57 @@ if (window.XMLHttpRequest) {
 当`readyState`为4且`status`为200时, 表示响应已就绪
 
 当`open()`的async参数为false时, 不需要编写onreadystatechange的函数, 直接把代码放到send()后面就行
+
+## callback函数
+
+callback函数是一种以参数形式传递给另一个函数的函数, 如果当前网站中存在多个ajax, 那么应该将`XMLHttpRequest`对象的创建独立出来, 复用创建的代码, 将自定义的响应部分作为参数传入
+
+example:
+
+```js
+<head>
+	...
+	<script>
+	window.onload = function() {
+		var xmlhttp;
+		var nameField = document.getElementsByName("username")[0];
+		nameField.onblur = function() {
+			load("GET", "/ajax/test.txt", function() {
+			// this is the callback func
+			// 自定义响应
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var tips = document.getElementById("tips");
+
+				if ("true".equals(xmlhttp.responseText)) {
+					tips.innerHTML = "username is valid";
+				} else {
+					tips.innerHTML = "username has been taken";
+					tips.style.color = "red";
+				}
+			}
+		})
+
+		// 复用函数
+		var load = function(method, url, callback) {
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			xmlhttp.onreadystatechange = callback;
+			xmlhttp.open(method, url, true);
+			xmlhttp.send();
+		}
+	}
+	</script>
+</head>
+<body>
+	<form action="" method="POST">
+		<input type="text" name="username"> <span id="tips"></span> <br>
+		<input type="button" value="submit">
+	</form>
+</body>
+```
