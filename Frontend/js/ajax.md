@@ -34,7 +34,7 @@ if (window.XMLHttpRequest) {
 
 向服务器发送请求使用`open()`和`send()`
 
-1. `open(method, url, async)`: 规定请求的类型, url, 是否异步处理请求
+1. `open(method, url, async)`: 用于创建连接, 参数依次为规定请求的类型, url, 是否异步处理请求
     * method: 请求类型, GET | POST
     * url: 文件在服务器上的位置
     * async: true 异步 false 同步 default true 如果要用ajax, 此值**必须**为true
