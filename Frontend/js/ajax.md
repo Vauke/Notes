@@ -66,7 +66,7 @@ if (window.XMLHttpRequest) {
 
 当`open()`的async参数为false时, 不需要编写onreadystatechange的函数, 直接把代码放到send()后面就行
 
-## callback函数
+## 使用callback函数
 
 callback函数是一种以参数形式传递给另一个函数的函数, 如果当前网站中存在多个ajax, 那么应该将`XMLHttpRequest`对象的创建独立出来, 复用创建的代码, 将自定义的响应部分作为参数传入
 
