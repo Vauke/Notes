@@ -52,13 +52,13 @@ if (window.XMLHttpRequest) {
 
 当请求发送到服务器后, 会触发一系列的请求处理, 每当`readyState`改变时, 都会触发`onreadystatechange`事件
 
-1. `readyState`: 存放XMLHttpRequest对象的状态 0-4
+1. `readyState`: 客户端请求状态 存放XMLHttpRequest对象的状态 0-4
     * `0`: 请求未初始化 XMLHttpRequest对象还未完成初始化
     * `1`: 服务器已建立连接 XMLHttpRequest对象开始发送请求(调用了open(), 还未调用send() 请求还未发出
     * `2`: 请求已接收 XMLHttpRequest对象请求发送完成(send()已调用, 服务器已接收到数据, 但还没有作出响应)
     * `3`: 请求处理中 XMLHttpRequest对象正在读取响应
     * `4`: 请求已完成, 且响应已接收
-2. `status`: 响应码 200 404 403无权限
+2. `status`: 服务器响应码 200 404 403无权限
 3. `onreadystatechange`: 存储函数(名), 每当readyState改变时, 就调用该函数
 
 当`readyState`为4且`status`为200时, 表示响应已就绪
