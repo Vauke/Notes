@@ -10,7 +10,7 @@ Thursday, February 7th 2019, 20:26
 	* [方法](#方法)
 	* [属性](#属性)
 		* [onreadystatechange事件](#onreadystatechange事件)
-	* [callback函数](#callback函数)
+	* [使用callback函数](#使用callback函数)
 
 <!-- /code_chunk_output -->
 
