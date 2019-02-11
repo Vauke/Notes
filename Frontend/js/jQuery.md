@@ -19,34 +19,6 @@ if ($ === jQuery) {
 }
 ```
 
-## selectors
-
-just like selectors in CSS
-
-example:
-
-```js
-<script src="../js/jquery.js"></script>
-<body>
-    <input type="text" id="username" value="vauke"/> <br/>
-
-<script>
-    alert(document.getElementById("username").value); // native js way
-    alert($("#username").val()) // jquery way
-
-    // convert DOM object to jQuery object
-    var username = document.getElementById("username");
-    var username2 = $(username);
-    alert(username2.val());
-
-    // convert jQuery Object to DOM Object
-    var username3 = username2[0];
-    var username4 = username2.get(0); // same as username3
-    alert(username3.value);
-</script>
-</body>
-```
-
 ## jQuery对象和DOM对象的相互转化
 
 使用`$(dom对象)`的方式即可将dom对象转换为jQuery对象, 习惯上将jQuery的变量名前加上 **$**, username2一般写作$username2
@@ -56,11 +28,14 @@ example:
 example:
 
 ```js
-<script src="../js/jquery.js"></script>
+<script src="../js/jquery-1.11.3.js"></script>
 <body>
     <input type="text" id="username" value="vauke"/> <br/>
 
 <script>
+    alert(document.getElementById("username").value); // native js way
+    alert($("#username").val()) // jquery way
+
     // DOM ==> jQuery
     var username = document.getElementById("username");
     var username2 = $(username);
@@ -68,10 +43,38 @@ example:
 
     // jQuery ==> DOM
     var username3 = username2[0];
-    var test = username2[1]; // undefined  因为这里的jQuery对象只存了一个DOM元素
+    var test = username2[1]; // undefined  因为这里的jQuery对象只存了一个DOM对象
 
     var username4 = username2.get(0); // same as username3
     alert(username3.value);
 </script>
 </body>
 ```
+
+
+## selectors
+
+### 基本选择器 :star:
+same as the selectors in CSS
+
+1. `#id`
+2. 标签
+3. `.classname`
+
+selector1, selector2...selectorn 将多个选择器的结果添加到同一个数组中
+
+### 层级选择器
+
+### 基本过滤
+
+### 内容过滤 :star:
+
+### 可见性过滤 :star:
+
+### 属性过滤 :star:
+
+### 子元素过滤
+
+### 表单过滤
+
+### 表单对象过滤 :star:
