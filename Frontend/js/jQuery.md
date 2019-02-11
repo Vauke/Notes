@@ -39,4 +39,4 @@ like selectors in CSS
 
 使用`$(dom对象)`的方式即可将dom对象转换为jQuery对象, 习惯上将jQuery的变量名前加上 **$**, username2一般写作$username2
 
-因为jQuery对象内部使用**数组**存放所有数据, 因此可以通过指定其下标的方式来获得元素
+因为jQuery对象内部使用 **数组** 存放所有数据, 因此可以通过指定其下标的方式来获得元素
