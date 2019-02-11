@@ -79,6 +79,19 @@ selector1, selector2...selectorn 将多个选择器共同作用的结果添加�
 
 `$("xxx").css("属性", "值")`: 定义元素的css
 
+example:
+
+```js
+$(document).ready(function() {
+ // <input type="button" value="选择 id为 one 的元素." id="btn1"/>
+   $("#btn1").click(function() {
+   // $("#one").css("background-color", "red");
+   var $one = $("#one");
+   $one.css("background-color", "red");
+ });
+});
+```
+
 ### 层级选择器
 
 ### 基本过滤
