@@ -6,8 +6,17 @@ Sunday, February 10th 2019, 20:46
 
 * [jQuery.md](#jquerymd)
 * [Syntax](#syntax)
-	* [selectors](#selectors)
 	* [jQuery对象和DOM对象的相互转化](#jquery对象和dom对象的相互转化)
+	* [selectors](#selectors)
+		* [基本选择器 :star:](#基本选择器-star)
+		* [层级选择器](#层级选择器)
+		* [基本过滤](#基本过滤)
+		* [内容过滤 :star:](#内容过滤-star)
+		* [可见性过滤 :star:](#可见性过滤-star)
+		* [属性过滤 :star:](#属性过滤-star)
+		* [子元素过滤](#子元素过滤)
+		* [表单过滤](#表单过滤)
+		* [表单对象过滤 :star:](#表单对象过滤-star)
 
 <!-- /code_chunk_output -->
 
@@ -17,6 +26,9 @@ Sunday, February 10th 2019, 20:46
 if ($ === jQuery) {
     alert("true"); // true
 }
+
+window.onload = function() {...}
+$(document).ready(function() {...}) // same as window.onload
 ```
 
 ## jQuery对象和DOM对象的相互转化
@@ -51,17 +63,21 @@ example:
 </body>
 ```
 
-
 ## selectors
 
 ### 基本选择器 :star:
+
 same as the selectors in CSS
 
 1. `#id`
 2. 标签
 3. `.classname`
 
-selector1, selector2...selectorn 将多个选择器的结果添加到同一个数组中
+selector1, selector2...selectorn 将多个选择器共同作用的结果添加到数组中
+
+`$("xxx").click(function() {...})`: 定义元素的onclick事件, jQuery中, 一般将原生js事件前的`on`去掉, 改成了方法
+
+`$("xxx").css("属性", "值")`: 定义元素的css
 
 ### 层级选择器
 
