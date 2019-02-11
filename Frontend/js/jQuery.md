@@ -79,6 +79,8 @@ selector1, selector2...selectorn 将多个选择器共同作用的结果添加�
 
 `$("xxx").css("属性", "值")`: 定义元素的css
 
+`$("*")`: 选择所有元素
+
 example:
 
 ```js
