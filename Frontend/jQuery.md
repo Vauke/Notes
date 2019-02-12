@@ -102,6 +102,72 @@ $(document).ready(function() {
 
 ### 基本过滤选择器
 
+格式都是: `:关键字`
+
+1. `:first`: 索引为0的元素
+
+```js
+// <input type="button" value="选择第一个div元素." id="btn1"/>
+$("#btn1").click(function() {
+  $("div:first").css("background-color", "#0f0");
+})
+```
+
+2. `:last`: 索引最大的元素
+
+3. `:eq(index)`
+
+```js
+// <input type="button" value="选择索引值等于3的div元素." id="btn6"/>
+$("#btn6").click(function() {
+	$("div:eq(3)").css("background-color", "#0f0");
+});
+```
+
+4. `:gt(index)`
+
+5. `:lt(index)`
+
+6. `:even`: 指索引为偶数, 从0开始, 例如查找表格的1,3,5行, 索引为0,2,4
+
+```js
+// <input type="button" value="选择索引值为偶数 的div元素." id="btn4"/>
+$("#btn4").click(function() {
+	$("div:even").css("background-color", "#0f0");
+});
+```
+
+7. `:odd`: 索引为奇数
+
+8. `:not(basic selector)`: 去除与给定选择器匹配的元素
+
+```js
+// <input type="button" value="选择class不为one的 所有div元素." id="btn3"/>
+$("#btn3").click(function() {
+	$("div:not('.one')").css("background-color", "#0f0");
+});
+```
+
+9. `:header`: 获得所有的标题元素, <h1>...<h6>
+
+```js
+// <input type="button" value="选择所有的标题元素." id="btn9"/>
+  $("#btn9").click(function() {
+	$(":header").css("background-color", "#0f0");
+});
+```
+
+10. `:animated`: 获得所有动画
+
+```js
+// <input type="button" value="选择当前正在执行动画的所有元素." id="btn10"/>
+  $("#btn10").click(function() {
+	$(":animated").css("background-color", "#0f0");
+});
+```
+
+11. `:focus`: 获得焦点
+
 ### 内容过滤选择器 :star:
 
 ### 可见性过滤选择器 :star:
