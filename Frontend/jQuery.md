@@ -282,7 +282,7 @@ $.each($("input:hidden"), function(index, ele) {
 });
 ```
 
-2. `visible`:
+2. `visible`
 
 ```js
 // <input type="button" value=" 选取所有可见的div元素"  id="b1"/>
@@ -291,7 +291,36 @@ $("div:visible").css("background-color", "#0f0");
 
 ### 属性过滤选择器 :star:
 
+1. `[attribute]`: 获得指定属性名的元素
+
+2. `[attribute=value]`: 获得指定属性名和值的元素
+
+```js
+// <input type="button" value="选取 属性title值等于“test”的div元素." id="btn2"/>
+$("div[title='test']").css("background-color", "#0f0");
+```
+
+3. `[attribute!=value]`: 获得指定属性名但值不为value的元素, *没有该属性的也会被选中*
+
+4. `[属性选择器1][属性选择器2][属性选择器3]...`: 复合选择器, 多个条件同时成立
+
+```js
+// <input type="button" value="组合属性选择器,首先选取有属性id的div元素，然后在结果中 选取属性title值 含有“es”的元素." id="btn7"/
+$("div[id][title*='es']").css("background-color", "#0f0");
+```
+
+5. `[attribute^=value]`: 获得属性值是以value开头的元素
+
+6. `[attribute$=value]`: 获得属性值是以value结尾的元素
+
+7. `[attribute*=value]`: 获得属性值含有value的元素
+
 ### 子元素过滤选择器
+
+1. `:nth-child(index)`: 获得第index个孩子, index从1开始
+2. `:first-child`: 获得第一个
+3. `:last-child`: 最后一个
+4. `:only-child`: 唯一
 
 ### 表单过滤选择器
 
