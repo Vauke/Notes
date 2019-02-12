@@ -72,8 +72,7 @@ same as the selectors in CSS
 1. `#id`
 2. 标签
 3. `.classname`
-
-selector1, selector2...selectorn 将多个选择器共同作用的结果添加到数组中
+4. `selector1, selector2...selectorn`: 将多个选择器共同作用的结果添加到数组中
 
 `$("xxx").click(function() {...})`: 定义元素的onclick事件, jQuery中, 一般将原生js事件前的`on`去掉, 改成了方法
 
@@ -85,16 +84,18 @@ example:
 
 ```js
 $(document).ready(function() {
- // <input type="button" value="选择 id为 one 的元素." id="btn1"/>
+   // <input type="button" value="选择 id为 one 的元素." id="btn1"/>
    $("#btn1").click(function() {
-   // $("#one").css("background-color", "red");
-   var $one = $("#one");
+   // $("#one, span, .mini").css("background-color", "red");
+   var $one = $("#one, span, .mini");
    $one.css("background-color", "red");
  });
 });
 ```
 
 ### 层级选择器
+
+
 
 ### 基本过滤
 
