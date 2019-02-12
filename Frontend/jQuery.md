@@ -268,14 +268,24 @@ $.each($("input:hidden"), function() {
 
 `jQuery对象.each(function)`: 遍历元素并执行function
 
-`$.each(jQuery对象, function(index, DOMElement))`: 这个是全局函数, 效果和each一样, `$.函数`都是全局函数
+`$.each(jQuery对象, function(index, DOMElement))`: 这个是全局函数, 多了两个参数, `$.函数`都是全局函数
+
 	* `index`: 索引
 	* `DOMElement`: 当前的遍历对象, 即this
+
+以上示例可改为:
+
+```js
+// 使用全局each遍历
+$.each($("input:hidden"), function(index, ele) {
+  alert(ele.value);
+});
+```
 
 2. `visible`:
 
 ```js
-//     <input type="button" value=" 选取所有可见的div元素"  id="b1"/>
+// <input type="button" value=" 选取所有可见的div元素"  id="b1"/>
 $("div:visible").css("background-color", "#0f0");
 ```
 
