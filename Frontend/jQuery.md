@@ -199,6 +199,7 @@ $("#btn3").click(function() {
 	* `selector`: 选择器
 	* `data`: 当一个事件被触发时, 要传递给事件处理函数的`event.data`
 	* `handler(eventObject)`: 事件被触发时, 执行的函数. 若该函数只是return false的话, 那么该参数位置可以直接简写成 false.
+
 2. `.off( events [, selector ] [, handler(eventObject) ] )`: 移除由.on()绑定的事件
 	* `events`: 一个或多个空格分隔的事件类型
 	* `selector`: 一个选择器, 当绑定事件处理程序时最初传递给 .on()的那个.
@@ -206,7 +207,48 @@ $("#btn3").click(function() {
 
 ### 内容过滤选择器 :star:
 
+1. `:empty`: 不含有子元素 标签体为空
+	* `<div></div>`: 标签体为空
+
+```js
+// <input type="button" value="选取不包含子元素(或者文本元素)的div空元素." id="btn2"/>
+$("#btn2").click(function() {
+  $("div:empty").css("background-color", "#0f0");
+});
+```
+
+2. `:parent`: 匹配包含子元素或文本的元素, 标签体不为空, 和`:empty`相反
+
+```js
+// <input type="button" value="选取含有子元素(或者文本元素)的div元素." id="btn4"/>
+$("#btn4").click(function() {
+  $("div:parent").css("background-color", "#0f0");
+});
+```
+
+3. `:has(selector)`: **当前**元素是否含有指定的子元素
+
+```js
+// <input type="button" value="选取含有class为mini元素 的div元素." id="btn3"/>
+$("#btn3").click(function() {
+  $("div:has('.mini')").css("background-color", "#0f0");
+});
+```
+
+4. `:contains(text)`: 匹配标签体有指定的文本的元素
+
+```js
+// <input type="button" value="选取含有文本“di”的div元素." id="btn1"/>
+$(document).ready(function() {
+  $("#btn1").click(function() {
+    $("div:contains('di')").css("background-color", "#0f0");
+  });
+});
+```
+
 ### 可见性过滤选择器 :star:
+
+
 
 ### 属性过滤选择器 :star:
 
