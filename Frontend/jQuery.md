@@ -340,4 +340,16 @@ $("div[class='one'] :nth-child(2)").css("background-color", "#0f0");
 
 ### 表单过滤选择器
 
+1. `:input`: 所有的表单元素 `<input> <select> <textarea> <button>`
+2. `:text`: `<input type='text'>`
+3. `:password`: `<input type='password'>`
+4. `:radio`: `<input type='radio'>`
+5. `:checkbox`
+6. `:submit`
+7. `:image`
+8. `:reset`
+9. `:file`
+10. `:button`: 匹配`<button>`和`<input type='button'>`
+11. `:hidden`
+
 ### 表单对象过滤选择器 :star:
