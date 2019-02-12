@@ -99,7 +99,7 @@ $(document).ready(function() {
 
 ### 层级选择器
 
-1. `ancestor descendant`: 以空格分隔 获得ancestor元素**内部所有**的descendant元素, 不能涉及多少层
+1. `ancestor descendant`: 以空格分隔 获得ancestor元素**内部所有**的descendant元素, **能向下跨多个层级**
 2. `parent>child`: 获得parent元素**内部的所有**child子元素, 只涉及两层
 3. `prev+next`: 获得prev元素*之后*的**第一个**出现的next元素, 只在同一层, 兄弟
 4. `prev~siblings`: 获得prev元素*之后*的**所有**的siblings元素, 只在同一层, 兄弟
@@ -318,8 +318,24 @@ $("div[id][title*='es']").css("background-color", "#0f0");
 ### 子元素过滤选择器
 
 1. `:nth-child(index)`: 获得第index个孩子, index从1开始
+
+```js
+// <input type="button" value="选取每个class为one的div父元素下的第2个子元素." id="btn1"/>
+$("div.one :nth-child(2)").css("background-color", "#0f0");
+$("div[class='one'] :nth-child(2)").css("background-color", "#0f0");
+```
+
+元素无多余条件时, `:` 前不用加空格 i.e.`$("div:nth-child(2)")`
+
+对比:
+
+`$("div.one")`: 自己的class="one"的div元素
+`$("div .one")`: 有层级关系, div下的所有class="one"的元素 参照[层级选择器](#层级选择器)
+
 2. `:first-child`: 获得第一个
+
 3. `:last-child`: 最后一个
+
 4. `:only-child`: 唯一
 
 ### 表单过滤选择器
