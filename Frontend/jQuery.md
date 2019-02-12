@@ -148,7 +148,7 @@ $("#btn3").click(function() {
 });
 ```
 
-9. `:header`: 获得所有的标题元素, <h1>...<h6>
+9. `:header`: 获得所有的标题元素, `<h1>...<h6>`
 
 ```js
 // <input type="button" value="选择所有的标题元素." id="btn9"/>
