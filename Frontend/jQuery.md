@@ -248,7 +248,36 @@ $(document).ready(function() {
 
 ### 可见性过滤选择器 :star:
 
+1. `hidden`: 特指 `<xxx style="display:none;...">`和`<input type="hidden">`
 
+```js
+// <input type="button" value=" 选取所有不可见的元素, 利用 jQuery 中的 show() 方法将它们显示出来"  id="b2"/>
+$(":hidden").show();
+
+// <input type="button" value=" 选取所有的文本隐藏域, 并打印它们的值"  id="b3"/>
+// 使用each()遍历
+$("input:hidden").each(function() {
+  alert($(this).val());
+})
+
+// 使用全局each遍历
+$.each($("input:hidden"), function() {
+  alert($(this).val());
+});
+```
+
+`jQuery对象.each(function)`: 遍历元素并执行function
+
+`$.each(jQuery对象, function(index, DOMElement))`: 这个是全局函数, 效果和each一样, `$.函数`都是全局函数
+	* `index`: 索引
+	* `DOMElement`: 当前的遍历对象, 即this
+
+2. `visible`:
+
+```js
+//     <input type="button" value=" 选取所有可见的div元素"  id="b1"/>
+$("div:visible").css("background-color", "#0f0");
+```
 
 ### 属性过滤选择器 :star:
 
