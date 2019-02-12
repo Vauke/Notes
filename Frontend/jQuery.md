@@ -11,6 +11,7 @@ Sunday, February 10th 2019, 20:46
 		* [基本选择器 :star:](#基本选择器-star)
 		* [层级选择器](#层级选择器)
 		* [基本过滤选择器](#基本过滤选择器)
+			* [事件的绑定:](#事件的绑定)
 		* [内容过滤选择器 :star:](#内容过滤选择器-star)
 		* [可见性过滤选择器 :star:](#可见性过滤选择器-star)
 		* [属性过滤选择器 :star:](#属性过滤选择器-star)
@@ -62,6 +63,9 @@ example:
 </script>
 </body>
 ```
+
+`val()`: 表示获取jQuery对象的值
+`val("xxx")`: 设置值
 
 ## selectors
 
@@ -167,6 +171,38 @@ $("#btn3").click(function() {
 ```
 
 11. `:focus`: 获得焦点
+
+模拟html表单的placeholder属性:
+
+```js
+// <input type="text" value="请输入账号" defaultValue="请输入账号" />
+  $("input[type='text']").on("blur focus", function() { // 绑定事件
+	var dv = $(this).attr("defaultValue"); // 获得自定义属性defaultValue的值
+	if ($(this).is(":focus")) { // 获得焦点
+	  if ($(this).val() == dv) {
+		$(this).val("");
+	  }
+	} else {
+	  if ($(this).val().length == 0) {
+		$(this).val(dv)
+	  }
+	}
+});
+```
+
+`attr("attribute name")`: 获得jQuery对象的对应属性
+
+#### 事件的绑定:
+
+1. `.on( events [, selector ] [, data ], handler(eventObject) )` 绑定事件
+	* `events`: 一个或多个空格分隔的事件类型
+	* `selector`: 选择器
+	* `data`: 当一个事件被触发时, 要传递给事件处理函数的`event.data`
+	* `handler(eventObject)`: 事件被触发时, 执行的函数. 若该函数只是return false的话, 那么该参数位置可以直接简写成 false.
+2. `.off( events [, selector ] [, handler(eventObject) ] )`: 移除由.on()绑定的事件
+	* `events`: 一个或多个空格分隔的事件类型
+	* `selector`: 一个选择器, 当绑定事件处理程序时最初传递给 .on()的那个.
+	* `handler(eventObject)`
 
 ### 内容过滤选择器 :star:
 
