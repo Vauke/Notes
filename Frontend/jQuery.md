@@ -205,7 +205,7 @@ $("#btn3").click(function() {
 	* `selector`: 一个选择器, 当绑定事件处理程序时最初传递给 .on()的那个.
 	* `handler(eventObject)`
 
-### 内容过滤选择器 :star:
+### 内容选择器 :star:
 
 1. `:empty`: 不含有子元素 标签体为空
 	* `<div></div>`: 标签体为空
@@ -246,7 +246,7 @@ $(document).ready(function() {
 });
 ```
 
-### 可见性过滤选择器 :star:
+### 可见性选择器 :star:
 
 1. `hidden`: 特指 `<xxx style="display:none;...">`和`<input type="hidden">`
 
@@ -289,7 +289,7 @@ $.each($("input:hidden"), function(index, ele) {
 $("div:visible").css("background-color", "#0f0");
 ```
 
-### 属性过滤选择器 :star:
+### 属性选择器 :star:
 
 1. `[attribute]`: 获得指定属性名的元素
 
@@ -315,7 +315,7 @@ $("div[id][title*='es']").css("background-color", "#0f0");
 
 7. `[attribute*=value]`: 获得属性值含有value的元素
 
-### 子元素过滤选择器
+### 子元素选择器
 
 1. `:nth-child(index)`: 获得第index个孩子, index从1开始
 
@@ -338,7 +338,7 @@ $("div[class='one'] :nth-child(2)").css("background-color", "#0f0");
 
 4. `:only-child`: 唯一
 
-### 表单过滤选择器
+### 表单选择器
 
 1. `:input`: 所有的表单元素 `<input> <select> <textarea> <button>`
 2. `:text`: `<input type='text'>`
@@ -352,4 +352,4 @@ $("div[class='one'] :nth-child(2)").css("background-color", "#0f0");
 10. `:button`: 匹配`<button>`和`<input type='button'>`
 11. `:hidden`
 
-### 表单对象过滤选择器 :star:
+### 表单对象选择器 :star:
