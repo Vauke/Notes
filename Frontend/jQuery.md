@@ -353,3 +353,40 @@ $("div[class='one'] :nth-child(2)").css("background-color", "#0f0");
 11. `:hidden`
 
 ### 表单对象选择器 :star:
+
+1. `:enabled`
+
+```js
+// <button id="btn1">对表单内 可用input 赋值操作.</button>
+$("input:enabled").val("test");
+```
+
+2. `:disabled`: `<xxx disabled='disabled'>`或`<xxx disabled=''>`或`<xxx disabled>`
+
+3. `:checked`: radio 或 checkbox
+
+```js
+// <button id="btn3">获取多选框选中的个数.</button>
+$("input[name='newsletter']:checked").each(function() {
+	alert(this.value);
+})
+```
+
+注意这里的`:`前不能加空格
+
+4. `:selected`: select > option
+
+```js
+// <button id="btn4">获取下拉框选中的内容.</button>
+$.each($("option:selected"), function() {
+	alert($(this).val());
+	$("#selectDivId").append(this.value); // 将内容写入div
+});
+```
+
+`val()`: 取值时, 如果标签没有`value`属性, 则获取标签体的内容
+
+`html()`: 直接获取标签体的内容, 有参数时, 即设置内容为参数的内容
+`text()`: 同html()
+
+选择器间可以嵌套: `$("li:gt(4):not(:last)");`
