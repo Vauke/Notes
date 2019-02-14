@@ -41,6 +41,7 @@ Thursday, January 31st 2019, 20:54
 	* [阻止事件的传播](#阻止事件的传播)
 * [BOM](#bom)
 	* [window对象](#window对象)
+		* [定时器:](#定时器)
 * [DOM](#dom)
 	* [方法](#方法)
 	* [属性](#属性)
@@ -640,7 +641,7 @@ alert(result);
 
 `open("url")`: `open("../demo1.html");`新开一个pop-ups, 在新标签页打开demo1.html
 
-定时器:
+### 定时器:
 
 `setTimeout(函数, millis)`
 

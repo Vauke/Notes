@@ -18,6 +18,8 @@ Sunday, February 10th 2019, 20:46
 		* [子元素选择器](#子元素选择器)
 		* [表单选择器](#表单选择器)
 		* [表单对象选择器 :star:](#表单对象选择器-star)
+	* [属性](#属性)
+		* [attr](#attr)
 
 <!-- /code_chunk_output -->
 
@@ -390,3 +392,15 @@ $.each($("option:selected"), function() {
 `text()`: 同html()
 
 选择器间可以嵌套: `$("li:gt(4):not(:last)");`
+
+## 属性
+
+1. `attr(name)`: 获得属性`name`的值
+
+2. `attr(key, value)`: 设置属性`key`的值为`value`
+
+3. `attr(prop)`: 给多个属性赋值, prop格式为json map
+
+4. `removeAttr(name)`: 删除属性`name`
+
+## CSS类
