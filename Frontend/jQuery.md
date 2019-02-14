@@ -19,7 +19,7 @@ Sunday, February 10th 2019, 20:46
 		* [表单选择器](#表单选择器)
 		* [表单对象选择器 :star:](#表单对象选择器-star)
 	* [属性](#属性)
-		* [attr](#attr)
+	* [CSS类](#css类)
 
 <!-- /code_chunk_output -->
 
@@ -404,3 +404,19 @@ $.each($("option:selected"), function() {
 4. `removeAttr(name)`: 删除属性`name`
 
 ## CSS类
+
+`addClass(name)`: 追加一个class
+`removeClass(name)`: 删除
+`toggleClass(name)`: 添加和删除之间切换, 如果有就删除, 没有就添加
+
+```js
+$("#button").click(function() {
+	$("[name='username']").toggleClass("textClass");
+});
+
+<style type="text/css">
+	.textClass {
+		background-color: #ff0000;
+	}
+</style>
+```
