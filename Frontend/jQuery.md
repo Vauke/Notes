@@ -19,7 +19,8 @@ Sunday, February 10th 2019, 20:46
 		* [表单选择器](#表单选择器)
 		* [表单对象选择器 :star:](#表单对象选择器-star)
 	* [属性](#属性)
-	* [CSS类](#css类)
+	* [CSS](#css)
+		* [class](#class)
 	* [HTML代码 / 文本 / 值](#html代码-文本-值)
 
 <!-- /code_chunk_output -->
@@ -399,9 +400,11 @@ $.each($("option:selected"), function() {
 
 4. `removeAttr(name)`: 删除属性`name`
 
-## CSS类
+## CSS
 
-`<xxx class="a b c ...">`
+### class
+
+以下基于: `<xxx class="a b c ...">`
 
 `addClass(name)`: 追加一个class
 `removeClass(name)`: 删除
@@ -412,12 +415,15 @@ $("#button").click(function() {
 	$("[name='username']").toggleClass("textClass");
 });
 
-<style type="text/css">
-	.textClass {
-		background-color: #ff0000;
-	}
-</style>
+<input type="text" name="username" class="textClass" value="vauke" />
 ```
+
+以下基于: `<xxx style="key:value; key:value ...">`
+
+`css(name)`: 获得指定名称的css的值
+`css(name, value)`: 设置值
+`css(prop)`: 设置一组值
+
 
 ## HTML代码 / 文本 / 值
 
