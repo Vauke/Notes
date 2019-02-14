@@ -21,6 +21,7 @@ Sunday, February 10th 2019, 20:46
 	* [属性](#属性)
 	* [CSS](#css)
 		* [class](#class)
+		* [位置](#位置)
 	* [HTML代码 / 文本 / 值](#html代码-文本-值)
 
 <!-- /code_chunk_output -->
@@ -404,10 +405,12 @@ $.each($("option:selected"), function() {
 
 ### class
 
-以下基于: `<xxx class="a b c ...">`
+以下基于: `<xxx class="name1 name2 name3 ...">`
 
 `addClass(name)`: 追加一个class
+
 `removeClass(name)`: 删除
+
 `toggleClass(name)`: 添加和删除之间切换, 如果有就删除, 没有就添加
 
 ```js
@@ -420,17 +423,39 @@ $("#button").click(function() {
 
 以下基于: `<xxx style="key:value; key:value ...">`
 
-`css(name)`: 获得指定名称的css的值
-`css(name, value)`: 设置值
+`css(key)`: 获得指定名称的css的值
+
+`css(key, value)`: 设置值
+
 `css(prop)`: 设置一组值
 
+```js
+$div.css("border", "solid").css("width", "200px").css("height", "300px");
+
+// same
+$div.css({
+	"border": "1px solid",
+	"height": "200px",
+	"width": "300px"
+});
+```
+
+### 位置
+
+`offset()`: 获得坐标
+
+`offset(...)`: 设置坐标 `$div.offset({"top":0, "left":0});`
 
 ## HTML代码 / 文本 / 值
 
 `val()`: 获取`value`属性值, 如果标签没有`value`属性, 则获取标签体的内容
+
 `html()`: 获得html代码, 可能会含有标签
+
 `text()`: 同html(), 但只获得文本值
 
 `val(...)`: 设置值
+
 `text(...)`: 参数为啥就写啥, `text("<a href="#">test</a>")` // 显示文本`<a href="#">test</a>`
+
 `html(...)`: 同text(...), 但识别html标签, 会转换
