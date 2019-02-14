@@ -20,6 +20,7 @@ Sunday, February 10th 2019, 20:46
 		* [表单对象选择器 :star:](#表单对象选择器-star)
 	* [属性](#属性)
 	* [CSS类](#css类)
+	* [HTML代码 / 文本 / 值](#html代码-文本-值)
 
 <!-- /code_chunk_output -->
 
@@ -386,11 +387,6 @@ $.each($("option:selected"), function() {
 });
 ```
 
-`val()`: 取值时, 如果标签没有`value`属性, 则获取标签体的内容
-
-`html()`: 直接获取标签体的内容, 有参数时, 即设置内容为参数的内容
-`text()`: 同html()
-
 选择器间可以嵌套: `$("li:gt(4):not(:last)");`
 
 ## 属性
@@ -399,11 +395,13 @@ $.each($("option:selected"), function() {
 
 2. `attr(key, value)`: 设置属性`key`的值为`value`
 
-3. `attr(prop)`: 给多个属性赋值, prop格式为json map
+3. `attr(prop)`: 给多个属性赋值, prop格式为json map {k:v, k:v, ...}
 
 4. `removeAttr(name)`: 删除属性`name`
 
 ## CSS类
+
+`<xxx class="a b c ...">`
 
 `addClass(name)`: 追加一个class
 `removeClass(name)`: 删除
@@ -420,3 +418,13 @@ $("#button").click(function() {
 	}
 </style>
 ```
+
+## HTML代码 / 文本 / 值
+
+`val()`: 获取`value`属性值, 如果标签没有`value`属性, 则获取标签体的内容
+`html()`: 获得html代码, 可能会含有标签
+`text()`: 同html(), 但只获得文本值
+
+`val(...)`: 设置值
+`text(...)`: 参数为啥就写啥, `text("<a href="#">test</a>")` // 显示文本`<a href="#">test</a>`
+`html(...)`: 同text(...), 但识别html标签, 会转换
