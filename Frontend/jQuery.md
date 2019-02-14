@@ -446,6 +446,11 @@ $div.css({
 
 `offset(...)`: 设置坐标 `$div.offset({"top":0, "left":0});`
 
+`scrollTop(...)`: 垂直滚动条滚动的距离
+
+`scrollLeft(...)`: 水平滚动条滚动的距离
+
+
 ## HTML代码 / 文本 / 值
 
 `val()`: 获取`value`属性值, 如果标签没有`value`属性, 则获取标签体的内容
@@ -453,6 +458,7 @@ $div.css({
 `html()`: 获得html代码, 可能会含有标签
 
 `text()`: 同html(), 但只获得文本值
+
 
 `val(...)`: 设置值
 
