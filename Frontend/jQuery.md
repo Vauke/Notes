@@ -477,7 +477,27 @@ $div.css({
 
 ### 内部插入
 
+针对标签体的插入
+
+`A.append(B)`: 将B追加到A`内部`的后面 `$("#love").append($("#tj"));`
+
+`A.prepend(B)`: 是prepend, 将B追加到A`内部`前面 `$("#love").prepend($("#tj"));`
+
+`A.appendTo(B)`: 将A追加到B`内部`后
+
+`A.prependTo(B)`: 将A追加到B`内部`前
+
 ### 外部插入
+
+针对同级元素的插入
+
+`A.after(B)`: 将B插入到A后面
+
+`A.before(B)`: 前面
+
+`A.insertAfter(B)`
+
+`A.insertBefore(B)`
 
 ### 删除
 
