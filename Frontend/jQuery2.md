@@ -6,6 +6,8 @@ Friday, February 15th 2019, 17:19
 
 * [jQuery2.md](#jquery2md)
 * [筛选](#筛选)
+	* [过滤](#过滤)
+	* [查找](#查找)
 * [事件](#事件)
 * [动画](#动画)
 * [ajax](#ajax)
@@ -27,7 +29,62 @@ Friday, February 15th 2019, 17:19
 
 ## 过滤
 
+1. `eq(index | -index)`
+    * index: 从头往后数第index+1个元素, index=0,1...
+    * -index: 从尾开始
 
+```js
+// <input type="button" value=" 选择最后一个div元素"  id="b3"/>
+$("div").eq(-1).show().css("background-color", "#0f0");
+```
+
+2. `first()`
+
+3. `last()`
+
+4. `is()`: 判断是否成立 是true 否false
+
+```js
+// <input type="button" value=" 样式为hide div 下一个兄弟是否是span"  id="b6"/>
+alert($("div.hide").next().is("span")); // true
+```
+
+5. `hasClass()`: 判断class是否是指定的class, 其实就是`is("."+class)`
+
+```js
+// <input type="button" value=" id=one div样式是否是one"  id="b4"/>
+alert($("div#one").hasClass("one")); // true
+```
+
+6. `filter(expr)`: 过滤出与指定表达式expr匹配的元素集合
+
+```js
+// <input type="button" value=" 选择class为none的所有div"  id="b5"/>
+$("div").filter(".none").show().css("background-color", "#0f0");
+```
+
+7. `not()`: 排除
+
+```js
+// <input type="button" value=" 选择样式为one div 子元素中没有title属性的div"  id="b8"/>
+$("div.one").children().not("[title]").parent().css("background-color", "#0f0");
+```
+
+8. `has()`: 筛选出子元素
+
+```js
+// <input type="button" value=" 选择所有div中含有div的"  id="b7"/>
+$("div").has("div").css("background-color", "#0f0");
+```
+
+9. `slice(start, end)`: 截取jQuery数组元素
+
+```js
+// <input type="button" value=" 选择所以号为3,4的div"  id="b9"/>
+$("div").slice(3,5).css("background-color", "#0f0");
+```
+
+10. `map()`: 将jQuery对象数组中的每个元素单独又包装为多个jQuery对象
 
 ## 查找
 
