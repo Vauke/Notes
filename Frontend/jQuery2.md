@@ -10,6 +10,7 @@ Friday, February 15th 2019, 17:19
 	* [查找](#查找)
 	* [串联](#串联)
 * [事件](#事件)
+	* [jQuery完善的部分(原生js或许没有)](#jquery完善的部分原生js或许没有)
 * [动画](#动画)
 * [ajax](#ajax)
 * [miscellaneous](#miscellaneous)
@@ -188,7 +189,34 @@ $("#one").children().css("background-color","#f00").parent().css("background-col
 
 # 事件
 
-refer :point_right: [常见事件](assets/常见事件.html)
+refer :point_right: [常见事件](./assets/常见事件.html)
+
+## jQuery完善的部分(原生js或许没有)
+
+1. `focusin()`: 获得焦点 js: onfocus 区别: focusin()可以在父元素上检测子元素获得焦点的情况
+
+```js
+// 点击innerDiv可以触发事件, 事件的传播
+$("#outterDiv").click(function() {
+    alert("outterDiv");
+});
+
+// 点击innerDiv不可以触发事件
+$("#outterDiv").focus(function() {
+    alert("outterDiv");
+});
+
+// 点击innerDiv可以触发事件
+$("#outterDiv").focusin(function() {
+    alert("outterDiv");
+});
+
+<div id="outterDiv" style="border:1px solid #f00;width:200px;height:200px">
+    <div id="innerDiv" style="border:1px solid #00f;width:100px;height:100px"></div>
+</div>
+```
+
+2. `focusout()`: 失去焦点 js: onblur 区别: focusout()可以在父元素上检测子元素失去焦点的情况
 
 # 动画
 

@@ -9,7 +9,7 @@
   			height: 200px;
  			width: 200px;
 		}
-		
+
 	</style>
 	<script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
 	<script type="text/javascript">
@@ -29,12 +29,12 @@
 				var sub = $(this).val().substring(event.target.selectionStart,event.target.selectionEnd);
 				$("#textMsg").html("文本内容被选中：select ， " + sub);
 			});
-			
+
 			var i = 0;
 			$("#e02").mouseover(function(){
 				$("#divMsg").html("鼠标移上：mouseover");
 			}).mousemove(function(){
-				$("#divMsg").html("鼠标移动：mousemove , " + i++ );
+				// $("#divMsg").html("鼠标移动：mousemove , " + i++ );
 			}).mouseout(function(){
 				$("#divMsg").html("鼠标移出：mouseout");
 			}).mousedown(function(){
@@ -42,21 +42,21 @@
 			}).mouseup(function(){
 				$("#divMsg").html("鼠标弹起：mouseup");
 			});
-			
+
 			$("#e03").click(function(){
 				$("#buttonMsg").html("单击：click");
 			}).dblclick(function(){
 				$("#buttonMsg").html("双击：dblclick");
 			});
-			
+
 		});
-		
-		
-		
-		
-		
+
+
+
+
+
 	</script>
-	
+
 </head>
 <body>
 	<input id="e01" type="text" /><span id="textMsg"></span> <br/>
