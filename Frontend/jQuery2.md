@@ -249,7 +249,7 @@ $("#outterDiv").mouseenter(function() {
 
 ## 事件绑定
 
-### 事件处理
+### 处理
 
 ### 委派
 
