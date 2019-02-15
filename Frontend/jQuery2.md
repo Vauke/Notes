@@ -11,6 +11,10 @@ Friday, February 15th 2019, 17:19
 	* [串联](#串联)
 * [事件](#事件)
 	* [jQuery完善的部分(原生js或许没有)](#jquery完善的部分原生js或许没有)
+	* [事件绑定](#事件绑定)
+		* [事件处理](#事件处理)
+		* [委派](#委派)
+		* [切换](#切换)
 * [动画](#动画)
 * [ajax](#ajax)
 * [miscellaneous](#miscellaneous)
@@ -193,7 +197,18 @@ refer :point_right: [常见事件](./assets/常见事件.html)
 
 ## jQuery完善的部分(原生js或许没有)
 
-1. `focusin()`: 获得焦点 js: onfocus 区别: focusin()可以在父元素上检测子元素获得焦点的情况
+以下基于:
+
+```html
+<div id="outerDiv" style="border:1px solid #f00;width:200px;height:200px">
+    <div id="innerDiv" style="border:1px solid #00f;width:100px;height:100px"></div>
+</div>
+
+<br/>
+<span id="showSpan"></span>
+```
+
+1. `focusin()`: 获得焦点 同focus()或 js: onfocus 区别: focusin()可以在父元素上检测子元素获得焦点的情况
 
 ```js
 // 点击innerDiv可以触发事件, 事件的传播
@@ -210,13 +225,35 @@ $("#outterDiv").focus(function() {
 $("#outterDiv").focusin(function() {
     alert("outterDiv");
 });
-
-<div id="outterDiv" style="border:1px solid #f00;width:200px;height:200px">
-    <div id="innerDiv" style="border:1px solid #00f;width:100px;height:100px"></div>
-</div>
 ```
 
-2. `focusout()`: 失去焦点 js: onblur 区别: focusout()可以在父元素上检测子元素失去焦点的情况
+2. `focusout()`: 失去焦点 同blur()或 js: onblur 区别: focusout()可以在父元素上检测子元素失去焦点的情况
+
+3. `mouseenter()`: 移入, 同 js: mouseover 区别: mouseenter()只在进入备选元素时才会触发事件
+
+```js
+var i= 0;
+
+// 鼠标进入父元素和子元素时都会触发事件
+$("#outterDiv").mouseover(function() {
+    $("#showSpan").html(i++);
+});
+
+// 进入子元素innerDiv不触发事件
+$("#outterDiv").mouseenter(function() {
+    $("#showSpan").html(i++);
+});
+```
+
+4. `mouseleave()`: 移出 同 js: mouseout 区别: mouseleave()只在离开被选元素时才会触发事件
+
+## 事件绑定
+
+### 事件处理
+
+### 委派
+
+### 切换
 
 # 动画
 
