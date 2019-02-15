@@ -539,4 +539,8 @@ alert($city.data("username")); // vauke
 
 ### 替换
 
+`A.replaceWith(B)`: 用B替换所有的A
+
+`A.replaceAll(B)`: 用A替换所有的B
+
 ### 包裹
