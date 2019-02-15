@@ -545,19 +545,21 @@ alert($city.data("username")); // vauke
 
 ### 包裹
 
-`A.wrap(B)`: 使用B分别包裹每个A 包含多个B
+`A.wrap(B)`: 使用B分别包裹每个A, B成为A的父元素 包含多个B
 
 	<B><A></A></B>
 	<B><A></A></B>
 
-`A.wrapAll(B)`: 使用B将所有A包裹
+`A.wrapAll(B)`: 使用B将所有A包裹 一个B
 
-> <B>
->	<A></A>
->	<A></A>
-> 	...
-> </B>
+	<B>
+		<A></A>
+		<A></A>
+ 		...
+	</B>
 
 `A.wrapInner(B)`: 使用B将**每一个**A的**标签体**进行包裹
 
-`A.`
+	<A><B>A的标签体</B></A>
+
+`A.unwrap(B)`: 将A的父元素删除
