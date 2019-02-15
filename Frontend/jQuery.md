@@ -337,7 +337,7 @@ $("div.one :nth-child(2)").css("background-color", "#0f0");
 $("div[class='one'] :nth-child(2)").css("background-color", "#0f0");
 ```
 
-元素无多余条件时, `:` 前不用加空格 i.e.`$("div:nth-child(2)")`
+元素无多余条件时, `:` 前不用加空格 i.e.`$("div:nth-child(2)")`, 使用id等选择器时需要加空格
 
 对比:
 
