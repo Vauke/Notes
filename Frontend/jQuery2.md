@@ -188,6 +188,8 @@ $("#one").children().css("background-color","#f00").parent().css("background-col
 
 # 事件
 
+refer :point_right: [常见事件](assets/常见事件.html)
+
 # 动画
 
 # ajax
