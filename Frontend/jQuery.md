@@ -501,6 +501,38 @@ $div.css({
 
 ### 删除
 
+`empty()`: 清空`标签体`
+
+`remove()`: 删除当前对象绑定的事件和数据等, 但对象本身**不会**被删除
+
+`detach()`: 删除当前对象, 但绑定的事件和数据还可用
+
+```js
+var $city = $("#city");
+
+// 绑定事件
+$city.click(function() {
+	alert("aaa");
+});
+
+// 绑定数据
+$city.data("username", "vauke"); // key value
+
+// 1. 使用remove()删除
+$city.remove(); // 移除绑定的事件和数据, 因此再点击时不会alert aaa
+
+// 获得绑定数据
+alert($city.data("username")); // undefined, 获得数据时, 数据已经清空
+
+// 2. 使用detach()删除
+$city.detach(); // 绑定的事件和数据还存在, 只是$city中的对象不存在了
+
+// 获得绑定数据
+alert($city.data("username")); // vauke, 获得数据时, 数据还存在
+
+alert($city.data("username")); // vauke
+```
+
 ### 复制
 
 ### 替换
