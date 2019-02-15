@@ -88,6 +88,49 @@ $("div").slice(3,5).css("background-color", "#0f0");
 
 ## 查找
 
+    <A>
+        <B>
+            <C></C>
+            <D></D>
+            <E></E>
+            <F></F>
+        </B>
+    </A>
+
+1. `B.children([...])`: 获得所有子元素, CDEF
+
+```js
+// <input type="button" value=" 选择 id=two 子元素title=other 元素 "  id="b2"/>
+$("#two").children("[title='other']").css("background-color", "#0f0");
+```
+
+2. `A.find(D)`: 从指定区域开始查询指定元素, D
+
+3. `D.next()`: 获得下一个兄弟, E
+
+```js
+// <input type="button" value=" 选择 id=two 下一个兄弟"  id="b3"/>
+$("#two").next().css("background-color", "#0f0");
+```
+
+4. `D.nextAll([expr])`: 后面的所有兄弟, EF
+
+5. `E.prev()`: 上一个兄弟, D
+
+6. `E.prevAll()`: 前面的所有兄弟, CD
+
+7. `E.siblings()`: 所有兄弟, CDF
+
+8. `E.parent()`: 父元素, B
+
+9. `E.closest(A)`: 向上获得指定的父级元素A, 获得返回一个对象(1), 没有返回0
+
+10. `C.nextUntil(E)`: 获得C到E之间的所有的C的兄弟, DE
+
+11. `E.prevUntil(D)`: D
+
+12. `E.parents()`: 获得所有父级元素, BA
+
 # 事件
 
 # 动画
