@@ -216,7 +216,7 @@ $("#outterDiv").click(function() {
     alert("outterDiv");
 });
 
-// 点击innerDiv不可以触发事件
+// 点击innerDiv不会触发事件
 $("#outterDiv").focus(function() {
     alert("outterDiv");
 });
