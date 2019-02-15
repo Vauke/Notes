@@ -8,6 +8,7 @@ Friday, February 15th 2019, 17:19
 * [筛选](#筛选)
 	* [过滤](#过滤)
 	* [查找](#查找)
+	* [串联](#串联)
 * [事件](#事件)
 * [动画](#动画)
 * [ajax](#ajax)
@@ -106,6 +107,25 @@ $("#two").children("[title='other']").css("background-color", "#0f0");
 
 2. `A.find(D)`: 从指定区域开始查询指定元素, D
 
+```js
+$(document).ready(function(){
+    $("div").children("a").hide().prev("span").click(function() {
+        $(this).nextAll().toggle().parent().siblings("div").find("a").hide();
+    });
+});
+
+<div>
+    <span>xxxx</span>
+    <a>yyyy</a>
+    <a>yyyy</a>
+</div>
+<div>
+    <span>aaaa</span>
+    <a>bbb</a>
+    <a>bbbb</a>
+</div>
+```
+
 3. `D.next()`: 获得下一个兄弟, E
 
 ```js
@@ -130,6 +150,41 @@ $("#two").next().css("background-color", "#0f0");
 11. `E.prevUntil(D)`: D
 
 12. `E.parents()`: 获得所有父级元素, BA
+
+## 串联
+
+1. `A.add(B)`: 将A和B组合, 同时操作
+
+```js
+// 	  <input type="button" value=" 选择 id=one和two 的div"  id="b1"/>
+$("#one").add("#two").css("background-color","#0f0");
+```
+
+2. `andSelf()`
+    * `A.children().css(...)`: 对A的孩子做css操作
+    * `A.children().andSelf().css(...)`: 自身和孩子**同时**css
+
+```js
+// <input type="button" value=" 选择id=one 所有的孩子，以及one自己"  id="b2"/>
+$("#one").children().andSelf().css("background-color","#0f0");
+```
+
+3. `contents()`: 获得所有的子节点(子元素和文本)
+
+4. `end()`: 回到最近的一个"破坏性"操作之前
+    * `A.children().children().css(...)`: 操作孙子
+    * `A.children().children().end().css(...)`: 操作孩子
+    * `A.children().children().end().end().css(...)`: 操作A
+
+```js
+// <input type="button" value=" 选择id=one 所有的孩子，设置颜色为红，设置one自己为黄"  id="b3"/>
+// $("#one").children().css("background-color","#f00").andSelf().css("background-color", "#ff0"); // 不能用andSelf()
+$("#one").css("background-color", "#ff0").children().css("background-color", "#f00");
+$("#one").children().css("background-color","#f00").end().css("background-color", "#ff0");
+$("#one").children().css("background-color","#f00").parent().css("background-color", "#ff0");
+```
+
+不能用`andSelf()`, 最终会变为都是#ff0(黄色), andSelf()在自己和孩子后续操作一致的情况下使用, 否则使用end(), '隔离'开, 单独操作
 
 # 事件
 
