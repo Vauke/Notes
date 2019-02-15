@@ -535,6 +535,8 @@ alert($city.data("username")); // vauke
 
 ### 复制
 
+`clone([even[, deepEven]])`: clone对象, even用于决定事件的处理函数是否也被复制, 默认为false, `clone(true)`:效果和原来完全一样, `clone(false)`: 没有事件, 其余一样
+
 ### 替换
 
 ### 包裹
