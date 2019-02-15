@@ -544,3 +544,20 @@ alert($city.data("username")); // vauke
 `A.replaceAll(B)`: 用A替换所有的B
 
 ### 包裹
+
+`A.wrap(B)`: 使用B分别包裹每个A 包含多个B
+
+	<B><A></A></B>
+	<B><A></A></B>
+
+`A.wrapAll(B)`: 使用B将所有A包裹
+
+> <B>
+>	<A></A>
+>	<A></A>
+> 	...
+> </B>
+
+`A.wrapInner(B)`: 使用B将**每一个**A的**标签体**进行包裹
+
+`A.`
