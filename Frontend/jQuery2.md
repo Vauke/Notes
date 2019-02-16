@@ -14,6 +14,7 @@ Friday, February 15th 2019, 17:19
 	* [页面加载](#页面加载)
 	* [事件绑定](#事件绑定)
 		* [处理](#处理)
+			* [jQuery事件的别名](#jquery事件的别名)
 		* [委派 delegate](#委派-delegate)
 		* [切换](#切换)
 * [动画](#动画)
@@ -315,7 +316,24 @@ $("#h03").on("click", function() {
 });
 ```
 
-off/unbind也可以解绑bind/on, 并且同一事件可以多次绑定调用不同函数(*一次点击多次触发*), 调用解绑函数将解绑全部
+3. `one(type, fn)`: 给当前对象绑定事件, 该事件最多被触发一次
+
+```js
+// 	<input id="h01" type="button" value="1只能点击一次，之后失效" />
+$("#h01").one("click", function() {
+	alert("only run once");
+});
+```
+
+4. `on(...), off(...)`: refer :point_right: [使用on/off绑定/解绑事件](jQuery.md/#事件的绑定)
+
+5. `trigger(type)`: 在**每一个**匹配的元素上触发事件, 但会导致浏览器同名的[默认行为](#浏览器默认动作)的执行, A.trigger("submit") 类似: A.submit()
+
+6. `triggerHandler(type)`: 同`trigger()`, 但不会导致浏览器默认行为执行和[事件冒泡](#事件冒泡)
+
+#### jQuery事件的别名
+
+off/unbind也可以解绑bind/on, 并且同一事件可以多次绑定调用不同函数(*一次点击多次触发*), 调用解绑函数将**解绑全部**
 
 ```js
 // 点击一次h02按钮, 将依次出现run any times和run any times again
@@ -333,20 +351,22 @@ $("#h03").on("click", function() {
 });
 ```
 
-3. `one(type, fn)`: 给当前对象绑定事件, 该事件最多被触发一次
+使用别名:
 
 ```js
-// 	<input id="h01" type="button" value="1只能点击一次，之后失效" />
-$("#h01").one("click", function() {
-	alert("only run once");
+$("#h02").bind("click.first", function() {
+	alert("run any times");
+});
+
+$("#h02").bind("click.again", function() {
+	alert("run any times again");
+});
+
+// 只解绑h02的click.first事件
+$("#h03").click(function() {
+	$("#h02").unbind("click.first");
 });
 ```
-
-4. `on(...), off(...)`: refer :point_right: [使用on/off绑定/解绑事件](jQuery.md/#事件的绑定)
-
-5. `trigger(type)`: 在**每一个**匹配的元素上触发事件, 但会导致浏览器同名的[默认行为](#浏览器默认动作)的执行, A.trigger("submit") 类似: A.submit()
-
-6. `triggerHandler(type)`: 同`trigger()`, 但不会导致浏览器默认行为执行和[事件冒泡](#事件冒泡)
 
 ### 委派 delegate
 
