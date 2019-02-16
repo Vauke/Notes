@@ -14,11 +14,13 @@ Friday, February 15th 2019, 17:19
 	* [页面加载](#页面加载)
 	* [事件绑定](#事件绑定)
 		* [处理](#处理)
-		* [委派](#委派)
+		* [委派 delegate](#委派-delegate)
 		* [切换](#切换)
 * [动画](#动画)
 * [ajax](#ajax)
 * [miscellaneous](#miscellaneous)
+	* [事件冒泡](#事件冒泡)
+	* [浏览器默认动作](#浏览器默认动作)
 
 <!-- /code_chunk_output -->
 
@@ -266,15 +268,34 @@ $(function() {...});
 1. `bind(type, fn)`: 给当前对象绑定**一个**事件, A.bind("click", fn), 类似: A.click(fn)
 
 2. `unbind(type)`: 解除当前对象的由bind()绑定的事件
-3. `one(type, fn)`: 给当前对象绑定事件, 该事件最多被触发一次
-4. `on(...)`: refer :point_right: [使用on绑定事件](jQuery.md/#事件的绑定)
 
-### 委派
+3. `one(type, fn)`: 给当前对象绑定事件, 该事件最多被触发一次
+
+4. `on(...), off(...)`: refer :point_right: [使用on/off绑定/解绑事件](jQuery.md/#事件的绑定)
+
+5. `trigger(type)`: 在**每一个**匹配的元素上触发事件, 但会导致浏览器同名的[默认行为](#浏览器默认动作)的执行, A.trigger("submit") 类似: A.submit()
+
+6. `triggerHandler(type)`: 同`trigger()`, 但不会导致浏览器默认行为执行和[事件冒泡](#事件冒泡)
+
+### 委派 delegate
+
+1. `live(type, fn)`: deprecated since 1.7 绑定事件, **之后动态添加**的符合type的元素也将被绑定相同的事件
+
+2. `die(type)`: deprecated since 1.7 解绑事件
 
 ### 切换
+
+1. `hover(over, fn)`: 两参数都是函数
+	* 简化版 移入移出 A.mouseover(over).mouseout(out) ==> A.hover(over, out)
+
+2. `toggle(fn, fn, fn ...)`: 执行click事件, 每点击一次, 执行一个fn
 
 # 动画
 
 # ajax
 
 # miscellaneous
+
+## 事件冒泡
+
+## 浏览器默认动作
