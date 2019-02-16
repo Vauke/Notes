@@ -202,7 +202,7 @@ $("#btn3").click(function() {
 });
 ```
 
-`attr("attribute name")`: 获得jQuery对象的对应属性
+`attr("attribute name")`: 获得jQuery对象的对应属性值
 
 #### 事件的绑定:
 

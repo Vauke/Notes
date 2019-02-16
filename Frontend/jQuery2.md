@@ -476,6 +476,36 @@ $(function() {
 <span>test3</span>
 ```
 
+以下基于[文字提示示例](assets/文字提示.html)
+
+以下代码在第一次鼠标移动时能正常显示, 后续提示就会变成aaa, 由于有两个元素绑定事件, 不能简单的提取公共变量解决bug
+
+```js
+$(function(){
+	$(".mytooltip").hover(function(event) {
+		// 获得自带提示
+		var $title = $(this).attr("title");
+
+		// 去除自带提示
+		$(this).removeAttr("title");
+		// 创建新的提示对象
+		var $new = $("<div id='tooltip'>aaa</div>");
+		//添加内容并显示
+		$new.text($title).appendTo("body").show();
+		//设置坐标, 获得鼠标坐标
+		$new.offset({top:event.pageX, left:event.pageY});
+	}, function() {
+		// 移除
+		$("#tooltip").remove();
+	}).mousemove(function(event) {
+		// 跟着鼠标滑动
+		$("#tooltip").offset({top: event.pageX, left: event.pageY});
+	});
+});
+```
+
+使用缓存改进
+
 # 动画
 
 # ajax
