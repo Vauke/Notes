@@ -451,7 +451,7 @@ $div.css({
 
 `offset()`: 获得坐标
 
-`offset(...)`: 设置坐标 `$div.offset({"top":0, "left":0});`
+`offset(...)`: 设置坐标 `$div.offset({top:0, left:0});`
 
 `scrollTop(...)`: 垂直滚动条滚动的距离
 
