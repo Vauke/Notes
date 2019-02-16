@@ -11,7 +11,7 @@ Sunday, February 10th 2019, 20:46
 		* [基本选择器 :star:](#基本选择器-star)
 		* [层级选择器](#层级选择器)
 		* [基本过滤选择器](#基本过滤选择器)
-			* [事件的绑定:](#事件的绑定)
+			* [事件的绑定](#事件的绑定)
 		* [内容选择器 :star:](#内容选择器-star)
 		* [可见性选择器 :star:](#可见性选择器-star)
 		* [属性选择器 :star:](#属性选择器-star)
@@ -204,7 +204,7 @@ $("#btn3").click(function() {
 
 `attr("attribute name")`: 获得jQuery对象的对应属性值
 
-#### 事件的绑定:
+#### 事件的绑定
 
 1. `on( events [, selector ] [, data ], handler(eventObject) )`: 提供绑定事件所需要的所有功能, 替代bind(), delegate()和live()
 	* `events`: 一个或多个空格分隔的事件类型

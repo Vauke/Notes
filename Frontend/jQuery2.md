@@ -504,7 +504,39 @@ $(function(){
 });
 ```
 
-使用缓存改进
+使用缓存(事件中, 绑定给对象的数据)改进, [绑定数据event.data](jQuery.md/#事件的绑定)
+
+```js
+$(".mytooltip").hover(function(event) {
+	// mouseover
+	// 获得绑定数据, 第一次为空
+	var title = $(this).data("mytitle");
+
+	// 第一次
+	if (!title) {
+		// 获得自带提示 attr()获得的是值 string
+		title = $(this).attr("title");
+		// 去除自带提示
+		$(this).removeAttr("title");
+		// 绑定数据
+		$(this).data("mytitle", title);
+	}
+
+	// 创建新的提示对象
+	var $new = $("<div id='tooltip'>aaa</div>");
+	//添加内容并显示
+	$new.text(title).appendTo("body").show();
+	//设置坐标, 获得鼠标坐标
+	$new.offset({top:event.pageX, left:event.pageY});
+}, function() {
+	// mouseout
+	// 移除
+	$("#tooltip").remove();
+}).mousemove(function(event) {
+	// 跟着鼠标滑动
+	$("#tooltip").offset({top: event.pageX, left: event.pageY});
+});
+```
 
 # 动画
 

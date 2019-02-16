@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>文字提示</title>
+ <!--   引入jQuery -->
+ <script src="../js/jquery.js" type="text/javascript"></script>
+<style type="text/css">
+body{
+	margin:0;
+	padding:40px;
+	background:#fff;
+	font:80% Arial, Helvetica, sans-serif;
+	color:#555;
+	line-height:180%;
+}
+p{
+	clear:both;
+	margin:0;
+	padding:.5em 0;
+}
+/* tooltip */
+#tooltip{
+	position:absolute;
+	border:1px solid #333;
+	background:#f7f5d1;
+	padding:1px;
+	color:#333;
+	display:none;
+}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$(".mytooltip").hover(function(event) {
+			// mouseover
+			// 获得绑定数据, 第一次为空
+			var title = $(this).data("mytitle");
+
+			// 第一次
+			if (!title) {
+				// 获得自带提示 attr()获得的是值 string
+				title = $(this).attr("title");
+				// 去除自带提示
+				$(this).removeAttr("title");
+				// 绑定数据
+				$(this).data("mytitle", title);
+			}
+
+			// 创建新的提示对象
+			var $new = $("<div id='tooltip'>aaa</div>");
+			//添加内容并显示
+			$new.text(title).appendTo("body").show();
+			//设置坐标, 获得鼠标坐标
+			$new.offset({top:event.pageX, left:event.pageY});
+		}, function() {
+			// mouseout
+			// 移除
+			$("#tooltip").remove();
+		}).mousemove(function(event) {
+			// 跟着鼠标滑动
+			$("#tooltip").offset({top: event.pageX, left: event.pageY});
+		});
+	});
+
+</script>
+</head>
+<body>
+<p><a href="#" class="mytooltip" title="这是我的超链接提示1.">提示1.</a></p>
+<p><a href="#" class="mytooltip" title="这是我的超链接提示2.">提示2.</a></p>
+<p><a href="#" title="这是自带提示1.">自带提示1.</a></p>
+<p><a href="#" title="这是自带提示2.">自带提示2.</a> </p>
+</body>
+</html>
