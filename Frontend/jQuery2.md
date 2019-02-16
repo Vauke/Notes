@@ -290,9 +290,9 @@ $(function() {
 
 ### 处理
 
-1. `bind(type, fn)`: deprecated since 3.0, 使用on替代 给当前对象绑定**一个**事件, A.bind("click", fn), 类似: A.click(fn)
+1. `bind(type, fn)`: *deprecated since 3.0* 使用on替代 给当前对象绑定**一个**事件, A.bind("click", fn), 类似: A.click(fn)
 
-2. `unbind(type)`: deprecated since 3.0 解除当前对象绑定的事件
+2. `unbind(type)`: *deprecated since 3.0* 解除当前对象绑定的事件
 
 ```js
 // bind
@@ -375,7 +375,7 @@ $("#h03").click(function() {
 
 ### 委派 delegate
 
-1. `live(type, fn)`: deprecated since 1.7, 使用on或delegate替代 同bind 绑定事件, 但**之后动态添加**的符合type的元素也将被绑定相同的事件
+1. `live(type, fn)`: *deprecated since 1.7* 使用on或delegate替代 同bind 绑定事件, 但**之后动态添加**的符合type的元素也将被绑定相同的事件
 
 ```js
 // <input type="button" value="4 添加一个按钮，样式为myClass，且拥有相同的事件" class="myClass" />
@@ -391,7 +391,7 @@ $myClass.on("click", function() {
 });
 ```
 
-2. `die(type)`: deprecated since 1.7 解绑事件, 之后动态添加的也被解绑
+2. `die(type)`: *deprecated since 1.7* 解绑事件, 之后动态添加的也被解绑
 
 ```js
 // <input id="h05" type="button" value="5 解绑4"/>
@@ -402,7 +402,7 @@ $("#h05").on("click", function() {
 
 ### 切换
 
-1. `hover(over, fn)`: **两参数都是函数** **test**
+1. `hover(over, fn)`: 两参数都是函数
 	* 移入移出 简化版的A.mouseover(over).mouseout(out) ==> A.hover(over, out)
 
 ```js
@@ -417,7 +417,7 @@ $("#e02").hover(function() {
 });
 ```
 
-2. `toggle(fn, fn, fn ...)`: _removed since 1.9_ 执行click事件, 每点击一次, 执行一个fn(不同于[一次点击多次执行](#jQuery事件的别名))
+2. `toggle(fn, fn, fn ...)`: *removed since 1.9* 执行click事件, 每点击一次, 执行一个fn(不同于[一次点击多次执行](#jQuery事件的别名))
 
 ```js
 $("#e01").toggle(function() {
