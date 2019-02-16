@@ -427,7 +427,20 @@ $("#e01").toggle(function() {
 })
 ```
 
-3. `toggle([speed], [easing], [fn])`: 切换元素显示/隐藏
+3. `toggle(bool)`: bool必需, 切换隐藏/显示的开关
+
+```js
+$("span").toggle(bool);
+
+// 相当于
+if (bool) {
+	$("span").show();
+} else {
+	$("span").hide();
+}
+```
+
+4. `toggle([speed], [easing], [fn])`: 切换元素显示/隐藏, 类似toggle(bool), 但是以时间过渡, 还可以执行函数
 	* speed: 隐藏/显示 效果的速度. 默认是 "0"毫秒. 可能的值: 数值或slow, normal, fast
 	* easing: (Optional) 用来指定切换效果, 默认是"swing", 可用参数"linear"
 	* fn: 在动画完成时执行的函数, 每个符合条件的元素各自执行一次
@@ -440,8 +453,8 @@ $(function() {
 	$("span").toggle();
 
 	// 过渡隐藏
-	$("span").toggle("slow"); // 先隐藏
-	$("span").toggle(1000); // 再显示
+	$("span").toggle("slow"); // 这里隐藏
+	$("span").toggle(1000); // 再次调用了toggle, 这里显示
 });
 
 <span>test1</span>
@@ -461,19 +474,6 @@ $(function() {
 <span>test1</span>
 <span>test2</span>
 <span>test3</span>
-```
-
-4. `toggle(bool)`: 切换隐藏/显示的开关
-
-```js
-$("span").toggle(bool);
-
-// 相当于
-if (bool) {
-	$("span").show();
-} else {
-	$("span").hide();
-}
 ```
 
 # 动画
