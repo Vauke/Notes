@@ -12,6 +12,15 @@ Friday, February 15th 2019, 17:19
 * [事件](#事件)
 	* [jQuery完善的部分(原生js或许没有)](#jquery完善的部分原生js或许没有)
 	* [页面加载](#页面加载)
+	* [事件绑定](#事件绑定)
+		* [处理](#处理)
+		* [委派 delegate](#委派-delegate)
+		* [切换](#切换)
+* [动画](#动画)
+* [ajax](#ajax)
+* [miscellaneous](#miscellaneous)
+	* [事件冒泡](#事件冒泡)
+	* [浏览器默认动作](#浏览器默认动作)
 
 <!-- /code_chunk_output -->
 
@@ -280,11 +289,40 @@ $(function() {
 
 ### 处理
 
-1. `bind(type, fn)`: 给当前对象绑定**一个**事件, A.bind("click", fn), 类似: A.click(fn)
+1. `bind(type, fn)`: deprecated since 3.0, 使用on替代 给当前对象绑定**一个**事件, A.bind("click", fn), 类似: A.click(fn)
 
-2. `unbind(type)`: 解除当前对象的由bind()绑定的事件
+```js
+// <input id="h02" type="button" value="2可以点击多次" />
+$("#h02").bind("click", function() {
+	alert("run any times");
+});
+
+$("#h02").on("click", function() {
+	alert("replace bind with on");
+});
+```
+
+2. `unbind(type)`: deprecated since 3.0 解除当前对象绑定的事件
+
+```js
+// <input id="h03" type="button" value="3解绑2" />
+$("#h03").click(function() {
+	$("#h02").unbind("click");
+});
+
+$("#h03").on("click", function() {
+	$("#h02").off("click");
+});
+```
 
 3. `one(type, fn)`: 给当前对象绑定事件, 该事件最多被触发一次
+
+```js
+// 	<input id="h01" type="button" value="1只能点击一次，之后失效" />
+$("#h01").one("click", function() {
+	alert("only run once");
+});
+```
 
 4. `on(...), off(...)`: refer :point_right: [使用on/off绑定/解绑事件](jQuery.md/#事件的绑定)
 
@@ -294,7 +332,7 @@ $(function() {
 
 ### 委派 delegate
 
-1. `live(type, fn)`: deprecated since 1.7 绑定事件, **之后动态添加**的符合type的元素也将被绑定相同的事件
+1. `live(type, fn)`: deprecated since 1.7, 使用on或delegate替代 绑定事件, **之后动态添加**的符合type的元素也将被绑定相同的事件
 
 2. `die(type)`: deprecated since 1.7 解绑事件
 
