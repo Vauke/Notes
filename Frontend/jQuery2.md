@@ -12,15 +12,6 @@ Friday, February 15th 2019, 17:19
 * [事件](#事件)
 	* [jQuery完善的部分(原生js或许没有)](#jquery完善的部分原生js或许没有)
 	* [页面加载](#页面加载)
-	* [事件绑定](#事件绑定)
-		* [处理](#处理)
-		* [委派 delegate](#委派-delegate)
-		* [切换](#切换)
-* [动画](#动画)
-* [ajax](#ajax)
-* [miscellaneous](#miscellaneous)
-	* [事件冒泡](#事件冒泡)
-	* [浏览器默认动作](#浏览器默认动作)
 
 <!-- /code_chunk_output -->
 
@@ -260,6 +251,30 @@ $(document).ready(function() {...});
 // 简化写法
 $(function() {...});
 ```
+
+```js
+window.onload = function() {
+	alert("111");
+};
+
+window.onload = function() {
+	alert("222");
+};
+```
+
+执行结果: 222, 后面代码将覆盖前面的
+
+```js
+$(function(){
+	alert("aaa");
+});
+
+$(function() {
+	alert("bbb");
+});
+```
+
+执行结果: aaa, bbb 可以重复使用$(fn() {...})
 
 ## 事件绑定
 
