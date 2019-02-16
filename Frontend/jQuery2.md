@@ -403,7 +403,19 @@ $("#h05").on("click", function() {
 ### 切换
 
 1. `hover(over, fn)`: 两参数都是函数
-	* 简化版 移入移出 A.mouseover(over).mouseout(out) ==> A.hover(over, out)
+	* 移入移出 简化版的A.mouseover(over).mouseout(out) ==> A.hover(over, out)
+
+```js
+var $divMsg = $("#divMsg");
+
+$("#e02").hover(function() {
+	// mouseover
+	$divMsg.html("mouse move in </br>");
+}, function() {
+	//mouseout
+	$divMsg.append("<a href='#'>mouse move out</a> </br>");
+});
+```
 
 2. `toggle(fn, fn, fn ...)`: 执行click事件, 每点击一次, 执行一个fn(不同于[一次点击多次执行](#jQuery事件的别名))
 
