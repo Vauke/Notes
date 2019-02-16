@@ -366,13 +366,39 @@ $("#h02").bind("click.again", function() {
 $("#h03").click(function() {
 	$("#h02").unbind("click.first");
 });
+
+// 解绑h02的全部click事件
+$("#h03").click(function() {
+	$("#h02").unbind("click");
+});
 ```
 
 ### 委派 delegate
 
-1. `live(type, fn)`: deprecated since 1.7, 使用on或delegate替代 绑定事件, **之后动态添加**的符合type的元素也将被绑定相同的事件
+1. `live(type, fn)`: deprecated since 1.7, 使用on或delegate替代 同bind 绑定事件, 但**之后动态添加**的符合type的元素也将被绑定相同的事件
 
-2. `die(type)`: deprecated since 1.7 解绑事件
+```js
+// <input type="button" value="4 添加一个按钮，样式为myClass，且拥有相同的事件" class="myClass" />
+var $myClass = $(".myClass");
+
+$myClass.live("click", function() {
+	$("body").append("<input type='button' value='a replica' class='myClass' />");
+});
+
+// 使用clone()也可以达到同样效果
+$myClass.on("click", function() {
+	$("body").append($(this).clone(true)); // 参数true表示, 绑定的事件也一同复制
+});
+```
+
+2. `die(type)`: deprecated since 1.7 解绑事件, 之后动态添加的也被解绑
+
+```js
+// <input id="h05" type="button" value="5 解绑4"/>
+$("#h05").on("click", function() {
+	$(".myClass").die("click");
+});
+```
 
 ### 切换
 
