@@ -403,7 +403,7 @@ $("#h05").on("click", function() {
 ### 切换
 
 1. `hover(over, fn)`: 两参数都是函数
-	* 移入移出 简化版的A.mouseover(over).mouseout(out) ==> A.hover(over, out)
+	* 移入移出 简化版的 A.mouseover(over).mouseout(out) ==> A.hover(over, out)
 
 ```js
 var $divMsg = $("#divMsg");
@@ -425,6 +425,55 @@ $("#e01").toggle(function() {
 }, function() {
 	alert("bbb");
 })
+```
+
+3. `toggle([speed], [easing], [fn])`: 切换元素显示/隐藏
+	* speed: 隐藏/显示 效果的速度. 默认是 "0"毫秒. 可能的值: 数值或slow, normal, fast
+	* easing: (Optional) 用来指定切换效果, 默认是"swing", 可用参数"linear"
+	* fn: 在动画完成时执行的函数, 每个符合条件的元素各自执行一次
+
+以下动画隐藏/显示三个span
+
+```js
+$(function() {
+	// 直接隐藏
+	$("span").toggle();
+
+	// 过渡隐藏
+	$("span").toggle("slow"); // 先隐藏
+	$("span").toggle(1000); // 再显示
+});
+
+<span>test1</span>
+<span>test2</span>
+<span>test3</span>
+```
+
+以下动画为: test1,test2,test3同时开始动画并在1秒后隐藏, 接着alert三次"aaa"
+
+```js
+$(function() {
+	$("span").toggle(1000, function() { // 去除1000这个时间参数, 3个span将迅速隐藏/显示
+		alert("aaa");
+	});
+});
+
+<span>test1</span>
+<span>test2</span>
+<span>test3</span>
+```
+
+4. `toggle(bool)`: 切换隐藏/显示的开关
+
+```js
+$("span").toggle(bool);
+
+// 相当于
+if (bool) {
+	$("span").show();
+} else {
+	$("span").hide();
+}
 ```
 
 # 动画
