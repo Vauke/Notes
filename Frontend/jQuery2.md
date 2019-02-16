@@ -325,7 +325,7 @@ $("#h01").one("click", function() {
 });
 ```
 
-4. `on(...), off(...)`: refer :point_right: [使用on/off绑定/解绑事件](jQuery.md/#事件的绑定)
+4. `on(...), off(...)`: refer :point_right: [使用on/off绑定/解绑事件](jQuery.md#事件的绑定)
 
 5. `trigger(type)`: 在**每一个**匹配的元素上触发事件, 但会导致浏览器同名的[默认行为](#浏览器默认动作)的执行, A.trigger("submit") 类似: A.submit()
 
@@ -538,7 +538,7 @@ $(".mytooltip").hover(function(event) {
 });
 ```
 
-`data()`: 在元素上存放/读取数据
+`data()`: 在*元素*上存放/读取数据
 
 ```js
 // 存取值
@@ -562,7 +562,7 @@ $("div").data("test").last  //pizza!;
 
 `event.pageY`: 鼠标相对于文档的顶部边缘的位置
 
-`event.data`: 当前执行的处理器被绑定的时候，包含可选的数据传递给jQuery.fn.bind [绑定给事件的数据](jQuery.md#事件的绑定)
+`event.data`: *绑定给事件* 当前执行的函数被绑定的时候，包含可选的数据传递给jQuery.fn.bind [绑定给事件的数据](jQuery.md#事件的绑定)
 
 # 动画
 
