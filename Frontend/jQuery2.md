@@ -402,7 +402,7 @@ $("#h05").on("click", function() {
 
 ### 切换
 
-1. `hover(over, fn)`: _两参数都是函数_ *test*
+1. `hover(over, fn)`: **两参数都是函数** **test**
 	* 移入移出 简化版的A.mouseover(over).mouseout(out) ==> A.hover(over, out)
 
 ```js
