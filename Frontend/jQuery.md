@@ -206,7 +206,7 @@ $("#btn3").click(function() {
 
 #### 事件的绑定:
 
-1. `on( events [, selector ] [, data ], handler(eventObject) )`: 提供绑定事件所需要的所有功能
+1. `on( events [, selector ] [, data ], handler(eventObject) )`: 提供绑定事件所需要的所有功能, 替代bind(), delegate()和live()
 	* `events`: 一个或多个空格分隔的事件类型
 	* `selector`: 选择器
 	* `data`: 当一个事件被触发时, 要传递给事件处理函数的`event.data`
