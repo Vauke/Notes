@@ -206,15 +206,15 @@ $("#btn3").click(function() {
 
 #### 事件的绑定:
 
-1. `.on( events [, selector ] [, data ], handler(eventObject) )` 绑定事件
+1. `on( events [, selector ] [, data ], handler(eventObject) )`: 提供绑定事件所需要的所有功能
 	* `events`: 一个或多个空格分隔的事件类型
 	* `selector`: 选择器
 	* `data`: 当一个事件被触发时, 要传递给事件处理函数的`event.data`
 	* `handler(eventObject)`: 事件被触发时, 执行的函数. 若该函数只是return false的话, 那么该参数位置可以直接简写成 false.
 
-2. `.off( events [, selector ] [, handler(eventObject) ] )`: 移除由.on()绑定的事件
+2. `off( events [, selector ] [, handler(eventObject) ] )`: 移除由on()绑定的事件
 	* `events`: 一个或多个空格分隔的事件类型
-	* `selector`: 一个选择器, 当绑定事件处理程序时最初传递给 .on()的那个.
+	* `selector`: 一个选择器, 当绑定事件处理程序时最初传递给on()的那个.
 	* `handler(eventObject)`
 
 ### 内容选择器 :star:
