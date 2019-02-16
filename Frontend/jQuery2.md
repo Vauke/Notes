@@ -291,7 +291,10 @@ $(function() {
 
 1. `bind(type, fn)`: deprecated since 3.0, 使用on替代 给当前对象绑定**一个**事件, A.bind("click", fn), 类似: A.click(fn)
 
+2. `unbind(type)`: deprecated since 3.0 解除当前对象绑定的事件
+
 ```js
+// bind
 // <input id="h02" type="button" value="2可以点击多次" />
 $("#h02").bind("click", function() {
 	alert("run any times");
@@ -300,16 +303,31 @@ $("#h02").bind("click", function() {
 $("#h02").on("click", function() {
 	alert("replace bind with on");
 });
-```
 
-2. `unbind(type)`: deprecated since 3.0 解除当前对象绑定的事件
-
-```js
+// unbind
 // <input id="h03" type="button" value="3解绑2" />
 $("#h03").click(function() {
 	$("#h02").unbind("click");
 });
 
+$("#h03").on("click", function() {
+	$("#h02").off("click");
+});
+```
+
+off/unbind也可以解绑bind/on, 并且同一事件可以多次绑定调用不同函数(*一次点击多次触发*), 调用解绑函数将解绑全部
+
+```js
+// 点击一次h02按钮, 将依次出现run any times和run any times again
+$("#h02").bind("click", function() {
+	alert("run any times");
+});
+
+$("#h02").bind("click", function() {
+	alert("run any times again");
+});
+
+// h02的两个事件将被同时解绑
 $("#h03").on("click", function() {
 	$("#h02").off("click");
 });
