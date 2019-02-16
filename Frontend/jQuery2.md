@@ -504,18 +504,18 @@ $(function(){
 });
 ```
 
-使用缓存(事件中, 绑定给对象的数据)改进, [绑定数据event.data](jQuery.md/#事件的绑定)
+使用缓存(事件中, 绑定给对象的数据)改进
 
 ```js
 $(".mytooltip").hover(function(event) {
 	// mouseover
-	// 获得绑定数据, 第一次为空
+	// 获得绑定数据, 第一次为空 title为undefined
 	var title = $(this).data("mytitle");
 
 	// 第一次
 	if (!title) {
 		// 获得自带提示 attr()获得的是值 string
-		title = $(this).attr("title");
+		var title = $(this).attr("title");
 		// 去除自带提示
 		$(this).removeAttr("title");
 		// 绑定数据
@@ -537,6 +537,32 @@ $(".mytooltip").hover(function(event) {
 	$("#tooltip").offset({top: event.pageX, left: event.pageY});
 });
 ```
+
+`data()`: 在元素上存放/读取数据
+
+```js
+// 存取值
+$("div").data("blah");  // undefined
+$("div").data("blah", "hello");  // blah设置为hello
+$("div").data("blah");  // hello
+$("div").data("blah", 86);  // 设置为86
+$("div").data("blah");  //  86
+$("div").removeData("blah");  //移除blah
+$("div").data("blah");  // undefined
+
+// 存取键值对数据
+$("div").data("test", { first: 16, last: "pizza!" });
+$("div").data("test").first  //16;
+$("div").data("test").last  //pizza!;
+```
+
+**event对象** : 代表事件本身
+
+`event.pageX`: 鼠标相对于文档的左边缘的位置
+
+`event.pageY`: 鼠标相对于文档的顶部边缘的位置
+
+`event.data`: 当前执行的处理器被绑定的时候，包含可选的数据传递给jQuery.fn.bind [绑定给事件的数据](jQuery.md#事件的绑定)
 
 # 动画
 
