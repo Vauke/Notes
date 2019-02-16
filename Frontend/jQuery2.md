@@ -417,7 +417,7 @@ $("#e02").hover(function() {
 });
 ```
 
-2. `toggle(fn, fn, fn ...)`: 执行click事件, 每点击一次, 执行一个fn(不同于[一次点击多次执行](#jQuery事件的别名))
+2. `toggle(fn, fn, fn ...)`: _removed since 1.9_ 执行click事件, 每点击一次, 执行一个fn(不同于[一次点击多次执行](#jQuery事件的别名))
 
 ```js
 $("#e01").toggle(function() {
