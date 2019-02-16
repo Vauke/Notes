@@ -11,6 +11,7 @@ Friday, February 15th 2019, 17:19
 	* [串联](#串联)
 * [事件](#事件)
 	* [jQuery完善的部分(原生js或许没有)](#jquery完善的部分原生js或许没有)
+	* [页面加载](#页面加载)
 	* [事件绑定](#事件绑定)
 		* [处理](#处理)
 		* [委派](#委派)
@@ -247,9 +248,26 @@ $("#outterDiv").mouseenter(function() {
 
 4. `mouseleave()`: 移出 同 js: mouseout 区别: mouseleave()只在离开被选元素时才会触发事件
 
+## 页面加载
+
+`ready(fn)`
+
+```js
+$(document).ready(function() {...});
+
+// 简化写法
+$(function() {...});
+```
+
 ## 事件绑定
 
 ### 处理
+
+1. `bind(type, fn)`: 给当前对象绑定**一个**事件, A.bind("click", fn), 类似: A.click(fn)
+
+2. `unbind(type)`: 解除当前对象的由bind()绑定的事件
+3. `one(type, fn)`: 给当前对象绑定事件, 该事件最多被触发一次
+4. `on(...)`: refer :point_right: [使用on绑定事件](jQuery.md/#事件的绑定)
 
 ### 委派
 
