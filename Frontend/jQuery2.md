@@ -405,7 +405,15 @@ $("#h05").on("click", function() {
 1. `hover(over, fn)`: 两参数都是函数
 	* 简化版 移入移出 A.mouseover(over).mouseout(out) ==> A.hover(over, out)
 
-2. `toggle(fn, fn, fn ...)`: 执行click事件, 每点击一次, 执行一个fn
+2. `toggle(fn, fn, fn ...)`: 执行click事件, 每点击一次, 执行一个fn(不同于[一次点击多次执行](#jQuery事件的别名))
+
+```js
+$("#e01").toggle(function() {
+	alert("aaa");
+}, function() {
+	alert("bbb");
+})
+```
 
 # 动画
 

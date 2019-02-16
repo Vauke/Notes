@@ -469,7 +469,7 @@ $div.css({
 
 `val(...)`: 设置值
 
-`text(...)`: 参数为啥就写啥, `text("<a href="#">test</a>")` // 显示文本`<a href="#">test</a>`
+`text(...)`: 参数为啥就写啥, 标签会转义 `text("<a href="#">test</a>")` // 显示文本`<a href="#">test</a>`
 
 `html(...)`: 同text(...), 但识别html标签, 会转换
 
@@ -479,7 +479,7 @@ $div.css({
 
 针对标签体的插入
 
-`A.append(B)`: 将B追加到A`内部`的后面 `$("#love").append($("#tj"));`
+`A.append(B)`: 将B追加到A`内部`(标签体)的后面 `$("#love").append($("#tj"));`, 也可以转义标签
 
 `A.prepend(B)`: 是prepend, 将B追加到A`内部`前面 `$("#love").prepend($("#tj"));`
 
