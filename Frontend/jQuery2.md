@@ -417,17 +417,7 @@ $("#e02").hover(function() {
 });
 ```
 
-2. `toggle(fn, fn, fn ...)`: *removed since 1.9* 执行click事件, 每点击一次, 执行一个fn(不同于[一次点击多次执行](#jQuery事件的别名))
-
-```js
-$("#e01").toggle(function() {
-	alert("aaa");
-}, function() {
-	alert("bbb");
-})
-```
-
-3. `toggle(bool)`: bool必需, 切换隐藏/显示的开关
+2. `toggle(bool)`: bool必需, 切换隐藏/显示的开关
 
 ```js
 $("span").toggle(bool);
@@ -440,7 +430,7 @@ if (bool) {
 }
 ```
 
-4. `toggle([speed], [easing], [fn])`: 切换元素显示/隐藏, 类似toggle(bool), 但是以时间过渡, 还可以执行函数
+3. `toggle([speed], [easing], [fn])`: 切换元素显示/隐藏, 类似toggle(bool), 但是以时间过渡, 还可以执行函数
 	* speed: 隐藏/显示 效果的速度. 默认是 "0"毫秒. 可能的值: 数值或slow, normal, fast
 	* easing: (Optional) 用来指定切换效果, 默认是"swing", 可用参数"linear"
 	* fn: 在动画完成时执行的函数, 每个符合条件的元素各自执行一次
@@ -474,6 +464,16 @@ $(function() {
 <span>test1</span>
 <span>test2</span>
 <span>test3</span>
+```
+
+4. `toggle(fn, fn, fn ...)`: *removed since 1.9* 执行click事件, 每点击一次, 执行一个fn(不同于[一次点击多次执行](#jQuery事件的别名))
+
+```js
+$("#e01").toggle(function() {
+	alert("aaa");
+}, function() {
+	alert("bbb");
+})
 ```
 
 以下基于[文字提示示例](assets/文字提示.html)
