@@ -18,7 +18,10 @@ Friday, February 15th 2019, 17:19
 		* [委派 delegate](#委派-delegate)
 		* [切换](#切换)
 		* [示例](#示例)
-* [动画](#动画)
+* [效果](#效果)
+	* [基本](#基本)
+	* [滑动](#滑动)
+	* [淡入淡出](#淡入淡出)
 * [ajax](#ajax)
 * [miscellaneous](#miscellaneous)
 	* [事件冒泡](#事件冒泡)
@@ -418,7 +421,19 @@ $("#e02").hover(function() {
 });
 ```
 
-2. `toggle(bool)`: bool必需, 切换隐藏/显示的开关
+2. `toggle(fn, fn, fn ...)`: *removed since 1.9* 执行click事件, 每点击一次, 执行一个fn(不同于[一次点击多次执行](#jQuery事件的别名))
+
+```js
+$("#e01").toggle(function() {
+	alert("aaa");
+}, function() {
+	alert("bbb");
+})
+```
+
+以下两个toggle的api属于jQuery的效果范畴
+
+3. `toggle(bool)`: bool必需, 切换隐藏/显示的开关
 
 ```js
 $("span").toggle(bool);
@@ -435,7 +450,7 @@ toggle(true) == show()
 toggle(false) == hide()
 ```
 
-3. `toggle([speed], [easing], [fn])`: 切换元素显示/隐藏, 类似toggle(bool), 但是以时间过渡, 还可以执行函数
+4. `toggle([speed], [easing], [fn])`: 切换元素显示/隐藏, 类似toggle(bool), 但是以时间过渡, 还可以执行函数
 	* speed: 隐藏/显示 效果的速度. 默认是 "0"毫秒. 可能的值: 数值或slow, normal, fast
 	* easing: (Optional) 用来指定切换效果, 默认是"swing", 可用参数"linear"
 	* fn: 在动画完成时执行的函数, 每个符合条件的元素各自执行一次
@@ -469,16 +484,6 @@ $(function() {
 <span>test1</span>
 <span>test2</span>
 <span>test3</span>
-```
-
-4. `toggle(fn, fn, fn ...)`: *removed since 1.9* 执行click事件, 每点击一次, 执行一个fn(不同于[一次点击多次执行](#jQuery事件的别名))
-
-```js
-$("#e01").toggle(function() {
-	alert("aaa");
-}, function() {
-	alert("bbb");
-})
 ```
 
 ### 示例
@@ -608,7 +613,22 @@ $(function() {
 });
 ```
 
-# 动画
+# 效果
+
+## 基本
+
+1. `show([speed],[easing],[fn])`: 显示被隐藏的匹配元素
+	* speed: 可选, "slow","normal", or "fast"或表示动画时长的毫秒数值(如：1000)
+	* easing: (Optional) 用来指定切换效果, 默认是"swing", 可用参数"linear"
+	* fn: 在动画完成时执行的函数, 每个符合条件的元素各自执行一次
+
+2. `hide()`: 隐藏已显示的匹配元素, 参数同show()
+
+3. `toggle()`: 同show() hide() refer :point_right: [事件>事件绑定>切换>toggle](#切换)
+
+## 滑动
+
+## 淡入淡出
 
 # ajax
 
