@@ -18,6 +18,11 @@ Friday, February 15th 2019, 17:19
 		* [委派 delegate](#委派-delegate)
 		* [切换](#切换)
 		* [示例](#示例)
+* [动画](#动画)
+* [ajax](#ajax)
+* [miscellaneous](#miscellaneous)
+	* [事件冒泡](#事件冒泡)
+	* [浏览器默认动作](#浏览器默认动作)
 
 <!-- /code_chunk_output -->
 
@@ -566,7 +571,7 @@ $("div").data("test").last  //pizza!;
 
 `event.data`: *绑定给事件* 当前执行的函数被绑定的时候，包含可选的数据传递给jQuery.fn.bind [绑定给事件的数据](jQuery.md#事件的绑定)
 
-以下基于[图片预览示例](图片预览.html)
+以下基于[图片预览示例](assets/图片预览.html)
 
 ```js
 $(function() {
