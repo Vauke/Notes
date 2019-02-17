@@ -17,11 +17,7 @@ Friday, February 15th 2019, 17:19
 			* [jQuery事件的别名](#jquery事件的别名)
 		* [委派 delegate](#委派-delegate)
 		* [切换](#切换)
-* [动画](#动画)
-* [ajax](#ajax)
-* [miscellaneous](#miscellaneous)
-	* [事件冒泡](#事件冒泡)
-	* [浏览器默认动作](#浏览器默认动作)
+		* [示例](#示例)
 
 <!-- /code_chunk_output -->
 
@@ -480,6 +476,8 @@ $("#e01").toggle(function() {
 })
 ```
 
+### 示例
+
 以下基于[文字提示示例](assets/文字提示.html)
 
 以下代码在第一次鼠标移动时能正常显示, 后续提示就会变成aaa, 由于有两个元素绑定事件, 不能简单的提取公共变量解决bug
@@ -567,6 +565,39 @@ $("div").data("test").last  //pizza!;
 `event.pageY`: 鼠标相对于文档的顶部边缘的位置
 
 `event.data`: *绑定给事件* 当前执行的函数被绑定的时候，包含可选的数据传递给jQuery.fn.bind [绑定给事件的数据](jQuery.md#事件的绑定)
+
+以下基于[图片预览示例](图片预览.html)
+
+```js
+$(function() {
+	var x = 10; // 似乎必须要加偏移 否则预览图一直闪烁
+	var y = 20;
+	var src;
+
+	$("a").not(".tooltip").hover(function(e) {
+		src = this.href;
+
+		this.href = "";
+
+		var $div = $("<div id = 'tooltip'><img src='"+src+"'/></div>");
+
+		$("body").append($div);
+
+		$("#tooltip").css({
+			top : e.pageY + y + "px", // 使用css() 坐标后可以加 px
+			left : e.pageX + x + "px"
+		}).toggle(1000);
+	}, function() {
+		this.href = src;
+		$("#tooltip").remove(); // 不要用hide() 占空间, 还影响显示
+	}).mousemove(function(e){
+		$("#tooltip").offset({
+			top : e.pageY + y, // 使用offset() 坐标后不要加 px 否则预览图卡顿
+			left : e.pageX + x
+		});
+	});
+});
+```
 
 # 动画
 

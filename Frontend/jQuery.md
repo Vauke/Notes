@@ -238,7 +238,7 @@ $("#btn4").click(function() {
 });
 ```
 
-3. `:has(selector)`: **当前**元素是否含有指定的子元素
+3. `:has(selector)`: *当前*元素是否含有指定的*子元素*
 
 ```js
 // <input type="button" value="选取含有class为mini元素 的div元素." id="btn3"/>
