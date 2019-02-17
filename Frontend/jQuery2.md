@@ -628,6 +628,16 @@ $(function() {
 
 ## 滑动
 
+*滑动只改变元素的高度*
+
+参数都同show()
+
+1. `slideDown([speed],[easing],[fn])`: 向下滑动元素
+
+2. `slideUp([speed],[easing],[fn])`: 向上滑动元素
+
+3. `slideToggle([speed],[easing],[fn])`: 切换
+
 ## 淡入淡出
 
 # ajax
