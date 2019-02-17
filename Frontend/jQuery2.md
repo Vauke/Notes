@@ -575,7 +575,8 @@ $("div").data("test").last  //pizza!;
 
 ```js
 $(function() {
-	var x = 10; // 似乎必须要加偏移 否则预览图一直闪烁
+	// 似乎必须要加偏移 否则预览图一直闪烁
+	var x = 10;
 	var y = 20;
 	var src;
 
@@ -589,15 +590,18 @@ $(function() {
 		$("body").append($div);
 
 		$("#tooltip").css({
-			top : e.pageY + y + "px", // 使用css() 坐标后可以加 px
+			// 使用css() 坐标后可以加 px
+			top : e.pageY + y + "px",
 			left : e.pageX + x + "px"
 		}).toggle(1000);
 	}, function() {
 		this.href = src;
-		$("#tooltip").remove(); // 不要用hide() 占空间, 还影响显示
+		// 不要用hide() 占空间, 还影响显示
+		$("#tooltip").remove();
 	}).mousemove(function(e){
 		$("#tooltip").offset({
-			top : e.pageY + y, // 使用offset() 坐标后不要加 px 否则预览图卡顿
+			// 使用offset() 坐标后不要加 px 否则预览图卡顿
+			top : e.pageY + y,
 			left : e.pageX + x
 		});
 	});

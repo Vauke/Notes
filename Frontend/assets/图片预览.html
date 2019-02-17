@@ -101,7 +101,7 @@ li{
 			$("#tooltip").remove();
 		}).mousemove(function(e){
 			$("#tooltip").offset({
-                // 使用offset() 坐标后不要加 px
+                // 使用offset() 坐标后不要加 px 否则预览图卡顿
 				top : e.pageY + y,
 				left : e.pageX + x
 			});
