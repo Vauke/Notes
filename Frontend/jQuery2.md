@@ -628,7 +628,7 @@ $(function() {
 
 ## 滑动
 
-*滑动只改变元素的高度*
+*滑动只改变选定元素的高度*
 
 参数都同show()
 
@@ -639,6 +639,19 @@ $(function() {
 3. `slideToggle([speed],[easing],[fn])`: 切换
 
 ## 淡入淡出
+
+*通过改变选定元素的透明度进行显示或隐藏元素*
+
+参数都同show()
+
+1. `fadeIn([speed],[easing],[fn])`: 显示
+
+2. `fadeOut([speed],[easing],[fn])`: 隐藏
+
+3. `fadeToggle([speed],[easing],[fn])`: 切换
+
+4. `fadeTo([speed],opacity,[easing],[fn])`: 指定透明度
+	* opacity: 一个0至1之间表示透明度的数字 数字越大透明度越低
 
 # ajax
 
