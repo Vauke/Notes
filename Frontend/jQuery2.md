@@ -428,6 +428,10 @@ if (bool) {
 } else {
 	$("span").hide();
 }
+
+// 也即
+toggle(true) == show()
+toggle(false) == hide()
 ```
 
 3. `toggle([speed], [easing], [fn])`: 切换元素显示/隐藏, 类似toggle(bool), 但是以时间过渡, 还可以执行函数
