@@ -780,3 +780,16 @@ $(function() {
 `event.stopPropagation()`: 防止事件冒泡到DOM树上，也就是不触发的任何前辈元素上的事件处理函数
 
 ## 浏览器默认动作
+
+默认行为: 比如a标签点击就会跳转页面, 这个就是a标签的默认行为, 自定义行为时, 就需要阻止默认行为
+
+`event.preventDefault()`
+
+```js
+$("a").click(function(event) {
+	// way1
+	return false;
+	
+	// way2
+	event.preventDefault();
+});
