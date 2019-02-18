@@ -662,6 +662,16 @@ $(function() {
 
 jQuery底层ajax实现
 
+`$.ajax(url [, settings ] )`: 一般使用`$.ajax(settings)`
+	$.ajax({
+		"url": url,
+		"data": params,
+		"type(或method)": method (默认get),
+		"success": 请求成功时的回调函数 `function(data[, responseStatus, jqXHR]) {...}`,
+		"error": 请求失败时的回调函数 `function() {alert("服务器繁忙, 请稍后重试")}`,
+		"dataType": The type of data expected from the server  json | xml | html | text | script 会将数据转为的指定类型,
+		...
+	})
 
 ## 常用
 
@@ -670,11 +680,11 @@ jQuery底层ajax实现
 	* data: 待发送的 Key/value 参数 map形式
 	* complete: 请求*完成*时的回调函数
 		* responseText: 服务器响应的数据data 为string类型 `var jsonData = eval("("+data+")")"; jsonData.message // 获得数据`
-		* textStatus: success|error
+		* responseStatus: success|error
 		* jqXHR: XMLHttpRequest对象 XHR
 
 2. `$.get(url [, data ] [, success ] [, dataType ] )`: 全局函数 使用GET
-	* dataType: The type of data expected from the server  json | xml | html | text | script 将数据转为的指定类型
+	* dataType: The type of data expected from the server  json | xml | html | text | script 会将数据转为的指定类型
 
 3. `$.post()`: 同GET 使用POST
 
