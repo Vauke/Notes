@@ -27,8 +27,7 @@ Friday, February 15th 2019, 17:19
 	* [常用](#常用)
 	* [高级](#高级)
 * [miscellaneous](#miscellaneous)
-	* [事件冒泡](#事件冒泡)
-	* [浏览器默认动作](#浏览器默认动作)
+	* [表单序列化](#表单序列化)
 
 <!-- /code_chunk_output -->
 
@@ -698,6 +697,61 @@ jQuery底层ajax实现
 2. `$.getScript()`: 使用GET 动态加载并执行js文件 参数同getJSON
 
 # miscellaneous
+
+## 表单序列化
+
+1. `serialize()`: Encode a set of form elements as a string for submission
+
+```js
+<form>
+  <select name="single">
+    <option>Single</option>
+    <option>Single2</option>
+  </select>
+  <input type="checkbox" name="check" value="check1" id="ch1">
+  <label for="ch1">check1</label>
+  <input type="checkbox" name="check" value="check2" checked="checked" id="ch2">
+  <label for="ch2">check2</label>
+</form>
+
+function showValues() {
+    var str = $( "form" ).serialize();
+    $( "#results" ).text( str );
+ }
+
+ $( "input[type='checkbox'], input[type='radio']" ).on( "click", showValues );
+ $( "select" ).on( "change", showValues );
+ showValues();
+
+ // results
+single=Single&check=check1&check=check2
+ ```
+
+2. `serializeArray()`: Encode a set of form elements as an array of names and values
+
+```js
+<form>
+  <div><input type="text" name="a" value="1" id="a"></div>
+  <div><input type="text" name="b" value="2" id="b"></div>
+</form>
+
+$( "form" ).submit(function( event ) {
+  console.log( $( this ).serializeArray() );
+  event.preventDefault();
+});
+
+// results
+[
+  {
+    name: "a",
+    value: "1"
+  },
+  {
+    name: "b",
+    value: "2"
+  }
+]
+```
 
 ## 事件冒泡
 
