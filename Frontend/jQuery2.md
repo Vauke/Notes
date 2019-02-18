@@ -221,7 +221,7 @@ refer :point_right: [常见事件](./assets/常见事件.html)
 1. `focusin()`: 获得焦点 同focus()或 js: onfocus 区别: focusin()可以在父元素上检测子元素获得焦点的情况
 
 ```js
-// 点击innerDiv可以触发事件, 事件的传播
+// 点击innerDiv可以触发事件, 事件的冒泡
 $("#outterDiv").click(function() {
     alert("outterDiv");
 });
@@ -754,5 +754,29 @@ $( "form" ).submit(function( event ) {
 ```
 
 ## 事件冒泡
+
+事件冒泡: 子元素事件执行时, 一并触发了父元素的相同事件
+
+[事件冒泡和事件传播的区别](https://www.cnblogs.com/painsOnline/p/5106310.html)
+
+阻止事件冒泡:
+
+```js
+$(function() {
+	$("#outterDiv").click(function() {
+		alert("outterDiv");
+	});
+
+	$("#innerDiv").click(function(event) {
+		// way 1
+		// return false;
+
+		// way2
+		event.stopPropagation();
+	});
+});
+```
+
+`event.stopPropagation()`: 防止事件冒泡到DOM树上，也就是不触发的任何前辈元素上的事件处理函数
 
 ## 浏览器默认动作
