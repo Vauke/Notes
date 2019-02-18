@@ -676,7 +676,7 @@ jQuery底层ajax实现
 2. `$.get(url [, data ] [, success ] [, dataType ] )`: 全局函数 使用GET
 	* dataType: The type of data expected from the server json | xml | html | text | script 将数据转为的指定类型
 
-3. `$.post()`:
+3. `$.post()`: 同GET 使用POST
 
 ## 高级
 
