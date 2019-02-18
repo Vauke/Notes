@@ -23,6 +23,9 @@ Friday, February 15th 2019, 17:19
 	* [滑动](#滑动)
 	* [淡入淡出](#淡入淡出)
 * [ajax](#ajax)
+	* [全局](#全局)
+	* [常用](#常用)
+	* [高级](#高级)
 * [miscellaneous](#miscellaneous)
 	* [事件冒泡](#事件冒泡)
 	* [浏览器默认动作](#浏览器默认动作)
@@ -654,6 +657,26 @@ $(function() {
 	* opacity: 一个0至1之间表示透明度的数字 数字越大透明度越低
 
 # ajax
+
+## 全局
+
+jQuery底层ajax实现
+
+
+## 常用
+
+1. `load()`:
+2. `$.get()`:
+3. `$.post()`:
+
+## 高级
+
+1. `$.getJSON(url,[data],[callback])`: 使用GET 可以执行js跨域请求, js默认是不能跨域的
+	* url: 发送请求地址
+	* data: 待发送的 Key/value 参数 map形式
+	* callback: 载入成功时回调函数
+
+2. `$.getScript()`: 使用GET 动态加载并执行js文件 参数同getJSON
 
 # miscellaneous
 
