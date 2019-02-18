@@ -673,7 +673,9 @@ jQuery底层ajax实现
 		* textStatus: success|error
 		* jqXHR: XMLHttpRequest对象 XHR
 
-2. `$.get()`:
+2. `$.get(url [, data ] [, success ] [, dataType ] )`: 全局函数 使用GET
+	* dataType: The type of data expected from the server json | xml | html | text | script 将数据转为的指定类型
+
 3. `$.post()`:
 
 ## 高级
