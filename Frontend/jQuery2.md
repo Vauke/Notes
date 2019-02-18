@@ -665,16 +665,23 @@ jQuery底层ajax实现
 
 ## 常用
 
-1. `load()`:
+1. `load(url [, data ] [, complete ])`: 使用GET, 有参数时(有参数data)使用POST 必须由jQuery对象调用 Load data from the server and place the returned HTML into the matched element
+	* url: 发送的请求地址
+	* data: 待发送的 Key/value 参数 map形式
+	* complete: 请求*完成*时的回调函数
+		* responseText: 服务器响应的数据data 为string类型 `var jsonData = eval("("+data+")")"; jsonData.message // 获得数据`
+		* textStatus: success|error
+		* jqXHR: XMLHttpRequest对象 XHR
+
 2. `$.get()`:
 3. `$.post()`:
 
 ## 高级
 
 1. `$.getJSON(url,[data],[callback])`: 使用GET 可以执行js跨域请求, js默认是不能跨域的
-	* url: 发送请求地址
+	* url: 发送的请求地址
 	* data: 待发送的 Key/value 参数 map形式
-	* callback: 载入成功时回调函数
+	* callback: 载入*成功时*的回调函数
 
 2. `$.getScript()`: 使用GET 动态加载并执行js文件 参数同getJSON
 
