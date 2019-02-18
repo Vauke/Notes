@@ -788,8 +788,8 @@ $(function() {
 ```js
 $("a").click(function(event) {
 	// way1
-	return false;
-	
+	// return false;
+
 	// way2
 	event.preventDefault();
 });
