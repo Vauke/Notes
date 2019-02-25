@@ -48,3 +48,28 @@ container-fixed和container-fluid的公共样式
   &:extend(.clearfix all);
 }
 ```
+
+container-fixed固定样式
+
+```less
+// @screen-sm-min = @screen-sm-min = @screen-tablet = 768px
+// @screen-md-min = @screen-md = 992px
+// @screen-lg-min = @screen-lg = 1200px
+
+// @container-sm = @container-tablet = 720px + @grid-gutter-width(30px)
+// @container-md = @container-desktop = 940px + @grid-gutter-width
+// @container-lg = @container-large-desktop = 1140px + @grid-gutter-width
+.container {
+  .container-fixed();
+
+  @media (min-width: @screen-sm-min) {
+    width: @container-sm;
+  }
+  @media (min-width: @screen-md-min) {
+    width: @container-md;
+  }
+  @media (min-width: @screen-lg-min) {
+    width: @container-lg;
+  }
+}
+```
