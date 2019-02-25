@@ -8,10 +8,13 @@ Thursday, February 21st 2019, 20:01
 * [container](#container)
 	* [fluid](#fluid)
 	* [fixed 固定](#fixed-固定)
+* [Grid system](#grid-system)
 
 <!-- /code_chunk_output -->
 
 # container
+
+based on Bootstrap v3.3.7
 
 ## fluid
 
@@ -30,3 +33,18 @@ Thursday, February 21st 2019, 20:01
 3. 992 > width >= 768: 容器的width为750 左右padding各15
 
 4. 768 > width: 容器的width为auto 左右padding各15
+
+# Grid system
+
+container-fixed和container-fluid的公共样式
+
+```less
+// @grid-gutter-width: 30px
+.container-fixed(@gutter: @grid-gutter-width) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left:  floor((@gutter / 2));
+  padding-right: ceil((@gutter / 2));
+  &:extend(.clearfix all);
+}
+```
