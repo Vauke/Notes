@@ -42,7 +42,7 @@ graph LR
 
 ## JIT
 
-JIT(Just-In-Time)即时编译器, 是Oracle JDK提供的HotSpot VM中的编译器, 用于将字节码动态地编译为机器码, HotSpot VM内置有两个JIT, c1和c2
+JIT(Just-In-Time)即时编译器, 是Oracle JDK提供的HotSpot VM中的编译器, 用于将*热点*(常出现的)字节码动态地编译为机器码, HotSpot VM内置有两个JIT, c1和c2
 
     1. c1: client模式, 适用于小型的需要快速编译的程序, 速度较快
     2. c2: server模式, 会经过上万次的调用, 以收集足够的信息进行高效的编译, 为长时间运行的服务器应用设计
@@ -54,7 +54,7 @@ JIT(Just-In-Time)即时编译器, 是Oracle JDK提供的HotSpot VM中的编译�
 
 Java9还提供了一种新的编译方式, AOT(Ahead-of-Time Compilation), 可以直接将源码编译成机器码, 这样就避免了JIT预热等各方面的开销.
 
-Oracle JDK支持分层编译和AOT协作
+Oracle JDK支持分层编译和AOT编译之间进行协作
 
 写个程序直接执行字节码就是解释执行. 写个程序运行时把字节码动态翻译成机器码就是jit. 写个程序把java源代码直接翻译为机器码就是aot. 造个CPU直接执行字节码, 字节码就是机器码.
 
