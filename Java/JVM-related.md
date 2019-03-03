@@ -5,37 +5,8 @@ refer :point_right: [Java核心技术36讲](https://time.geekbang.org/column/art
 
 # JVM
 
-```sequence diagram
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
-```
-
 ```mermaid
 graph LR
-    A --> B;
-    B --> C;
-    C --> A;
-```
-
-```ditaa {cmd=true args=["-E"]}
-+--------+   +-------+    +-------+
-|        | --+ ditaa +--> |       |
-|  Text  |   +-------+    |diagram|
-|Document|   |!magic!|    |       |
-|     {d}|   |       |    |       |
-+---+----+   +-------+    +-------+
-    :                         ^
-    |       Lots of work      |
-    +-------------------------+
-```
-
-```plantuml
-@startuml
-'default
-top to bottom direction
-user1 --> (Usecase 1)
-user2 --> (Usecase 2)
-
-@enduml
+    A(Java源码) --> |javac编译| B(字节码)
+    B --> |解释执行或者JIT即时编译| C(机器码)
 ```
