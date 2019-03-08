@@ -2,6 +2,18 @@
 Monday, January 21st 2019, 16:49
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<!-- code_chunk_output -->
+
+* [service.md](#servicemd)
+* [Intro](#intro)
+* [System V](#system-v)
+* [add a service manually](#add-a-service-manually)
+* [update-rc.d](#update-rcd)
+* [make the service startup with the system boot](#make-the-service-startup-with-the-system-boot)
+* [remove a service from auto startup](#remove-a-service-from-auto-startup)
+* [reference link](#reference-link)
+
+<!-- /code_chunk_output -->
 
 # Intro
 
