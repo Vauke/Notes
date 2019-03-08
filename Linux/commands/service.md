@@ -5,6 +5,10 @@ Monday, January 21st 2019, 16:49
 
 > service is a command that controls how a program startup.
 
+# System V
+
+System V daemon is a run-level based system, it uses run-level and links located in `/etc/rc?.d` to link services in `/etc/init.d`, and use `service`, `chkconfig`, `update-rc.d` to manage the specified service.
+
 usage:
 
 ```shell
