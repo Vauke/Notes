@@ -1,6 +1,8 @@
 # service.md
 Monday, January 21st 2019, 16:49
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # Intro
 
 > service is a command that controls how a program startup.
