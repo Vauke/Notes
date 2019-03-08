@@ -12,6 +12,7 @@ Friday, March 8th 2019, 14:16
 	* [控制启动顺序](#控制启动顺序)
 	* [控制依赖](#控制依赖)
 * [Service](#service)
+	* [Type](#type)
 
 <!-- /code_chunk_output -->
 
@@ -100,3 +101,63 @@ the service scripts are usually located in `/etc/systemd/system`, and are struct
 # Service
 
 defines how to start current service
+
+`Type`: 启动类型
+
+`ExecStart`: 启动服务时执行的命令
+
+`ExecStop`: 停止服务时执行的命令
+
+`ExecReload`: 重启服务时执行的命令
+
+`Restart`: 重启规则
+
+`RemainAfterExit`: 表示进程退出以后, 服务仍然保持执行
+
+`ExecStartPre`: 启动服务之前执行的命令
+
+`ExecStartPost`: 启动服务之后执行的命令
+
+`ExecStopPost`: 停止服务之后执行的命令
+
+## Type
+
+`simple`: 默认类型, 启动的进程将成为服务进程
+
+`forking`: ExecStart字段将以fork()方式启动, 此时父进程将会退出, 子进程将成为主进程
+
+`oneshot`: 类似于simple, 但*只执行一次*, Systemd会等它执行完, 再启动其他服务
+
+下面是一个oneshot的例子, 笔记本电脑启动时, 要把触摸板关掉, 配置文件可以这样写
+
+```
+[Unit]
+Description=Switch-off Touchpad
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/touchpad-off
+
+[Install]
+WantedBy=multi-user.target
+```
+
+上面的配置文件, 启动类型设为`oneshot`, 就表明这个服务只要运行一次就够了, 不需要长期运行
+
+如果关闭以后, 将来某个时候还想打开, 配置文件修改如下
+
+```
+[Unit]
+Description=Switch-off Touchpad
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/touchpad-off start
+ExecStop=/usr/bin/touchpad-off stop
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+
+当使用`systemctl stop`命令停止`停用触摸板`的服务时, 就会执行ExecStop指定的命令, 从而打开触摸板
