@@ -1395,7 +1395,7 @@ public class ResourceProperties implements ResourceLoaderAware {
 可以设置和静态资源有关的参数，缓存时间等
 ```
 
-Spring Boot中关于SpringMVC的配置都在WebMvcAutoConfiguration.java中：
+Spring Boot中关于SpringMVC的配置都在org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration.java中：
 
 ```java
 添加资源映射
