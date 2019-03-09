@@ -37,13 +37,13 @@
 			* [1、properties配置文件在idea中默认utf-8可能会乱码](#1-properties配置文件在idea中默认utf-8可能会乱码)
 			* [2、@Value获取值和@ConfigurationProperties获取值比较](#2-value获取值和configurationproperties获取值比较)
 			* [3、配置文件注入值数据校验](#3-配置文件注入值数据校验)
-			* [4、@PropertySource&@ImportResource&@Bean](#4-propertysourceimportresourcebean)
+			* [4、@PropertySource & @ImportResource & @Bean](#4-propertysource-importresource-bean)
 	* [4、配置文件占位符](#4-配置文件占位符)
 		* [1、随机数](#1-随机数)
-		* [2、占位符获取之前配置的值，如果没有可以是用:指定默认值](#2-占位符获取之前配置的值如果没有可以是用指定默认值)
+		* [2、占位符获取之前配置的值，如果没有可以用:指定默认值](#2-占位符获取之前配置的值如果没有可以用指定默认值)
 	* [5、Profile](#5-profile)
 		* [1、多Profile文件](#1-多profile文件)
-		* [2、yml支持多文档块方式](#2-yml支持多文档块方式)
+		* [2、yml支持多文档块方式代替properties文件的多文件方式](#2-yml支持多文档块方式代替properties文件的多文件方式)
 		* [3、激活指定profile](#3-激活指定profile)
 	* [6、配置文件加载位置](#6-配置文件加载位置)
 	* [7、外部配置加载顺序](#7-外部配置加载顺序)
@@ -774,7 +774,7 @@ SpringBoot会从这四个位置全部加载主配置文件；*互补配置*；
 
 *我们还可以通过spring.config.location来改变默认的配置文件位置*
 
-<mark>asdf</mark>
+<span style="background-color:yellow">adsf</span>
 
 **项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成互补配置；**
 
