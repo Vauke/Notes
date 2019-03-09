@@ -2112,8 +2112,8 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 注册拦截器
 
 ```java
-  //所有的WebMvcConfigurerAdapter组件都会一起起作用
-    @Bean //将组件注册在容器
+    所有的WebMvcConfigurerAdapter组件都会一起起作用
+    @Bean 将组件注册在容器
     public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
         WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
             @Override
@@ -2123,7 +2123,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
                 registry.addViewController("/main.html").setViewName("dashboard");
             }
 
-            //注册拦截器
+            注册拦截器
             @Override
             public void addInterceptors(InterceptorRegistry registry) {
                 //super.addInterceptors(registry);
@@ -2185,8 +2185,6 @@ insert的公共片段在div标签中
 行内写法可以加上：[[~{}]];[(~{})]；
 ```
 
-
-
 三种引入公共片段的th属性：
 
 **th:insert**：将公共片段整个插入到声明引入的元素中
@@ -2194,8 +2192,6 @@ insert的公共片段在div标签中
 **th:replace**：将声明引入的元素替换为公共片段
 
 **th:include**：将被引入的片段的内容包含进这个标签中
-
-
 
 ```html
 <footer th:fragment="copy">
@@ -2222,8 +2218,6 @@ insert的公共片段在div标签中
 &copy; 2011 The Good Thymes Virtual Grocery
 </div>
 ```
-
-
 
 引入片段的时候传入参数：
 
@@ -2366,7 +2360,6 @@ SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
     </td>
 </tr>
 
-
 <script>
     $(".deleteBtn").click(function(){
         //删除当前员工的
@@ -2375,8 +2368,6 @@ SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
     });
 </script>
 ```
-
-
 
 ## 错误处理机制
 
@@ -2420,8 +2411,6 @@ SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
 	}
 ```
 
-
-
 ​	BasicErrorController：处理默认/error请求
 
 ```java
@@ -2452,16 +2441,12 @@ public class BasicErrorController extends AbstractErrorController {
 	}
 ```
 
-
-
 ​	ErrorPageCustomizer：
 
 ```java
 	@Value("${error.path:/error}")
 	private String path = "/error";  系统出现错误以后来到error请求进行处理；（web.xml注册的错误页面规则）
 ```
-
-
 
 ​	DefaultErrorViewResolver：
 
