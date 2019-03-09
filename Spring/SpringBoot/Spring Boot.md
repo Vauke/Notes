@@ -774,7 +774,7 @@ SpringBoot会从这四个位置全部加载主配置文件；*互补配置*；
 
 *我们还可以通过spring.config.location来改变默认的配置文件位置*
 
-<span style="background-color:yellow">adsf</span>
+<font style="background-color: yellow">adsf</span>
 
 **项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成互补配置；**
 
