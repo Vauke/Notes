@@ -774,6 +774,8 @@ SpringBoot会从这四个位置全部加载主配置文件；*互补配置*；
 
 <font style="background-color: yellow">adsf</span>
 
+<script src="https://gist.github.com/andyferra/2554919.js"></script>
+
 **项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成互补配置；**
 
 java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --spring.config.location=G:/application.properties
@@ -1002,12 +1004,6 @@ public class HttpEncodingAutoConfiguration {
 
 一但这个配置类生效；这个配置类就会给容器中添加各种组件；这些组件的属性是从对应的properties类中获取的，这些类里面的每一个属性又是和配置文件绑定的；
 
-
-
-
-
-
-
 所有在配置文件中能配置的属性都是在xxxxProperties类中封装者‘；配置文件能配置什么就可以参照某个功能对应的这个属性类
 
 ```java
@@ -1016,10 +1012,6 @@ public class HttpEncodingProperties {
 
    public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 ```
-
-
-
-
 
 **精髓：**
 
@@ -1031,19 +1023,13 @@ public class HttpEncodingProperties {
 
 ​	**给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们就可以在配置文件中指定这些属性的值；**
 
-
-
 xxxxAutoConfigurartion：自动配置类；
 
 给容器中添加组件
 
 xxxxProperties:封装配置文件中相关属性；
 
-
-
 ### 细节
-
-
 
 #### @Conditional派生注解（Spring注解版原生的@Conditional作用）
 
@@ -1096,9 +1082,6 @@ Negative matches:（没有启动，没有匹配成功的自动配置类）
          - @ConditionalOnClass did not find required classes 'org.aspectj.lang.annotation.Aspect', 'org.aspectj.lang.reflect.Advice' (OnClassCondition)
 
 ```
-
-
-
 
 
 # 日志
