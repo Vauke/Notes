@@ -48,7 +48,7 @@
 	* [配置文件加载位置](#配置文件加载位置)
 	* [外部配置加载顺序](#外部配置加载顺序)
 	* [自动配置原理](#自动配置原理)
-		* [**自动配置原理：**](#自动配置原理-1)
+		* [自动配置原理：](#自动配置原理-1)
 		* [细节](#细节)
 			* [@Conditional派生注解（Spring注解版原生的@Conditional作用）](#conditional派生注解spring注解版原生的conditional作用)
 * [日志](#日志)
@@ -56,6 +56,7 @@
 	* [SLF4j使用](#slf4j使用)
 		* [如何在系统中使用SLF4j   https://www.slf4j.org](#如何在系统中使用slf4j-httpswwwslf4jorg)
 		* [遗留问题](#遗留问题)
+			* [如何让系统中所有的日志都统一到slf4j](#如何让系统中所有的日志都统一到slf4j)
 	* [SpringBoot日志关系](#springboot日志关系)
 	* [日志使用；](#日志使用)
 		* [默认配置](#默认配置)
@@ -758,33 +759,29 @@ spring:
 
 springboot 启动时会*依次*扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件
 
-–file:./config/
+–file:./config/  --------- 整个项目根路径下的config文件中
 
-–file:./
+–file:./    --------- 整个项目根路径下的配置
 
-–classpath:/config/
+–classpath:/config/ --------- resources目录下的config目录
 
-–classpath:/
+–classpath:/ --------- resources目录下的配置
 
-优先级由高到底，高优先级的配置会覆盖低优先级的配置；
+优先级由高到底，高优先级的配置会*覆盖低优先级的配置中的相同配置部分*；
 
-SpringBoot会从这四个位置全部加载主配置文件；*互补配置*；
+SpringBoot会从这四个位置全部加载主配置文件；*配置会互补*；
 
-*我们还可以通过spring.config.location来改变默认的配置文件位置*
+*我们还可以通过`spring.config.location`来改变默认的配置文件位置*
 
-<font style="background-color: yellow">adsf</span>
-
-<script src="https://gist.github.com/andyferra/2554919.js"></script>
-
-**项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成互补配置；**
+*项目打包好以后，我们可以使用命令行参数的形式，在启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成互补配置；*
 
 java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --spring.config.location=G:/application.properties
 
 ## 外部配置加载顺序
 
-**==SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置==**
+*SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级中相同的配置，所有的配置会形成互补配置*
 
-**1.命令行参数**
+**1. 命令行参数**
 
 所有的配置都可以在命令行上进行指定
 
@@ -792,39 +789,31 @@ java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --serv
 
 多个配置用空格分开； --配置项=值
 
+2. 来自java:comp/env的JNDI属性
 
+3. Java系统属性（System.getProperties()）
 
-2.来自java:comp/env的JNDI属性
+4. 操作系统环境变量
 
-3.Java系统属性（System.getProperties()）
+5. RandomValuePropertySource配置的random.*属性值
 
-4.操作系统环境变量
+*由jar包外向jar包内进行寻找；*
 
-5.RandomValuePropertySource配置的random.*属性值
+*优先加载带profile*
 
+**6. jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件**
 
+**7. jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件**
 
-==**由jar包外向jar包内进行寻找；**==
+*再来加载不带profile*
 
-==**优先加载带profile**==
+**8. jar包外部的application.properties或application.yml(不带spring.profile)配置文件**
 
-**6.jar包外部的application-{profile}.properties或application.yml(带spring.profile)配置文件**
+**9. jar包内部的application.properties或application.yml(不带spring.profile)配置文件**
 
-**7.jar包内部的application-{profile}.properties或application.yml(带spring.profile)配置文件**
+10. @Configuration注解类上的@PropertySource
 
-
-
-==**再来加载不带profile**==
-
-**8.jar包外部的application.properties或application.yml(不带spring.profile)配置文件**
-
-**9.jar包内部的application.properties或application.yml(不带spring.profile)配置文件**
-
-
-
-10.@Configuration注解类上的@PropertySource
-
-11.通过SpringApplication.setDefaultProperties指定的默认属性
+11. 通过SpringApplication.setDefaultProperties指定的默认属性
 
 所有支持的配置加载来源；
 
@@ -836,31 +825,26 @@ java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --serv
 
 [配置文件能配置的属性参照](https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#common-application-properties)
 
+### 自动配置原理：
 
-
-### **自动配置原理：**
-
-SpringBoot启动的时候加载主配置类，开启了自动配置功能 ==@EnableAutoConfiguration==
+SpringBoot启动的时候加载主配置类，开启了自动配置功能 **@EnableAutoConfiguration**
 
 **@EnableAutoConfiguration 作用：**
 
- -  利用EnableAutoConfigurationImportSelector给容器中导入一些组件？
+-  利用EnableAutoConfigurationImportSelector给容器中导入一些组件
 
 - 可以查看selectImports()方法的内容；
 
-- List<String> configurations = getCandidateConfigurations(annotationMetadata,      attributes);获取候选的配置
+- List<String> configurations = getCandidateConfigurations(annotationMetadata, attributes);获取候选的配置
 
   - ```java
     SpringFactoriesLoader.loadFactoryNames()
-    扫描所有jar包类路径下  META-INF/spring.factories
+    扫描所有jar包类路径下的`META-INF/spring.factories`文件
     把扫描到的这些文件的内容包装成properties对象
     从properties中获取到EnableAutoConfiguration.class类（类名）对应的值，然后把他们添加在容器中
-
     ```
 
-    ​
-
-**==将 类路径下  META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；==**
+*将 类路径下 META-INF/spring.factories 里面配置的所有EnableAutoConfiguration的值加入到了容器中；*
 
 ```properties
 # Auto Configure
@@ -967,30 +951,32 @@ org.springframework.boot.autoconfigure.webservices.WebServicesAutoConfiguration
 
 每一个自动配置类进行自动配置功能；
 
-以**HttpEncodingAutoConfiguration（Http编码自动配置）**为例解释自动配置原理；
+以 *HttpEncodingAutoConfiguration(Http编码自动配置)* 为例解释自动配置原理；
 
 ```java
-@Configuration   //表示这是一个配置类，以前编写的配置文件一样，也可以给容器中添加组件
-@EnableConfigurationProperties(HttpEncodingProperties.class)  //启动指定类的ConfigurationProperties功能；将配置文件中对应的值和HttpEncodingProperties绑定起来；并把HttpEncodingProperties加入到ioc容器中
+@Configuration   表示这是一个配置类，以前编写的配置文件一样，也可以给容器中添加组件
+@EnableConfigurationProperties(HttpEncodingProperties.class)   启用指定类的ConfigurationProperties功能；将配置文件中对应的值和HttpEncodingProperties类绑定起来；并把HttpEncodingProperties类加入到ioc容器中
 
-@ConditionalOnWebApplication //Spring底层@Conditional注解（Spring注解版），根据不同的条件，如果满足指定的条件，整个配置类里面的配置就会生效；    判断当前应用是否是web应用，如果是，当前配置类生效
+@ConditionalOnWebApplication  Spring底层@Conditional注解（Spring注解版），根据不同的条件，如果满足指定的条件，整个配置类里面的配置就会生效；    判断当前应用是否是web应用，如果是，当前配置类生效
 
-@ConditionalOnClass(CharacterEncodingFilter.class)  //判断当前项目有没有这个类CharacterEncodingFilter；SpringMVC中进行乱码解决的过滤器；
+@ConditionalOnClass(CharacterEncodingFilter.class)   判断当前项目有没有这个类CharacterEncodingFilter；这个类是SpringMVC中进行乱码解决的过滤器；
 
-@ConditionalOnProperty(prefix = "spring.http.encoding", value = "enabled", matchIfMissing = true)  //判断配置文件中是否存在某个配置  spring.http.encoding.enabled；如果不存在，判断也是成立的
-//即使我们配置文件中不配置pring.http.encoding.enabled=true，也是默认生效的；
+@ConditionalOnProperty(prefix = "spring.http.encoding", value = "enabled", matchIfMissing = true)   判断配置文件中是否存在某个配置  spring.http.encoding.enabled；如果不存在，判断也是成立的
+
+即使我们配置文件中不配置pring.http.encoding.enabled=true，也是默认生效的；
+
 public class HttpEncodingAutoConfiguration {
 
-  	//他已经和SpringBoot的配置文件映射了
+  	他已经和SpringBoot的配置文件映射了
   	private final HttpEncodingProperties properties;
 
-   //只有一个有参构造器的情况下，参数的值就会从容器中拿
+    只有一个有参构造器的情况下，参数的值就会从容器中拿
   	public HttpEncodingAutoConfiguration(HttpEncodingProperties properties) {
 		this.properties = properties;
 	}
 
-    @Bean   //给容器中添加一个组件，这个组件的某些值需要从properties中获取
-	@ConditionalOnMissingBean(CharacterEncodingFilter.class) //判断容器没有这个组件？
+    @Bean   给容器中添加一个组件，这个组件的某些值需要从properties中获取
+	@ConditionalOnMissingBean(CharacterEncodingFilter.class) 判断容器没有这个组件
 	public CharacterEncodingFilter characterEncodingFilter() {
 		CharacterEncodingFilter filter = new OrderedCharacterEncodingFilter();
 		filter.setEncoding(this.properties.getCharset().name());
@@ -998,42 +984,41 @@ public class HttpEncodingAutoConfiguration {
 		filter.setForceResponseEncoding(this.properties.shouldForce(Type.RESPONSE));
 		return filter;
 	}
+}
 ```
 
-根据当前不同的条件判断，决定这个配置类是否生效？
+根据当前不同的条件判断，决定这个配置类是否生效
 
 一但这个配置类生效；这个配置类就会给容器中添加各种组件；这些组件的属性是从对应的properties类中获取的，这些类里面的每一个属性又是和配置文件绑定的；
 
-所有在配置文件中能配置的属性都是在xxxxProperties类中封装者‘；配置文件能配置什么就可以参照某个功能对应的这个属性类
+所有在配置文件中能配置的属性都是在xxxxProperties类中封装者；配置文件能配置什么就可以参照某个功能对应的这个属性类
 
 ```java
-@ConfigurationProperties(prefix = "spring.http.encoding")  //从配置文件中获取指定的值和bean的属性进行绑定
+@ConfigurationProperties(prefix = "spring.http.encoding")  从配置文件中获取指定的值和bean的属性进行绑定
 public class HttpEncodingProperties {
 
    public static final Charset DEFAULT_CHARSET = Charset.forName("UTF-8");
 ```
 
-**精髓：**
+*Spring Boot精髓*
 
-​	**SpringBoot启动会加载大量的自动配置类**
+​	*SpringBoot启动会加载大量的自动配置类*
 
-​	**我们看我们需要的功能有没有SpringBoot默认写好的自动配置类；**
+​	*我们看我们需要的功能有没有SpringBoot默认写好的自动配置类；*
 
-​	**我们再来看这个自动配置类中到底配置了哪些组件；（只要我们要用的组件有，我们就不需要再来配置了）**
+​	*我们再来看这个自动配置类中到底配置了哪些组件；（只要我们要用的组件有，我们就不需要再来配置了）*
 
-​	**给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们就可以在配置文件中指定这些属性的值；**
+​	*给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们就可以在配置文件中指定这些属性的值；*
 
-xxxxAutoConfigurartion：自动配置类；
+xxxxAutoConfigurartion：自动配置类； 用于给容器中添加组件
 
-给容器中添加组件
-
-xxxxProperties:封装配置文件中相关属性；
+xxxxProperties: 封装配置文件中相关属性；
 
 ### 细节
 
 #### @Conditional派生注解（Spring注解版原生的@Conditional作用）
 
-作用：必须是@Conditional指定的条件成立，才给容器中添加组件，配置配里面的所有内容才生效；
+作用：必须是@Conditional指定的条件成立，才给容器中添加组件，配置类里面的所有内容才生效；
 
 | @Conditional扩展注解                | 作用（判断是否满足当前指定条件）               |
 | ------------------------------- | ------------------------------ |
@@ -1050,11 +1035,11 @@ xxxxProperties:封装配置文件中相关属性；
 | @ConditionalOnNotWebApplication | 当前不是web环境                      |
 | @ConditionalOnJndi              | JNDI存在指定项                      |
 
-**自动配置类必须在一定的条件下才能生效；**
+*自动配置类必须在一定的条件下(满足@ConditionalOnXxx注解)才能生效；*
 
 我们怎么知道哪些自动配置类生效；
 
-**==我们可以通过启用  debug=true属性；来让控制台打印自动配置报告==**，这样我们就可以很方便的知道哪些自动配置类生效；
+*我们可以通过在配置文件中启用debug=true属性；来让控制台打印自动配置报告*，这样我们就可以很方便的知道哪些自动配置类生效；
 
 ```java
 =========================
@@ -1062,7 +1047,7 @@ AUTO-CONFIGURATION REPORT
 =========================
 
 
-Positive matches:（自动配置类启用的）
+Positive matches:（启用的自动配置类）
 -----------------
 
    DispatcherServletAutoConfiguration matched:
@@ -1080,9 +1065,7 @@ Negative matches:（没有启动，没有匹配成功的自动配置类）
    AopAutoConfiguration:
       Did not match:
          - @ConditionalOnClass did not find required classes 'org.aspectj.lang.annotation.Aspect', 'org.aspectj.lang.reflect.Advice' (OnClassCondition)
-
 ```
-
 
 # 日志
 
@@ -1104,11 +1087,9 @@ Negative matches:（没有启动，没有匹配成功的自动配置类）
 
 ​			给项目中导入具体的日志实现就行了；我们之前的日志框架都是实现的抽象层；
 
-
-
 **市面上的日志框架；**
 
-JUL、JCL、Jboss-logging、logback、log4j、log4jslf4j....
+JUL、JCL、Jboss-logging、logback、log4j、log4j2、slf4j....
 
 | 日志门面  （日志的抽象层）                           | 日志实现                                     |
 | ---------------------------------------- | ---------------------------------------- |
@@ -1116,17 +1097,13 @@ JUL、JCL、Jboss-logging、logback、log4j、log4jslf4j....
 
 左边选一个门面（抽象层）、右边来选一个实现；
 
-日志门面：  SLF4J；
+日志门面：SLF4J；
 
 日志实现：Logback；
 
+SpringBoot：底层是Spring框架，Spring框架默认是用JCL；
 
-
-SpringBoot：底层是Spring框架，Spring框架默认是用JCL；‘
-
-​	**==SpringBoot选用 SLF4j和logback；==**
-
-
+​*SpringBoot选用SLF4j和logback；*
 
 ## SLF4j使用
 
@@ -1134,7 +1111,7 @@ SpringBoot：底层是Spring框架，Spring框架默认是用JCL；‘
 
 以后开发的时候，日志记录方法的调用，不应该来直接调用日志的实现类，而是调用日志抽象层里面的方法；
 
-给系统里面导入slf4j的jar和  logback的实现jar
+给系统里面导入slf4j的jar和logback的实现jar
 
 ```java
 import org.slf4j.Logger;
@@ -1152,44 +1129,40 @@ public class HelloWorld {
 
 ![images/concrete-bindings.png](images/concrete-bindings.png)
 
-每一个日志的实现框架都有自己的配置文件。使用slf4j以后，**配置文件还是做成日志实现框架自己本身的配置文件；**
+每一个日志的实现框架都有自己的配置文件。使用slf4j以后，*配置文件依然是日志实现框架自己本身的配置文件；*
 
 ### 遗留问题
 
 a（slf4j+logback）: Spring（commons-logging）、Hibernate（jboss-logging）、MyBatis、xxxx
 
-统一日志记录，即使是别的框架和我一起统一使用slf4j进行输出？
+统一日志记录，即使是别的框架和slf4j一起使用, 也是使用slf4j, logback进行输出:
 
 ![](images/legacy.png)
 
-**如何让系统中所有的日志都统一到slf4j；**
+#### 如何让系统中所有的日志都统一到slf4j
 
-==将系统中其他日志框架先排除出去；==
+1. 将系统中其他日志框架先排除出去；
 
-==用中间包来替换原有的日志框架；==
+2. 用中间包来替换原有的日志框架, 中间包与被替换包API相同(包名, 类名, 方法名都一样), 实现不同(调用slf4j的API)；
 
-==我们导入slf4j其他的实现==
-
-
+3. 导入slf4j其他的实现
 
 ## SpringBoot日志关系
 
 ```xml
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter</artifactId>
+</dependency>
 ```
-
-
 
 SpringBoot使用它来做日志功能；
 
 ```xml
-	<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-logging</artifactId>
-		</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-logging</artifactId>
+</dependency>
 ```
 
 底层依赖关系
@@ -1215,26 +1188,24 @@ public abstract class LogFactory {
 
 ![](images/搜狗截图20180131221411.png)
 
+​如果我们要引入其他框架时, 一定要把这个框架的默认日志依赖移除掉
 
-
-​	如果我们要引入其他框架？一定要把这个框架的默认日志依赖移除掉？
-
-​			Spring框架用的是commons-logging；
+例如, Spring框架用的是commons-logging；
 
 ```xml
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-core</artifactId>
+	<exclusions> 排除commons-logging
+		<exclusion>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+		</exclusion>
+	</exclusions>
+</dependency>
 ```
 
-**==SpringBoot能自动适配所有的日志，而且底层使用slf4j+logback的方式记录日志，引入其他框架的时候，只需要把这个框架依赖的日志框架排除掉即可；==**
+*SpringBoot能自动适配所有的日志，而且底层使用slf4j+logback的方式记录日志，引入其他框架的时候，只需要把这个框架依赖的日志框架排除掉即可；*
 
 ## 日志使用；
 
@@ -1243,27 +1214,24 @@ public abstract class LogFactory {
 SpringBoot默认帮我们配置好了日志；
 
 ```java
-	//记录器
+	记录器
 	Logger logger = LoggerFactory.getLogger(getClass());
+
 	@Test
 	public void contextLoads() {
 		//System.out.println();
 
-		//日志的级别；
-		//由低到高   trace<debug<info<warn<error
-		//可以调整输出的日志级别；日志就只会在这个级别以以后的高级别生效
+		日志的级别；
+		由低到高   trace<debug<info<warn<error
+		可以调整输出的日志级别；日志就只会在这个级别及以后的高级别生效
 		logger.trace("这是trace日志...");
 		logger.debug("这是debug日志...");
-		//SpringBoot默认给我们使用的是info级别的，没有指定级别的就用SpringBoot默认规定的级别；root级别
+		SpringBoot默认给我们使用的是info级别的，trace和debug级别的日志不会输出, 要调低级别, 需要在配置文件中加入logging.level配置, 没有指定级别的就用SpringBoot默认规定的级别(root级别)
 		logger.info("这是info日志...");
 		logger.warn("这是warn日志...");
 		logger.error("这是error日志...");
-
-
 	}
 ```
-
-
 
         日志输出格式：
     		%d表示日期时间，
@@ -1272,13 +1240,13 @@ SpringBoot默认帮我们配置好了日志；
     		%logger{50} 表示logger名字最长50个字符，否则按照句点分割。
     		%msg：日志消息，
     		%n是换行符
-        -->
+
         %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n
+
 SpringBoot修改日志的默认配置
 
 ```properties
 logging.level.com.atguigu=trace
-
 
 #logging.path=
 # 不指定路径在当前项目下生成springboot.log日志
@@ -1302,7 +1270,7 @@ logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} =
 
 ### 指定配置
 
-给类路径下放上每个日志框架自己的配置文件即可；SpringBoot就不使用他默认配置的了
+给类路径下放上每个日志框架自己的配置文件即可；SpringBoot就不使用默认配置了
 
 | Logging System          | Customization                            |
 | ----------------------- | ---------------------------------------- |
@@ -1310,16 +1278,15 @@ logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} =
 | Log4j2                  | `log4j2-spring.xml` or `log4j2.xml`      |
 | JDK (Java Util Logging) | `logging.properties`                     |
 
-logback.xml：直接就被日志框架识别了；
+若自定义的日志文件命名为logback.xml会直接被日志框架识别, 不经过Spring Boot；
 
-**logback-spring.xml**：日志框架就不直接加载日志的配置项，由SpringBoot解析日志配置，可以使用SpringBoot的高级Profile功能
+若命名为logback-xxx.xml, 日志框架就不直接加载日志的配置项，由SpringBoot解析日志配置，可以使用SpringBoot的高级Profile功能 如 logback-spring.xml
 
 ```xml
 <springProfile name="staging">
     <!-- configuration to be enabled when the "staging" profile is active -->
   	可以指定某段配置只在某个环境下生效
 </springProfile>
-
 ```
 
 如：
@@ -1345,8 +1312,6 @@ logback.xml：直接就被日志框架识别了；
         </layout>
     </appender>
 ```
-
-
 
 如果使用logback.xml作为日志配置文件，还要使用profile功能，会有以下错误
 
@@ -1381,18 +1346,14 @@ slf4j+log4j的方式；
 
 ```
 
-
-
-
-
-切换为log4j2
+切换为log4j2, log4j2和logging二选一
 
 ```xml
    <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
-                <exclusion>
+                <exclusion> 排除starter-logging
                     <artifactId>spring-boot-starter-logging</artifactId>
                     <groupId>org.springframework.boot</groupId>
                 </exclusion>
@@ -1405,13 +1366,9 @@ slf4j+log4j的方式；
 </dependency>
 ```
 
------------------
-
 # Web开发
 
 ## 简介
-
-
 
 使用SpringBoot；
 
@@ -1420,8 +1377,6 @@ slf4j+log4j的方式；
 **SpringBoot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来**
 
 **自己编写业务代码；**
-
-
 
 **自动配置原理？**
 
@@ -1432,8 +1387,6 @@ xxxxAutoConfiguration：帮我们给容器中自动配置组件；
 xxxxProperties:配置类来封装配置文件的内容；
 
 ```
-
-
 
 ## SpringBoot对静态资源的映射规则；
 
