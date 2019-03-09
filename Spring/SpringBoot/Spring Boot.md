@@ -1,133 +1,133 @@
-# 一、Spring Boot 入门
+# Spring Boot 入门
 
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
 
-* [一、Spring Boot 入门](#一-spring-boot-入门)
-	* [1、Spring Boot 简介](#1-spring-boot-简介)
-	* [2、微服务](#2-微服务)
-	* [3、环境准备](#3-环境准备)
-		* [1、MAVEN设置；](#1-maven设置)
-	* [4、Spring Boot HelloWorld](#4-spring-boot-helloworld)
-		* [1、创建一个maven工程；（jar）](#1-创建一个maven工程jar)
-		* [2、导入spring boot相关的依赖](#2-导入spring-boot相关的依赖)
-		* [3、编写一个主程序；启动Spring Boot应用](#3-编写一个主程序启动spring-boot应用)
-		* [4、编写相关的Controller、Service](#4-编写相关的controller-service)
-		* [5、运行主程序测试](#5-运行主程序测试)
-		* [6、简化部署](#6-简化部署)
-	* [5、Hello World探究](#5-hello-world探究)
-		* [1、POM文件](#1-pom文件)
-			* [1、父项目](#1-父项目)
-			* [2、启动器](#2-启动器)
-		* [2、主程序类，主入口类](#2-主程序类主入口类)
+* [Spring Boot 入门](#spring-boot-入门)
+	* [Spring Boot 简介](#spring-boot-简介)
+	* [微服务](#微服务)
+	* [环境准备](#环境准备)
+		* [MAVEN设置；](#maven设置)
+	* [Spring Boot HelloWorld](#spring-boot-helloworld)
+		* [创建一个maven工程；（jar）](#创建一个maven工程jar)
+		* [导入spring boot相关的依赖](#导入spring-boot相关的依赖)
+		* [编写一个主程序；启动Spring Boot应用](#编写一个主程序启动spring-boot应用)
+		* [编写相关的Controller、Service](#编写相关的controller-service)
+		* [运行主程序测试](#运行主程序测试)
+		* [简化部署](#简化部署)
+	* [Hello World探究](#hello-world探究)
+		* [POM文件](#pom文件)
+			* [父项目](#父项目)
+			* [启动器](#启动器)
+		* [主程序类，主入口类](#主程序类主入口类)
 			* [*将主配置类（@SpringBootApplication标注的类）所在包及下面所有子包里面的所有组件扫描到Spring容器中；*](#将主配置类springbootapplication标注的类所在包及下面所有子包里面的所有组件扫描到spring容器中)
-	* [6、使用Spring Initializer快速创建Spring Boot项目](#6-使用spring-initializer快速创建spring-boot项目)
-		* [1、IDEA：使用 Spring Initializer快速创建项目](#1-idea使用-spring-initializer快速创建项目)
-		* [2、STS使用 Spring Starter Project快速创建项目](#2-sts使用-spring-starter-project快速创建项目)
-* [二、配置文件](#二-配置文件)
-	* [1、配置文件](#1-配置文件)
-	* [2、YAML语法：](#2-yaml语法)
-		* [1、基本语法](#1-基本语法)
-		* [2、值的写法](#2-值的写法)
+	* [使用Spring Initializer快速创建Spring Boot项目](#使用spring-initializer快速创建spring-boot项目)
+		* [IDEA：使用 Spring Initializer快速创建项目](#idea使用-spring-initializer快速创建项目)
+		* [STS使用 Spring Starter Project快速创建项目](#sts使用-spring-starter-project快速创建项目)
+* [配置文件](#配置文件)
+	* [配置文件](#配置文件-1)
+	* [YAML语法：](#yaml语法)
+		* [基本语法](#基本语法)
+		* [值的写法](#值的写法)
 			* [字面量：普通的值（数字，字符串，布尔）](#字面量普通的值数字字符串布尔)
 			* [对象、Map（属性和值）（键值对）：](#对象-map属性和值键值对)
 			* [数组（List、Set）：](#数组list-set)
-	* [3、配置文件值注入](#3-配置文件值注入)
-			* [1、properties配置文件在idea中默认utf-8可能会乱码](#1-properties配置文件在idea中默认utf-8可能会乱码)
-			* [2、@Value获取值和@ConfigurationProperties获取值比较](#2-value获取值和configurationproperties获取值比较)
-			* [3、配置文件注入值数据校验](#3-配置文件注入值数据校验)
-			* [4、@PropertySource & @ImportResource & @Bean](#4-propertysource-importresource-bean)
-	* [4、配置文件占位符](#4-配置文件占位符)
-		* [1、随机数](#1-随机数)
-		* [2、占位符获取之前配置的值，如果没有可以用:指定默认值](#2-占位符获取之前配置的值如果没有可以用指定默认值)
-	* [5、Profile](#5-profile)
-		* [1、多Profile文件](#1-多profile文件)
-		* [2、yml支持多文档块方式代替properties文件的多文件方式](#2-yml支持多文档块方式代替properties文件的多文件方式)
-		* [3、激活指定profile](#3-激活指定profile)
-	* [6、配置文件加载位置](#6-配置文件加载位置)
-	* [7、外部配置加载顺序](#7-外部配置加载顺序)
-	* [8、自动配置原理](#8-自动配置原理)
-		* [1、**自动配置原理：**](#1-自动配置原理)
-		* [2、细节](#2-细节)
-			* [1、@Conditional派生注解（Spring注解版原生的@Conditional作用）](#1-conditional派生注解spring注解版原生的conditional作用)
-* [三、日志](#三-日志)
-	* [1、日志框架](#1-日志框架)
-	* [2、SLF4j使用](#2-slf4j使用)
-		* [1、如何在系统中使用SLF4j   https://www.slf4j.org](#1-如何在系统中使用slf4j-httpswwwslf4jorg)
-		* [2、遗留问题](#2-遗留问题)
-	* [3、SpringBoot日志关系](#3-springboot日志关系)
-	* [4、日志使用；](#4-日志使用)
-		* [1、默认配置](#1-默认配置)
-		* [2、指定配置](#2-指定配置)
-	* [5、切换日志框架](#5-切换日志框架)
-* [四、Web开发](#四-web开发)
-	* [1、简介](#1-简介)
-	* [2、SpringBoot对静态资源的映射规则；](#2-springboot对静态资源的映射规则)
-	* [3、模板引擎](#3-模板引擎)
-		* [1、引入thymeleaf；](#1-引入thymeleaf)
-		* [2、Thymeleaf使用](#2-thymeleaf使用)
-		* [3、语法规则](#3-语法规则)
-	* [4、SpringMVC自动配置](#4-springmvc自动配置)
-		* [1. Spring MVC auto-configuration](#1-spring-mvc-auto-configuration)
-		* [2、扩展SpringMVC](#2-扩展springmvc)
-		* [3、全面接管SpringMVC；](#3-全面接管springmvc)
-	* [5、如何修改SpringBoot的默认配置](#5-如何修改springboot的默认配置)
-	* [6、RestfulCRUD](#6-restfulcrud)
-		* [1）、默认访问首页](#1-默认访问首页)
-		* [2）、国际化](#2-国际化)
-		* [3）、登陆](#3-登陆)
-		* [4）、拦截器进行登陆检查](#4-拦截器进行登陆检查)
-		* [5）、CRUD-员工列表](#5-crud-员工列表)
+	* [配置文件值注入](#配置文件值注入)
+			* [properties配置文件在idea中默认utf-8可能会乱码](#properties配置文件在idea中默认utf-8可能会乱码)
+			* [@Value获取值和@ConfigurationProperties获取值比较](#value获取值和configurationproperties获取值比较)
+			* [配置文件注入值数据校验](#配置文件注入值数据校验)
+			* [@PropertySource & @ImportResource & @Bean](#propertysource-importresource-bean)
+	* [配置文件占位符](#配置文件占位符)
+		* [随机数](#随机数)
+		* [占位符获取之前配置的值，如果没有可以用:指定默认值](#占位符获取之前配置的值如果没有可以用指定默认值)
+	* [Profile](#profile)
+		* [多Profile文件](#多profile文件)
+		* [yml支持多文档块方式代替properties文件的多文件方式](#yml支持多文档块方式代替properties文件的多文件方式)
+		* [激活指定profile](#激活指定profile)
+	* [配置文件加载位置](#配置文件加载位置)
+	* [外部配置加载顺序](#外部配置加载顺序)
+	* [自动配置原理](#自动配置原理)
+		* [**自动配置原理：**](#自动配置原理-1)
+		* [细节](#细节)
+			* [@Conditional派生注解（Spring注解版原生的@Conditional作用）](#conditional派生注解spring注解版原生的conditional作用)
+* [日志](#日志)
+	* [日志框架](#日志框架)
+	* [SLF4j使用](#slf4j使用)
+		* [如何在系统中使用SLF4j   https://www.slf4j.org](#如何在系统中使用slf4j-httpswwwslf4jorg)
+		* [遗留问题](#遗留问题)
+	* [SpringBoot日志关系](#springboot日志关系)
+	* [日志使用；](#日志使用)
+		* [默认配置](#默认配置)
+		* [指定配置](#指定配置)
+	* [切换日志框架](#切换日志框架)
+* [Web开发](#web开发)
+	* [简介](#简介)
+	* [SpringBoot对静态资源的映射规则；](#springboot对静态资源的映射规则)
+	* [模板引擎](#模板引擎)
+		* [引入thymeleaf；](#引入thymeleaf)
+		* [Thymeleaf使用](#thymeleaf使用)
+		* [语法规则](#语法规则)
+	* [SpringMVC自动配置](#springmvc自动配置)
+		* [Spring MVC auto-configuration](#spring-mvc-auto-configuration)
+		* [扩展SpringMVC](#扩展springmvc)
+		* [全面接管SpringMVC；](#全面接管springmvc)
+	* [如何修改SpringBoot的默认配置](#如何修改springboot的默认配置)
+	* [RestfulCRUD](#restfulcrud)
+		* [默认访问首页](#默认访问首页)
+		* [国际化](#国际化)
+		* [登陆](#登陆)
+		* [拦截器进行登陆检查](#拦截器进行登陆检查)
+		* [CRUD-员工列表](#crud-员工列表)
 			* [thymeleaf公共页面元素抽取](#thymeleaf公共页面元素抽取)
-		* [6）、CRUD-员工添加](#6-crud-员工添加)
-		* [7）、CRUD-员工修改](#7-crud-员工修改)
-		* [8）、CRUD-员工删除](#8-crud-员工删除)
-	* [7、错误处理机制](#7-错误处理机制)
-		* [1）、SpringBoot默认的错误处理机制](#1-springboot默认的错误处理机制)
-		* [2）、如果定制错误响应：](#2-如果定制错误响应)
-			* [**1）、如何定制错误的页面；**](#1-如何定制错误的页面)
-			* [2）、如何定制错误的json数据；](#2-如何定制错误的json数据)
-			* [3）、将我们的定制数据携带出去；](#3-将我们的定制数据携带出去)
-	* [8、配置嵌入式Servlet容器](#8-配置嵌入式servlet容器)
-		* [1）、如何定制和修改Servlet容器的相关配置；](#1-如何定制和修改servlet容器的相关配置)
-		* [2）、注册Servlet三大组件【Servlet、Filter、Listener】](#2-注册servlet三大组件servlet-filter-listener)
-		* [3）、替换为其他嵌入式Servlet容器](#3-替换为其他嵌入式servlet容器)
-		* [4）、嵌入式Servlet容器自动配置原理；](#4-嵌入式servlet容器自动配置原理)
-		* [5）、嵌入式Servlet容器启动原理；](#5-嵌入式servlet容器启动原理)
-	* [9、使用外置的Servlet容器](#9-使用外置的servlet容器)
+		* [CRUD-员工添加](#crud-员工添加)
+		* [CRUD-员工修改](#crud-员工修改)
+		* [CRUD-员工删除](#crud-员工删除)
+	* [错误处理机制](#错误处理机制)
+		* [SpringBoot默认的错误处理机制](#springboot默认的错误处理机制)
+		* [如果定制错误响应：](#如果定制错误响应)
+			* [**如何定制错误的页面；**](#如何定制错误的页面)
+			* [如何定制错误的json数据；](#如何定制错误的json数据)
+			* [将我们的定制数据携带出去；](#将我们的定制数据携带出去)
+	* [配置嵌入式Servlet容器](#配置嵌入式servlet容器)
+		* [如何定制和修改Servlet容器的相关配置；](#如何定制和修改servlet容器的相关配置)
+		* [注册Servlet三大组件【Servlet、Filter、Listener】](#注册servlet三大组件servlet-filter-listener)
+		* [替换为其他嵌入式Servlet容器](#替换为其他嵌入式servlet容器)
+		* [嵌入式Servlet容器自动配置原理；](#嵌入式servlet容器自动配置原理)
+		* [嵌入式Servlet容器启动原理；](#嵌入式servlet容器启动原理)
+	* [使用外置的Servlet容器](#使用外置的servlet容器)
 		* [步骤](#步骤)
 		* [原理](#原理)
-* [五、Docker](#五-docker)
-	* [1、简介](#1-简介-1)
-	* [2、核心概念](#2-核心概念)
-	* [3、安装Docker](#3-安装docker)
-			* [1）、安装linux虚拟机](#1-安装linux虚拟机)
-			* [2）、在linux虚拟机上安装docker](#2-在linux虚拟机上安装docker)
-	* [4、Docker常用命令&操作](#4-docker常用命令操作)
-		* [1）、镜像操作](#1-镜像操作)
-		* [2）、容器操作](#2-容器操作)
-		* [3）、安装MySQL示例](#3-安装mysql示例)
-* [六、SpringBoot与数据访问](#六-springboot与数据访问)
-	* [1、JDBC](#1-jdbc)
-	* [2、整合Druid数据源](#2-整合druid数据源)
-	* [3、整合MyBatis](#3-整合mybatis)
-		* [4）、注解版](#4-注解版)
-		* [5）、配置文件版](#5-配置文件版)
-	* [4、整合SpringData JPA](#4-整合springdata-jpa)
-		* [1）、SpringData简介](#1-springdata简介)
-		* [2）、整合SpringData JPA](#2-整合springdata-jpa)
-* [七、启动配置原理](#七-启动配置原理)
-	* [**1、创建SpringApplication对象**](#1-创建springapplication对象)
-	* [2、运行run方法](#2-运行run方法)
-	* [3、事件监听机制](#3-事件监听机制)
-* [八、自定义starter](#八-自定义starter)
+* [Docker](#docker)
+	* [简介](#简介-1)
+	* [核心概念](#核心概念)
+	* [安装Docker](#安装docker)
+			* [安装linux虚拟机](#安装linux虚拟机)
+			* [在linux虚拟机上安装docker](#在linux虚拟机上安装docker)
+	* [Docker常用命令&操作](#docker常用命令操作)
+		* [镜像操作](#镜像操作)
+		* [容器操作](#容器操作)
+		* [安装MySQL示例](#安装mysql示例)
+* [SpringBoot与数据访问](#springboot与数据访问)
+	* [JDBC](#jdbc)
+	* [整合Druid数据源](#整合druid数据源)
+	* [整合MyBatis](#整合mybatis)
+		* [注解版](#注解版)
+		* [配置文件版](#配置文件版)
+	* [整合SpringData JPA](#整合springdata-jpa)
+		* [SpringData简介](#springdata简介)
+		* [整合SpringData JPA](#整合springdata-jpa-1)
+* [启动配置原理](#启动配置原理)
+	* [**创建SpringApplication对象**](#创建springapplication对象)
+	* [运行run方法](#运行run方法)
+	* [事件监听机制](#事件监听机制)
+* [自定义starter](#自定义starter)
 * [更多SpringBoot整合示例](#更多springboot整合示例)
 
 <!-- /code_chunk_output -->
 
 
-## 1、Spring Boot 简介
+## Spring Boot 简介
 
 > 简化Spring应用开发的一个框架；
 >
@@ -135,7 +135,7 @@
 >
 > J2EE开发的一站式解决方案；
 
-## 2、微服务
+## 微服务
 
 2014，martin fowler
 
@@ -149,9 +149,9 @@
 
 [详细参照微服务文档](https://martinfowler.com/articles/microservices.html#MicroservicesAndSoa)
 
-## 3、环境准备
+## 环境准备
 
-### 1、MAVEN设置；
+### MAVEN设置；
 
 给maven 的settings.xml配置文件的profiles标签添加
 
@@ -170,15 +170,15 @@
 </profile>
 ```
 
-## 4、Spring Boot HelloWorld
+## Spring Boot HelloWorld
 
 一个功能：
 
 浏览器发送hello请求，服务器接受请求并处理，响应Hello World字符串；
 
-### 1、创建一个maven工程；（jar）
+### 创建一个maven工程；（jar）
 
-### 2、导入spring boot相关的依赖
+### 导入spring boot相关的依赖
 
 ```xml
     <parent>
@@ -194,7 +194,7 @@
     </dependencies>
 ```
 
-### 3、编写一个主程序；启动Spring Boot应用
+### 编写一个主程序；启动Spring Boot应用
 
 ```java
 
@@ -212,7 +212,7 @@ public class HelloWorldMainApplication {
 }
 ```
 
-### 4、编写相关的Controller、Service
+### 编写相关的Controller、Service
 
 ```java
 @Controller
@@ -227,9 +227,9 @@ public class HelloController {
 
 ```
 
-### 5、运行主程序测试
+### 运行主程序测试
 
-### 6、简化部署
+### 简化部署
 
 ```xml
  <!-- 这个插件，可以将应用打包成一个可执行的jar包；-->
@@ -245,11 +245,11 @@ public class HelloController {
 
 将这个应用打成jar包，直接使用`java -jar`的命令进行执行；
 
-## 5、Hello World探究
+## Hello World探究
 
-### 1、POM文件
+### POM文件
 
-#### 1、父项目
+#### 父项目
 
 ```xml
 <parent>
@@ -273,7 +273,7 @@ Spring Boot的版本仲裁中心；
 
 以后我们导入依赖默认是不需要写版本；（没有在dependencies里面管理的依赖自然需要声明版本号）
 
-#### 2、启动器
+#### 启动器
 
 ```xml
 <dependency>
@@ -288,7 +288,7 @@ Spring Boot的版本仲裁中心；
 
 Spring Boot将所有的功能场景都抽取出来，做成一个个的starters（启动器），只需要在项目里面引入这些starter相关场景的所有依赖都会导入进来。要用什么功能就导入什么场景的启动器
 
-### 2、主程序类，主入口类
+### 主程序类，主入口类
 
 ```java
 /**
@@ -370,9 +370,9 @@ Spring Boot在启动的时候从类路径下的`META-INF/spring.factories`中获
 
 J2EE的整体整合解决方案和自动配置都在spring-boot-autoconfigure-1.5.9.RELEASE.jar；
 
-## 6、使用Spring Initializer快速创建Spring Boot项目
+## 使用Spring Initializer快速创建Spring Boot项目
 
-### 1、IDEA：使用 Spring Initializer快速创建项目
+### IDEA：使用 Spring Initializer快速创建项目
 
 IDE都支持使用Spring的项目创建向导快速创建一个Spring Boot项目；
 
@@ -390,11 +390,11 @@ IDE都支持使用Spring的项目创建向导快速创建一个Spring Boot项目
 
 **@RestController**是一个组合注解, 相当于@ResponseBody + @Controller
 
-### 2、STS使用 Spring Starter Project快速创建项目
+### STS使用 Spring Starter Project快速创建项目
 
-# 二、配置文件
+# 配置文件
 
-## 1、配置文件
+## 配置文件
 
 SpringBoot使用一个全局的配置文件，配置文件名是固定的；
 
@@ -403,8 +403,6 @@ SpringBoot使用一个全局的配置文件，配置文件名是固定的；
 • application.yml
 
 配置文件的作用：修改SpringBoot自动配置的默认值；SpringBoot在底层都给我们自动配置好；
-
-
 
 YAML（YAML Ain't Markup Language）
 
@@ -431,9 +429,9 @@ server:
 </server>
 ```
 
-## 2、YAML语法：
+## YAML语法：
 
-### 1、基本语法
+### 基本语法
 
 k:(空格)v：表示一对键值对（空格必须有）；
 
@@ -447,7 +445,7 @@ server:
 
 属性和值也是*大小写敏感*；
 
-### 2、值的写法
+### 值的写法
 
 #### 字面量：普通的值（数字，字符串，布尔）
 
@@ -498,7 +496,7 @@ pets:
 pets: [cat,dog,pig]
 ```
 
-## 3、配置文件值注入
+## 配置文件值注入
 
 配置文件
 
@@ -552,13 +550,13 @@ public class Person {
 		</dependency>
 ```
 
-#### 1、properties配置文件在idea中默认utf-8可能会乱码
+#### properties配置文件在idea中默认utf-8可能会乱码
 
 调整
 
 ![idea配置乱码](images/搜狗截图20180130161620.png)
 
-#### 2、@Value获取值和@ConfigurationProperties获取值比较
+#### @Value获取值和@ConfigurationProperties获取值比较
 
 |                      | @ConfigurationProperties | @Value     |
 |----------------------|--------------------------|------------|
@@ -574,7 +572,7 @@ public class Person {
 
 如果说，我们专门编写了一个javaBean来和配置文件进行映射，我们就直接使用@ConfigurationProperties；
 
-#### 3、配置文件注入值数据校验
+#### 配置文件注入值数据校验
 
 ```java
 @Component
@@ -584,7 +582,7 @@ public class Person {
 
     /**
      * <bean class="Person">
-     *      <property name="lastName" value="字面量/${key}从环境变量、配置文件中获取值/#{SpEL}"></property>
+     *      <property name="lastName" value="字面量/${key}从环境变配置文件中获取值/#{SpEL}"></property>
      * <bean/>
      */
 
@@ -603,7 +601,7 @@ public class Person {
     private Dog dog;
 ```
 
-#### 4、@PropertySource & @ImportResource & @Bean
+#### @PropertySource & @ImportResource & @Bean
 
 **@PropertySource**：加载指定的配置文件；
 
@@ -623,7 +621,7 @@ public class Person {
 
     /**
      * <bean class="Person">
-     *      <property name="lastName" value="字面量/${key}从环境变量、配置文件中获取值/#{SpEL}"></property>
+     *      <property name="lastName" value="字面量/${key}从环境变配置文件中获取值/#{SpEL}"></property>
      * <bean/>
      */
 
@@ -666,9 +664,9 @@ Spring Boot里面没有Spring的配置文件，我们自己编写的配置文件
 
 SpringBoot推荐给容器中添加组件的方式；推荐使用全注解的方式
 
-1、配置类**@Configuration**------>Spring配置文件
+配置类**@Configuration**------>Spring配置文件
 
-2、使用**@Bean**给容器中添加组件
+使用**@Bean**给容器中添加组件
 
 ```java
  * @Configuration：指明当前类是一个配置类；就是来替代之前的Spring配置文件
@@ -687,16 +685,16 @@ public class MyAppConfig {
 }
 ```
 
-##4、配置文件占位符
+##配置文件占位符
 
-### 1、随机数
+### 随机数
 
 ```java
 ${random.value}、${random.int}、${random.long}
 ${random.int(10)}、${random.int[1024,65536]}
 ```
 
-### 2、占位符获取之前配置的值，如果没有可以用:指定默认值
+### 占位符获取之前配置的值，如果没有可以用:指定默认值
 
 ```properties
 person.last-name=张三${random.uuid}
@@ -710,15 +708,15 @@ person.dog.name=${person.hello:hello}_dog 配置文件对应的person类中没�
 person.dog.age=15
 ```
 
-## 5、Profile
+## Profile
 
-### 1、多Profile文件
+### 多Profile文件
 
 我们在主配置文件编写的时候，文件名可以是application-{profile}.properties/yml
 
 默认使用application.properties中的配置；
 
-### 2、yml支持多文档块方式代替properties文件的多文件方式
+### yml支持多文档块方式代替properties文件的多文件方式
 
 ```yml
 server:
@@ -742,21 +740,21 @@ spring:
   profiles: prod  #指定属于哪个环境
 ```
 
-### 3、激活指定profile
+### 激活指定profile
 
-​	1、在配置文件中指定  spring.profiles.active=dev
+​	在配置文件中指定  spring.profiles.active=dev
 
-​	2、命令行： 会覆盖配置文件中的指定环境
+​	命令行： 会覆盖配置文件中的指定环境
 
 ​		java -jar spring-boot-02-config-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev；
 
 ​		可以直接在测试的时候，配置传入命令行参数
 
-​	3、虚拟机参数；
+​	虚拟机参数；
 
 ​		-Dspring.profiles.active=dev
 
-## 6、配置文件加载位置
+## 配置文件加载位置
 
 springboot 启动时会*依次*扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件
 
@@ -780,7 +778,7 @@ SpringBoot会从这四个位置全部加载主配置文件；*互补配置*；
 
 java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --spring.config.location=G:/application.properties
 
-## 7、外部配置加载顺序
+## 外部配置加载顺序
 
 **==SpringBoot也可以从以下位置加载配置； 优先级从高到低；高优先级的配置覆盖低优先级的配置，所有的配置会形成互补配置==**
 
@@ -830,7 +828,7 @@ java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --serv
 
 [参考官方文档](https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/#boot-features-external-config)
 
-## 8、自动配置原理
+## 自动配置原理
 
 配置文件到底能写什么？怎么写？自动配置原理；
 
@@ -838,11 +836,11 @@ java -jar spring-boot-02-config-02-0.0.1-SNAPSHOT.jar --server.port=8087  --serv
 
 
 
-### 1、**自动配置原理：**
+### **自动配置原理：**
 
-1）、SpringBoot启动的时候加载主配置类，开启了自动配置功能 ==@EnableAutoConfiguration==
+SpringBoot启动的时候加载主配置类，开启了自动配置功能 ==@EnableAutoConfiguration==
 
-**2）、@EnableAutoConfiguration 作用：**
+**@EnableAutoConfiguration 作用：**
 
  -  利用EnableAutoConfigurationImportSelector给容器中导入一些组件？
 
@@ -965,9 +963,9 @@ org.springframework.boot.autoconfigure.webservices.WebServicesAutoConfiguration
 
 每一个这样的  xxxAutoConfiguration类都是容器中的一个组件，都加入到容器中；用他们来做自动配置；
 
-3）、每一个自动配置类进行自动配置功能；
+每一个自动配置类进行自动配置功能；
 
-4）、以**HttpEncodingAutoConfiguration（Http编码自动配置）**为例解释自动配置原理；
+以**HttpEncodingAutoConfiguration（Http编码自动配置）**为例解释自动配置原理；
 
 ```java
 @Configuration   //表示这是一个配置类，以前编写的配置文件一样，也可以给容器中添加组件
@@ -1010,7 +1008,7 @@ public class HttpEncodingAutoConfiguration {
 
 
 
-5）、所有在配置文件中能配置的属性都是在xxxxProperties类中封装者‘；配置文件能配置什么就可以参照某个功能对应的这个属性类
+所有在配置文件中能配置的属性都是在xxxxProperties类中封装者‘；配置文件能配置什么就可以参照某个功能对应的这个属性类
 
 ```java
 @ConfigurationProperties(prefix = "spring.http.encoding")  //从配置文件中获取指定的值和bean的属性进行绑定
@@ -1025,13 +1023,13 @@ public class HttpEncodingProperties {
 
 **精髓：**
 
-​	**1）、SpringBoot启动会加载大量的自动配置类**
+​	**SpringBoot启动会加载大量的自动配置类**
 
-​	**2）、我们看我们需要的功能有没有SpringBoot默认写好的自动配置类；**
+​	**我们看我们需要的功能有没有SpringBoot默认写好的自动配置类；**
 
-​	**3）、我们再来看这个自动配置类中到底配置了哪些组件；（只要我们要用的组件有，我们就不需要再来配置了）**
+​	**我们再来看这个自动配置类中到底配置了哪些组件；（只要我们要用的组件有，我们就不需要再来配置了）**
 
-​	**4）、给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们就可以在配置文件中指定这些属性的值；**
+​	**给容器中自动配置类添加组件的时候，会从properties类中获取某些属性。我们就可以在配置文件中指定这些属性的值；**
 
 
 
@@ -1043,11 +1041,11 @@ xxxxProperties:封装配置文件中相关属性；
 
 
 
-### 2、细节
+### 细节
 
 
 
-#### 1、@Conditional派生注解（Spring注解版原生的@Conditional作用）
+#### @Conditional派生注解（Spring注解版原生的@Conditional作用）
 
 作用：必须是@Conditional指定的条件成立，才给容器中添加组件，配置配里面的所有内容才生效；
 
@@ -1103,21 +1101,21 @@ Negative matches:（没有启动，没有匹配成功的自动配置类）
 
 
 
-# 三、日志
+# 日志
 
-## 1、日志框架
+## 日志框架
 
  小张；开发一个大型系统；
 
-​		1、System.out.println("")；将关键数据打印在控制台；去掉？写在一个文件？
+​		System.out.println("")；将关键数据打印在控制台；去掉？写在一个文件？
 
-​		2、框架来记录系统的一些运行时信息；日志框架 ；  zhanglogging.jar；
+​		框架来记录系统的一些运行时信息；日志框架 ；  zhanglogging.jar；
 
-​		3、高大上的几个功能？异步模式？自动归档？xxxx？  zhanglogging-good.jar？
+​		高大上的几个功能？异步模式？自动归档？xxxx？  zhanglogging-good.jar？
 
-​		4、将以前框架卸下来？换上新的框架，重新修改之前相关的API；zhanglogging-prefect.jar；
+​		将以前框架卸下来？换上新的框架，重新修改之前相关的API；zhanglogging-prefect.jar；
 
-​		5、JDBC---数据库驱动；
+​		JDBC---数据库驱动；
 
 ​			写了一个统一的接口层；日志门面（日志的一个抽象层）；logging-abstract.jar；
 
@@ -1127,7 +1125,7 @@ Negative matches:（没有启动，没有匹配成功的自动配置类）
 
 **市面上的日志框架；**
 
-JUL、JCL、Jboss-logging、logback、log4j、log4j2、slf4j....
+JUL、JCL、Jboss-logging、logback、log4j、log4jslf4j....
 
 | 日志门面  （日志的抽象层）                           | 日志实现                                     |
 | ---------------------------------------- | ---------------------------------------- |
@@ -1147,9 +1145,9 @@ SpringBoot：底层是Spring框架，Spring框架默认是用JCL；‘
 
 
 
-## 2、SLF4j使用
+## SLF4j使用
 
-### 1、如何在系统中使用SLF4j   https://www.slf4j.org
+### 如何在系统中使用SLF4j   https://www.slf4j.org
 
 以后开发的时候，日志记录方法的调用，不应该来直接调用日志的实现类，而是调用日志抽象层里面的方法；
 
@@ -1173,7 +1171,7 @@ public class HelloWorld {
 
 每一个日志的实现框架都有自己的配置文件。使用slf4j以后，**配置文件还是做成日志实现框架自己本身的配置文件；**
 
-### 2、遗留问题
+### 遗留问题
 
 a（slf4j+logback）: Spring（commons-logging）、Hibernate（jboss-logging）、MyBatis、xxxx
 
@@ -1183,15 +1181,15 @@ a（slf4j+logback）: Spring（commons-logging）、Hibernate（jboss-logging）
 
 **如何让系统中所有的日志都统一到slf4j；**
 
-==1、将系统中其他日志框架先排除出去；==
+==将系统中其他日志框架先排除出去；==
 
-==2、用中间包来替换原有的日志框架；==
+==用中间包来替换原有的日志框架；==
 
-==3、我们导入slf4j其他的实现==
+==我们导入slf4j其他的实现==
 
 
 
-## 3、SpringBoot日志关系
+## SpringBoot日志关系
 
 ```xml
 		<dependency>
@@ -1217,11 +1215,11 @@ SpringBoot使用它来做日志功能；
 
 总结：
 
-​	1）、SpringBoot底层也是使用slf4j+logback的方式进行日志记录
+​	SpringBoot底层也是使用slf4j+logback的方式进行日志记录
 
-​	2）、SpringBoot也把其他的日志都替换成了slf4j；
+​	SpringBoot也把其他的日志都替换成了slf4j；
 
-​	3）、中间替换包？
+​	中间替换包？
 
 ```java
 @SuppressWarnings("rawtypes")
@@ -1236,7 +1234,7 @@ public abstract class LogFactory {
 
 
 
-​	4）、如果我们要引入其他框架？一定要把这个框架的默认日志依赖移除掉？
+​	如果我们要引入其他框架？一定要把这个框架的默认日志依赖移除掉？
 
 ​			Spring框架用的是commons-logging；
 
@@ -1255,9 +1253,9 @@ public abstract class LogFactory {
 
 **==SpringBoot能自动适配所有的日志，而且底层使用slf4j+logback的方式记录日志，引入其他框架的时候，只需要把这个框架依赖的日志框架排除掉即可；==**
 
-## 4、日志使用；
+## 日志使用；
 
-### 1、默认配置
+### 默认配置
 
 SpringBoot默认帮我们配置好了日志；
 
@@ -1319,7 +1317,7 @@ logging.pattern.file=%d{yyyy-MM-dd} === [%thread] === %-5level === %logger{50} =
 | 指定文件名        | (none)       | my.log   | 输出日志到my.log文件           |
 | (none)       | 指定目录         | /var/log | 输出到指定目录的 spring.log 文件中 |
 
-### 2、指定配置
+### 指定配置
 
 给类路径下放上每个日志框架自己的配置文件即可；SpringBoot就不使用他默认配置的了
 
@@ -1371,7 +1369,7 @@ logback.xml：直接就被日志框架识别了；
 
  `no applicable action for [springProfile]`
 
-## 5、切换日志框架
+## 切换日志框架
 
 可以按照slf4j的日志适配图，进行相关的切换；
 
@@ -1426,19 +1424,19 @@ slf4j+log4j的方式；
 
 -----------------
 
-# 四、Web开发
+# Web开发
 
-## 1、简介
+## 简介
 
 
 
 使用SpringBoot；
 
-**1）、创建SpringBoot应用，选中我们需要的模块；**
+**创建SpringBoot应用，选中我们需要的模块；**
 
-**2）、SpringBoot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来**
+**SpringBoot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来**
 
-**3）、自己编写业务代码；**
+**自己编写业务代码；**
 
 
 
@@ -1454,7 +1452,7 @@ xxxxProperties:配置类来封装配置文件的内容；
 
 
 
-## 2、SpringBoot对静态资源的映射规则；
+## SpringBoot对静态资源的映射规则；
 
 ```java
 @ConfigurationProperties(prefix = "spring.resources", ignoreUnknownFields = false)
@@ -1534,7 +1532,7 @@ public class ResourceProperties implements ResourceLoaderAware {
 
 
 
-==1）、所有 /webjars/** ，都去 classpath:/META-INF/resources/webjars/ 找资源；==
+==所有 /webjars/** ，都去 classpath:/META-INF/resources/webjars/ 找资源；==
 
 ​	webjars：以jar包的方式引入静态资源；
 
@@ -1555,7 +1553,7 @@ localhost:8080/webjars/jquery/3.3.1/jquery.js
 
 
 
-==2）、"/**" 访问当前项目的任何资源，都去（静态资源的文件夹）找映射==
+=="/**" 访问当前项目的任何资源，都去（静态资源的文件夹）找映射==
 
 ```
 "classpath:/META-INF/resources/",
@@ -1567,15 +1565,15 @@ localhost:8080/webjars/jquery/3.3.1/jquery.js
 
 localhost:8080/abc ===  去静态资源文件夹里面找abc
 
-==3）、欢迎页； 静态资源文件夹下的所有index.html页面；被"/**"映射；==
+==欢迎页； 静态资源文件夹下的所有index.html页面；被"/**"映射；==
 
 ​	localhost:8080/   找index页面
 
-==4）、所有的 **/favicon.ico  都是在静态资源文件下找；==
+==所有的 **/favicon.ico  都是在静态资源文件下找；==
 
 
 
-## 3、模板引擎
+## 模板引擎
 
 JSP、Velocity、Freemarker、Thymeleaf
 
@@ -1589,7 +1587,7 @@ SpringBoot推荐的Thymeleaf；
 
 
 
-### 1、引入thymeleaf；
+### 引入thymeleaf；
 
 ```xml
 		<dependency>
@@ -1608,7 +1606,7 @@ SpringBoot推荐的Thymeleaf；
 
 
 
-### 2、Thymeleaf使用
+### Thymeleaf使用
 
 ```java
 @ConfigurationProperties(prefix = "spring.thymeleaf")
@@ -1628,13 +1626,13 @@ public class ThymeleafProperties {
 
 使用：
 
-1、导入thymeleaf的名称空间
+导入thymeleaf的名称空间
 
 ```xml
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 ```
 
-2、使用thymeleaf语法；
+使用thymeleaf语法；
 
 ```html
 <!DOCTYPE html>
@@ -1651,9 +1649,9 @@ public class ThymeleafProperties {
 </html>
 ```
 
-### 3、语法规则
+### 语法规则
 
-1）、th:text；改变当前元素里面的文本内容；
+th:text；改变当前元素里面的文本内容；
 
 ​	th：任意html属性；来替换原生属性的值
 
@@ -1661,13 +1659,13 @@ public class ThymeleafProperties {
 
 
 
-2）、表达式？
+表达式？
 
 ```properties
 Simple expressions:（表达式语法）
     Variable Expressions: ${...}：获取变量值；OGNL；
-    		1）、获取对象的属性、调用方法
-    		2）、使用内置的基本对象：
+    		获取对象的属调用方法
+    		使用内置的基本对象：
     			#ctx : the context object.
     			#vars: the context variables.
                 #locale : the context locale.
@@ -1677,7 +1675,7 @@ Simple expressions:（表达式语法）
                 #servletContext : (only in Web Contexts) the ServletContext object.
 
                 ${session.foo}
-            3）、内置的一些工具对象：
+            内置的一些工具对象：
 #execInfo : information about the template being processed.
 #messages : methods for obtaining externalized messages inside variables expressions, in the same way as they would be obtained using #{…} syntax.
 #uris : methods for escaping parts of URLs/URIs
@@ -1735,11 +1733,11 @@ Special tokens:
     No-Operation: _
 ```
 
-## 4、SpringMVC自动配置
+## SpringMVC自动配置
 
 https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications
 
-### 1. Spring MVC auto-configuration
+### Spring MVC auto-configuration
 
 Spring Boot 自动配置好了SpringMVC
 
@@ -1800,7 +1798,7 @@ If you want to keep Spring Boot MVC features, and you just want to add additiona
 
 If you want to take complete control of Spring MVC, you can add your own `@Configuration` annotated with `@EnableWebMvc`.
 
-### 2、扩展SpringMVC
+### 扩展SpringMVC
 
 ```xml
     <mvc:view-controller path="/hello" view-name="success"/>
@@ -1832,9 +1830,9 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
 原理：
 
-​	1）、WebMvcAutoConfiguration是SpringMVC的自动配置类
+​	WebMvcAutoConfiguration是SpringMVC的自动配置类
 
-​	2）、在做其他自动配置时会导入；@Import(**EnableWebMvcConfiguration**.class)
+​	在做其他自动配置时会导入；@Import(**EnableWebMvcConfiguration**.class)
 
 ```java
     @Configuration
@@ -1857,13 +1855,13 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 	}
 ```
 
-​	3）、容器中所有的WebMvcConfigurer都会一起起作用；
+​	容器中所有的WebMvcConfigurer都会一起起作用；
 
-​	4）、我们的配置类也会被调用；
+​	我们的配置类也会被调用；
 
 ​	效果：SpringMVC的自动配置和我们的扩展配置都会起作用；
 
-### 3、全面接管SpringMVC；
+### 全面接管SpringMVC；
 
 SpringBoot对SpringMVC的自动配置不需要了，所有都是我们自己配置；所有的SpringMVC的自动配置都失效了
 
@@ -1895,14 +1893,14 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 public @interface EnableWebMvc {
 ```
 
-2）、
+
 
 ```java
 @Configuration
 public class DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport {
 ```
 
-3）、
+
 
 ```java
 @Configuration
@@ -1917,25 +1915,25 @@ public class DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport {
 public class WebMvcAutoConfiguration {
 ```
 
-4）、@EnableWebMvc将WebMvcConfigurationSupport组件导入进来；
+@EnableWebMvc将WebMvcConfigurationSupport组件导入进来；
 
-5）、导入的WebMvcConfigurationSupport只是SpringMVC最基本的功能；
+导入的WebMvcConfigurationSupport只是SpringMVC最基本的功能；
 
 
 
-## 5、如何修改SpringBoot的默认配置
+## 如何修改SpringBoot的默认配置
 
 模式：
 
-​	1）、SpringBoot在自动配置很多组件的时候，先看容器中有没有用户自己配置的（@Bean、@Component）如果有就用用户配置的，如果没有，才自动配置；如果有些组件可以有多个（ViewResolver）将用户配置的和自己默认的组合起来；
+​	SpringBoot在自动配置很多组件的时候，先看容器中有没有用户自己配置的（@Bean、@Component）如果有就用用户配置的，如果没有，才自动配置；如果有些组件可以有多个（ViewResolver）将用户配置的和自己默认的组合起来；
 
-​	2）、在SpringBoot中会有非常多的xxxConfigurer帮助我们进行扩展配置
+​	在SpringBoot中会有非常多的xxxConfigurer帮助我们进行扩展配置
 
-​	3）、在SpringBoot中会有很多的xxxCustomizer帮助我们进行定制配置
+​	在SpringBoot中会有很多的xxxCustomizer帮助我们进行定制配置
 
-## 6、RestfulCRUD
+## RestfulCRUD
 
-### 1）、默认访问首页
+### 默认访问首页
 
 ```java
 
@@ -1967,25 +1965,23 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
 ```
 
-### 2）、国际化
+### 国际化
 
-**1）、编写国际化配置文件；**
+**编写国际化配置文件；**
 
-2）、使用ResourceBundleMessageSource管理国际化资源文件
+使用ResourceBundleMessageSource管理国际化资源文件
 
-3）、在页面使用fmt:message取出国际化内容
+在页面使用fmt:message取出国际化内容
 
 
 
 步骤：
 
-1）、编写国际化配置文件，抽取页面需要显示的国际化消息
+编写国际化配置文件，抽取页面需要显示的国际化消息
 
 ![](images/搜狗截图20180211130721.png)
 
-
-
-2）、SpringBoot自动配置好了管理国际化资源文件的组件；
+SpringBoot自动配置好了管理国际化资源文件的组件；
 
 ```java
 @ConfigurationProperties(prefix = "spring.messages")
@@ -2018,13 +2014,9 @@ public class MessageSourceAutoConfiguration {
 	}
 ```
 
-
-
-3）、去页面获取国际化的值；
+去页面获取国际化的值；
 
 ![](images/搜狗截图20180211134506.png)
-
-
 
 ```html
 <!DOCTYPE html>
@@ -2067,8 +2059,6 @@ public class MessageSourceAutoConfiguration {
 
 效果：根据浏览器语言设置的信息切换了国际化；
 
-
-
 原理：
 
 ​	国际化Locale（区域信息对象）；LocaleResolver（获取区域信息对象）；
@@ -2089,7 +2079,7 @@ public class MessageSourceAutoConfiguration {
 默认的就是根据请求头带来的区域信息获取Locale进行国际化
 ```
 
-4）、点击链接切换国际化
+点击链接切换国际化
 
 ```java
 /**
@@ -2124,18 +2114,18 @@ public class MyLocaleResolver implements LocaleResolver {
 
 ```
 
-### 3）、登陆
+### 登陆
 
 开发期间模板引擎页面修改以后，要实时生效
 
-1）、禁用模板引擎的缓存
+禁用模板引擎的缓存
 
 ```
 # 禁用缓存
 spring.thymeleaf.cache=false
 ```
 
-2）、页面修改完成以后ctrl+f9：重新编译；
+页面修改完成以后ctrl+f9：重新编译；
 
 
 
@@ -2147,7 +2137,7 @@ spring.thymeleaf.cache=false
 
 
 
-### 4）、拦截器进行登陆检查
+### 拦截器进行登陆检查
 
 拦截器
 
@@ -2216,11 +2206,11 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
     }
 ```
 
-### 5）、CRUD-员工列表
+### CRUD-员工列表
 
 实验要求：
 
-1）、RestfulCRUD：CRUD满足Rest风格；
+RestfulCRUD：CRUD满足Rest风格；
 
 URI：  /资源名称/资源标识       HTTP请求方式区分对资源CRUD操作
 
@@ -2231,7 +2221,7 @@ URI：  /资源名称/资源标识       HTTP请求方式区分对资源CRUD操�
 | 修改 | updateEmp?id=xxx&xxx=xx   | emp/{id}---PUT    |
 | 删除 | deleteEmp?id=1            | emp/{id}---DELETE |
 
-2）、实验的请求架构;
+实验的请求架构;
 
 | 实验功能                             | 请求URI | 请求方式 |
 | ------------------------------------ | ------- | -------- |
@@ -2243,22 +2233,22 @@ URI：  /资源名称/资源标识       HTTP请求方式区分对资源CRUD操�
 | 修改员工                             | emp     | PUT      |
 | 删除员工                             | emp/1   | DELETE   |
 
-3）、员工列表：
+员工列表：
 
 #### thymeleaf公共页面元素抽取
 
 ```html
-1、抽取公共片段
+抽取公共片段
 <div th:fragment="copy">
 &copy; 2011 The Good Thymes Virtual Grocery
 </div>
 
-2、引入公共片段
+引入公共片段
 <div th:insert="~{footer :: copy}"></div>
 ~{templatename::selector}：模板名::选择器
 ~{templatename::fragmentname}:模板名::片段名
 
-3、默认效果：
+默认效果：
 insert的公共片段在div标签中
 如果使用th:insert等属性进行引入，可以不用写~{}：
 行内写法可以加上：[[~{}]];[(~{})]；
@@ -2327,7 +2317,7 @@ insert的公共片段在div标签中
 <div th:replace="commons/bar::#sidebar(activeUri='emps')"></div>
 ```
 
-### 6）、CRUD-员工添加
+### CRUD-员工添加
 
 添加页面
 
@@ -2380,7 +2370,7 @@ insert的公共片段在div标签中
 
 默认日期是按照/的方式；
 
-### 7）、CRUD-员工修改
+### CRUD-员工修改
 
 修改添加二合一表单
 
@@ -2389,9 +2379,9 @@ insert的公共片段在div标签中
 <form th:action="@{/emp}" method="post">
     <!--发送put请求修改员工数据-->
     <!--
-1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
-2、页面创建一个post表单
-3、创建一个input项，name="_method";值就是我们指定的请求方式
+SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
+页面创建一个post表单
+创建一个input项，name="_method";值就是我们指定的请求方式
 -->
     <input type="hidden" name="_method" value="put" th:if="${emp!=null}"/>
     <input type="hidden" name="id" th:if="${emp!=null}" th:value="${emp.id}">
@@ -2429,7 +2419,7 @@ insert的公共片段在div标签中
 </form>
 ```
 
-### 8）、CRUD-员工删除
+### CRUD-员工删除
 
 ```html
 <tr th:each="emp:${emps}">
@@ -2457,13 +2447,13 @@ insert的公共片段在div标签中
 
 
 
-## 7、错误处理机制
+## 错误处理机制
 
-### 1）、SpringBoot默认的错误处理机制
+### SpringBoot默认的错误处理机制
 
 默认效果：
 
-​		1）、浏览器，返回一个默认的错误页面
+​		浏览器，返回一个默认的错误页面
 
 ![](images/搜狗截图20180226173408.png)
 
@@ -2471,7 +2461,7 @@ insert的公共片段在div标签中
 
 ![](images/搜狗截图20180226180347.png)
 
-​		2）、如果是其他客户端，默认响应一个json数据
+​		如果是其他客户端，默认响应一个json数据
 
 ![](images/搜狗截图20180226173527.png)
 
@@ -2483,7 +2473,7 @@ insert的公共片段在div标签中
 
   	给容器中添加了以下组件
 
-​	1、DefaultErrorAttributes：
+​	DefaultErrorAttributes：
 
 ```java
 帮我们在页面共享信息；
@@ -2501,7 +2491,7 @@ insert的公共片段在div标签中
 
 
 
-​	2、BasicErrorController：处理默认/error请求
+​	BasicErrorController：处理默认/error请求
 
 ```java
 @Controller
@@ -2533,7 +2523,7 @@ public class BasicErrorController extends AbstractErrorController {
 
 
 
-​	3、ErrorPageCustomizer：
+​	ErrorPageCustomizer：
 
 ```java
 	@Value("${error.path:/error}")
@@ -2542,7 +2532,7 @@ public class BasicErrorController extends AbstractErrorController {
 
 
 
-​	4、DefaultErrorViewResolver：
+​	DefaultErrorViewResolver：
 
 ```java
 @Override
@@ -2593,11 +2583,11 @@ protected ModelAndView resolveErrorView(HttpServletRequest request,
 }
 ```
 
-### 2）、如果定制错误响应：
+### 如果定制错误响应：
 
-#### 	**1）、如何定制错误的页面；**
+#### 	**如何定制错误的页面；**
 
-​			**1）、有模板引擎的情况下；error/状态码;** 【将错误页面命名为  错误状态码.html 放在模板引擎文件夹里面的 error文件夹下】，发生此状态码的错误就会来到  对应的页面；
+​			**有模板引擎的情况下；error/状态码;** 【将错误页面命名为  错误状态码.html 放在模板引擎文件夹里面的 error文件夹下】，发生此状态码的错误就会来到  对应的页面；
 
 ​			我们可以使用4xx和5xx作为错误页面的文件名来匹配这种类型的所有错误，精确优先（优先寻找精确的状态码.html）；
 
@@ -2615,15 +2605,15 @@ protected ModelAndView resolveErrorView(HttpServletRequest request,
 
 ​				errors：JSR303数据校验的错误都在这里
 
-​			2）、没有模板引擎（模板引擎找不到这个错误页面），静态资源文件夹下找；
+​			没有模板引擎（模板引擎找不到这个错误页面），静态资源文件夹下找；
 
-​			3）、以上都没有错误页面，就是默认来到SpringBoot默认的错误提示页面；
+​			以上都没有错误页面，就是默认来到SpringBoot默认的错误提示页面；
 
 
 
-#### 	2）、如何定制错误的json数据；
+#### 	如何定制错误的json数据；
 
-​		1）、自定义异常处理&返回定制json数据；
+​		自定义异常处理&返回定制json数据；
 
 ```java
 @ControllerAdvice
@@ -2643,7 +2633,7 @@ public class MyExceptionHandler {
 
 
 
-​		2）、转发到/error进行自适应响应效果处理
+​		转发到/error进行自适应响应效果处理
 
 ```java
  @ExceptionHandler(UserNotExistException.class)
@@ -2662,13 +2652,13 @@ public class MyExceptionHandler {
     }
 ```
 
-#### 	3）、将我们的定制数据携带出去；
+#### 	将我们的定制数据携带出去；
 
 出现错误以后，会来到/error请求，会被BasicErrorController处理，响应出去可以获取的数据是由getErrorAttributes得到的（是AbstractErrorController（ErrorController）规定的方法）；
 
-​	1、完全来编写一个ErrorController的实现类【或者是编写AbstractErrorController的子类】，放在容器中；
+​	完全来编写一个ErrorController的实现类【或者是编写AbstractErrorController的子类】，放在容器中；
 
-​	2、页面上能用的数据，或者是json返回能用的数据都是通过errorAttributes.getErrorAttributes得到；
+​	页面上能用的数据，或者是json返回能用的数据都是通过errorAttributes.getErrorAttributes得到；
 
 ​			容器中DefaultErrorAttributes.getErrorAttributes()；默认进行数据处理的；
 
@@ -2694,7 +2684,7 @@ public class MyErrorAttributes extends DefaultErrorAttributes {
 
 
 
-## 8、配置嵌入式Servlet容器
+## 配置嵌入式Servlet容器
 
 SpringBoot默认使用Tomcat作为嵌入式的Servlet容器；
 
@@ -2704,9 +2694,9 @@ SpringBoot默认使用Tomcat作为嵌入式的Servlet容器；
 
 问题？
 
-### 1）、如何定制和修改Servlet容器的相关配置；
+### 如何定制和修改Servlet容器的相关配置；
 
-1、修改和server有关的配置（ServerProperties【也是EmbeddedServletContainerCustomizer】）；
+修改和server有关的配置（ServerProperties【也是EmbeddedServletContainerCustomizer】）；
 
 ```properties
 server.port=8081
@@ -2720,7 +2710,7 @@ server.xxx
 server.tomcat.xxx
 ```
 
-2、编写一个**EmbeddedServletContainerCustomizer**：嵌入式的Servlet容器的定制器；来修改Servlet容器的配置
+编写一个**EmbeddedServletContainerCustomizer**：嵌入式的Servlet容器的定制器；来修改Servlet容器的配置
 
 ```java
 @Bean  //一定要将这个定制器加入到容器中
@@ -2736,7 +2726,7 @@ public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer(){
 }
 ```
 
-### 2）、注册Servlet三大组件【Servlet、Filter、Listener】
+### 注册Servlet三大组件【Servlet、Filter、Listener】
 
 由于SpringBoot默认是以jar包的方式启动嵌入式的Servlet容器来启动SpringBoot的web应用，没有web.xml文件。
 
@@ -2803,9 +2793,9 @@ public ServletRegistrationBean dispatcherServletRegistration(
 
 ```
 
-2）、SpringBoot能不能支持其他的Servlet容器；
+SpringBoot能不能支持其他的Servlet容器；
 
-### 3）、替换为其他嵌入式Servlet容器
+### 替换为其他嵌入式Servlet容器
 
 ![](images/搜狗截图20180302114401.png)
 
@@ -2865,7 +2855,7 @@ Undertow
 </dependency>
 ```
 
-### 4）、嵌入式Servlet容器自动配置原理；
+### 嵌入式Servlet容器自动配置原理；
 
 
 
@@ -2925,7 +2915,7 @@ public class EmbeddedServletContainerAutoConfiguration {
 	}
 ```
 
-1）、EmbeddedServletContainerFactory（嵌入式Servlet容器工厂）
+EmbeddedServletContainerFactory（嵌入式Servlet容器工厂）
 
 ```java
 public interface EmbeddedServletContainerFactory {
@@ -2939,13 +2929,13 @@ public interface EmbeddedServletContainerFactory {
 
 ![](images/搜狗截图20180302144835.png)
 
-2）、EmbeddedServletContainer：（嵌入式的Servlet容器）
+EmbeddedServletContainer：（嵌入式的Servlet容器）
 
 ![](images/搜狗截图20180302144910.png)
 
 
 
-3）、以**TomcatEmbeddedServletContainerFactory**为例
+以**TomcatEmbeddedServletContainerFactory**为例
 
 ```java
 @Override
@@ -2974,7 +2964,7 @@ public EmbeddedServletContainer getEmbeddedServletContainer(
 }
 ```
 
-4）、我们对嵌入式容器的配置修改是怎么生效？
+我们对嵌入式容器的配置修改是怎么生效？
 
 ```
 ServerProperties、EmbeddedServletContainerCustomizer
@@ -2986,7 +2976,7 @@ ServerProperties、EmbeddedServletContainerCustomizer
 
 怎么修改的原理？
 
-5）、容器中导入了**EmbeddedServletContainerCustomizerBeanPostProcessor**
+容器中导入了**EmbeddedServletContainerCustomizerBeanPostProcessor**
 
 ```java
 //初始化之前
@@ -3030,27 +3020,27 @@ ServerProperties也是定制器
 
 步骤：
 
-1）、SpringBoot根据导入的依赖情况，给容器中添加相应的EmbeddedServletContainerFactory【TomcatEmbeddedServletContainerFactory】
+SpringBoot根据导入的依赖情况，给容器中添加相应的EmbeddedServletContainerFactory【TomcatEmbeddedServletContainerFactory】
 
-2）、容器中某个组件要创建对象就会惊动后置处理器；EmbeddedServletContainerCustomizerBeanPostProcessor；
+容器中某个组件要创建对象就会惊动后置处理器；EmbeddedServletContainerCustomizerBeanPostProcessor；
 
 只要是嵌入式的Servlet容器工厂，后置处理器就工作；
 
-3）、后置处理器，从容器中获取所有的**EmbeddedServletContainerCustomizer**，调用定制器的定制方法
+后置处理器，从容器中获取所有的**EmbeddedServletContainerCustomizer**，调用定制器的定制方法
 
 
 
-###5）、嵌入式Servlet容器启动原理；
+###嵌入式Servlet容器启动原理；
 
 什么时候创建嵌入式的Servlet容器工厂？什么时候获取嵌入式的Servlet容器并启动Tomcat；
 
 获取嵌入式的Servlet容器工厂：
 
-1）、SpringBoot应用启动运行run方法
+SpringBoot应用启动运行run方法
 
-2）、refreshContext(context);SpringBoot刷新IOC容器【创建IOC容器对象，并初始化容器，创建容器中的每一个组件】；如果是web应用创建**AnnotationConfigEmbeddedWebApplicationContext**，否则：**AnnotationConfigApplicationContext**
+refreshContext(context);SpringBoot刷新IOC容器【创建IOC容器对象，并初始化容器，创建容器中的每一个组件】；如果是web应用创建**AnnotationConfigEmbeddedWebApplicationContext**，否则：**AnnotationConfigApplicationContext**
 
-3）、refresh(context);**刷新刚才创建好的ioc容器；**
+refresh(context);**刷新刚才创建好的ioc容器；**
 
 ```java
 public void refresh() throws BeansException, IllegalStateException {
@@ -3118,19 +3108,19 @@ public void refresh() throws BeansException, IllegalStateException {
 }
 ```
 
-4）、  onRefresh(); web的ioc容器重写了onRefresh方法
+  onRefresh(); web的ioc容器重写了onRefresh方法
 
-5）、webioc容器会创建嵌入式的Servlet容器；**createEmbeddedServletContainer**();
+webioc容器会创建嵌入式的Servlet容器；**createEmbeddedServletContainer**();
 
-**6）、获取嵌入式的Servlet容器工厂：**
+**获取嵌入式的Servlet容器工厂：**
 
 EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFactory();
 
 ​	从ioc容器中获取EmbeddedServletContainerFactory 组件；**TomcatEmbeddedServletContainerFactory**创建对象，后置处理器一看是这个对象，就获取所有的定制器来先定制Servlet容器的相关配置；
 
-7）、**使用容器工厂获取嵌入式的Servlet容器**：this.embeddedServletContainer = containerFactory      .getEmbeddedServletContainer(getSelfInitializer());
+**使用容器工厂获取嵌入式的Servlet容器**：this.embeddedServletContainer = containerFactory      .getEmbeddedServletContainer(getSelfInitializer());
 
-8）、嵌入式的Servlet容器创建对象并启动Servlet容器；
+嵌入式的Servlet容器创建对象并启动Servlet容器；
 
 **先启动嵌入式的Servlet容器，再将ioc容器中剩下没有创建出的对象获取出来；**
 
@@ -3138,11 +3128,11 @@ EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFa
 
 
 
-## 9、使用外置的Servlet容器
+## 使用外置的Servlet容器
 
 嵌入式Servlet容器：应用打成可执行的jar
 
-​		优点：简单、便携；
+​		优点：简便携；
 
 ​		缺点：默认不支持JSP、优化定制比较复杂（使用定制器【ServerProperties、自定义EmbeddedServletContainerCustomizer】，自己编写嵌入式Servlet容器的创建工厂【EmbeddedServletContainerFactory】）；
 
@@ -3152,9 +3142,9 @@ EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFa
 
 ### 步骤
 
-1）、必须创建一个war项目；（利用idea创建好目录结构）
+必须创建一个war项目；（利用idea创建好目录结构）
 
-2）、将嵌入式的Tomcat指定为provided；
+将嵌入式的Tomcat指定为provided；
 
 ```xml
 <dependency>
@@ -3164,7 +3154,7 @@ EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFa
 </dependency>
 ```
 
-3）、必须编写一个**SpringBootServletInitializer**的子类，并调用configure方法
+必须编写一个**SpringBootServletInitializer**的子类，并调用configure方法
 
 ```java
 public class ServletInitializer extends SpringBootServletInitializer {
@@ -3178,7 +3168,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 }
 ```
 
-4）、启动服务器就可以使用；
+启动服务器就可以使用；
 
 ### 原理
 
@@ -3194,36 +3184,36 @@ servlet3.0（Spring注解版）：
 
 规则：
 
-​	1）、服务器启动（web应用启动）会创建当前web应用里面每一个jar包里面ServletContainerInitializer实例：
+​	服务器启动（web应用启动）会创建当前web应用里面每一个jar包里面ServletContainerInitializer实例：
 
-​	2）、ServletContainerInitializer的实现放在jar包的META-INF/services文件夹下，有一个名为javax.servlet.ServletContainerInitializer的文件，内容就是ServletContainerInitializer的实现类的全类名
+​	ServletContainerInitializer的实现放在jar包的META-INF/services文件夹下，有一个名为javax.servlet.ServletContainerInitializer的文件，内容就是ServletContainerInitializer的实现类的全类名
 
-​	3）、还可以使用@HandlesTypes，在应用启动的时候加载我们感兴趣的类；
+​	还可以使用@HandlesTypes，在应用启动的时候加载我们感兴趣的类；
 
 
 
 流程：
 
-1）、启动Tomcat
+启动Tomcat
 
-2）、org\springframework\spring-web\4.3.14.RELEASE\spring-web-4.3.14.RELEASE.jar!\META-INF\services\javax.servlet.ServletContainerInitializer：
+org\springframework\spring-web\4.3.14.RELEASE\spring-web-4.3.14.RELEASE.jar!\META-INF\services\javax.servlet.ServletContainerInitializer：
 
 Spring的web模块里面有这个文件：**org.springframework.web.SpringServletContainerInitializer**
 
-3）、SpringServletContainerInitializer将@HandlesTypes(WebApplicationInitializer.class)标注的所有这个类型的类都传入到onStartup方法的Set<Class<?>>；为这些WebApplicationInitializer类型的类创建实例；
+SpringServletContainerInitializer将@HandlesTypes(WebApplicationInitializer.class)标注的所有这个类型的类都传入到onStartup方法的Set<Class<?>>；为这些WebApplicationInitializer类型的类创建实例；
 
-4）、每一个WebApplicationInitializer都调用自己的onStartup；
+每一个WebApplicationInitializer都调用自己的onStartup；
 
 ![](images/搜狗截图20180302221835.png)
 
-5）、相当于我们的SpringBootServletInitializer的类会被创建对象，并执行onStartup方法
+相当于我们的SpringBootServletInitializer的类会被创建对象，并执行onStartup方法
 
-6）、SpringBootServletInitializer实例执行onStartup的时候会createRootApplicationContext；创建容器
+SpringBootServletInitializer实例执行onStartup的时候会createRootApplicationContext；创建容器
 
 ```java
 protected WebApplicationContext createRootApplicationContext(
       ServletContext servletContext) {
-    //1、创建SpringApplicationBuilder
+    //创建SpringApplicationBuilder
    SpringApplicationBuilder builder = createSpringApplicationBuilder();
    StandardServletEnvironment environment = new StandardServletEnvironment();
    environment.initPropertySources(servletContext, null);
@@ -3261,7 +3251,7 @@ protected WebApplicationContext createRootApplicationContext(
 }
 ```
 
-7）、Spring的应用就启动并且创建IOC容器
+Spring的应用就启动并且创建IOC容器
 
 ```java
 public ConfigurableApplicationContext run(String... args) {
@@ -3305,9 +3295,9 @@ public ConfigurableApplicationContext run(String... args) {
 
 
 
-# 五、Docker
+# Docker
 
-## 1、简介
+## 简介
 
 **Docker**是一个开源的应用容器引擎；是一个轻量级容器技术；
 
@@ -3321,7 +3311,7 @@ Docker支持将软件编译成一个镜像；然后在镜像中各种软件做�
 
 ![](images/搜狗截图20180303145531.png)
 
-## 2、核心概念
+## 核心概念
 
 docker主机(Host)：安装了Docker程序的机器（Docker直接安装在操作系统之上）；
 
@@ -3337,68 +3327,68 @@ docker容器(Container)：镜像启动后的实例称为一个容器；容器是
 
 使用Docker的步骤：
 
-1）、安装Docker
+安装Docker
 
-2）、去Docker仓库找到这个软件对应的镜像；
+去Docker仓库找到这个软件对应的镜像；
 
-3）、使用Docker运行这个镜像，这个镜像就会生成一个Docker容器；
+使用Docker运行这个镜像，这个镜像就会生成一个Docker容器；
 
-4）、对容器的启动停止就是对软件的启动停止；
+对容器的启动停止就是对软件的启动停止；
 
-## 3、安装Docker
+## 安装Docker
 
-#### 1）、安装linux虚拟机
+#### 安装linux虚拟机
 
-​	1）、VMWare、VirtualBox（安装）；
+​	VMWare、VirtualBox（安装）；
 
-​	2）、导入虚拟机文件centos7-atguigu.ova；
+​	导入虚拟机文件centos7-atguigu.ova；
 
-​	3）、双击启动linux虚拟机;使用  root/ 123456登陆
+​	双击启动linux虚拟机;使用  root/ 123456登陆
 
-​	4）、使用客户端连接linux服务器进行命令操作；
+​	使用客户端连接linux服务器进行命令操作；
 
-​	5）、设置虚拟机网络；
+​	设置虚拟机网络；
 
 ​		桥接网络===选好网卡====接入网线；
 
-​	6）、设置好网络以后使用命令重启虚拟机的网络
+​	设置好网络以后使用命令重启虚拟机的网络
 
 ```shell
 service network restart
 ```
 
-​	7）、查看linux的ip地址
+​	查看linux的ip地址
 
 ```shell
 ip addr
 ```
 
-​	8）、使用客户端连接linux；
+​	使用客户端连接linux；
 
-#### 2）、在linux虚拟机上安装docker
+#### 在linux虚拟机上安装docker
 
 步骤：
 
 ```shell
-1、检查内核版本，必须是3.10及以上
+检查内核版本，必须是3.10及以上
 uname -r
-2、安装docker
+安装docker
 yum install docker
-3、输入y确认安装
-4、启动docker
+输入y确认安装
+启动docker
 [root@localhost ~]# systemctl start docker
 [root@localhost ~]# docker -v
 Docker version 1.12.6, build 3e8e77d/1.12.6
-5、开机启动docker
+开机启动docker
 [root@localhost ~]# systemctl enable docker
 Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.
-6、停止docker
+停止docker
 systemctl stop docker
 ```
 
-## 4、Docker常用命令&操作
+## Docker常用命令&操作
 
-### 1）、镜像操作
+### 镜像操作
 
 | 操作 | 命令                                            | 说明                                                     |
 | ---- | ----------------------------------------------- | -------------------------------------------------------- |
@@ -3409,38 +3399,38 @@ systemctl stop docker
 
 https://hub.docker.com/
 
-### 2）、容器操作
+### 容器操作
 
 软件镜像（QQ安装程序）----运行镜像----产生一个容器（正在运行的软件，运行的QQ）；
 
 步骤：
 
 ````shell
-1、搜索镜像
+搜索镜像
 [root@localhost ~]# docker search tomcat
-2、拉取镜像
+拉取镜像
 [root@localhost ~]# docker pull tomcat
-3、根据镜像启动容器
+根据镜像启动容器
 docker run --name mytomcat -d tomcat:latest
-4、docker ps
+docker ps
 查看运行中的容器
-5、 停止运行中的容器
+ 停止运行中的容器
 docker stop  容器的id
-6、查看所有的容器
+查看所有的容器
 docker ps -a
-7、启动容器
+启动容器
 docker start 容器id
-8、删除一个容器
+删除一个容器
  docker rm 容器id
-9、启动一个做了端口映射的tomcat
+启动一个做了端口映射的tomcat
 [root@localhost ~]# docker run -d -p 8888:8080 tomcat
 -d：后台运行
 -p: 将主机的端口映射到容器的一个端口    主机端口:容器内部的端口
 
-10、为了演示简单关闭了linux的防火墙
+1为了演示简单关闭了linux的防火墙
 service firewalld status ；查看防火墙状态
 service firewalld stop：关闭防火墙
-11、查看容器的日志
+1查看容器的日志
 docker logs container-name/container-id
 
 更多命令参看
@@ -3451,7 +3441,7 @@ https://docs.docker.com/engine/reference/commandline/docker/
 
 
 
-### 3）、安装MySQL示例
+### 安装MySQL示例
 
 ```shell
 docker pull mysql
@@ -3516,9 +3506,9 @@ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --
 
 
 
-# 六、SpringBoot与数据访问
+# SpringBoot与数据访问
 
-## 1、JDBC
+## JDBC
 
 ```xml
 <dependency>
@@ -3553,15 +3543,15 @@ spring:
 
 org.springframework.boot.autoconfigure.jdbc：
 
-1、参考DataSourceConfiguration，根据配置创建数据源，默认使用Tomcat连接池；可以使用spring.datasource.type指定自定义的数据源类型；
+参考DataSourceConfiguration，根据配置创建数据源，默认使用Tomcat连接池；可以使用spring.datasource.type指定自定义的数据源类型；
 
-2、SpringBoot默认可以支持；
+SpringBoot默认可以支持；
 
 ```
 org.apache.tomcat.jdbc.pool.DataSource、HikariDataSource、BasicDataSource、
 ```
 
-3、自定义数据源类型
+自定义数据源类型
 
 ```java
 /**
@@ -3580,13 +3570,13 @@ static class Generic {
 }
 ```
 
-4、**DataSourceInitializer：ApplicationListener**；
+**DataSourceInitializer：ApplicationListener**；
 
 ​	作用：
 
-​		1）、runSchemaScripts();运行建表语句；
+​		runSchemaScripts();运行建表语句；
 
-​		2）、runDataScripts();运行插入数据的sql语句；
+​		runDataScripts();运行插入数据的sql语句；
 
 默认只需要将文件命名为：
 
@@ -3599,9 +3589,9 @@ schema-*.sql、data-*.sql
       指定位置
 ```
 
-5、操作数据库：自动配置了JdbcTemplate操作数据库
+操作数据库：自动配置了JdbcTemplate操作数据库
 
-## 2、整合Druid数据源
+## 整合Druid数据源
 
 ```java
 导入druid数据源
@@ -3615,7 +3605,7 @@ public class DruidConfig {
     }
 
     //配置Druid的监控
-    //1、配置一个管理后台的Servlet
+    //配置一个管理后台的Servlet
     @Bean
     public ServletRegistrationBean statViewServlet(){
         ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
@@ -3631,7 +3621,7 @@ public class DruidConfig {
     }
 
 
-    //2、配置一个web监控的filter
+    //配置一个web监控的filter
     @Bean
     public FilterRegistrationBean webStatFilter(){
         FilterRegistrationBean bean = new FilterRegistrationBean();
@@ -3650,7 +3640,7 @@ public class DruidConfig {
 
 ```
 
-## 3、整合MyBatis
+## 整合MyBatis
 
 ```xml
 		<dependency>
@@ -3664,13 +3654,13 @@ public class DruidConfig {
 
 步骤：
 
-​	1）、配置数据源相关属性（见上一节Druid）
+​	配置数据源相关属性（见上一节Druid）
 
-​	2）、给数据库建表
+​	给数据库建表
 
-​	3）、创建JavaBean
+​	创建JavaBean
 
-### 	4）、注解版
+### 	注解版
 
 ```java
 //指定这是一个操作数据库的mapper
@@ -3727,7 +3717,7 @@ public class SpringBoot06DataMybatisApplication {
 }
 ```
 
-### 5）、配置文件版
+### 配置文件版
 
 ```yaml
 mybatis:
@@ -3741,17 +3731,17 @@ http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
 
 
 
-## 4、整合SpringData JPA
+## 整合SpringData JPA
 
-### 1）、SpringData简介
+### SpringData简介
 
 ![](images/搜狗截图20180306105412.png)
 
-### 2）、整合SpringData JPA
+### 整合SpringData JPA
 
 JPA:ORM（Object Relational Mapping）；
 
-1）、编写一个实体类（bean）和数据表进行映射，并且配置好映射关系；
+编写一个实体类（bean）和数据表进行映射，并且配置好映射关系；
 
 ```java
 //使用JPA注解配置映射关系
@@ -3769,7 +3759,7 @@ public class User {
     private String email;
 ```
 
-2）、编写一个Dao接口来操作实体类对应的数据表（Repository）
+编写一个Dao接口来操作实体类对应的数据表（Repository）
 
 ```java
 //继承JpaRepository来完成对数据库的操作
@@ -3778,7 +3768,7 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
 ```
 
-3）、基本的配置JpaProperties
+基本的配置JpaProperties
 
 ```yaml
 spring:
@@ -3792,7 +3782,7 @@ spring:
 
 
 
-# 七、启动配置原理
+# 启动配置原理
 
 几个重要的事件回调机制
 
@@ -3814,7 +3804,7 @@ spring:
 
 启动流程：
 
-## **1、创建SpringApplication对象**
+## **创建SpringApplication对象**
 
 ```java
 initialize(sources);
@@ -3839,7 +3829,7 @@ private void initialize(Object[] sources) {
 
 ![](images/搜狗截图20180306145855.png)
 
-## 2、运行run方法
+## 运行run方法
 
 ```java
 public ConfigurableApplicationContext run(String... args) {
@@ -3899,7 +3889,7 @@ public ConfigurableApplicationContext run(String... args) {
 }
 ```
 
-## 3、事件监听机制
+## 事件监听机制
 
 配置在META-INF/spring.factories
 
@@ -3998,13 +3988,13 @@ public class HelloCommandLineRunner implements CommandLineRunner {
 
 
 
-# 八、自定义starter
+# 自定义starter
 
 starter：
 
-​	1、这个场景需要使用到的依赖是什么？
+​	这个场景需要使用到的依赖是什么？
 
-​	2、如何编写自动配置
+​	如何编写自动配置
 
 ```java
 @Configuration  //指定这个类是一个配置类
@@ -4022,7 +4012,7 @@ org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfig
 org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
 ```
 
-​	3、模式：
+​	模式：
 
 启动器只用来做依赖导入；
 
@@ -4036,7 +4026,7 @@ mybatis-spring-boot-starter；自定义启动器名-spring-boot-starter
 
 步骤：
 
-1）、启动器模块
+启动器模块
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -4063,7 +4053,7 @@ mybatis-spring-boot-starter；自定义启动器名-spring-boot-starter
 </project>
 ```
 
-2）、自动配置模块
+自动配置模块
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
