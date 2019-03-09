@@ -471,8 +471,8 @@ server:
 
 ```yaml
 friends:
-		lastName: zhangsan
-		age: 20
+	lastName: zhangsan
+	age: 20
 ```
 
 行内写法：
