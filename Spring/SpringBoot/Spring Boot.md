@@ -1,5 +1,132 @@
 # 一、Spring Boot 入门
 
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<!-- code_chunk_output -->
+
+* [一、Spring Boot 入门](#一-spring-boot-入门)
+	* [1、Spring Boot 简介](#1-spring-boot-简介)
+	* [2、微服务](#2-微服务)
+	* [3、环境准备](#3-环境准备)
+		* [1、MAVEN设置；](#1-maven设置)
+	* [4、Spring Boot HelloWorld](#4-spring-boot-helloworld)
+		* [1、创建一个maven工程；（jar）](#1-创建一个maven工程jar)
+		* [2、导入spring boot相关的依赖](#2-导入spring-boot相关的依赖)
+		* [3、编写一个主程序；启动Spring Boot应用](#3-编写一个主程序启动spring-boot应用)
+		* [4、编写相关的Controller、Service](#4-编写相关的controller-service)
+		* [5、运行主程序测试](#5-运行主程序测试)
+		* [6、简化部署](#6-简化部署)
+	* [5、Hello World探究](#5-hello-world探究)
+		* [1、POM文件](#1-pom文件)
+			* [1、父项目](#1-父项目)
+			* [2、启动器](#2-启动器)
+		* [2、主程序类，主入口类](#2-主程序类主入口类)
+			* [*将主配置类（@SpringBootApplication标注的类）所在包及下面所有子包里面的所有组件扫描到Spring容器中；*](#将主配置类springbootapplication标注的类所在包及下面所有子包里面的所有组件扫描到spring容器中)
+	* [6、使用Spring Initializer快速创建Spring Boot项目](#6-使用spring-initializer快速创建spring-boot项目)
+		* [1、IDEA：使用 Spring Initializer快速创建项目](#1-idea使用-spring-initializer快速创建项目)
+		* [2、STS使用 Spring Starter Project快速创建项目](#2-sts使用-spring-starter-project快速创建项目)
+* [二、配置文件](#二-配置文件)
+	* [1、配置文件](#1-配置文件)
+	* [2、YAML语法：](#2-yaml语法)
+		* [1、基本语法](#1-基本语法)
+		* [2、值的写法](#2-值的写法)
+			* [字面量：普通的值（数字，字符串，布尔）](#字面量普通的值数字字符串布尔)
+			* [对象、Map（属性和值）（键值对）：](#对象-map属性和值键值对)
+			* [数组（List、Set）：](#数组list-set)
+	* [3、配置文件值注入](#3-配置文件值注入)
+			* [1、properties配置文件在idea中默认utf-8可能会乱码](#1-properties配置文件在idea中默认utf-8可能会乱码)
+			* [2、@Value获取值和@ConfigurationProperties获取值比较](#2-value获取值和configurationproperties获取值比较)
+			* [3、配置文件注入值数据校验](#3-配置文件注入值数据校验)
+			* [4、@PropertySource&@ImportResource&@Bean](#4-propertysourceimportresourcebean)
+	* [4、配置文件占位符](#4-配置文件占位符)
+		* [1、随机数](#1-随机数)
+		* [2、占位符获取之前配置的值，如果没有可以是用:指定默认值](#2-占位符获取之前配置的值如果没有可以是用指定默认值)
+	* [5、Profile](#5-profile)
+		* [1、多Profile文件](#1-多profile文件)
+		* [2、yml支持多文档块方式](#2-yml支持多文档块方式)
+		* [3、激活指定profile](#3-激活指定profile)
+	* [6、配置文件加载位置](#6-配置文件加载位置)
+	* [7、外部配置加载顺序](#7-外部配置加载顺序)
+	* [8、自动配置原理](#8-自动配置原理)
+		* [1、**自动配置原理：**](#1-自动配置原理)
+		* [2、细节](#2-细节)
+			* [1、@Conditional派生注解（Spring注解版原生的@Conditional作用）](#1-conditional派生注解spring注解版原生的conditional作用)
+* [三、日志](#三-日志)
+	* [1、日志框架](#1-日志框架)
+	* [2、SLF4j使用](#2-slf4j使用)
+		* [1、如何在系统中使用SLF4j   https://www.slf4j.org](#1-如何在系统中使用slf4j-httpswwwslf4jorg)
+		* [2、遗留问题](#2-遗留问题)
+	* [3、SpringBoot日志关系](#3-springboot日志关系)
+	* [4、日志使用；](#4-日志使用)
+		* [1、默认配置](#1-默认配置)
+		* [2、指定配置](#2-指定配置)
+	* [5、切换日志框架](#5-切换日志框架)
+* [四、Web开发](#四-web开发)
+	* [1、简介](#1-简介)
+	* [2、SpringBoot对静态资源的映射规则；](#2-springboot对静态资源的映射规则)
+	* [3、模板引擎](#3-模板引擎)
+		* [1、引入thymeleaf；](#1-引入thymeleaf)
+		* [2、Thymeleaf使用](#2-thymeleaf使用)
+		* [3、语法规则](#3-语法规则)
+	* [4、SpringMVC自动配置](#4-springmvc自动配置)
+		* [1. Spring MVC auto-configuration](#1-spring-mvc-auto-configuration)
+		* [2、扩展SpringMVC](#2-扩展springmvc)
+		* [3、全面接管SpringMVC；](#3-全面接管springmvc)
+	* [5、如何修改SpringBoot的默认配置](#5-如何修改springboot的默认配置)
+	* [6、RestfulCRUD](#6-restfulcrud)
+		* [1）、默认访问首页](#1-默认访问首页)
+		* [2）、国际化](#2-国际化)
+		* [3）、登陆](#3-登陆)
+		* [4）、拦截器进行登陆检查](#4-拦截器进行登陆检查)
+		* [5）、CRUD-员工列表](#5-crud-员工列表)
+			* [thymeleaf公共页面元素抽取](#thymeleaf公共页面元素抽取)
+		* [6）、CRUD-员工添加](#6-crud-员工添加)
+		* [7）、CRUD-员工修改](#7-crud-员工修改)
+		* [8）、CRUD-员工删除](#8-crud-员工删除)
+	* [7、错误处理机制](#7-错误处理机制)
+		* [1）、SpringBoot默认的错误处理机制](#1-springboot默认的错误处理机制)
+		* [2）、如果定制错误响应：](#2-如果定制错误响应)
+			* [**1）、如何定制错误的页面；**](#1-如何定制错误的页面)
+			* [2）、如何定制错误的json数据；](#2-如何定制错误的json数据)
+			* [3）、将我们的定制数据携带出去；](#3-将我们的定制数据携带出去)
+	* [8、配置嵌入式Servlet容器](#8-配置嵌入式servlet容器)
+		* [1）、如何定制和修改Servlet容器的相关配置；](#1-如何定制和修改servlet容器的相关配置)
+		* [2）、注册Servlet三大组件【Servlet、Filter、Listener】](#2-注册servlet三大组件servlet-filter-listener)
+		* [3）、替换为其他嵌入式Servlet容器](#3-替换为其他嵌入式servlet容器)
+		* [4）、嵌入式Servlet容器自动配置原理；](#4-嵌入式servlet容器自动配置原理)
+		* [5）、嵌入式Servlet容器启动原理；](#5-嵌入式servlet容器启动原理)
+	* [9、使用外置的Servlet容器](#9-使用外置的servlet容器)
+		* [步骤](#步骤)
+		* [原理](#原理)
+* [五、Docker](#五-docker)
+	* [1、简介](#1-简介-1)
+	* [2、核心概念](#2-核心概念)
+	* [3、安装Docker](#3-安装docker)
+			* [1）、安装linux虚拟机](#1-安装linux虚拟机)
+			* [2）、在linux虚拟机上安装docker](#2-在linux虚拟机上安装docker)
+	* [4、Docker常用命令&操作](#4-docker常用命令操作)
+		* [1）、镜像操作](#1-镜像操作)
+		* [2）、容器操作](#2-容器操作)
+		* [3）、安装MySQL示例](#3-安装mysql示例)
+* [六、SpringBoot与数据访问](#六-springboot与数据访问)
+	* [1、JDBC](#1-jdbc)
+	* [2、整合Druid数据源](#2-整合druid数据源)
+	* [3、整合MyBatis](#3-整合mybatis)
+		* [4）、注解版](#4-注解版)
+		* [5）、配置文件版](#5-配置文件版)
+	* [4、整合SpringData JPA](#4-整合springdata-jpa)
+		* [1）、SpringData简介](#1-springdata简介)
+		* [2）、整合SpringData JPA](#2-整合springdata-jpa)
+* [七、启动配置原理](#七-启动配置原理)
+	* [**1、创建SpringApplication对象**](#1-创建springapplication对象)
+	* [2、运行run方法](#2-运行run方法)
+	* [3、事件监听机制](#3-事件监听机制)
+* [八、自定义starter](#八-自定义starter)
+* [更多SpringBoot整合示例](#更多springboot整合示例)
+
+<!-- /code_chunk_output -->
+
+
 ## 1、Spring Boot 简介
 
 > 简化Spring应用开发的一个框架；
@@ -441,13 +568,11 @@ public class Person {
 | JSR303数据校验       | 支持                     | 不支持     |
 | 复杂类型封装         | 支持                     | 不支持     |
 
-配置文件yml还是properties他们都能获取到值；
+配置文件yml和properties他们都能获取到值；
 
 如果说，我们只是在某个业务逻辑中需要获取一下配置文件中的某项值，使用@Value；
 
 如果说，我们专门编写了一个javaBean来和配置文件进行映射，我们就直接使用@ConfigurationProperties；
-
-
 
 #### 3、配置文件注入值数据校验
 
@@ -478,22 +603,18 @@ public class Person {
     private Dog dog;
 ```
 
+#### 4、@PropertySource & @ImportResource & @Bean
 
-
-#### 4、@PropertySource&@ImportResource&@Bean
-
-@**PropertySource**：加载指定的配置文件；
+**@PropertySource**：加载指定的配置文件；
 
 ```java
-/**
  * 将配置文件中配置的每一个属性的值，映射到这个组件中
  * @ConfigurationProperties：告诉SpringBoot将本类中的所有属性和配置文件中相关的配置进行绑定；
  *      prefix = "person"：配置文件中哪个下面的所有属性进行一一映射
  *
  * 只有这个组件是容器中的组件，才能容器提供的@ConfigurationProperties功能；
  *  @ConfigurationProperties(prefix = "person")默认从全局配置文件中获取值；
- *
- */
+
 @PropertySource(value = {"classpath:person.properties"})
 @Component
 @ConfigurationProperties(prefix = "person")
@@ -519,20 +640,18 @@ public class Person {
 
 
 
-@**ImportResource**：导入Spring的配置文件，让配置文件里面的内容生效；
+**@ImportResource**：导入Spring的配置文件，让配置文件里面的内容生效；
 
 Spring Boot里面没有Spring的配置文件，我们自己编写的配置文件，也不能自动识别；
 
-想让Spring的配置文件生效，加载进来；@**ImportResource**标注在一个配置类上
+想让Spring的配置文件生效，加载进来；**@ImportResource**标注在一个配置类上
 
 ```java
 @ImportResource(locations = {"classpath:beans.xml"})
 导入Spring的配置文件让其生效
 ```
 
-
-
-不来编写Spring的配置文件
+不推荐编写Spring的配置文件, 使用@Configuration和@Bean注解
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -552,16 +671,14 @@ SpringBoot推荐给容器中添加组件的方式；推荐使用全注解的方�
 2、使用**@Bean**给容器中添加组件
 
 ```java
-/**
  * @Configuration：指明当前类是一个配置类；就是来替代之前的Spring配置文件
  *
- * 在配置文件中用<bean><bean/>标签添加组件
- *
- */
+ * 在配置文件中用<bean></bean>标签添加组件
+
 @Configuration
 public class MyAppConfig {
 
-    //将方法的返回值添加到容器中；容器中这个组件默认的id就是方法名
+    将方法的返回值添加到容器中；容器中这个组件默认的id就是方法名
     @Bean
     public HelloService helloService02(){
         System.out.println("配置类@Bean给容器中添加组件了...");
@@ -577,12 +694,9 @@ public class MyAppConfig {
 ```java
 ${random.value}、${random.int}、${random.long}
 ${random.int(10)}、${random.int[1024,65536]}
-
 ```
 
-
-
-### 2、占位符获取之前配置的值，如果没有可以是用:指定默认值
+### 2、占位符获取之前配置的值，如果没有可以用:指定默认值
 
 ```properties
 person.last-name=张三${random.uuid}
@@ -592,38 +706,33 @@ person.boss=false
 person.maps.k1=v1
 person.maps.k2=14
 person.lists=a,b,c
-person.dog.name=${person.hello:hello}_dog
+person.dog.name=${person.hello:hello}_dog 配置文件对应的person类中没有hello属性, 默认使用 hello
 person.dog.age=15
 ```
-
-
 
 ## 5、Profile
 
 ### 1、多Profile文件
 
-我们在主配置文件编写的时候，文件名可以是   application-{profile}.properties/yml
+我们在主配置文件编写的时候，文件名可以是application-{profile}.properties/yml
 
-默认使用application.properties的配置；
+默认使用application.properties中的配置；
 
-
-
-### 2、yml支持多文档块方式
+### 2、yml支持多文档块方式代替properties文件的多文件方式
 
 ```yml
-
 server:
   port: 8081
 spring:
   profiles:
     active: prod
 
----
+--- # 文档快分隔
+
 server:
   port: 8083
 spring:
   profiles: dev
-
 
 ---
 
@@ -633,15 +742,11 @@ spring:
   profiles: prod  #指定属于哪个环境
 ```
 
-
-
-
-
 ### 3、激活指定profile
 
 ​	1、在配置文件中指定  spring.profiles.active=dev
 
-​	2、命令行：
+​	2、命令行： 会覆盖配置文件中的指定环境
 
 ​		java -jar spring-boot-02-config-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev；
 
@@ -651,11 +756,9 @@ spring:
 
 ​		-Dspring.profiles.active=dev
 
-
-
 ## 6、配置文件加载位置
 
-springboot 启动会扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件
+springboot 启动时会*依次*扫描以下位置的application.properties或者application.yml文件作为Spring boot的默认配置文件
 
 –file:./config/
 
@@ -667,11 +770,11 @@ springboot 启动会扫描以下位置的application.properties或者application
 
 优先级由高到底，高优先级的配置会覆盖低优先级的配置；
 
-SpringBoot会从这四个位置全部加载主配置文件；**互补配置**；
+SpringBoot会从这四个位置全部加载主配置文件；*互补配置*；
 
+*我们还可以通过spring.config.location来改变默认的配置文件位置*
 
-
-==我们还可以通过spring.config.location来改变默认的配置文件位置==
+<mark>asdf</mark>
 
 **项目打包好以后，我们可以使用命令行参数的形式，启动项目的时候来指定配置文件的新位置；指定配置文件和默认加载的这些配置文件共同起作用形成互补配置；**
 
