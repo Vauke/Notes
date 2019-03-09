@@ -66,7 +66,7 @@
 	* [简介](#简介)
 	* [SpringBoot对静态资源的映射规则；](#springboot对静态资源的映射规则)
 	* [模板引擎](#模板引擎)
-		* [引入thymeleaf；](#引入thymeleaf)
+		* [引入thymeleaf](#引入thymeleaf)
 		* [Thymeleaf使用](#thymeleaf使用)
 		* [语法规则](#语法规则)
 	* [SpringMVC自动配置](#springmvc自动配置)
@@ -1372,23 +1372,24 @@ slf4j+log4j的方式；
 
 使用SpringBoot；
 
-**创建SpringBoot应用，选中我们需要的模块；**
+*创建SpringBoot应用，选中我们需要的模块；*
 
-**SpringBoot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来**
+*SpringBoot已经默认将这些场景配置好了，只需要在配置文件中指定少量配置就可以运行起来*
 
-**自己编写业务代码；**
+*自己编写业务代码；*
 
-**自动配置原理？**
+*自动配置原理?*
 
 这个场景SpringBoot帮我们配置了什么？能不能修改？能修改哪些配置？能不能扩展？xxx
 
 ```
-xxxxAutoConfiguration：帮我们给容器中自动配置组件；
-xxxxProperties:配置类来封装配置文件的内容；
-
+xxxxAutoConfiguration： 帮我们给容器中自动配置组件；
+xxxxProperties: 指定配置类来封装配置文件的内容；
 ```
 
 ## SpringBoot对静态资源的映射规则；
+
+
 
 ```java
 @ConfigurationProperties(prefix = "spring.resources", ignoreUnknownFields = false)
@@ -1396,100 +1397,95 @@ public class ResourceProperties implements ResourceLoaderAware {
   //可以设置和静态资源有关的参数，缓存时间等
 ```
 
-
+Spring Boot中关于SpringMVC的配置都在WebMvcAutoConfiguration.java中：
 
 ```java
-	WebMvcAuotConfiguration：
-		@Override
-		public void addResourceHandlers(ResourceHandlerRegistry registry) {
-			if (!this.resourceProperties.isAddMappings()) {
-				logger.debug("Default resource handling disabled");
-				return;
-			}
-			Integer cachePeriod = this.resourceProperties.getCachePeriod();
-			if (!registry.hasMappingForPattern("/webjars/**")) {
-				customizeResourceHandlerRegistration(
-						registry.addResourceHandler("/webjars/**")
-								.addResourceLocations(
-										"classpath:/META-INF/resources/webjars/")
-						.setCachePeriod(cachePeriod));
-			}
-			String staticPathPattern = this.mvcProperties.getStaticPathPattern();
-          	//静态资源文件夹映射
-			if (!registry.hasMappingForPattern(staticPathPattern)) {
-				customizeResourceHandlerRegistration(
-						registry.addResourceHandler(staticPathPattern)
-								.addResourceLocations(
-										this.resourceProperties.getStaticLocations())
-						.setCachePeriod(cachePeriod));
-			}
-		}
+添加资源映射
 
-        //配置欢迎页映射
-		@Bean
-		public WelcomePageHandlerMapping welcomePageHandlerMapping(
-				ResourceProperties resourceProperties) {
-			return new WelcomePageHandlerMapping(resourceProperties.getWelcomePage(),
-					this.mvcProperties.getStaticPathPattern());
-		}
+@Override
+public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	if (!this.resourceProperties.isAddMappings()) {
+		logger.debug("Default resource handling disabled");
+		return;
+	}
+	Integer cachePeriod = this.resourceProperties.getCachePeriod();
+	if (!registry.hasMappingForPattern("/webjars/**")) {
+		customizeResourceHandlerRegistration(
+				registry.addResourceHandler("/webjars/**")
+						.addResourceLocations(
+								"classpath:/META-INF/resources/webjars/")
+				.setCachePeriod(cachePeriod));
+	}
+	String staticPathPattern = this.mvcProperties.getStaticPathPattern();
+  	静态资源文件夹映射
+	if (!registry.hasMappingForPattern(staticPathPattern)) {
+		customizeResourceHandlerRegistration(
+				registry.addResourceHandler(staticPathPattern)
+						.addResourceLocations(
+								this.resourceProperties.getStaticLocations())
+				.setCachePeriod(cachePeriod));
+	}
+}
 
-       //配置喜欢的图标
-		@Configuration
-		@ConditionalOnProperty(value = "spring.mvc.favicon.enabled", matchIfMissing = true)
-		public static class FaviconConfiguration {
+配置欢迎页映射
+@Bean
+public WelcomePageHandlerMapping welcomePageHandlerMapping(
+		ResourceProperties resourceProperties) {
+	return new WelcomePageHandlerMapping(resourceProperties.getWelcomePage(),
+			this.mvcProperties.getStaticPathPattern());
+}
 
-			private final ResourceProperties resourceProperties;
+配置喜欢的图标
+@Configuration
+@ConditionalOnProperty(value = "spring.mvc.favicon.enabled", matchIfMissing = true)
+public static class FaviconConfiguration {
 
-			public FaviconConfiguration(ResourceProperties resourceProperties) {
-				this.resourceProperties = resourceProperties;
-			}
+	private final ResourceProperties resourceProperties;
 
-			@Bean
-			public SimpleUrlHandlerMapping faviconHandlerMapping() {
-				SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
-				mapping.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
-              	//所有  **/favicon.ico
-				mapping.setUrlMap(Collections.singletonMap("**/favicon.ico",
-						faviconRequestHandler()));
-				return mapping;
-			}
+	public FaviconConfiguration(ResourceProperties resourceProperties) {
+		this.resourceProperties = resourceProperties;
+	}
 
-			@Bean
-			public ResourceHttpRequestHandler faviconRequestHandler() {
-				ResourceHttpRequestHandler requestHandler = new ResourceHttpRequestHandler();
-				requestHandler
-						.setLocations(this.resourceProperties.getFaviconLocations());
-				return requestHandler;
-			}
+	@Bean
+	public SimpleUrlHandlerMapping faviconHandlerMapping() {
+		SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
+		mapping.setOrder(Ordered.HIGHEST_PRECEDENCE + 1);
+      	所有  **/favicon.ico
+		mapping.setUrlMap(Collections.singletonMap("**/favicon.ico",
+				faviconRequestHandler()));
+		return mapping;
+	}
 
-		}
-
+	@Bean
+	public ResourceHttpRequestHandler faviconRequestHandler() {
+		ResourceHttpRequestHandler requestHandler = new ResourceHttpRequestHandler();
+		requestHandler
+				.setLocations(this.resourceProperties.getFaviconLocations());
+		return requestHandler;
+	}
+}
 ```
 
-
-
-==所有 /webjars/** ，都去 classpath:/META-INF/resources/webjars/ 找资源；==
+所有 "/webjars/** "，都去 classpath:/META-INF/resources/webjars/ 找资源；
 
 ​	webjars：以jar包的方式引入静态资源；
 
-http://www.webjars.org/
+https://www.webjars.org/
 
 ![](images/搜狗截图20180203181751.png)
 
-localhost:8080/webjars/jquery/3.3.1/jquery.js
+localhost:8080/webjars/jquery/3.3.1/jquery.js 就可以获得jquery源文件
 
 ```xml
 <!--引入jquery-webjar-->在访问的时候只需要写webjars下面资源的名称即可
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>jquery</artifactId>
-			<version>3.3.1</version>
-		</dependency>
+<dependency>
+	<groupId>org.webjars</groupId>
+	<artifactId>jquery</artifactId>
+	<version>3.3.1</version>
+</dependency>
 ```
 
-
-
-=="/**" 访问当前项目的任何资源，都去（静态资源的文件夹）找映射==
+*使用"/**" 访问当前项目的任何资源，都去（静态资源的文件夹）找映射*
 
 ```
 "classpath:/META-INF/resources/",
@@ -1501,13 +1497,11 @@ localhost:8080/webjars/jquery/3.3.1/jquery.js
 
 localhost:8080/abc ===  去静态资源文件夹里面找abc
 
-==欢迎页； 静态资源文件夹下的所有index.html页面；被"/**"映射；==
+欢迎页； 静态资源文件夹下的所有index.html页面；被"/**"映射；
 
 ​	localhost:8080/   找index页面
 
-==所有的 **/favicon.ico  都是在静态资源文件下找；==
-
-
+所有的 **/favicon.ico  都是在静态资源文件下找；
 
 ## 模板引擎
 
@@ -1515,34 +1509,30 @@ JSP、Velocity、Freemarker、Thymeleaf
 
 ![](images/template-engine.png)
 
-
-
-SpringBoot推荐的Thymeleaf；
+SpringBoot推荐使用Thymeleaf；
 
 语法更简单，功能更强大；
 
-
-
-### 引入thymeleaf；
+### 引入thymeleaf
 
 ```xml
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-          	2.1.6
-		</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-thymeleaf</artifactId>
+  	默认2.1.6
+</dependency>
 切换thymeleaf版本
 <properties>
-		<thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
-		<!-- 布局功能的支持程序  thymeleaf3主程序  layout2以上版本 -->
-		<!-- thymeleaf2   layout1-->
-		<thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>
-  </properties>
+	<thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+	<!-- 布局功能的支持程序  thymeleaf3主程序  layout2以上版本 -->
+	<!-- thymeleaf2   layout1-->
+	<thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>
+</properties>
 ```
 
-
-
 ### Thymeleaf使用
+
+org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties.java文件:
 
 ```java
 @ConfigurationProperties(prefix = "spring.thymeleaf")
@@ -1555,7 +1545,7 @@ public class ThymeleafProperties {
 	public static final String DEFAULT_PREFIX = "classpath:/templates/";
 
 	public static final String DEFAULT_SUFFIX = ".html";
-  	//
+}
 ```
 
 只要我们把HTML页面放在classpath:/templates/，thymeleaf就能自动渲染；
@@ -1564,7 +1554,7 @@ public class ThymeleafProperties {
 
 导入thymeleaf的名称空间
 
-```xml
+```html
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 ```
 
@@ -1572,7 +1562,7 @@ public class ThymeleafProperties {
 
 ```html
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> 引入命名空间, 语法提示
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -1589,82 +1579,87 @@ public class ThymeleafProperties {
 
 th:text；改变当前元素里面的文本内容；
 
-​	th：任意html属性；来替换原生属性的值
+​使用`th：任意html属性`来替换原生属性的值
 
 ![](images/2018-02-04_123955.png)
 
+表达式
 
-
-表达式？
-
-```properties
+```
 Simple expressions:（表达式语法）
-    Variable Expressions: ${...}：获取变量值；OGNL；
-    		获取对象的属调用方法
-    		使用内置的基本对象：
-    			#ctx : the context object.
-    			#vars: the context variables.
-                #locale : the context locale.
-                #request : (only in Web Contexts) the HttpServletRequest object.
-                #response : (only in Web Contexts) the HttpServletResponse object.
-                #session : (only in Web Contexts) the HttpSession object.
-                #servletContext : (only in Web Contexts) the ServletContext object.
+    Variable Expressions: ${...}：获取变量值；OGNL(Object-Graph Navigation Language)；
+		获取对象的属性, 调用方法
+		使用内置的基本对象：
+			#ctx : the context object.
+			#vars: the context variables.
+            #locale : the context locale.
+            #request : (only in Web Contexts) the HttpServletRequest object.
+            #response : (only in Web Contexts) the HttpServletResponse object.
+            #session : (only in Web Contexts) the HttpSession object.
+            #servletContext : (only in Web Contexts) the ServletContext object.
 
-                ${session.foo}
-            内置的一些工具对象：
-#execInfo : information about the template being processed.
-#messages : methods for obtaining externalized messages inside variables expressions, in the same way as they would be obtained using #{…} syntax.
-#uris : methods for escaping parts of URLs/URIs
-#conversions : methods for executing the configured conversion service (if any).
-#dates : methods for java.util.Date objects: formatting, component extraction, etc.
-#calendars : analogous to #dates , but for java.util.Calendar objects.
-#numbers : methods for formatting numeric objects.
-#strings : methods for String objects: contains, startsWith, prepending/appending, etc.
-#objects : methods for objects in general.
-#bools : methods for boolean evaluation.
-#arrays : methods for arrays.
-#lists : methods for lists.
-#sets : methods for sets.
-#maps : methods for maps.
-#aggregates : methods for creating aggregates on arrays or collections.
-#ids : methods for dealing with id attributes that might be repeated (for example, as a result of an iteration).
+		    ${session.foo}
+
+        内置的一些工具对象：
+			#execInfo : information about the template being processed.
+			#messages : methods for obtaining externalized messages inside variables expressions, in the same way as they would be obtained using #{…} syntax.
+			#uris : methods for escaping parts of URLs/URIs
+			#conversions : methods for executing the configured conversion service (if any).
+			#dates : methods for java.util.Date objects: formatting, component extraction, etc.
+			#calendars : analogous to #dates , but for java.util.Calendar objects.
+			#numbers : methods for formatting numeric objects.
+			#strings : methods for String objects: contains, startsWith, prepending/appending, etc.
+			#objects : methods for objects in general.
+			#bools : methods for boolean evaluation.
+			#arrays : methods for arrays.
+			#lists : methods for lists.
+			#sets : methods for sets.
+			#maps : methods for maps.
+			#aggregates : methods for creating aggregates on arrays or collections.
+			#ids : methods for dealing with id attributes that might be repeated (for example, as a result of an iteration).
 
     Selection Variable Expressions: *{...}：选择表达式：和${}在功能上是一样；
-    	补充：配合 th:object="${session.user}：
-   <div th:object="${session.user}">
-    <p>Name: <span th:text="*{firstName}">Sebastian</span>.</p>
-    <p>Surname: <span th:text="*{lastName}">Pepper</span>.</p>
-    <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
-    </div>
+    	补充：配合 th:object="${session.user} *就代表session.user对象：
+	   <div th:object="${session.user}">
+		    <p>Name: <span th:text="*{firstName}">Sebastian</span>.</p>
+		    <p>Surname: <span th:text="*{lastName}">Pepper</span>.</p>
+		    <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+	    </div>
 
     Message Expressions: #{...}：获取国际化内容
     Link URL Expressions: @{...}：定义URL；
-    		@{/order/process(execId=${execId},execType='FAST')}
+    		@{/order/process(execId=${execId}, execType='FAST')} ()中的为url参数
     Fragment Expressions: ~{...}：片段引用表达式
     		<div th:insert="~{commons :: main}">...</div>
 
 Literals（字面量）
-      Text literals: 'one text' , 'Another one!' ,…
-      Number literals: 0 , 34 , 3.0 , 12.3 ,…
-      Boolean literals: true , false
-      Null literal: null
-      Literal tokens: one , sometext , main ,…
+	Text literals: 'one text' , 'Another one!' ,…
+	Number literals: 0 , 34 , 3.0 , 12.3 ,…
+	Boolean literals: true , false
+	Null literal: null
+	Literal tokens: one , sometext , main ,…
+
 Text operations:（文本操作）
     String concatenation: +
     Literal substitutions: |The name is ${name}|
+
 Arithmetic operations:（数学运算）
     Binary operators: + , - , * , / , %
     Minus sign (unary operator): -
+
 Boolean operations:（布尔运算）
     Binary operators: and , or
     Boolean negation (unary operator): ! , not
+
 Comparisons and equality:（比较运算）
     Comparators: > , < , >= , <= ( gt , lt , ge , le )
     Equality operators: == , != ( eq , ne )
+
 Conditional operators:条件运算（三元运算符）
     If-then: (if) ? (then)
     If-then-else: (if) ? (then) : (else)
     Default: (value) ?: (defaultvalue)
+	
 Special tokens:
     No-Operation: _
 ```
