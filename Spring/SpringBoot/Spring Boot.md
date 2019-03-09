@@ -1349,16 +1349,16 @@ slf4j+log4j的方式；
 切换为log4j2, log4j2和logging二选一
 
 ```xml
-   <dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <exclusions>
+        <exclusion> 排除starter-logging
+            <artifactId>spring-boot-starter-logging</artifactId>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion> 排除starter-logging
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                    <groupId>org.springframework.boot</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+        </exclusion>
+    </exclusions>
+</dependency>
 
 <dependency>
   <groupId>org.springframework.boot</groupId>
@@ -1389,12 +1389,10 @@ xxxxProperties: 指定配置类来封装配置文件的内容；
 
 ## SpringBoot对静态资源的映射规则；
 
-
-
 ```java
 @ConfigurationProperties(prefix = "spring.resources", ignoreUnknownFields = false)
 public class ResourceProperties implements ResourceLoaderAware {
-  //可以设置和静态资源有关的参数，缓存时间等
+可以设置和静态资源有关的参数，缓存时间等
 ```
 
 Spring Boot中关于SpringMVC的配置都在WebMvcAutoConfiguration.java中：
