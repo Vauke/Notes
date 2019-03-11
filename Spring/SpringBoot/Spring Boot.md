@@ -1670,12 +1670,15 @@ https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/htmlsingle/#boo
 
 Spring Boot 自动配置好了SpringMVC
 
-以下是SpringBoot对SpringMVC的默认配置:**==（WebMvcAutoConfiguration）==**
+以下是SpringBoot对SpringMVC的默认配置:*（WebMvcAutoConfiguration）*
 
 - Inclusion of `ContentNegotiatingViewResolver` and `BeanNameViewResolver` beans.
-  - 自动配置了ViewResolver（视图解析器：根据方法的返回值得到视图对象（View），视图对象决定如何渲染（转发？重定向？））
-  - ContentNegotiatingViewResolver：组合所有的视图解析器的；
-  - ==如何定制：我们可以自己给容器中添加一个视图解析器；自动的将其组合进来；==
+
+- 自动配置了ViewResolver（视图解析器：根据方法的返回值得到视图对象（View），视图对象决定如何渲染（转发？重定向？））
+
+- ContentNegotiatingViewResolver：组合所有的视图解析器的；
+
+- 如何定制：我们可以自己给容器中添加一个视图解析器；自动的将其组合进来；
 
 - Support for serving static resources, including support for WebJars (see below).静态资源文件夹路径,webjars
 
@@ -1683,45 +1686,42 @@ Spring Boot 自动配置好了SpringMVC
 
 - Custom `Favicon` support (see below).  favicon.ico
 
-  ​
-
 - 自动注册了 of `Converter`, `GenericConverter`, `Formatter` beans.
 
-  - Converter：转换器；  public String hello(User user)：类型转换使用Converter
-  - `Formatter`  格式化器；  2017.12.17===Date；
+- Converter：转换器；  public String hello(User user)：类型转换使用Converter
+
+- `Formatter`  格式化器；  2017.12.17===Date；
 
 ```java
-		@Bean
-		@ConditionalOnProperty(prefix = "spring.mvc", name = "date-format")//在文件中配置日期格式化的规则
-		public Formatter<Date> dateFormatter() {
-			return new DateFormatter(this.mvcProperties.getDateFormat());//日期格式化组件
-		}
+@Bean
+@ConditionalOnProperty(prefix = "spring.mvc", name = "date-format")//在文件中配置日期格式化的规则
+public Formatter<Date> dateFormatter() {
+	return new DateFormatter(this.mvcProperties.getDateFormat());//日期格式化组件
+}
 ```
 
-​	==自己添加的格式化器转换器，我们只需要放在容器中即可==
+​自己添加的格式化器转换器，我们只需要放在容器中即可
 
 - Support for `HttpMessageConverters` (see below).
 
-  - HttpMessageConverter：SpringMVC用来转换Http请求和响应的；User---Json；
+- HttpMessageConverter：SpringMVC用来转换Http请求和响应的；User---Json；
 
-  - `HttpMessageConverters` 是从容器中确定；获取所有的HttpMessageConverter；
+- `HttpMessageConverters` 是从容器中确定；获取所有的HttpMessageConverter；
 
-    ==自己给容器中添加HttpMessageConverter，只需要将自己的组件注册容器中（@Bean,@Component）==
-
-    ​
+    自己给容器中添加HttpMessageConverter，只需要将自己的组件注册容器中（@Bean,@Component）
 
 - Automatic registration of `MessageCodesResolver` (see below).定义错误代码生成规则
 
 - Automatic use of a `ConfigurableWebBindingInitializer` bean (see below).
 
-  ==我们可以配置一个ConfigurableWebBindingInitializer来替换默认的；（添加到容器）==
+  我们可以配置一个ConfigurableWebBindingInitializer来替换默认的；（添加到容器）
 
   ```
   初始化WebDataBinder；
   请求数据=====JavaBean；
   ```
 
-**org.springframework.boot.autoconfigure.web：web的所有自动场景；**
+*org.springframework.boot.autoconfigure.web：web的所有自动场景；*
 
 If you want to keep Spring Boot MVC features, and you just want to add additional [MVC configuration](https://docs.spring.io/spring/docs/4.3.14.RELEASE/spring-framework-reference/htmlsingle#mvc) (interceptors, formatters, view controllers etc.) you can add your own `@Configuration` class of type `WebMvcConfigurerAdapter`, but **without** `@EnableWebMvc`. If you wish to provide custom instances of `RequestMappingHandlerMapping`, `RequestMappingHandlerAdapter` or `ExceptionHandlerExceptionResolver` you can declare a `WebMvcRegistrationsAdapter` instance providing such components.
 
@@ -1730,21 +1730,23 @@ If you want to take complete control of Spring MVC, you can add your own `@Confi
 ### 扩展SpringMVC
 
 ```xml
-    <mvc:view-controller path="/hello" view-name="success"/>
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/hello"/>
-            <bean></bean>
-        </mvc:interceptor>
-    </mvc:interceptors>
+<mvc:view-controller path="/hello" view-name="success"/>
+<mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/hello"/>
+        <bean></bean>
+    </mvc:interceptor>
+</mvc:interceptors>
 ```
 
-**==编写一个配置类（@Configuration），是WebMvcConfigurerAdapter类型；不能标注@EnableWebMvc==**;
+*编写一个配置类（@Configuration），是WebMvcConfigurerAdapter类型；不能标注@EnableWebMvc*;
+
+*在Spring Boot 2+中WebMvcConfigurerAdapter已经被Spring 5.0废弃, 使用WebMvcConfigurer接口或者WebMvcConfigurationSupport类替换*
 
 既保留了所有的自动配置，也能用我们扩展的配置；
 
 ```java
-//使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
+使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
 @Configuration
 public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
@@ -1794,7 +1796,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
 SpringBoot对SpringMVC的自动配置不需要了，所有都是我们自己配置；所有的SpringMVC的自动配置都失效了
 
-**我们需要在配置类中添加@EnableWebMvc即可；**
+*我们需要在配置类中添加@EnableWebMvc即可；*
 
 ```java
 //使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
