@@ -1766,24 +1766,24 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 ​	在做其他自动配置时会导入；@Import(**EnableWebMvcConfiguration**.class)
 
 ```java
-    @Configuration
-	public static class EnableWebMvcConfiguration extends DelegatingWebMvcConfiguration {
-      private final WebMvcConfigurerComposite configurers = new WebMvcConfigurerComposite();
+@Configuration
+public static class EnableWebMvcConfiguration extends DelegatingWebMvcConfiguration {
+  private final WebMvcConfigurerComposite configurers = new WebMvcConfigurerComposite();
 
-	 //从容器中获取所有的WebMvcConfigurer
-      @Autowired(required = false)
-      public void setConfigurers(List<WebMvcConfigurer> configurers) {
-          if (!CollectionUtils.isEmpty(configurers)) {
-              this.configurers.addWebMvcConfigurers(configurers);
-            	//一个参考实现；将所有的WebMvcConfigurer相关配置都来一起调用；
-            	@Override
-             // public void addViewControllers(ViewControllerRegistry registry) {
-              //    for (WebMvcConfigurer delegate : this.delegates) {
-               //       delegate.addViewControllers(registry);
-               //   }
-              }
+ //从容器中获取所有的WebMvcConfigurer
+  @Autowired(required = false)
+  public void setConfigurers(List<WebMvcConfigurer> configurers) {
+      if (!CollectionUtils.isEmpty(configurers)) {
+          this.configurers.addWebMvcConfigurers(configurers);
+        	//一个参考实现；将所有的WebMvcConfigurer相关配置都来一起调用；
+        	@Override
+         // public void addViewControllers(ViewControllerRegistry registry) {
+          //    for (WebMvcConfigurer delegate : this.delegates) {
+           //       delegate.addViewControllers(registry);
+           //   }
           }
-	}
+      }
+}
 ```
 
 ​	容器中所有的WebMvcConfigurer都会一起起作用；
@@ -1824,21 +1824,17 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 public @interface EnableWebMvc {
 ```
 
-
-
 ```java
 @Configuration
 public class DelegatingWebMvcConfiguration extends WebMvcConfigurationSupport {
 ```
-
-
 
 ```java
 @Configuration
 @ConditionalOnWebApplication
 @ConditionalOnClass({ Servlet.class, DispatcherServlet.class,
 		WebMvcConfigurerAdapter.class })
-//容器中没有这个组件的时候，这个自动配置类才生效
+容器中没有这个组件的时候(这里是WebMvcConfigurationSupport类)，这个自动配置类才生效
 @ConditionalOnMissingBean(WebMvcConfigurationSupport.class)
 @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE + 10)
 @AutoConfigureAfter({ DispatcherServletAutoConfiguration.class,
@@ -1849,8 +1845,6 @@ public class WebMvcAutoConfiguration {
 @EnableWebMvc将WebMvcConfigurationSupport组件导入进来；
 
 导入的WebMvcConfigurationSupport只是SpringMVC最基本的功能；
-
-
 
 ## 如何修改SpringBoot的默认配置
 
