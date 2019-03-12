@@ -64,7 +64,7 @@
 	* [切换日志框架](#切换日志框架)
 * [Web开发](#web开发)
 	* [简介](#简介)
-	* [SpringBoot对静态资源的映射规则；](#springboot对静态资源的映射规则)
+	* [SpringBoot对静态资源的映射规则](#springboot对静态资源的映射规则)
 	* [模板引擎](#模板引擎)
 		* [引入thymeleaf](#引入thymeleaf)
 		* [Thymeleaf使用](#thymeleaf使用)
@@ -1387,7 +1387,7 @@ xxxxAutoConfiguration： 帮我们给容器中自动配置组件；
 xxxxProperties: 指定配置类来封装配置文件的内容；
 ```
 
-## SpringBoot对静态资源的映射规则；
+## SpringBoot对静态资源的映射规则
 
 ```java
 @ConfigurationProperties(prefix = "spring.resources", ignoreUnknownFields = false)
@@ -1495,9 +1495,9 @@ localhost:8080/webjars/jquery/3.3.1/jquery.js 就可以获得jquery源文件
 
 localhost:8080/abc ===  去静态资源文件夹里面找abc
 
-欢迎页； 静态资源文件夹下的所有index.html页面；被"/**"映射；
+Spring Boot*默认会自动*将`src/main/resources`下的public或者resources或者static目录下的index.html 映射到/, 因此访问localhost:8080就会自动跳转到index.html, 即使重新设置过对/的映射, 但是@WebMvcEnabled全面接管Spring MVC后就需要重新设置了
 
-​	localhost:8080/   找index页面
+*欢迎页； 静态资源文件夹下的所有index.html页面；被"/**"映射；localhost:8080/   找index页面*
 
 所有的 **/favicon.ico  都是在静态资源文件下找；
 
@@ -1861,8 +1861,7 @@ public class WebMvcAutoConfiguration {
 ### 默认访问首页
 
 ```java
-
-//使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
+使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
 //@EnableWebMvc   不要接管SpringMVC
 @Configuration
 public class MyMvcConfig extends WebMvcConfigurerAdapter {
@@ -1887,7 +1886,6 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
         return adapter;
     }
 }
-
 ```
 
 ### 国际化
@@ -1897,7 +1895,6 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 使用ResourceBundleMessageSource管理国际化资源文件
 
 在页面使用fmt:message取出国际化内容
-
 
 
 步骤：
