@@ -1903,7 +1903,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
 ![](images/搜狗截图20180211130721.png)
 
-SpringBoot自动配置好了管理国际化资源文件的组件；
+SpringBoot自动配置好了管理国际化资源文件的组件`MessageSourceAutoConfiguration`类；
 
 ```java
 @ConfigurationProperties(prefix = "spring.messages")
@@ -1936,9 +1936,7 @@ public class MessageSourceAutoConfiguration {
 	}
 ```
 
-去页面获取国际化的值；
-
-![](images/搜狗截图20180211134506.png)
+取出页面获取国际化的值；
 
 ```html
 <!DOCTYPE html>
@@ -1986,18 +1984,18 @@ public class MessageSourceAutoConfiguration {
 ​	国际化Locale（区域信息对象）；LocaleResolver（获取区域信息对象）；
 
 ```java
-		@Bean
-		@ConditionalOnMissingBean
-		@ConditionalOnProperty(prefix = "spring.mvc", name = "locale")
-		public LocaleResolver localeResolver() {
-			if (this.mvcProperties
-					.getLocaleResolver() == WebMvcProperties.LocaleResolver.FIXED) {
-				return new FixedLocaleResolver(this.mvcProperties.getLocale());
-			}
-			AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
-			localeResolver.setDefaultLocale(this.mvcProperties.getLocale());
-			return localeResolver;
-		}
+@Bean
+@ConditionalOnMissingBean
+@ConditionalOnProperty(prefix = "spring.mvc", name = "locale")
+public LocaleResolver localeResolver() {
+	if (this.mvcProperties
+			.getLocaleResolver() == WebMvcProperties.LocaleResolver.FIXED) {
+		return new FixedLocaleResolver(this.mvcProperties.getLocale());
+	}
+	AcceptHeaderLocaleResolver localeResolver = new AcceptHeaderLocaleResolver();
+	localeResolver.setDefaultLocale(this.mvcProperties.getLocale());
+	return localeResolver;
+}
 默认的就是根据请求头带来的区域信息获取Locale进行国际化
 ```
 
@@ -2026,14 +2024,11 @@ public class MyLocaleResolver implements LocaleResolver {
     }
 }
 
-
- @Bean
-    public LocaleResolver localeResolver(){
-        return new MyLocaleResolver();
-    }
+在自定义MVC config中将其添加进去, 就能覆盖默认的locale resolver
+@Bean
+public LocaleResolver localeResolver(){
+    return new MyLocaleResolver();
 }
-
-
 ```
 
 ### 登陆
@@ -2049,24 +2044,19 @@ spring.thymeleaf.cache=false
 
 页面修改完成以后ctrl+f9：重新编译；
 
-
-
 登陆错误消息的显示
 
 ```html
 <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 ```
 
-
-
 ### 拦截器进行登陆检查
 
 拦截器
 
 ```java
-
 /**
- * 登陆检查，
+ * 登陆检查
  */
 public class LoginHandlerInterceptor implements HandlerInterceptor {
     //目标方法执行之前
@@ -2082,7 +2072,6 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
             //已登陆，放行请求
             return true;
         }
-
     }
 
     @Override
@@ -2095,37 +2084,34 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 
     }
 }
-
 ```
-
-
 
 注册拦截器
 
 ```java
-    所有的WebMvcConfigurerAdapter组件都会一起起作用
-    @Bean 将组件注册在容器
-    public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
-        WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
-            @Override
-            public void addViewControllers(ViewControllerRegistry registry) {
-                registry.addViewController("/").setViewName("login");
-                registry.addViewController("/index.html").setViewName("login");
-                registry.addViewController("/main.html").setViewName("dashboard");
-            }
+所有的WebMvcConfigurerAdapter组件都会一起起作用
+@Bean 将组件注册在容器
+public WebMvcConfigurerAdapter webMvcConfigurerAdapter(){
+    WebMvcConfigurerAdapter adapter = new WebMvcConfigurerAdapter() {
+        @Override
+        public void addViewControllers(ViewControllerRegistry registry) {
+            registry.addViewController("/").setViewName("login");
+            registry.addViewController("/index.html").setViewName("login");
+            registry.addViewController("/main.html").setViewName("dashboard");
+        }
 
-            注册拦截器
-            @Override
-            public void addInterceptors(InterceptorRegistry registry) {
-                //super.addInterceptors(registry);
-                //静态资源；  *.css , *.js
-                //SpringBoot已经做好了静态资源映射
-                registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                        .excludePathPatterns("/index.html","/","/user/login");
-            }
-        };
-        return adapter;
-    }
+        注册拦截器
+        @Override
+        public void addInterceptors(InterceptorRegistry registry) {
+            //super.addInterceptors(registry);
+            //静态资源；  *.css , *.js
+            //SpringBoot已经做好了静态资源映射
+            registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
+                    .excludePathPatterns("/index.html","/","/user/login");
+        }
+    };
+    return adapter;
+}
 ```
 
 ### CRUD-员工列表
@@ -2134,7 +2120,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 
 RestfulCRUD：CRUD满足Rest风格；
 
-URI：  /资源名称/资源标识       HTTP请求方式区分对资源CRUD操作
+URI：  /资源名称/资源标识       *以HTTP请求方式区分对资源CRUD操作*
 
 |      | 普通CRUD（uri来区分操作） | RestfulCRUD       |
 | ---- | ------------------------- | ----------------- |
@@ -2468,8 +2454,6 @@ public class BasicErrorController extends AbstractErrorController {
 	}
 ```
 
-
-
 ​	步骤：
 
 ​		一但系统出现4xx或者5xx之类的错误；ErrorPageCustomizer就会生效（定制错误的响应规则）；就会来到/error请求；就会被**BasicErrorController**处理；
@@ -2516,8 +2500,6 @@ protected ModelAndView resolveErrorView(HttpServletRequest request,
 
 ​			以上都没有错误页面，就是默认来到SpringBoot默认的错误提示页面；
 
-
-
 #### 	如何定制错误的json数据；
 
 ​		自定义异常处理&返回定制json数据；
@@ -2537,8 +2519,6 @@ public class MyExceptionHandler {
 }
 //没有自适应效果...
 ```
-
-
 
 ​		转发到/error进行自适应响应效果处理
 
@@ -2588,7 +2568,6 @@ public class MyErrorAttributes extends DefaultErrorAttributes {
 最终的效果：响应是自适应的，可以通过定制ErrorAttributes改变需要返回的内容，
 
 ![](images/搜狗截图20180228135513.png)
-
 
 
 ## 配置嵌入式Servlet容器
