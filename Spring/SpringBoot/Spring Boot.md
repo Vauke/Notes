@@ -2576,8 +2576,6 @@ SpringBoot默认使用Tomcat作为嵌入式的Servlet容器；
 
 ![](images/搜狗截图20180301142915.png)
 
-
-
 问题？
 
 ### 如何定制和修改Servlet容器的相关配置；
