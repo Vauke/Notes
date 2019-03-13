@@ -3027,11 +3027,13 @@ EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFa
 
 ```java
 public class ServletInitializer extends SpringBootServletInitializer {
+
    @Override
    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
        //传入SpringBoot应用的主程序
       return application.sources(SpringBoot04WebJspApplication.class);
    }
+
 }
 ```
 
@@ -3208,7 +3210,7 @@ docker容器(Container)：镜像启动后的实例称为一个容器；容器是
 
 ​	设置虚拟机网络；
 
-​		桥接网络===选好网卡====接入网线；
+​		桥接网络===选好网卡===接入网线；
 
 ​	设置好网络以后使用命令重启虚拟机的网络
 
@@ -3295,7 +3297,6 @@ docker logs container-name/container-id
 更多命令参看
 https://docs.docker.com/engine/reference/commandline/docker/
 可以参考每一个镜像的文档
-
 ````
 
 ### 安装MySQL示例
@@ -3362,14 +3363,14 @@ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --
 
 ```xml
 <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+<dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+	<scope>runtime</scope>
+</dependency>
 ```
 
 ```yaml
