@@ -2569,7 +2569,6 @@ public class MyErrorAttributes extends DefaultErrorAttributes {
 
 ![](images/搜狗截图20180228135513.png)
 
-
 ## 配置嵌入式Servlet容器
 
 SpringBoot默认使用Tomcat作为嵌入式的Servlet容器；
@@ -2650,9 +2649,7 @@ public ServletListenerRegistrationBean myListener(){
 }
 ```
 
-
-
-SpringBoot帮我们自动SpringMVC的时候，自动的注册SpringMVC的前端控制器；DIspatcherServlet；
+SpringBoot帮我们自动SpringMVC的时候，自动的注册SpringMVC的前端控制器；DispatcherServlet；
 
 DispatcherServletAutoConfiguration中：
 
@@ -2741,8 +2738,6 @@ Undertow
 
 ### 嵌入式Servlet容器自动配置原理；
 
-
-
 EmbeddedServletContainerAutoConfiguration：嵌入式的Servlet容器自动配置？
 
 ```java
@@ -2817,8 +2812,6 @@ EmbeddedServletContainer：（嵌入式的Servlet容器）
 
 ![](images/搜狗截图20180302144910.png)
 
-
-
 以**TomcatEmbeddedServletContainerFactory**为例
 
 ```java
@@ -2853,8 +2846,6 @@ public EmbeddedServletContainer getEmbeddedServletContainer(
 ```
 ServerProperties、EmbeddedServletContainerCustomizer
 ```
-
-
 
 **EmbeddedServletContainerCustomizer**：定制器帮我们修改了Servlet容器的配置？
 
@@ -2911,8 +2902,6 @@ SpringBoot根据导入的依赖情况，给容器中添加相应的EmbeddedServl
 只要是嵌入式的Servlet容器工厂，后置处理器就工作；
 
 后置处理器，从容器中获取所有的**EmbeddedServletContainerCustomizer**，调用定制器的定制方法
-
-
 
 ###嵌入式Servlet容器启动原理；
 
@@ -3008,9 +2997,7 @@ EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFa
 
 **先启动嵌入式的Servlet容器，再将ioc容器中剩下没有创建出的对象获取出来；**
 
-**==IOC容器启动创建嵌入式的Servlet容器==**
-
-
+*IOC容器启动创建嵌入式的Servlet容器*
 
 ## 使用外置的Servlet容器
 
@@ -3019,8 +3006,6 @@ EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFa
 ​		优点：简便携；
 
 ​		缺点：默认不支持JSP、优化定制比较复杂（使用定制器【ServerProperties、自定义EmbeddedServletContainerCustomizer】，自己编写嵌入式Servlet容器的创建工厂【EmbeddedServletContainerFactory】）；
-
-
 
 外置的Servlet容器：外面安装Tomcat---应用war包的方式打包；
 
@@ -3042,13 +3027,11 @@ EmbeddedServletContainerFactory containerFactory = getEmbeddedServletContainerFa
 
 ```java
 public class ServletInitializer extends SpringBootServletInitializer {
-
    @Override
    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
        //传入SpringBoot应用的主程序
       return application.sources(SpringBoot04WebJspApplication.class);
    }
-
 }
 ```
 
@@ -3059,8 +3042,6 @@ public class ServletInitializer extends SpringBootServletInitializer {
 jar包：执行SpringBoot主类的main方法，启动ioc容器，创建嵌入式的Servlet容器；
 
 war包：启动服务器，**服务器启动SpringBoot应用**【SpringBootServletInitializer】，启动ioc容器；
-
-
 
 servlet3.0（Spring注解版）：
 
@@ -3073,8 +3054,6 @@ servlet3.0（Spring注解版）：
 ​	ServletContainerInitializer的实现放在jar包的META-INF/services文件夹下，有一个名为javax.servlet.ServletContainerInitializer的文件，内容就是ServletContainerInitializer的实现类的全类名
 
 ​	还可以使用@HandlesTypes，在应用启动的时候加载我们感兴趣的类；
-
-
 
 流程：
 
@@ -3175,9 +3154,7 @@ public ConfigurableApplicationContext run(String... args) {
 }
 ```
 
-**==启动Servlet容器，再启动SpringBoot应用==**
-
-
+*启动Servlet容器，再启动SpringBoot应用*
 
 # Docker
 
@@ -3190,8 +3167,6 @@ Docker支持将软件编译成一个镜像；然后在镜像中各种软件做�
 运行中的这个镜像称为容器，容器启动是非常快速的。
 
 ![](images/搜狗截图20180303145450.png)
-
-
 
 ![](images/搜狗截图20180303145531.png)
 
@@ -3323,15 +3298,11 @@ https://docs.docker.com/engine/reference/commandline/docker/
 
 ````
 
-
-
 ### 安装MySQL示例
 
 ```shell
 docker pull mysql
 ```
-
-
 
 错误的启动
 
@@ -3347,7 +3318,6 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 goldstine
 c4f1ac60b3fc        tomcat              "catalina.sh run"        About an hour ago   Exited (143) About an hour ago                       lonely_fermi
 81ec743a5271        tomcat              "catalina.sh run"        About an hour ago   Exited (143) About an hour ago                       sick_ramanujan
-
 
 //错误日志
 [root@localhost ~]# docker logs 42f09819908b
@@ -3375,8 +3345,6 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ad10e4bc5c6a        mysql               "docker-entrypoint.sh"   4 seconds ago       Up 2 seconds        0.0.0.0:3306->3306/tcp   mysql02
 ```
 
-
-
 几个其他的高级操作
 
 ```
@@ -3387,8 +3355,6 @@ docker run --name mysql03 -v /conf/mysql:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWOR
 docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 指定mysql的一些配置参数
 ```
-
-
 
 # SpringBoot与数据访问
 
@@ -3405,8 +3371,6 @@ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag --
 			<scope>runtime</scope>
 		</dependency>
 ```
-
-
 
 ```yaml
 spring:
@@ -3504,7 +3468,6 @@ public class DruidConfig {
         return bean;
     }
 
-
     //配置一个web监控的filter
     @Bean
     public FilterRegistrationBean webStatFilter(){
@@ -3521,7 +3484,6 @@ public class DruidConfig {
         return  bean;
     }
 }
-
 ```
 
 ## 整合MyBatis
@@ -3544,7 +3506,7 @@ public class DruidConfig {
 
 ​	创建JavaBean
 
-### 	注解版
+### 注解版
 
 ```java
 //指定这是一个操作数据库的mapper
@@ -3587,8 +3549,6 @@ public class MyBatisConfig {
 }
 ```
 
-
-
 ```java
 使用MapperScan批量扫描所有的Mapper接口；
 @MapperScan(value = "com.atguigu.springboot.mapper")
@@ -3612,8 +3572,6 @@ mybatis:
 更多使用参照
 
 http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/
-
-
 
 ## 整合SpringData JPA
 
@@ -3649,7 +3607,6 @@ public class User {
 //继承JpaRepository来完成对数据库的操作
 public interface UserRepository extends JpaRepository<User,Integer> {
 }
-
 ```
 
 基本的配置JpaProperties
@@ -3664,8 +3621,6 @@ spring:
     show-sql: true
 ```
 
-
-
 # 启动配置原理
 
 几个重要的事件回调机制
@@ -3676,15 +3631,11 @@ spring:
 
 **SpringApplicationRunListener**
 
-
-
 只需要放在ioc容器中
 
 **ApplicationRunner**
 
 **CommandLineRunner**
-
-
 
 启动流程：
 
@@ -3786,7 +3737,6 @@ public class HelloApplicationContextInitializer implements ApplicationContextIni
         System.out.println("ApplicationContextInitializer...initialize..."+applicationContext);
     }
 }
-
 ```
 
 **SpringApplicationRunListener**
@@ -3825,7 +3775,6 @@ public class HelloSpringApplicationRunListener implements SpringApplicationRunLi
         System.out.println("SpringApplicationRunListener...finished...");
     }
 }
-
 ```
 
 配置（META-INF/spring.factories）
@@ -3837,10 +3786,6 @@ com.atguigu.springboot.listener.HelloApplicationContextInitializer
 org.springframework.boot.SpringApplicationRunListener=\
 com.atguigu.springboot.listener.HelloSpringApplicationRunListener
 ```
-
-
-
-
 
 只需要放在ioc容器中
 
@@ -3856,8 +3801,6 @@ public class HelloApplicationRunner implements ApplicationRunner {
 }
 ```
 
-
-
 **CommandLineRunner**
 
 ```java
@@ -3869,8 +3812,6 @@ public class HelloCommandLineRunner implements CommandLineRunner {
     }
 }
 ```
-
-
 
 # 自定义starter
 
@@ -3905,8 +3846,6 @@ org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
 启动器依赖自动配置；别人只需要引入启动器（starter）
 
 mybatis-spring-boot-starter；自定义启动器名-spring-boot-starter
-
-
 
 步骤：
 
@@ -3975,14 +3914,8 @@ mybatis-spring-boot-starter；自定义启动器名-spring-boot-starter
       </dependency>
 
    </dependencies>
-
-
-
 </project>
-
 ```
-
-
 
 ```java
 package com.atguigu.starter;
@@ -4011,7 +3944,6 @@ public class HelloProperties {
         this.suffix = suffix;
     }
 }
-
 ```
 
 ```java
@@ -4033,7 +3965,6 @@ public class HelloService {
         return helloProperties.getPrefix()+"-" +name + helloProperties.getSuffix();
     }
 }
-
 ```
 
 ```java
@@ -4059,7 +3990,6 @@ public class HelloServiceAutoConfiguration {
         return service;
     }
 }
-
 ```
 
 # 更多SpringBoot整合示例
