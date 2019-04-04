@@ -138,7 +138,7 @@ defines how to start current service
 
 `Type`: 启动类型
 
-`ExecStart`: 启动服务时执行的命令
+`ExecStart`: 启动服务时执行的命令, 你要开机执行的命令, 给出命令的绝对路径
 
 `ExecStop`: 停止服务时执行的命令
 
@@ -217,6 +217,12 @@ WantedBy=multi-user.target
 ## Target
 
 Target的含义是服务组, 表示一组服务. `WantedBy=multi-user.target`指的是, sshd 所在的Target是multi-user.target, 这个设置非常重要, 因为执行`systemctl enable sshd.service`命令时, sshd.service的一个符号链接, 就会放在`/etc/systemd/system`目录下面的`multi-user.target.wants`子目录之中
+
+设置生效:
+
+```shell
+systemctl enable xxx.service
+```
 
 Systemd 有默认的启动 Target
 
