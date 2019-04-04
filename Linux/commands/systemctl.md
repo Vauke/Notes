@@ -218,7 +218,7 @@ WantedBy=multi-user.target
 
 Target的含义是服务组, 表示一组服务. `WantedBy=multi-user.target`指的是, sshd 所在的Target是multi-user.target, 这个设置非常重要, 因为执行`systemctl enable sshd.service`命令时, sshd.service的一个符号链接, 就会放在`/etc/systemd/system`目录下面的`multi-user.target.wants`子目录之中
 
-设置生效:
+设置开机启动:
 
 ```shell
 systemctl enable xxx.service
