@@ -576,3 +576,14 @@ echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sourc
 sudo apt update
 sudo apt install syncthing
 ```
+
+create desktop shortcut:
+
+```shell
+cd /usr/share/applications
+
+rm syncthing-start.desktop
+rm syncthing-ui.desktop
+```
+
+use [syncthing.desktop](assets/syncthing.desktop) instead

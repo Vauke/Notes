@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Syncthing
+GenericName=File synchronization
+Comment=Starts the main syncthing process.
+Exec=/usr/bin/syncthing
+Icon=syncthing
+Terminal=false
+Type=Application
+Keywords=synchronization;daemon;
+Categories=Network;FileTransfer;P2P
