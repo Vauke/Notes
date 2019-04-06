@@ -55,6 +55,8 @@ Monday, August 13th 2018, 23:26
 	* [e-mail client](#e-mail-client)
 	* [chat all in one](#chat-all-in-one)
 	* [syncthing](#syncthing)
+	* [redis](#redis)
+	* [nginx](#nginx)
 
 <!-- /code_chunk_output -->
 
@@ -587,3 +589,26 @@ rm syncthing-ui.desktop
 ```
 
 use [syncthing.desktop](assets/syncthing.desktop) instead
+
+## redis
+
+```shell
+sudo apt install redis
+
+# already starts with system boot
+# stop/start
+systemctl stop/start redis-server
+
+# cli
+redis-cli
+```
+
+## nginx
+
+```shell
+sudo apt install nginx
+
+# already starts with system boot
+# stop/start
+systemctl stop/start nginx
+```
