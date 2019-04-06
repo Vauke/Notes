@@ -54,6 +54,7 @@ Monday, August 13th 2018, 23:26
 	* [snap安装软件太慢](#snap安装软件太慢)
 	* [e-mail client](#e-mail-client)
 	* [chat all in one](#chat-all-in-one)
+	* [syncthing](#syncthing)
 
 <!-- /code_chunk_output -->
 
@@ -561,3 +562,17 @@ thunderbird
 
 ## chat all in one
 rambox.pro
+
+## syncthing
+
+```shell
+# Add the release PGP keys:
+curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
+
+# Add the "stable" channel to your APT sources:
+echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+
+# Update and install syncthing:
+sudo apt update
+sudo apt install syncthing
+```
