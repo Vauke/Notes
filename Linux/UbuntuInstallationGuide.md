@@ -59,6 +59,7 @@ Monday, August 13th 2018, 23:26
 	* [nginx](#nginx)
 	* [node.js](#nodejs)
 	* [gitmoji](#gitmoji)
+* [commitizen](#commitizen)
 
 <!-- /code_chunk_output -->
 
@@ -657,4 +658,39 @@ add emojis while typing commit messages
 npm i -g gitmoji-cli
 
 gitmoji -h # for help info
+gitmoji -s xxx # for emoji lint
+gitmoji -s bug
+```
+
+# commitizen
+
+make git commit messages
+
+[commitizen](https://github.com/commitizen/cz-cli)
+
+[commitizen安装](https://commitizen.github.io/cz-cli/)
+
+[commit message规范](https://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md)
+
+```shell
+npm i -g commitizen
+
+# install commitizen adapter
+# 1
+# only for current project using git
+commitizen init cz-conventional-changelog --save-dev --save-exact
+
+# 2
+# for all projects using git
+# install globally
+npm i -g cz-conventional-changelog
+
+# create a .czrc file in home directory, with path referring to the preferred, globally installed, commitizen adapter
+echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+
+# usage
+git-cz
+
+# globally installed use:
+git-cz / git cz
 ```
