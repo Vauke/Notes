@@ -188,7 +188,7 @@ logout
 
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
-修改`~/.zshrc`
+修改`~/.zshrc` refer: [.zshrc](assets/.zshrc)
 ```script
 alias rm="rm -i"
 
@@ -196,8 +196,8 @@ setopt no_nomatch
 # setopt no_glob
 setopt EXTENDED_GLOB
 
-export http_proxy="http://127.0.0.1:11080"
-export https_proxy="https://127.0.0.1:11080"
+export http_proxy="http://127.0.0.1:1080"
+export https_proxy="http://127.0.0.1:1080"
 ```
 
 ## aria2
@@ -624,7 +624,7 @@ FYI :point_right: [ubuntu通过包管理器安装node](https://github.com/nodeso
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-# npm is install alone with nodejs
+# npm is installed alone with nodejs
 npm -v
 node -v
 
