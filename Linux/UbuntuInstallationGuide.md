@@ -58,6 +58,7 @@ Monday, August 13th 2018, 23:26
 	* [redis](#redis)
 	* [nginx](#nginx)
 	* [node.js](#nodejs)
+	* [gitmoji](#gitmoji)
 
 <!-- /code_chunk_output -->
 
@@ -633,7 +634,7 @@ npm init -y # gengerate a default package.json
 # install, use afterwards npm init
 npm install xxx / npm i xxx
 
-# install globally
+# install globally, root privileges required
 npm i -g xxx
 
 # uninstall
@@ -653,4 +654,7 @@ add emojis while typing commit messages
 
 ```shell
 # install with npm
+npm i -g gitmoji-cli
+
+gitmoji -h # for help info
 ```
