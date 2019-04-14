@@ -621,4 +621,36 @@ FYI :point_right: [ubuntu通过包管理器安装node](https://github.com/nodeso
 ```shell
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+# npm is install alone with nodejs
+npm -v
+node -v
+
+# init package.json
+npm init
+npm init -y # gengerate a default package.json
+
+# install, use afterwards npm init
+npm install xxx / npm i xxx
+
+# install globally
+npm i -g xxx
+
+# uninstall
+npm uninstall xxx
+npm uninstall xxx -g # global
+
+# packages installed
+npm list
+npm list -g # global
+```
+
+## gitmoji
+
+[gitmoji-cli](https://github.com/carloscuesta/gitmoji-cli)
+
+add emojis while typing commit messages
+
+```shell
+# install with npm
 ```
