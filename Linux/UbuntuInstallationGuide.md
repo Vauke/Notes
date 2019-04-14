@@ -59,7 +59,7 @@ Monday, August 13th 2018, 23:26
 	* [nginx](#nginx)
 	* [node.js](#nodejs)
 	* [gitmoji](#gitmoji)
-* [commitizen](#commitizen)
+	* [commitizen](#commitizen)
 
 <!-- /code_chunk_output -->
 
@@ -662,7 +662,7 @@ gitmoji -s xxx # for emoji lint
 gitmoji -s bug
 ```
 
-# commitizen
+## commitizen
 
 make git commit messages
 
@@ -691,6 +691,6 @@ echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
 # usage
 git-cz
 
-# globally installed use:
+# if the adapter installed globally
 git-cz / git cz
 ```
