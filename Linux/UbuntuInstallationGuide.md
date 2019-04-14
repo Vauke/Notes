@@ -619,7 +619,6 @@ systemctl stop/start nginx
 FYI :point_right: [ubuntu通过包管理器安装node](https://github.com/nodesource/distributions/blob/master/README.md)
 
 ```shell
-# Using Ubuntu
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
