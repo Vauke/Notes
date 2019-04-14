@@ -57,6 +57,7 @@ Monday, August 13th 2018, 23:26
 	* [syncthing](#syncthing)
 	* [redis](#redis)
 	* [nginx](#nginx)
+	* [node.js](#nodejs)
 
 <!-- /code_chunk_output -->
 
@@ -611,4 +612,14 @@ sudo apt install nginx
 # already starts with system boot
 # stop/start
 systemctl stop/start nginx
+```
+
+## node.js
+
+FYI :point_right: [ubuntu通过包管理器安装node](https://github.com/nodesource/distributions/blob/master/README.md)
+
+```shell
+# Using Ubuntu
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
 ```
