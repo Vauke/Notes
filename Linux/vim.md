@@ -7,7 +7,6 @@ Monday, April 15th 2019, 20:47
 * [vim.md](#vimmd)
 * [vim](#vim)
 * [neovim](#neovim)
-* [installation](#installation)
 * [core config](#core-config)
 	* [修改插入模式的光标为竖线](#修改插入模式的光标为竖线)
 * [plugins](#plugins)
@@ -23,9 +22,13 @@ install [plugin manager](#plugin-manager) first, config the path
 
 # neovim
 
-# installation
+```shell
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt update
+sudo apt install neovim
+```
 
-# core config
+# basic config
 
 refer :point_right: [阮一峰的博客](https://www.ruanyifeng.com/blog/2018/09/vimrc.html)
 
