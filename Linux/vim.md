@@ -5,6 +5,7 @@ Monday, April 15th 2019, 20:47
 <!-- code_chunk_output -->
 
 * [vim.md](#vimmd)
+* [vim](#vim)
 * [neovim](#neovim)
 * [installation](#installation)
 * [core config](#core-config)
@@ -13,6 +14,12 @@ Monday, April 15th 2019, 20:47
 	* [plugin manager](#plugin-manager)
 
 <!-- /code_chunk_output -->
+
+# vim
+
+install [plugin manager](#plugin-manager) first, config the path
+
+[my own configured vimrc](assets/vimrc)
 
 # neovim
 

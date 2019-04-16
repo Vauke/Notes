@@ -1,0 +1,352 @@
+" >>> CORE <<< "
+
+	" >> basic << "
+
+	" // 不与 Vi 兼容（采用 Vim 自己的操作命令） "
+	set nocompatible " on by default
+
+	syntax enable
+	" syntax on " on by default
+
+	" // 在底部显示，当前处于命令模式还是插入模式 "
+	" // on by default, vim-airline also show mode status, so close it "
+	set noshowmode
+
+	" // turn on both "
+	set number
+	set relativenumber
+
+	" // only show relative number in normal mode "
+	augroup relative_number
+    	autocmd!
+    	autocmd InsertEnter * :set norelativenumber
+    	autocmd InsertLeave * :set relativenumber
+	augroup END
+
+	" // 命令模式下，在底部显示，当前键入的指令 "
+	set showcmd
+
+	" // Enable mouse usage (all modes) "
+	set mouse=a
+	set selection=exclusive
+	set selectmode=mouse,key
+	
+	" // 在Vim中通过鼠标右键粘贴时会在行首多出许多缩进和空格，通过set paste可以在插入模式下粘贴内容时不会有任何格式变形、胡乱缩进等问题 "
+	set paste
+
+
+
+	" >> indent << "
+
+	" // 按下 Tab 键时，Vim 显示的空格数 "
+	" set tabstop=4 " on by default
+
+	set smarttab
+
+	" // use 4 spaces to indent while using >>, <<"
+	set shiftwidth=4
+
+	" // convert tab to spaces "
+	set expandtab
+	" // a tab represents how many spaces "
+	set softtabstop=4
+
+	set autoindent
+  	set smartindent
+
+	" // 针对不同的文件，采用不同的缩进方式  "
+	filetype indent on
+
+
+
+	" >> encodings << "
+
+	" // used to show files "
+	" set encoding=utf-8
+	set termencoding=utf-8
+	" // used to convert files to another encoding "
+  	set fileencoding=utf-8
+	" // used to match files encoding to show correctly "
+  	set fileencodings=utf-8,ucs-bom,gbk,big5,cp936,gb18030,gb2312,utf-16
+
+
+
+  	" >> appearance << "
+
+	" // 光标所在的当前行高亮 "
+	set cursorline
+	" highlight CursorLine   cterm=NONE ctermbg=blue ctermfg=NONE guibg=NONE guifg=NONE
+
+  	" // 设置行宽，即一行显示多少个字符 "
+  	" set textwidth=80
+
+  	" // 自动折行，即太长的行分成几行显示 "
+  	" set wrap
+
+  	" // 只有遇到指定的符号（比如空格、连词号和其他标点符号），才发生折行。也就是说，不会在单词内部折行 "
+  	set linebreak
+
+  	" // 指定折行处与编辑窗口的右边缘之间空出的字符数 "
+  	set wrapmargin=2
+
+	" // 垂直滚动时，光标距离顶部/底部的位置（单位：行） "
+  	set scrolloff=3
+
+	" // 是否显示状态栏。0 表示不显示，1 表示只在多窗口时显示，2 表示显示 "
+	" set laststatus=2 " on by default
+
+	" // 在状态栏显示光标的当前位置（位于哪一行哪一列） "
+	" set ruler
+
+
+
+	" >> search << "
+
+	" // Show matching brackets "
+	set showmatch
+
+	" // 搜索时，高亮显示匹配结果 "
+	set hlsearch
+
+	" // 输入搜索模式时，每输入一个字符，就自动跳到第一个匹配的结果 "
+	set incsearch
+
+	" // 搜索时忽略大小写 "
+	set ignorecase
+	set smartcase
+
+
+
+	" >> edit << "
+
+	" // 打开英语单词的拼写检查 "
+	" set spell spelllang=en_us
+
+	" // 设置取消备份 "
+	" set nobackup  " on by default"
+	" // 禁止临时文件生成 "
+	" set noswapfile
+	" // 未保存或者只读时，弹出确认 "
+	set confirm
+
+	" // 保留撤销所有历史 可恢复之前某次的操作, 不会在退出后丢失历史操作(原理是保存为.un开头的文件) "
+	" set undofile
+	
+	" // 设置备份文件、交换文件、操作历史文件的保存位置, 需手动创建这三个目录 (结尾的//表示生成的文件名带有绝对路径，路径中用%替换目录分隔符，这样可以防止文件重名) "
+	set backupdir=~/.vim/.backup//  
+	set directory=~/.vim/.swp//
+	set undodir=~/.vim/.undo// 
+
+	" // 自动切换工作目录。这主要用在一个 Vim 会话之中打开多个文件的情况，默认的工作目录是打开的第一个文件的目录。该配置可以将工作目录自动切换到，正在编辑的文件的目录 "
+	set autochdir
+
+	" // 打开文件监视。如果在编辑过程中文件发生外部改变（比如被别的编辑器编辑了），就会发出提示 "
+	set autoread
+
+	set t_vb=
+
+	" // 出错时，不要发出响声 "
+	" set noerrorbells  " on by default
+	" // 出错时，发出视觉提示，通常是屏幕闪烁 "
+	set visualbell
+
+	" // Vim 需要记住多少次历史操作 "
+	set history=1000
+
+	" // 如果行尾有多余的空格（包括 Tab 键），该配置将让这些空格显示成可见的符号 "
+	set list
+	set listchars=extends:❯,precedes:❮,tab:▸\ ,trail:˽
+
+	" // 命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令 "
+	set wildmenu
+	set wildmode=longest:list,full
+
+
+	" // change the cursor from block into line under insert mode "
+	if has("autocmd")
+	  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+	  au InsertEnter,InsertChange *
+	    \ if v:insertmode == 'i' | 
+	    \   silent execute '!echo -ne "\e[5 q"' | redraw! |
+	    \ elseif v:insertmode == 'r' |
+	    \   silent execute '!echo -ne "\e[3 q"' | redraw! |
+	    \ endif
+	  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+	endif
+
+
+
+" >>> PLUGINS <<< "
+	
+	" >> plugin manager <<"
+
+	call plug#begin('~/.vim/plugged')
+
+		" > auto pairs < "
+		Plug 'jiangmiao/auto-pairs'
+
+
+		" > color schemes < " 
+		Plug 'iCyMind/NeoSolarized'
+		Plug 'morhetz/gruvbox'
+
+
+		" > comments < "
+		" Plug 'scrooloose/nerdcommenter'
+
+
+		" > file tree < "
+		Plug 'scrooloose/nerdtree'
+		" > file tree hightlight < "
+		" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+
+		" > indent indicator < "
+		Plug 'Yggdroot/indentLine'
+
+
+		" > leader < "
+		" Plug 'Yggdroot/LeaderF'
+
+
+		" > start page < "
+		Plug 'mhinz/vim-startify'
+
+
+		" > tag bar < "
+		" Plug 'majutsushi/tagbar'
+
+
+		" > vim-airline < " 
+		Plug 'vim-airline/vim-airline'
+		Plug 'vim-airline/vim-airline-themes'
+
+	call plug#end()
+
+
+
+	" >> PLUGINS CONFIG << "
+	
+		" > auto pairs < "
+
+
+		" > color schemes < "
+		set t_Co=256
+		set termguicolors
+		set background=dark " dark | light
+		
+		" colorscheme gruvbox 
+		" let g:gruvbox_contrast_dark='soft'
+		colorscheme NeoSolarized 
+		
+
+		" > comments < "
+
+
+		" > file tree < "
+		" // open NERDTree when enter vim "
+		autocmd VimEnter * NERDTree
+
+		" // 打开新的窗口，focus在buffer里而不是NERDTree里 "
+    	autocmd VimEnter * :wincmd l
+
+		" // make sure vim does not open files and other buffers on NerdTree window "
+		autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" | b# | endif
+
+		" // close vim if the only window left is a NERRDTree "
+		autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+		" // open with specified directory "
+		" autocmd StdinReadPre * let s:std_in=1
+		" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+		" // map an all modes shortcut "
+		map <F2> :NERDTreeToggle<CR>
+
+		" nnoremap <leader>r :NERDTreeFind<cr>
+
+		" // show hidden files "
+		let NERDTreeShowHidden=1
+
+		let g:NERDTreeDirArrowExpandable = '▸'
+		let g:NERDTreeDirArrowCollapsible = '▾'
+		let g:NERDTreeChDirMode = 2
+		autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |cd %:p:h |endif
+
+		" // 设置宽度 "
+   		" let NERDTreeWinSize=30
+    	
+    	" // 在终端启动vim时，共享NERDTree "
+    	" let g:nerdtree_tabs_open_on_console_startup=1
+    	
+    	" // 忽略某些文件的显示 "
+    	let NERDTreeIgnore=['\.pyc','\~$',
+	                \ '\.swp',
+	                \ '.DS_Store',
+	                \ '\.orig$',
+	                \ '@neomake_',
+	                \ '__pycache__$[[dir]]',
+	                \ '.pytest_cache$[[dir]]',
+	                \ '.git[[dir]]',
+	                \ '.idea[[dir]]',
+	                \ '.vscode[[dir]]',
+	                \ '.egg-info$[[dir]]']
+	    
+	    " // 显示书签列表 "
+	    let NERDTreeShowBookmarks=1
+
+
+		" > indent indicator < "
+		" // alternatives '|', '¦', '┆', '┊' "
+		let g:indentLine_char = '┆'
+
+		" // 使用此插件会导致JSON文件中的引号被隐藏, 下面是修改为当光标悬浮时正常显示 "
+		let g:indentLine_concealcursor = ''
+		let g:indentLine_conceallevel = 1
+
+
+		" > leader < "
+
+		" > tag bar < "
+
+
+		" > vim-airline < "
+		" let g:airline_theme='gruvbox'
+		
+		let g:airline_theme='solarized'
+		let g:airline_solarized_bg='dark'
+		
+		" // switch on/off powerline font, 1 for on "
+		" let g:airline_powerline_fonts = 0
+
+		" // 默认是关闭的，打开后可以显示窗口tab和buffer "
+		let g:airline#extensions#tabline#enabled = 1
+
+
+		" // NERDTress File highlighting "
+		function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+		 	exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermfg='. a:fg .' ctermbg='. a:bg .' guifg='. a:guifg .' guibg='. a:guibg
+		 	exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+		endfunction
+
+		" // set guibg == bg is to match the vim color scheme "
+		call NERDTreeHighlightFile('sh', 'green', 'none', 'green', 'bg')
+		call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', 'bg')
+		call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', 'bg')
+		call NERDTreeHighlightFile('xml', 'yellow', 'none', 'yellow', 'bg')
+		call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', 'bg')
+		call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', 'bg')
+		call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', 'bg')
+		call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', 'bg')
+		call NERDTreeHighlightFile('py', 'cyan', 'none', 'cyan', 'bg')
+		call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', 'bg')
+		call NERDTreeHighlightFile('java', 'cyan', 'none', 'cyan', 'bg')
+		call NERDTreeHighlightFile('js', 'red', 'none', '#ffa500', 'bg')
+		call NERDTreeHighlightFile('php', 'magenta', 'none', '#ff00ff', '#151515')
+
+
+		" > start page < "
+		"设置书签
+		let g:startify_bookmarks            = [
+            \ '/media/Program/IDEA_Projects',
+            \]
