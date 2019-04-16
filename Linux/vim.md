@@ -7,6 +7,8 @@ Monday, April 15th 2019, 20:47
 * [vim.md](#vimmd)
 * [neovim](#neovim)
 * [installation](#installation)
+* [core config](#core-config)
+	* [修改插入模式的光标为竖线](#修改插入模式的光标为竖线)
 * [plugins](#plugins)
 	* [plugin manager](#plugin-manager)
 
@@ -15,6 +17,14 @@ Monday, April 15th 2019, 20:47
 # neovim
 
 # installation
+
+# core config
+
+refer :point_right: [阮一峰的博客](https://www.ruanyifeng.com/blog/2018/09/vimrc.html)
+
+## 修改插入模式的光标为竖线
+
+refer :point_right: [改为竖线](https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes)
 
 # plugins
 
