@@ -7,10 +7,11 @@ Monday, April 15th 2019, 20:47
 * [vim.md](#vimmd)
 * [vim](#vim)
 * [neovim](#neovim)
-* [core config](#core-config)
+* [basic config](#basic-config)
 	* [修改插入模式的光标为竖线](#修改插入模式的光标为竖线)
 * [plugins](#plugins)
 	* [plugin manager](#plugin-manager)
+	* [space vim](#space-vim)
 
 <!-- /code_chunk_output -->
 
@@ -45,3 +46,7 @@ refer :point_right: [plugins recommended](https://jdhao.github.io/2018/09/05/cen
 ```shell
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
+
+## space vim
+
+refer :point_right: [SpaceVim](https://spacevim.org/)
