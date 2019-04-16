@@ -47,6 +47,12 @@ refer :point_right: [plugins recommended](https://jdhao.github.io/2018/09/05/cen
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
+安装tagbar的依赖
+
+```shell
+sudo apt install ctags
+```
+
 ## space vim
 
 refer :point_right: [SpaceVim](https://spacevim.org/)
