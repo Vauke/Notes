@@ -366,7 +366,7 @@
 		let g:airline_solarized_bg='dark'
 		
 		" // switch on/off powerline font, 1 for on "
-		" let g:airline_powerline_fonts = 0
+		" let g:airline_powerline_fonts = 1
 
 		" // 默认是关闭的，打开后可以显示窗口tab和buffer "
 		let g:airline#extensions#tabline#enabled = 1
@@ -427,7 +427,7 @@
 			normal G
 			normal o
 			normal o
-			call setline(line('.'), 'public class '. expand('%:w'). ' {')
+			call setline(line('.'), 'public class '. expand('%:t'). ' {')
 			call append(line('.'), '}')
 			call cursor(1,1) " move cursor to 1,1 "
 		endfunction
