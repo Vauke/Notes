@@ -25,8 +25,9 @@
 	" // 命令模式下，在底部显示，当前键入的指令 "
 	set showcmd
 
-	" // Enable mouse usage (all modes) "
-	set mouse=a
+	" // Enable mouse usage (all modes) 会导致右键不可用 "
+	" // 只在visual和insert模式下启用 normal模式下可以使用右键"
+	set mouse=vi
 	set selection=exclusive
 	set selectmode=mouse,key
 	
@@ -201,6 +202,7 @@
 
 		" > file tree < "
 		Plug 'scrooloose/nerdtree'
+		
 		" > file tree hightlight < "
 		" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
@@ -244,6 +246,7 @@
 		colorscheme NeoSolarized 
 		
 
+
 		" > comments < "
 		" // Add spaces after comment delimiters by default "
 		let g:NERDSpaceDelims = 1
@@ -268,6 +271,7 @@
 
 		" // Enable NERDCommenterToggle to check all selected lines is commented or not "
 		let g:NERDToggleCheckAllLines = 1
+
 
 
 		" > file tree < "
@@ -323,6 +327,7 @@
 	    " // 显示书签列表 "
 	    " let NERDTreeShowBookmarks=1
 
+
 		" // NERDTress File highlighting "
 		function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
 		 	exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermfg='. a:fg .' ctermbg='. a:bg .' guifg='. a:guifg .' guibg='. a:guibg
@@ -345,6 +350,7 @@
 		call NERDTreeHighlightFile('php', 'magenta', 'none', '#ff00ff', '#151515')
 
 
+
 		" > indent indicator < "
 		" // alternatives '|', '¦', '┆', '┊' "
 		let g:indentLine_char = '┆'
@@ -353,10 +359,10 @@
 		let g:indentLine_concealcursor = ''
 		let g:indentLine_conceallevel = 1
 
-
 		" > leader < "
 
 		" > tag bar < "
+
 
 
 		" > vim-airline < "
@@ -372,17 +378,24 @@
 		let g:airline#extensions#tabline#enabled = 1
 
 
+
 		" > start page < "
 		"设置书签
 		" let g:startify_bookmarks            = [
             \ '/media/Program/IDEA_Projects',
             \]
 
+
+
+
 " >>> FUNCTIONS <<< "
 
 	" >> comments << "
 
         autocmd BufNewFile *.[ch],*.cpp,*.java,*.py,*.sh exec ':call SetComment()'
+
+		" // 映射快捷键, 生成后跳转到第一行, 使用A转到行尾编辑 "
+		map <leader>lc :call SetInfo2()<CR>:1<CR>A
 
         function SetComment()
 			if expand('%:e') == 'py'
@@ -419,21 +432,18 @@
 			normal o
 			call setline(line('.'), '/**')
 			call append(line('.'), ' * No.')
-			call append(line('.')+1, ' * Title: ')
-			call append(line('.')+2, ' * url: ')
-			call append(line('.')+3, ' *')
-			call append(line('.')+4, ' * Created by Vauke on '. strftime("%Y-%m-%d %H:%M"))
-			call append(line('.')+5, ' */')
+			call append(line('.')+1, ' * Difficulty : ')
+			call append(line('.')+2, ' * Title      : ')
+			call append(line('.')+3, ' * url        :')
+			call append(line('.')+4, ' *')
+			call append(line('.')+5, ' * Created by Vauke on '. strftime("%Y-%m-%d %H:%M"))
+			call append(line('.')+6, ' */')
 			normal G
 			normal o
-			normal o
-			call setline(line('.'), 'public class '. expand('%:t'). ' {')
+			call setline(line('.'), 'public class '. expand('%:r'). ' {')
 			call append(line('.'), '}')
 			call cursor(1,1) " move cursor to 1,1 "
 		endfunction
-
-		" // 映射快捷键, 生成后跳转到第一行, 使用A转到行尾编辑 "
-		map <leader>lc :call SetInfo2()<CR>:1<CR>A
 
 		function DateModified()
 			call cursor(6,1)
@@ -447,3 +457,20 @@
 		endfunction
 
 		:autocmd FileWritePre,BufWritePre * ks | call DateModified() | 's
+
+
+
+		" >> copy convenience << "
+
+		map <F4> :call ConvenientCopyToggle()<CR>
+
+		function ConvenientCopyToggle()
+			if &number
+				:set nonumber
+				:set norelativenumber
+			else
+				:set number
+				:set relativenumber
+			endif
+			:IndentLinesToggle
+		endfunction
