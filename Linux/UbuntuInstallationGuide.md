@@ -261,12 +261,17 @@ sudo apt-get install zeal
 ```
 
 ## shutter
-设置快捷键`ctrl-shift-A`, `shutter -s`
+设置快捷键
+Settings -> Devices -> Keyboard 添加
+`ctrl-win-A`, `shutter -s`
+
 ```shell
 sudo add-apt-repository ppa:shutter/ppa
 sudo apt-get update
 sudo apt-get install shutter
 ```
+
+[解决编辑选项不能用](https://www.linuxidc.com/Linux/2018-04/151911.htm)
 
 ## calibre
 ```shell
