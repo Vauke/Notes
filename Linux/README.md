@@ -13,7 +13,6 @@ Monday, April 22nd 2019, 17:19
 
 ## Command Line Download Tools
 
+[xmind file](./assets/LinuxCommandLineDownloadTools.xmind)
 
 ![LinuxCommandLineDownloadTools](./assets/LinuxCommandLineDownloadTools.png)
-
-[xmind file](./assets/LinuxCommandLineDownloadTools.xmind)
