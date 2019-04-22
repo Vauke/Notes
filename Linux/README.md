@@ -5,6 +5,8 @@ Monday, April 22nd 2019, 17:19
 <!-- code_chunk_output -->
 
 * [Commands](#commands)
+	* [service](#service)
+	* [systemctl](#systemctl)
 	* [Command Line Download Tools](#command-line-download-tools)
 
 <!-- /code_chunk_output -->
