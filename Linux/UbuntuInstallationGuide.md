@@ -60,6 +60,7 @@ Monday, August 13th 2018, 23:26
 	* [node.js](#nodejs)
 	* [gitmoji](#gitmoji)
 	* [commitizen](#commitizen)
+	* [docker](#docker)
 
 <!-- /code_chunk_output -->
 
@@ -705,5 +706,20 @@ git-cz / git cz
 教程 :point_right: [github docker教程](https://github.com/yeasy/docker_practice)
 
 ```shell
+# 由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
 
+# 为了确认所下载软件包的合法性，需要添加软件源的 GPG 密钥
+# 官方源
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+
+# 鉴于国内网络问题，强烈建议使用国内源
+# curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+# sudo add-apt-repository "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+
+# install
+sudo apt install docker-ce
 ```
