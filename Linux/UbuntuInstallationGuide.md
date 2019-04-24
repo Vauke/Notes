@@ -27,8 +27,6 @@ Monday, August 13th 2018, 23:26
 	* [axel](#axel)
 	* [uget](#uget)
 	* [vim](#vim)
-			* [vundle](#vundle)
-			* [powerline font](#powerline-font)
 	* [取消错误通知](#取消错误通知)
 	* [y-ppa-manager](#y-ppa-manager)
 	* [meld](#meld)
@@ -65,11 +63,13 @@ Monday, August 13th 2018, 23:26
 <!-- /code_chunk_output -->
 
 ## 安装gnome-tweak-tool
+
 ```shell
 sudo apt install gnome-tweak-tool
 
 sudo apt install chrome-gnome-shell
 ```
+
 安装插件 <br/>
 https://extensions.gnome.org </br>
 
@@ -87,6 +87,7 @@ https://extensions.gnome.org </br>
 |         Workspace Indicator         | by fmuellner |
 |           system-monitor            |   by Cerin   |
 
+
 安装system-monitor需要额外安装以下依赖:
 ```shell
 sudo apt-get install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0  gir1.2-clutter-1.0
@@ -97,9 +98,11 @@ yosa-max <br/>
 ultra-flat-icons
 
 ## chrome
+
 安装simsun.ttf解决chrome中文字体发虚
 
 ## 搜狗输入法
+
 ```shell
 sudo apt install fcitx
 // sudo apt install fcitx-bin fcitx-table
@@ -111,11 +114,13 @@ reboot <br/>
 ![设置快捷键](assets/设置快捷键.png)
 
 ## 安装plank
+
 ```shell
 sudo add-apt-repository ppa:docky-core/stable
 sudo apt-get update
 sudo apt-get install plank
 ```
+
 软件中心搜索下载plank preferences
 reboot
 
@@ -129,7 +134,9 @@ sudo apt purge plymouth-theme-ubuntu-budgie-text
 sudo update-initramfs -u
 reboot
 ```
+
 ## 修改grub等待时间
+
 ```shell
 sudo vi /etc/default/grub
 // 将GRUB_TIMEOUT修改为0.1
@@ -140,8 +147,10 @@ sudo update-grub
 ```
 
 ## albert
+
 https://albertlauncher.github.io/ </br>
 https://software.opensuse.org/download.html?project=home:manuelschneid3r&package=albert
+
 ```shell
 wget -nv https://download.opensuse.org/repositories/home:manuelschneid3r/xUbuntu_18.04/Release.key -O Release.key
 sudo apt-key add - < Release.key
@@ -153,17 +162,24 @@ sudo apt-get install albert
 ```
 
 ## diskmount
-[Ubuntu挂载ntfs硬盘.md](Ubuntu挂载ntfs硬盘.md) <br/>
-修改/etc/fstab, 参考[fstab](fstab) <br/>
+
+[Ubuntu挂载ntfs硬盘.md](Ubuntu挂载ntfs硬盘.md)
+
+修改/etc/fstab, 参考[fstab](fstab)
+
 若是无写入权限, 先`umount`, 然后`sudo ntfsfix /dev/sdX`, 或者进入win10->控制面板->电源->盖子, 电源按钮->更改不可用设置->取消勾选快速启动
 
 ## git
+
 安装zsh前安装
+
 ```shell
 sudo apt install git
 ```
 
 ## git proxy
+
+```shell
 git config --global https.proxy http://127.0.0.1:1080 <br/>
 git config --global https.proxy https://127.0.0.1:1080 <br/>
 
@@ -176,9 +192,12 @@ git config --global https.proxy 'socks5://127.0.0.1:1080' <br/>
 
 git config --global user.name "username" <br/>
 git config --global user.email "email" <br/>
+```
 
 ## zsh
+
 https://ohmyz.sh/
+
 ```shell
 sudo apt-get install zsh
 
@@ -189,7 +208,9 @@ logout
 
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
-修改`~/.zshrc` refer: [.zshrc](assets/.zshrc)
+
+修改`~/.zshrc` :point_right: [.zshrc](assets/.zshrc)
+
 ```script
 alias rm="rm -i"
 
@@ -202,7 +223,9 @@ export https_proxy="http://127.0.0.1:1080"
 ```
 
 ## aria2
+
 安装apt-fast前先安装aria2, 不然安装apt-fast时安装的aria2会导致uget不能使用aria2?(在uget中修改aria2c的路径为`whereis aria2c`获取到的, 可以解决)
+
 ```shell
 sudo apt install aria2
 
@@ -211,10 +234,12 @@ cd .aria2
 touch aria2.session
 chmod 777 aria2.session
 ```
+
 //指定aria2配置文件 --conf-path=/home/vauke/.aria2/aria2.conf <br/>
 [aria2.conf](aria2.conf)
 
 ## apt-fast
+
 ```shell
 sudo add-apt-repository ppa:apt-fast/stable
 sudo apt update
@@ -222,6 +247,7 @@ sudo apt install apt-fast
 ```
 
 ## java
+
 ```shell
 sudo vi /etc/profile
 
@@ -234,27 +260,36 @@ reboot or source /etc/profile
 ```
 
 ## trim
+
 将脚本[trim](trim)放在/etc/cron.weekly/下
+
 ```shell
 sudo chmod +x trim
 ```
 
 ## password management
+
 keepassxc
+
 ```shell
 sudo add-apt-repository ppa:phoerious/keepassxc
 sudo apt-get update
 sudo apt install keepassxc
 ```
+
 bitwarden <br/>
 https://bitwarden.com
 
 ## wine-qq wechat
-https://www.lulinux.com/archives/1319 <br/>
-https://github.com/wszqkzqk/deepin-wine-ubuntu <br/>
-// https://github.com/askme765cs/Wine-QQ-TIM
+
+https://www.lulinux.com/archives/1319
+
+https://github.com/wszqkzqk/deepin-wine-ubuntu
+
+https://github.com/askme765cs/Wine-QQ-TIM
 
 ## zeal
+
 ```shell
 sudo add-apt-repository ppa:zeal-developers/ppa
 sudo apt-get update
@@ -262,6 +297,7 @@ sudo apt-get install zeal
 ```
 
 ## shutter
+
 设置快捷键
 Settings -> Devices -> Keyboard 添加
 `ctrl-win-A`, `shutter -s`
@@ -275,17 +311,21 @@ sudo apt-get install shutter
 [解决编辑选项不能用](https://www.linuxidc.com/Linux/2018-04/151911.htm)
 
 ## calibre
+
 ```shell
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 ```
 
 ## axel
+
 ```shell
 sudo apt install axel
 ```
 
 ## uget
+
 https://github.com/ugetdm/uget-integrator
+
 ```shell
 sudo add-apt-repository ppa:uget-team/ppa
 sudo apt update
@@ -293,28 +333,18 @@ sudo apt install uget-integrator
 ```
 
 ## vim
-安装vundle后, 将[vimrc](vimrc)放到`~/.vim/`下
 
-#### vundle
-```shell
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-sudo apt-get install fonts-powerline
-```
-
-#### powerline font
-https://powerline.readthedocs.io/en/latest/installation/linux.html#fonts-installation
-```shell
-wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-```
+:point_right: [vim.md](vim.md)
 
 ## 取消错误通知
+
 ```shell
 sudo vi /etc/default/apport
 enabled=0
 ```
 
 ## y-ppa-manager
+
 ```shell
 sudo add-apt-repository ppa:webupd8team/y-ppa-manager
 sudo apt update
@@ -322,21 +352,28 @@ sudo apt install y-ppa-manager
 ```
 
 ## meld
+
 sudo apt install meld
 
 ## jad
+
 http://jd.benow.ca/
 
+类似: luyten
+
 ## GoldenDict
+
 在软件中心下载安装
 
 ## Font
+
 ```shell
 sudo apt install ttf-mscorefonts-installer
 sudo fc-cache -f -v
 ```
 
 ## MySQL
+
 ```shell
 sudo apt install mysql-server
 
@@ -347,6 +384,7 @@ sudo systemctl enable mysql
 
 mysql -u root -p
 ```
+
 ```sql
 show variables like 'char%';
 show engines;
@@ -358,9 +396,11 @@ show grants;
 ```
 
 ## Terminal
+
 sudo apt install tilda
 
 ## atom plugins
+
 |          plugin           |    author    |
 | ------------------------- | ------------ |
 |        file-header        |   guiguan    |
@@ -376,12 +416,15 @@ sudo apt install tilda
 |       vim-mode-plus       |     t9md     |
 |   vim-mode-plus-ex-mode   |     t9md     |
 
-file-header设置日期格式:https://momentjs.com/docs/#/displaying/ <br/>
-file-header插件设置文件映射 <br/>
-![file-header插件设置文件映射.png](assets/file-header插件设置文件映射.png) <br/>
+file-header设置日期格式:https://momentjs.com/docs/#/displaying/
+
+file-header插件设置文件映射
+
+![file-header插件设置文件映射.png](assets/file-header插件设置文件映射.png)
 
 Edit->Snippets...
 添加
+
 ```cson
 '.text.md':
   '<sup>':
@@ -405,11 +448,15 @@ Edit->Snippets...
 ```
 
 ## sublime
-安装gbk支持: 先安装codecs33, 然后安装GBK4subl <br/>
-![gbk编码支持](assets/gbk编码支持.png) <br/>
+
+安装gbk支持: 先安装codecs33, 然后安装GBK4subl
+
+![gbk编码支持](assets/gbk编码支持.png)
+
 ![sublime设置](assets/sublime设置.png)
 
 ## ufw
+
 ```shell
 sudo apt install ufw
 
@@ -420,13 +467,16 @@ sudo ufw status
 ```
 
 ## ssh
+
 ```shell
 ps -e | grep sshd
 sudo apt install openssh-server
 ```
 
 ## nvidia
+
 https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-18-04-bionic-beaver-linux
+
 ```shell
 ubuntu-drivers devices
 
@@ -443,6 +493,7 @@ sudo apt install nvidia-driver-396
 ```
 
 切换显卡
+
 ```shell
 prime-select query
 prime-select intel //intel
@@ -450,8 +501,11 @@ prime-select nvidia //nvidia
 ```
 
 解决画面撕裂:
-http://forum.ubuntu.org.cn/viewtopic.php?t=487744 <br/>
+
+http://forum.ubuntu.org.cn/viewtopic.php?t=487744
+
 [截图](assets/解决画面撕裂.png)
+
 ```shell
 sudo vi /etc/modprobe.d/nvidia-graphics-drivers.conf
 
@@ -464,37 +518,49 @@ reboot
 ```
 
 ## neofetch
+
 ```shell
 // sudo apt insatll screenfetch
 sudo apt install neofetchneofetch
 ```
 
 ## vm
-安装vbox要额外装extension pack才能用u盘 <br/>
-Settings->System->Motherboard->Enable I/O APIC <br/>
-Settings->Storage->Controller:SATA->Use Host I/O Cache <br/>
-Settings->Storage->xxx.vdi->Solid-State Drive <br/>
-粘贴拖拽功能不如vmware, 不能粘贴时在guest中调出任务管理器重启VboxGuestAddtions <br/>
+
+安装vbox要额外装extension pack才能用u盘
+
+Settings->System->Motherboard->Enable I/O APIC
+
+Settings->Storage->Controller:SATA->Use Host I/O Cache
+
+Settings->Storage->xxx.vdi->Solid-State Drive
+
+粘贴拖拽功能不如vmware, 不能粘贴时在guest中调出任务管理器重启VboxGuestAddtions
 
 vmware启动慢, 功能更完善稳定
 
 ## htop
+
 sudo apt install htop
 
 ## catfish
+
 文件搜索
 
 ## tree
+
 sudo apt install tree
 
 ## music
-iease music <br/>
-https://github.com/trazyn/ieaseMusic <br/>
-https://github.com/sunzongzheng/music <br/>
+
+iease music
+
+https://github.com/trazyn/ieaseMusic
+https://github.com/sunzongzheng/music
 
 spotify
 
 ## video
+
 ```shell
 sudo apt install vlc
 
@@ -504,17 +570,27 @@ sudo add-apt-repository ppa:rvm/smplayer
 sudo apt-get update
 sudo apt-get install smplayer smplayer-themes smplayer-skins
 ```
+
 vlc简单设置:
-打开所有设置: <br/>
-解决播放视频卡顿: Input / Codecs-> Advanced->File Caching 改为1000以上 <br/>
-解决内存占用大: Playlist -> Automatically preparse items 取消勾选 <br/>
-Video -> General video settings -> Drop late frames 去掉勾选 <br/>
-Video -> Window properties -> Source Aspect ratio 改为16:9 <br/>
-简单设置页面: <br/>
-Input / Codecs: Hardware-accelerated decoding 选择VA-API video decoder(使用Intel核显)或者VDPAU(需安装nvidia驱动) <br/>
+
+打开所有设置:
+
+解决播放视频卡顿: Input / Codecs-> Advanced->File Caching 改为1000以上
+
+解决内存占用大: Playlist -> Automatically preparse items 取消勾选
+
+Video -> General video settings -> Drop late frames 去掉勾选
+
+Video -> Window properties -> Source Aspect ratio 改为16:9
+
+简单设置页面:
+
+Input / Codecs: Hardware-accelerated decoding 选择VA-API video decoder(使用Intel核显)或者VDPAU(需安装nvidia驱动)
+
 Video: Display -> Output -> VDPAU output (codec选择VDPAU后才设置)
 
 ## 打开不了设置中心
+
 ```shell
 sudo apt install gnome-control-center
 ```
@@ -548,6 +624,7 @@ sudo apt install gnome-control-center
 上条命令会连带安装`network-manager-gnome`, 如果没有, 则手动安装
 
 ## snap安装软件太慢
+
 ```shell
 # search the app you want to install with snap
 snap search "app_name"
@@ -566,12 +643,15 @@ sudo snap remove app_name
 ```
 
 ## e-mail client
-mailspring <br/>
-https://github.com/Foundry376/Mailspring <br/>
+
+mailspring
+
+https://github.com/Foundry376/Mailspring
 
 thunderbird
 
 ## chat all in one
+
 rambox.pro
 
 ## syncthing
@@ -736,4 +816,17 @@ sudo usermod -aG docker vauke
 
 ```shell
 docker run hello-world
+
+docker version
+docker info
+
+# disable start on boot
+sudo systemctl disable docker
+```
+
+docker的默认镜像存储路径是`/var/lib/docker`, 当`/`分区容量不够时, 可以考虑使用软链接或者修改`/etc/docker/daemon.json`或者修改`docker.service`文件, 修改文件只能二选一, 不然会冲突, 无法开启docker, 建议修改`daemon.json`
+
+
+```json
+
 ```

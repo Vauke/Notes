@@ -52,7 +52,7 @@ ZSH_THEME=""
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -107,6 +107,7 @@ RPROMPT="[%{$fg_bold[cyan]%}%?%{$reset_color%}]"
 
 alias rm="rm -i"
 alias toplip="/home/vauke/toplip/toplip"
+alias lc="cd /media/Program/IDEA_Projects/leetcode/src/com/vauke"
 
 setopt no_nomatch
 
