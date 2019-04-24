@@ -65,6 +65,7 @@ systemctl rescue
 ```shell
 # check service status
 systemctl status redis-server.service
+systemctl is-active redis-server.service
 
 # start a service
 systemctl start redis-server.service
