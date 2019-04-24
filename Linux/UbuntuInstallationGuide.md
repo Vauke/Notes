@@ -59,6 +59,7 @@ Monday, August 13th 2018, 23:26
 	* [gitmoji](#gitmoji)
 	* [commitizen](#commitizen)
 	* [docker](#docker)
+	* [wireshark](#wireshark)
 
 <!-- /code_chunk_output -->
 
@@ -828,5 +829,31 @@ docker的默认镜像存储路径是`/var/lib/docker`, 当`/`分区容量不够�
 
 
 ```json
+{
+    "data-root": "/home/vauke/docker",
+    "storage-driver": "overlay2"
+}
+```
 
+重启docker, 会自动创建目录和结构
+
+使用`docker info`查看`Docker Root Dir`和`Storage Driver`, 会发现值已改变
+
+
+## wireshark
+
+```shell
+# show package info
+apt-cache madison wireshark
+# or
+apt-cache show wireshark
+
+# install
+sudo apt install wireshark
+
+# 非root使用wireshark
+sudo usermod -aG wireshark vauke
+
+# 默认tcpdump只能root使用, wireshark无法用
+sudo chgrp wireshark /usr/sbin/tcpdump
 ```
