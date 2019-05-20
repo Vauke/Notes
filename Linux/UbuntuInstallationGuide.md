@@ -654,9 +654,9 @@ thunderbird
 
 ## all in one apps
 
-[rambox](https://rambox.pro/#home)
+[Station](https://getstation.com/)
 
-[station](https://getstation.com/)
+[rambox](https://rambox.pro/#home)
 
 ### built custom ones with Nativefier
 
