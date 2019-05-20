@@ -51,7 +51,8 @@ Monday, August 13th 2018, 23:26
 	* [误删network-manager后无法联网](#误删network-manager后无法联网)
 	* [snap安装软件太慢](#snap安装软件太慢)
 	* [e-mail client](#e-mail-client)
-	* [chat all in one](#chat-all-in-one)
+	* [all in one apps](#all-in-one-apps)
+		* [built custom ones with Nativefier](#built-custom-ones-with-nativefier)
 	* [syncthing](#syncthing)
 	* [redis](#redis)
 	* [nginx](#nginx)
@@ -651,9 +652,27 @@ https://github.com/Foundry376/Mailspring
 
 thunderbird
 
-## chat all in one
+## all in one apps
 
-rambox.pro
+[rambox](https://rambox.pro/#home)
+
+[station](https://getstation.com/)
+
+### built custom ones with Nativefier
+
+pack any web site into an electron app
+
+[nativefier](https://github.com/jiahaog/nativefier)
+
+```shell
+npm i nativefier -g
+
+# help info
+nativefier -h
+
+# usage
+nativefier <target_url> [-n <app_name>] [-i <path_to_icon>] [path_to_dest_dir]
+```
 
 ## syncthing
 
@@ -729,9 +748,13 @@ npm i -g xxx
 npm uninstall xxx
 npm uninstall xxx -g # global
 
-# packages installed
+# list installed packages
 npm list
 npm list -g # global
+
+# update outdated packages
+npm update xxx
+npm update -g # update all globally installed packages
 ```
 
 ## gitmoji
@@ -838,7 +861,6 @@ docker的默认镜像存储路径是`/var/lib/docker`, 当`/`分区容量不够�
 重启docker, 会自动创建目录和结构
 
 使用`docker info`查看`Docker Root Dir`和`Storage Driver`, 会发现值已改变
-
 
 ## wireshark
 
