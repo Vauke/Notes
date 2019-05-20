@@ -656,13 +656,13 @@ thunderbird
 
 [Station](https://getstation.com/)
 
-[rambox](https://rambox.pro/#home)
+[Rambox](https://rambox.pro/#home)
 
 ### built custom ones with Nativefier
 
 pack any web site into an electron app
 
-[nativefier](https://github.com/jiahaog/nativefier)
+[Nativefier](https://github.com/jiahaog/nativefier)
 
 ```shell
 npm i nativefier -g
