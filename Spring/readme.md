@@ -8,11 +8,17 @@ Wednesday, May 22nd 2019, 09:40
 * [Intro](#intro)
 	* [Overview:](#overview)
 	* [读取配置文件, 向IoC容器中注入java bean](#读取配置文件-向ioc容器中注入java-bean)
-	* [bean的三种创建方式](#bean的三种创建方式)
+	* [bean创建的3种方式](#bean创建的3种方式)
 	* [bean的作用范围](#bean的作用范围)
+	* [bean的生命周期](#bean的生命周期)
+	* [bean的依赖注入的3种方式](#bean的依赖注入的3种方式)
+		* [集合类型的依赖注入](#集合类型的依赖注入)
 * [基于XML配置](#基于xml配置)
 	* [节点](#节点)
 		* [bean节点](#bean节点)
+		* [bean的内部节点](#bean的内部节点)
+			* [constructor-arg 用于通过构造器注入依赖](#constructor-arg-用于通过构造器注入依赖)
+			* [property 用于通过setter方法注入依赖](#property-用于通过setter方法注入依赖)
 * [基于Annotation](#基于annotation)
 
 <!-- /code_chunk_output -->
@@ -61,7 +67,7 @@ AbstractApplicationContext applicationContext = new ClassPathXmlApplicationConte
 UserService UserService = (UserService) applicationContext.getBean("userService");
 ```
 
-## bean的三种创建方式
+## bean创建的3种方式
 
 1. 通过构造创建
     - 通过默认构造
@@ -95,7 +101,78 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
 
 ## bean的生命周期
 
+1. 单例对象的生命周期
+    - 出生
+        - 容器创建时, 读取配置文件后就生成
+    - 活着
+        - 只要容器未被销毁就一直存在
+    - 死亡
+        - 容器被销毁时, 对象销毁
+2. 多例对象的生命周期
+    - 出生
+        - 使用时容器才会创建该bean
+    - 活着
+        - 只要对象在使用, 就一直存活
+    - 死亡
+        - 当对象没有被引用并且长时间未被使用时, Spring会将其交由GC回收
 
+## bean的依赖注入的3种方式
+
+1. 构造注入
+    - 实体类中必须要有相应的构造函数
+    - 在bean节点中使用constructor-arg节点逐个指定构造的入参
+2. setter注入
+    - 根据setXxx(..)方法注入
+    - 配置时值为xxx(Xxx的第一个字母改为小写)
+3. p名称空间注入
+    - 本质也是利用setter注入, 写法上简化
+    - 导入p名称空间
+    - p:xxx
+        - xxx为setter的Xxx小写首字母
+        - 基本类型属性和String
+    - p:xxx-ref
+        - 容器中的其他bean类型的属性
+
+### 集合类型的依赖注入
+
+1. 数组
+    - ```
+      <array>
+        <value>xxx</value>
+        ...
+      </array>
+      ```
+2. List
+    - ```
+      <list>
+        <value>xxx</value>
+        ...
+      </list>
+      ```
+3. Set
+    - ```
+      <set>
+        <value>xxx</value>
+        ...
+      </set>
+      ```
+4. Map
+    - ```
+      <map>
+        <entry key="xxx" value="xxx" />
+        <entry key="xxx">
+            <value>xxx</value>
+        </entry>
+        ...
+      </map>
+      ```
+5. Properties
+    - ```
+      <props>
+        <prop key="xxx">xxx</prop>
+        ...
+      </props>
+      ```
 
 # 基于XML配置
 
@@ -117,14 +194,53 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
         - 指定工厂bean对象
     - factory-method
         - 实例或静态工厂创建bean时, 用于指定要使用的工厂方法
-    - abstract
-        - 当前bean能实例化, 可在配置很多具有相同特点(同个类, 同个属性...)的bean时, 用作模板
-        - 当前bean节点有abstract属性时, 可以不指定class属性
     - parent
-        - 可与abstract结合使用
+        - 将某个bean节点的配置当作模板来引用
         - 当前bean节点会使用parent指定的bean的所有配置
+        - 可与abstract结合使用
+    - abstract
+        - 当前bean不能实例化, 可在配置很多具有相同特点(同个类, 同个属性...)的bean时, 用作模板
+        - 当前bean节点有abstract属性时, 可以不指定class属性, 而仅仅用其来配置公共属性的值
+    - init-method
+        - 用于指定实体类中的某个方法作为初始化方法, 在容器创建bean时调用
+    - destroy-method
+        - 同init-method, 用于在容器关闭, bean销毁时调用
+        - prototype不涉及此方法
     -
 
-- bean的内部节点
+### bean的内部节点
+
+#### constructor-arg 用于通过构造器注入依赖
+
+- 属性
+    - name
+        - 指定构造的入参名为其赋值
+    - type
+        - 指定参数的类型为其赋值
+        - 当有两个及以上参数类型相同时, 不适用, 因此一般不用
+    - index
+        - 指定构造中该参数的位置为该位置的参数赋值
+    - 上述用于指定参数的三个属性, 选一即可
+    - value
+        - 指定值
+        - 基本类型和String
+    - ref
+        - 指定值
+        - 容器中的其他bean类型的属性
+
+#### property 用于通过setter方法注入依赖
+
+可以和constructor-arg共同作用, 但只有property时, 实体类必须有默认构造, 才能成功创建bean对象
+
+- 属性
+    - name
+        - 必须有对应的setter
+        - 指定setter的入参名为其赋值
+    - value
+        - 指定值
+        - 基本类型和String
+    - ref
+        - 指定值
+        - 基本类型和String
 
 # 基于Annotation
