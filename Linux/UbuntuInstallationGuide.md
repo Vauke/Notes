@@ -13,7 +13,7 @@ Monday, August 13th 2018, 23:26
 	* [albert](#albert)
 	* [diskmount](#diskmount)
 	* [git](#git)
-	* [git proxy](#git-proxy)
+		* [git proxy](#git-proxy)
 	* [zsh](#zsh)
 	* [aria2](#aria2)
 	* [apt-fast](#apt-fast)
@@ -43,6 +43,7 @@ Monday, August 13th 2018, 23:26
 	* [neofetch](#neofetch)
 	* [vm](#vm)
 	* [htop](#htop)
+	* [stacer](#stacer)
 	* [catfish](#catfish)
 	* [tree](#tree)
 	* [music](#music)
@@ -179,7 +180,7 @@ sudo apt-get install albert
 sudo apt install git
 ```
 
-## git proxy
+### git proxy
 
 ```shell
 git config --global https.proxy http://127.0.0.1:1080 <br/>
@@ -543,6 +544,16 @@ vmware启动慢, 功能更完善稳定
 ## htop
 
 sudo apt install htop
+
+## stacer
+
+[Stacer系统优化监视器](https://github.com/oguzhaninan/Stacer)
+
+```shell
+sudo add-apt-repository ppa:oguzhaninan/stacer
+sudo apt update
+sudo apt install stacer
+```
 
 ## catfish
 
