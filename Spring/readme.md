@@ -39,7 +39,7 @@ Overview:
     - prototype时, 使用BeanFactory创建bean, Spring自动选择
 
 ```java
-// 使用BeanFactory
+/* 使用BeanFactory */
 // 读取配置文件
 Resource resource = new ClassPathResource("bean.xml");
 BeanFactory beanFactory = new XmlBeanFactory(resource);
@@ -47,7 +47,7 @@ BeanFactory beanFactory = new XmlBeanFactory(resource);
 // 从容器中取出bean
 UserService userService = beanFactory.getBean("userService", UserService.class);
 
-// 使用ApplicationContext
+/* 使用ApplicationContext */
 // 读取配置文件
 AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
 
@@ -55,7 +55,20 @@ AbstractApplicationContext applicationContext = new ClassPathXmlApplicationConte
 UserService UserService = (UserService) applicationContext.getBean("userService");
 ```
 
+- bean的三种创建方式
+    - 通过构造创建
+        - 通过默认构造
+            - 不指定`constructor-arg`子节点时(默认时), 要求实体类必须有默认构造, 否则创建失败, 抛出异常`BeanCreationException`...
+        - 通过含参构造
+            - 配置`constructor-arg`子节点
+    - 通过静态工厂创建
+        - 工厂提供一个可返回所需bean的静态方法
+    - 通过实例工厂创建
+        - 工厂提供一个可返回所需bean的静态方法
+
 # 基于XML配置
+
+[XML配置完整示例](./assets/bean.xml)
 
 ## 节点
 
@@ -68,6 +81,11 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
         - java bean的唯一标识
     - class
         - 要创建的对象的全限定类名: com.vauke.spring.service.UserServiceImpl
+    - factory-bean
+        - 使用实例工厂方法创建bean时使用, 使用静态工厂不需要此属性, 直接通过class属性指定静态工厂类的全限定类名
+        - 指定工厂bean对象
+    - factory-method
+        - 实例或静态工厂创建bean时, 用于指定要使用的工厂方法
     - abstract
         - 当前bean能实例化, 可在配置很多具有相同特点(同个类, 同个属性...)的bean时, 用作模板
         - 当前bean节点有abstract属性时, 可以不指定class属性
