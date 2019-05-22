@@ -565,12 +565,11 @@ sudo apt install tree
 
 ## music
 
-iease music
+[iease music](https://github.com/trazyn/ieaseMusic)
 
-https://github.com/trazyn/ieaseMusic
 https://github.com/sunzongzheng/music
 
-spotify
+spotify snap
 
 ## video
 
