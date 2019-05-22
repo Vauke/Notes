@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--  bean的三种创建方式  -->
+    <!--  1.利用构造, 这里时默认构造, 还可以在依赖注入时, 使用含参构造  -->
+    <bean id="accountService" class="com.vauke.service.AccountServiceImpl" />
+
+    <!--  2.使用静态工厂  -->
+    <!--  class指定静态工厂类的全限定类名
+          factory-method指定静态工厂方法名称  -->
+    <bean id="accountService" class="com.vauke.factory.StaticBeanFactory" factory-method="getBean">
+        <!--  这里的constructor-arg节点用于指定静态方法getBean的入参  -->
+        <constructor-arg value="xxx" />
+    </bean>
+
+    <!-- 3.使用实例工厂 -->
+    <!--  i. 注册实例工厂的bean  -->
+    <bean id="instanceFactory" class="com.vauke.factory.InstanceFactory" />
+
+    <!--  ii. 注册bean, 指定factory-bean和factory-method属性  -->
+    <bean id="accountService" class="com.vauke.service.AccountServiceImpl" factory-bean="instanceFactory" factory-method="getBean">
+        <!--  指定工厂方法的入参  -->
+        <constructor-arg value="xxx" />
+    </bean>
+
+    <!--  bean的作用范围和生命周期  -->
+    <bean id="accountService" class="com.vauke.service.AccountServiceImpl" scope="prototype" init-method="init" destroy-method="destroy" />
+
+    <!--  定义模板
+           当要向容器中注入多个有共同属性或同一个类的对象时
+           可使用模板简化bean的相同配置  -->
+    <bean id="userTemplate" class="com.vauke.bean.User" />
+
+    <!--  还可将模板定义为abstract, 这意味着其不能被容器实例化  -->
+    <bean id="abstractUser" class="com.vauke.bean.User" abstract="true">
+        <property name="name" value="vauke" />
+    </bean>
+
+    <!--  不指定class时, 可以用作共有属性的模板  -->
+    <bean id="abstractUser2" abstract="true">
+        <property name="name" value="vauke" />
+    </bean>
+
+    <!--  容器创建Date时, 会调用其默认构造, 获取当前系统的时间  -->
+    <bean id="now" class="java.util.Date" />
+
+<!--  依赖注入的3种方式  -->
+        <!--  1. 通过构造注入依赖  -->
+    <bean id="user1" parent="userTemplate">
+        <constructor-arg value="vauke" name="name" />
+        <constructor-arg value="20" type="java.lang.Integer" />
+        <constructor-arg ref="now" index="2" />
+    </bean>
+
+    <!--  2. 通过setter注入依赖  -->
+    <bean id="user2" parent="abstractUser">
+        <!--  此时bean的创建使用默认构造, 依赖注入使用setter, 要保证类中有对应的setter  -->
+        <property name="name" value="vauke" />
+        <property name="age" value="20" />
+        <property name="birthday" ref="now" />
+    </bean>
+
+    <!--  3. 通过p名称空间注入依赖  -->
+    <!--  因为使用模板中定义了name, 所以可以不用再定义p:name="..."
+           也可以定义来重新指定新的值  -->
+    <bean id="user3" parent="abstractUser2" class="com.vauke.bean.User" p:age="20" p:birthday-ref="now" />
+
+<!--  复杂类型的依赖注入  -->
+    <!--  array节点, list节点和set节点都可以互换, 因为数组, List和Set结构都是一样的  -->
+    <!--  同理Map和Properties结构也相同, 节点也可以互换  -->
+    <!--  数组类型的依赖注入  -->
+    <bean id="user4" parent="abstractUser">
+        <property name="strArray">
+            <array>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </array>
+        </property>
+    </bean>
+    <!--  List类型的依赖注入  -->
+    <bean id="user5" parent="abstractUser">
+        <property name="strList">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+    </bean>
+    <!--  Set类型的依赖注入  -->
+    <bean id="user6" parent="abstractUser">
+        <property name="strSet">
+            <set>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </set>
+        </property>
+    </bean>
+    <!--  Map类型的依赖注入  -->
+    <bean id="user7" parent="abstractUser">
+        <property name="strStrMap">
+            <map>
+                <entry key="aaa">
+                    <value>1</value>
+                </entry>
+                <entry key="bbb" value="2" />
+                <entry key="ccc" value="3" />
+            </map>
+        </property>
+    </bean>
+    <!--  Properties类型的依赖注入  -->
+    <bean id="user8" parent="abstractUser">
+        <property name="properties">
+            <props>
+                <prop key="aaa">1</prop>
+                <prop key="bbb">2</prop>
+                <prop key="ccc">3</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
