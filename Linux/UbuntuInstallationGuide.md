@@ -852,7 +852,6 @@ docker的默认镜像存储路径是`/var/lib/docker`, 当`/`分区容量不够�
 或者修改`/etc/docker/daemon.json`或者修改`docker.service`文件, 修改文件只能二选一,
 不然会冲突, 无法开启docker, 建议修改`daemon.json`
 
-
 ```json
 {
     "data-root": "/home/vauke/docker",
