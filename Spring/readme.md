@@ -8,18 +8,22 @@ Wednesday, May 22nd 2019, 09:40
 * [Intro](#intro)
 	* [Overview:](#overview)
 	* [读取配置文件, 向IoC容器中注入java bean](#读取配置文件-向ioc容器中注入java-bean)
+* [基于XML配置](#基于xml配置)
 	* [bean创建的3种方式](#bean创建的3种方式)
 	* [bean的作用范围](#bean的作用范围)
 	* [bean的生命周期](#bean的生命周期)
 	* [bean的依赖注入的3种方式](#bean的依赖注入的3种方式)
 		* [集合类型的依赖注入](#集合类型的依赖注入)
-* [基于XML配置](#基于xml配置)
 	* [节点](#节点)
 		* [bean节点](#bean节点)
 		* [bean的内部节点](#bean的内部节点)
 			* [constructor-arg 用于通过构造器注入依赖](#constructor-arg-用于通过构造器注入依赖)
 			* [property 用于通过setter方法注入依赖](#property-用于通过setter方法注入依赖)
 * [基于Annotation](#基于annotation)
+	* [bean创建](#bean创建)
+	* [依赖注入](#依赖注入)
+	* [bean的作用范围](#bean的作用范围-1)
+	* [bean的生命周期](#bean的生命周期-1)
 
 <!-- /code_chunk_output -->
 
@@ -43,6 +47,8 @@ Wednesday, May 22nd 2019, 09:40
             - 读取类路径下的配置文件, IDEA中是resources目录下
         - FileSystemXmlApplicationContext
             - 读取系统路径下的配置文件
+		- XmlWebApplicationContext
+			- 读取WEB-INF目录下的配置文件
 - BeanFactory
     - Spring IoC容器的顶层接口
     - 读取配置文件后, 延迟加载对象 即使用bean时才会创建该bean
@@ -66,6 +72,10 @@ AbstractApplicationContext applicationContext = new ClassPathXmlApplicationConte
 // 从容器中取出bean
 UserService UserService = (UserService) applicationContext.getBean("userService");
 ```
+
+# 基于XML配置
+
+[XML配置完整示例](./assets/bean.xml)
 
 ## bean创建的3种方式
 
@@ -174,10 +184,6 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
       </props>
       ```
 
-# 基于XML配置
-
-[XML配置完整示例](./assets/bean.xml)
-
 ## 节点
 
 ### bean节点
@@ -188,9 +194,10 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
     - id
         - java bean的唯一标识
     - class
-        - 要创建的对象的全限定类名: com.vauke.spring.service.UserServiceImpl
+        - 要创建的对象的全限定类名
+			- com.vauke.spring.service.UserServiceImpl
     - factory-bean
-        - 使用实例工厂方法创建bean时使用, 使用静态工厂不需要此属性, 直接通过class属性指定静态工厂类的全限定类名
+        - 使用实例工厂方法创建bean时使用. 使用静态工厂时不需要此属性, 直接通过class属性指定静态工厂类的全限定类名
         - 指定工厂bean对象
     - factory-method
         - 实例或静态工厂创建bean时, 用于指定要使用的工厂方法
@@ -199,7 +206,7 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
         - 当前bean节点会使用parent指定的bean的所有配置
         - 可与abstract结合使用
     - abstract
-        - 当前bean不能实例化, 可在配置很多具有相同特点(同个类, 同个属性...)的bean时, 用作模板
+        - 当前bean不会实例化, 可在配置很多具有相同特点(同个类, 同个属性...)的bean时, 用作模板
         - 当前bean节点有abstract属性时, 可以不指定class属性, 而仅仅用其来配置公共属性的值
     - init-method
         - 用于指定实体类中的某个方法作为初始化方法, 在容器创建bean时调用
@@ -244,3 +251,17 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
         - 基本类型和String
 
 # 基于Annotation
+
+## bean创建
+
+
+
+## 依赖注入
+
+@Autowired
+	- 自动按类型注入, 只要容器中有**唯一**的类型匹配时, 就可以完成依赖的注入
+	- 可以省略该属性在该bean中的setter(即直接将这个注解加到属性的声明上)
+
+## bean的作用范围
+
+## bean的生命周期
