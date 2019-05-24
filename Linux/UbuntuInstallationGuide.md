@@ -62,6 +62,7 @@ Monday, August 13th 2018, 23:26
 	* [commitizen](#commitizen)
 	* [docker](#docker)
 	* [wireshark](#wireshark)
+	* [博客图床](#博客图床)
 
 <!-- /code_chunk_output -->
 
@@ -890,3 +891,9 @@ sudo usermod -aG wireshark vauke
 # 默认tcpdump只能root使用, wireshark无法用
 sudo chgrp wireshark /usr/sbin/tcpdump
 ```
+
+## 博客图床
+
+用[PicGo](https://github.com/Molunerfinn/PicGo)上传
+
+[使用GitHub做图床教程](https://mp.weixin.qq.com/s/hJq2bA7wv12vCmM7Rvfa9Q)

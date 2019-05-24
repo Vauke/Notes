@@ -259,9 +259,9 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
 ## 依赖注入
 
 @Autowired
-	- 自动按类型注入, 只要容器中有**唯一**的类型匹配时, 就可以完成依赖的注入
+	- 自动按类型注入, 只要容器中有*唯一*的类型匹配时, 就可以完成依赖的注入, 否则抛出异常
 	- 可以省略该属性在该bean中的setter(即直接将这个注解加到属性的声明上)
-
+	- 属性
 ## bean的作用范围
 
 ## bean的生命周期
