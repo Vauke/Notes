@@ -27,6 +27,12 @@ Wednesday, May 22nd 2019, 09:40
 
 <!-- /code_chunk_output -->
 
+<span style="background:yellow">background</span>
+
+<p align="center">center</p>
+
+<font color="#00f">fontcolor</font>
+
 # Intro
 
 ## Overview:
