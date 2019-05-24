@@ -1,9 +1,6 @@
 # Spring
 Wednesday, May 22nd 2019, 09:40
 
-#
-<details>
-<summary>Table of Contents</summary>
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
 
@@ -29,8 +26,6 @@ Wednesday, May 22nd 2019, 09:40
 	* [bean的生命周期](#bean的生命周期-1)
 
 <!-- /code_chunk_output -->
-</details>
-<h2></h2>
 
 # Intro
 
