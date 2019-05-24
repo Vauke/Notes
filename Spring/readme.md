@@ -7,7 +7,7 @@ Wednesday, May 22nd 2019, 09:40
 * [Spring](#spring)
 * [Intro](#intro)
 	* [Overview:](#overview)
-	* [读取配置文件, 向IoC容器中注入java bean](#读取配置文件-向ioc容器中注入java-bean)
+	* [读取配置文件, 向IoC容器中注入java bean\](#读取配置文件-向ioc容器中注入java-bean)
 * [基于XML配置](#基于xml配置)
 	* [bean创建的3种方式](#bean创建的3种方式)
 	* [bean的作用范围](#bean的作用范围)
@@ -27,9 +27,7 @@ Wednesday, May 22nd 2019, 09:40
 
 <!-- /code_chunk_output -->
 
-region { asdf
-asdfasf
-} region asdfas
+<u>asdfasdf</u>
 
 # Intro
 
@@ -39,7 +37,7 @@ asdfasf
 
 方便解耦, 简化开发
 
-## 读取配置文件, 向IoC容器中注入java bean
+## 读取配置文件, 向IoC容器中注入java bean\
 
 - ApplicationContext
     - 间接继承自BeanFactory接口
