@@ -2,7 +2,7 @@
 Wednesday, May 22nd 2019, 09:40
 
 <details>
-<summary>Table of Contents</summary>
+<summary><h2>Table of Contents</h2></summary>
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
