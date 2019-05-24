@@ -1,7 +1,8 @@
 # Spring
 Wednesday, May 22nd 2019, 09:40
 
-<h2>
+---
+
 <details>
 <summary>Table of Contents</summary>
 
@@ -32,7 +33,8 @@ Wednesday, May 22nd 2019, 09:40
 <!-- /code_chunk_output -->
 
 </details>
-</h2>
+
+---
 
 # Intro
 
