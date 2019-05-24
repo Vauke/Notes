@@ -1,8 +1,9 @@
 # Spring
 Wednesday, May 22nd 2019, 09:40
 
+<h2>
 <details>
-<summary><h2>Table of Contents</h2></summary>
+<summary>Table of Contents</summary>
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
@@ -31,6 +32,7 @@ Wednesday, May 22nd 2019, 09:40
 <!-- /code_chunk_output -->
 
 </details>
+</h2>
 
 # Intro
 
