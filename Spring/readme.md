@@ -254,14 +254,29 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
 
 ## bean创建
 
+1. @Component
+	- 相当于xml配置中的bean节点
+	- 属性
+		- value
+			- 用于指定bean的id, 不指定时, 默认为当前类名首字母小写
+2. @Repository
+	- 同@Component, 一般用于指代持久层的bean
+3. @Service
+	- 一般用于指代服务层的bean
+4. @Controller
+	- 一般用于指代控制层的bean
 
+`@Repository`, `@Service`, `@Controller`都和`@Component`作用相同, 但提供更明确的语义来指代不同层的bean
 
 ## 依赖注入
 
-@Autowired
+1. @Autowired
 	- 自动按类型注入, 只要容器中有*唯一*的类型匹配时, 就可以完成依赖的注入, 否则抛出异常
 	- 可以省略该属性在该bean中的setter(即直接将这个注解加到属性的声明上)
 	- 属性
+		- required
+			- 是否必须, 默认为true
+
 ## bean的作用范围
 
 ## bean的生命周期
