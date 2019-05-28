@@ -22,6 +22,7 @@ Wednesday, May 22nd 2019, 09:40
 * [基于Annotation](#基于annotation)
 	* [bean创建](#bean创建)
 	* [依赖注入](#依赖注入)
+		* [注入容器中的其他bean类型](#注入容器中的其他bean类型)
 	* [bean的作用范围](#bean的作用范围-1)
 	* [bean的生命周期](#bean的生命周期-1)
 
@@ -146,43 +147,43 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
 ### 集合类型的依赖注入
 
 1. 数组
-    - ```
-      <array>
-        <value>xxx</value>
-        ...
-      </array>
-      ```
+	```
+	<array>
+		<value>xxx</value>
+		...
+	</array>
+	```
 2. List
-    - ```
-      <list>
-        <value>xxx</value>
-        ...
-      </list>
-      ```
+	```
+	<list>
+		<value>xxx</value>
+		...
+	</list>
+	```
 3. Set
-    - ```
-      <set>
-        <value>xxx</value>
-        ...
-      </set>
-      ```
+	```
+	<set>
+		<value>xxx</value>
+		...
+	</set>
+	```
 4. Map
-    - ```
-      <map>
-        <entry key="xxx" value="xxx" />
-        <entry key="xxx">
-            <value>xxx</value>
-        </entry>
-        ...
-      </map>
-      ```
+	```
+	<map>
+		<entry key="xxx" value="xxx" />
+		<entry key="xxx">
+		    <value>xxx</value>
+		</entry>
+		...
+	</map>
+	```
 5. Properties
-    - ```
-      <props>
-        <prop key="xxx">xxx</prop>
-        ...
-      </props>
-      ```
+	```
+	<props>
+		<prop key="xxx">xxx</prop>
+		...
+	</props>
+	```
 
 ## 节点
 
@@ -270,6 +271,8 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
 
 ## 依赖注入
 
+### 注入容器中的其他bean类型
+
 1. @Autowired
 	- 自动按*类型*注入, 只要容器中有*唯一*的类型匹配时, 就可以完成依赖的注入, 否则抛出异常
 		- *当容器中有两个及以上的相同类型的bean时, 将按照bean的id来进行自动注入*
@@ -277,6 +280,15 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
 	- 属性
 		- required
 			- 是否必须, 默认为true
+2. @Qualifier
+	- 须和@Autowired结合使用, 用于指定bean的id
+	- 不能用于通过构造方法实现的注入方式, @Qualifier不能用在构造之上
+3. @Resource
+	- 直接通过bean的id进行注入
+	- 属性
+		- name
+			- 用于指定bean的id
+	- 不能用于通过构造方法实现的注入
 
 ## bean的作用范围
 
