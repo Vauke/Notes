@@ -23,6 +23,7 @@ Wednesday, May 22nd 2019, 09:40
 	* [bean创建](#bean创建)
 	* [依赖注入](#依赖注入)
 		* [注入容器中的其他bean类型](#注入容器中的其他bean类型)
+		* [注入String和基本类型](#注入string和基本类型)
 	* [bean的作用范围](#bean的作用范围-1)
 	* [bean的生命周期](#bean的生命周期-1)
 
@@ -231,10 +232,10 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
     - 上述用于指定参数的三个属性, 选一即可
     - value
         - 指定值
-        - 基本类型和String
+        - *基本类型和String*
     - ref
         - 指定值
-        - 容器中的其他bean类型的属性
+        - *容器中的其他bean类型的属性*
 
 #### property 用于通过setter方法注入依赖
 
@@ -290,6 +291,23 @@ UserService UserService = (UserService) applicationContext.getBean("userService"
 			- 用于指定bean的id
 	- 不能用于通过构造方法实现的注入
 
+### 注入String和基本类型
+
+1. @Value
+	- 属性
+		- value
+			- 指定要注入的属性, 支持SpEL
+
 ## bean的作用范围
 
+1. @Scope
+	- 改变bean的作用范围
+	- 属性
+		- value 指定bean的作用范围, 取值和xml中一致
+
 ## bean的生命周期
+
+1. @PostConstruct
+	- 指定bean的初始化方法, 和xml中的init-method一致
+2. @PreDestroy
+	- 指定bean的销毁方法, 和xml中的destroy-method一致
