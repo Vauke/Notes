@@ -72,7 +72,8 @@ UserService userService = beanFactory.getBean("userService", UserService.class);
 AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
 
 // 从容器中取出bean
-UserService UserService = (UserService) applicationContext.getBean("userService");
+// UserService userService = (UserService) applicationContext.getBean("userService");
+UserService userService = applicationContext.getBean("userService", UserService.class);
 ```
 
 # 基于XML配置
