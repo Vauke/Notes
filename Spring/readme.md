@@ -240,7 +240,7 @@ UserService userService = applicationContext.getBean("userService", UserService.
 
 #### property 用于通过setter方法注入依赖
 
-可以和constructor-arg共同作用, 但只有property时, 实体类必须有默认构造, 才能成功创建bean对象
+可以和constructor-arg共同作用, 但*只有property时, 实体类必须有默认构造*, 才能成功创建bean对象
 
 - 属性
     - name
