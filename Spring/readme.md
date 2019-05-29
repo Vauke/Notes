@@ -24,6 +24,7 @@ Wednesday, May 22nd 2019, 09:40
 	* [依赖注入](#依赖注入)
 		* [注入容器中的其他bean类型](#注入容器中的其他bean类型)
 		* [注入String和基本类型](#注入string和基本类型)
+		* [完全使用注解](#完全使用注解)
 	* [bean的作用范围](#bean的作用范围-1)
 	* [bean的生命周期](#bean的生命周期-1)
 
@@ -298,6 +299,50 @@ UserService userService = applicationContext.getBean("userService", UserService.
 	- 属性
 		- value
 			- 指定要注入的属性, 支持SpEL
+
+### 完全使用注解
+
+上述配置中虽然使用到了注解来向容器中注入bean, 但仍需在xml配置中配置包扫描的路径, properties文件的路径以及数据源的配置等
+
+1. @Configuration
+	- 类注解, 用于指定Spring的配置类
+2. @ComponentScan
+	- 类注解, 用于替代xml配置中的`<context:component-scan base-package="xxx" />`
+	- 属性
+		- basePackages
+			- 指定要扫描的包的路径
+		- value 同 basePackages
+3. @Bean
+	- 用于方法之上, 将方法的返回值作为bean注入到容器中
+	- 属性
+		- name
+			- 指定bean的id, 不指定时为方法名
+		- value 同 name
+		- autowire
+			- 指定是按类型注入还是按名称注入
+	- 若方法有参数列表, 则*自动根据参数类型到容器中进行匹配*, 若匹配到, 则自动注入, 否则报错
+	- 若匹配到多个, 则使用`@Qualifier`指定
+4. @Import
+	- 用于在主配置类中指定从配置文件
+	- 属性
+		- value
+			- 指定从配置文件的Class类的类型
+5. @PropertySource
+	- 类注解, 用于指定properties文件的路径
+
+[注解配置类示例1](./assets/MainConfig.java)
+
+[注解配置类示例2](./assets/JdbcConfig.java)
+
+*完全使用注解后, 获取容器上下文的方式也改变*
+
+```java
+/** 使用xml时 */
+AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
+
+/** 使用注解配置类 */
+AbstractApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+```
 
 ## bean的作用范围
 
