@@ -341,7 +341,7 @@ UserService userService = applicationContext.getBean("userService", UserService.
 AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean.xml");
 
 /** 使用注解配置类 */
-AbstractApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfiguration.class);
+AbstractApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig.class);
 ```
 
 ## bean的作用范围
