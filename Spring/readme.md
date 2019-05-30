@@ -27,6 +27,8 @@ Wednesday, May 22nd 2019, 09:40
 		* [完全使用注解](#完全使用注解)
 	* [bean的作用范围](#bean的作用范围-1)
 	* [bean的生命周期](#bean的生命周期-1)
+* [AOP](#aop)
+	* [动态代理](#动态代理)
 
 <!-- /code_chunk_output -->
 
@@ -359,3 +361,77 @@ AbstractApplicationContext applicationContext = new AnnotationConfigApplicationC
 	- 指定bean的初始化方法, 和xml中的init-method一致
 2. @PreDestroy
 	- 指定bean的销毁方法, 和xml中的destroy-method一致
+
+# AOP
+
+## 动态代理
+
+* 代理
+	* 在不改变原有代码的基础上, 对代码进行增强
+	* 静态代理
+	* 动态代理
+		* 在方法运行时, 动态地向执行过程注入代码, 丰富执行流程的代理方式
+		* 分类
+			* 基于接口
+				* JDK提供的动态代理
+				* 使用java.lang.reflect.Proxy类
+				* 需要被代理类实现一个接口
+			* 基于类继承
+				* CGLib jar包提供的动态代理
+				* 需要被代理类可以被继承
+
+<details>
+    <summary>JDK动态代理, example:</summary>
+
+```java
+// 1. 获取要被代理的对象
+ComputerFactory computerFactory = new ComputerFactory();
+// 2. 获取加载被代理对象的ClassLoader
+ClassLoader classLoader = computerFactory.getClass().getClassLoader();
+// 3. 获取被代理对象实现的接口的Class类型的数组, 以下两种都可以
+Class[] interfaces = new Class[]{IAgent.class};
+Class[] interfaces2 = computerFactory.getClass().getInterfaces();
+// 4. 调用被代理对象的方法, 添加用于增强被代理对象的方法
+InvocationHandler invocationHandler = new InvocationHandler() {
+    /**
+     *  执行被代理对象的任何方法都会被拦截进入到此方法
+     *
+     *  Object proxy: 当前代理对象的引用, 在此方法中调用会引起死循环
+     *  Method method: 被代理对象当前正在调用的方法的Method对象
+     *  Object[] args: 正在调用的方法的参数
+     *
+     *  @return Object 和当前正在调用的方法的返回值类型一致
+     */
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        /** 在这里添加要用于增强的方法 */
+        // 1. 获取正在被调用的方法的参数
+        Float money= (Float) args[0];
+
+        // 2. 判断正在被调用的方法
+        Object result = null;
+        if("sale".equals(method.getName())) {
+            /** 调用被代理对象正在调用的方法, 并获得执行结果 */
+            if (money > 1000)
+                result = method.invoke(computerFactory, args);
+            System.out.println("代理商可以在这里收取卖电脑的代理费20%");
+        } else {
+            result = method.invoke(computerFactory, args);
+            System.out.println("代理商可以在这里收取售后服务的代理费10%");
+        }
+
+        /** 在这里添加要用于增强的方法 */
+        System.out.println("方法已增强");
+
+        return result;
+    }
+};
+
+// 5. 获得被代理后的对象
+IAgent proxiedFactory = (IAgent) Proxy.newProxyInstance(classLoader, interfaces2, invocationHandler);
+
+// 6. 调用方法, 此时会调用handler中的invoke方法
+proxiedFactory.sale(1000f);
+```
+
+</details>
