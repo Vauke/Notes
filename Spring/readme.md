@@ -29,6 +29,7 @@ Wednesday, May 22nd 2019, 09:40
 	* [bean的生命周期](#bean的生命周期-1)
 * [AOP](#aop)
 	* [动态代理](#动态代理)
+	* [AOP相关术语](#aop相关术语)
 
 <!-- /code_chunk_output -->
 
@@ -380,6 +381,8 @@ AbstractApplicationContext applicationContext = new AnnotationConfigApplicationC
 				* CGLib jar包提供的动态代理
 				* *需要被代理类可以被继承, 不能是final修饰*
 
+#
+
 <details>
     <summary>JDK动态代理, example:</summary>
 
@@ -485,6 +488,8 @@ cglibProxiedFactory.sale(1000f);
 ```
 
 </details>
+
+#
 
 ## AOP相关术语
 
