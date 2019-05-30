@@ -485,3 +485,14 @@ cglibProxiedFactory.sale(1000f);
 ```
 
 </details>
+
+## AOP相关术语
+
+1. Joinpoint连接点
+2. Pointcut切入点
+3. Advice通知
+4. Introduction引介
+5. Target目标对象
+6. Weaving织入
+7. Proxy代理
+8. Aspect切面
