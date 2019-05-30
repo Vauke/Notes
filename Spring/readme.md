@@ -375,10 +375,10 @@ AbstractApplicationContext applicationContext = new AnnotationConfigApplicationC
 			* 基于接口
 				* JDK提供的动态代理
 				* 使用java.lang.reflect.Proxy类
-				* 需要被代理类实现一个接口
+				* *需要被代理类实现一个接口*
 			* 基于类继承
 				* CGLib jar包提供的动态代理
-				* 需要被代理类可以被继承
+				* *需要被代理类可以被继承, 不能是final修饰*
 
 <details>
     <summary>JDK动态代理, example:</summary>
@@ -412,7 +412,7 @@ InvocationHandler invocationHandler = new InvocationHandler() {
         Object result = null;
         if("sale".equals(method.getName())) {
             /** 调用被代理对象正在调用的方法, 并获得执行结果 */
-            if (money > 1000)
+            if (money >= 1000)
                 result = method.invoke(computerFactory, args);
             System.out.println("代理商可以在这里收取卖电脑的代理费20%");
         } else {
@@ -432,6 +432,56 @@ IAgent proxiedFactory = (IAgent) Proxy.newProxyInstance(classLoader, interfaces2
 
 // 6. 调用方法, 此时会调用handler中的invoke方法
 proxiedFactory.sale(1000f);
+```
+
+</details>
+
+
+<details>
+    <summary>CGLib动态代理, example:</summary>
+
+```java
+// 1. 获取要被代理的对象
+ComputerFactory computerFactory = new ComputerFactory();
+
+// 2. 调用原方法添加用于增强被代理对象的方法
+/** Callback接口相当于JDK代理中的InvocationHandler接口 */
+Callback callback = new MethodInterceptor() {
+    /**
+     * Object obj: 当前正在代理的对象
+     * Method method: 被代理对象当前正在调用的方法的Method对象
+     * Object[] args: 被代理对象当前正在调用的方法的参数
+     * MethodProxy proxy: 当前执行方法的代理对象
+     */
+    @Override
+    public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+        /** 在这里添加要用于增强的方法 */
+        // 1. 获取正在被调用的方法的参数
+        Float money= (Float) args[0];
+
+        // 2. 判断正在被调用的方法
+        Object result = null;
+        if("sale".equals(method.getName())) {
+            /** 调用被代理对象正在调用的方法, 并获得执行结果 */
+            if (money > 1000)
+                result = method.invoke(computerFactory, args);
+            System.out.println("代理商可以在这里收取卖电脑的代理费20%");
+        } else {
+            result = method.invoke(computerFactory, args);
+            System.out.println("代理商可以在这里收取售后服务的代理费10%");
+        }
+
+        /** 在这里添加要用于增强的方法 */
+        System.out.println("方法已增强");
+
+        return result;
+    }
+};
+
+// 3. 获得被代理后的对象
+ComputerFactory cglibProxiedFactory = (ComputerFactory) Enhancer.create(computerFactory.getClass(), callback);
+// 4. 调用方法, 此时会调用interceptor中的intercept方法
+cglibProxiedFactory.sale(1000f);
 ```
 
 </details>
