@@ -306,6 +306,8 @@ UserService userService = applicationContext.getBean("userService", UserService.
 
 1. @Configuration
 	- 类注解, 用于指定Spring的配置类
+	- *类的路径要包含在@ComponentScan中*
+		- 因为@Configuration也是向容器中注入bean
 2. @ComponentScan
 	- 类注解, 用于替代xml配置中的`<context:component-scan base-package="xxx" />`
 	- 属性

@@ -14,12 +14,12 @@ import java.beans.PropertyVetoException;
  * Created by Vauke on 5/29/19.
  */
 /** 在主配置文件中使用@Import引入这个配置类后就可以去掉@Configuration注解了*/
-@Configuration
+// @Configuration
 /** 指定数据源的配置文件路径 */
 @PropertySource("classpath:db.properties")
 public class JdbcConfig {
     /**
-     在Spring4.3之前需要手动配置
+     在Spring 4.3之前需要手动配置
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer createPropertySourcesPlaceHolderConfigurer () {
