@@ -32,6 +32,7 @@ Wednesday, May 22nd 2019, 09:40
 	* [AOP相关术语](#aop相关术语)
 	* [AOP配置](#aop配置)
 		* [基于XML](#基于xml)
+		* [基于Annotation](#基于annotation-1)
 
 <!-- /code_chunk_output -->
 
@@ -539,7 +540,7 @@ cglibProxiedFactory.sale(1000f);
 
 ### 基于XML
 
-[XML配置完整示例](./assets/bean-aop.xml)
+[XML配置示例](./assets/bean-aop.xml)
 
 [XML对应代码示例](./assets/Logger.java)
 
@@ -561,9 +562,18 @@ cglibProxiedFactory.sale(1000f);
 					- pointcut 指定可以匹配到切入点的表达式
 					- pointcut-ref 指定 aop:pointcut 的引用
 					- arg-names 通知类方法的参数
-				- after-throwing特有 如果指定
+				- after-throwing特有
 					- throwing
 				- after-returning特有
-					- returning
+					- *如果指定returning属性, 则切入点必须要有返回值, 返回通知才会被调用*
+					- 如果不指定, 返回通知会在正常执行的情况下调用
 
 > 环绕通知很特殊, 不仅因为它可以包含其他四中通知, 类似于整个InvocationHandler的实现(如上图), 更因为, 其他四种通知, 在方法调用的织入过程中, 只能大致知道该通知是在切入点之前还是之后执行的(比如前置在切入点执行之前执行, afterThrowing在切入点抛出异常之后才会执行...), 而环绕通知可以很明确的在代码的逻辑上就可以看出执行的顺序, 类似于上图的动态代理, 自定义程度很高.
+
+### 基于Annotation
+
+需要在配置文件中配置包扫描和添加`<aop:aspectj-autoproxy />`节点
+
+完全不使用配置文件, 则需要定义一个配置类, 使用`@ComponentScan(basePackages="")`配置包扫描, 使用`@EnableAspectJAutoProxy`启用自动代理, 使用`@Component`将通知类注入容器, 使用`@Aspect`指定通知类是一个切面
+
+[基于Annotation代码示例](./assets/Logger2.java)
