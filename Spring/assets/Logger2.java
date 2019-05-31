@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Vauke on 5/31/19.
  */
-@Component("logger")
+@Component
 @Aspect
 public class Logger {
     @Pointcut("execution(* com.vauke.service.*.*(..))")

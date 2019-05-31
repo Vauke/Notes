@@ -534,7 +534,7 @@ cglibProxiedFactory.sale(1000f);
 8. Aspect切面
 	- 切入点和通知的结合
 
-![Selection_049](./assets/Selection_049.png)
+![Selection_053](./assets/Selection_053.png)
 
 ## AOP配置
 
