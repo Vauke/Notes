@@ -6,7 +6,7 @@ Wednesday, May 22nd 2019, 09:40
 
 * [Spring](#spring)
 * [Intro](#intro)
-	* [Overview:](#overview)
+	* [Overview](#overview)
 	* [读取配置文件, 向IoC容器中注入java bean](#读取配置文件-向ioc容器中注入java-bean)
 * [基于XML配置](#基于xml配置)
 	* [bean创建的3种方式](#bean创建的3种方式)
@@ -30,6 +30,8 @@ Wednesday, May 22nd 2019, 09:40
 * [AOP](#aop)
 	* [动态代理](#动态代理)
 	* [AOP相关术语](#aop相关术语)
+	* [AOP配置](#aop配置)
+		* [基于XML](#基于xml)
 
 <!-- /code_chunk_output -->
 
@@ -494,10 +496,62 @@ cglibProxiedFactory.sale(1000f);
 ## AOP相关术语
 
 1. Joinpoint连接点
+	- 连接点是指被拦截到的方法, spring只支持方法类型的连接点
+	- 被被代理类实现的接口中的所有方法都可以称为连接点(在被调用时都会被拦截)
 2. Pointcut切入点
+	- 切入点是指要对哪些连接点进行拦截的定义
+	- 被代理类中被拦截后进行增强的方法称之为切入点
+		- 不是所有的连接点都是切入点, 但所有的切点都是连接点
 3. Advice通知
+	- 通知是指将连接点拦截后要做的增强
+	- 通知的类型
+		1. before 前置通知
+		2. after 后置通知
+		3. afterThrowing 异常通知
+		4. afterReturning 返回通知
+		5. around 环绕通知
 4. Introduction引介
+	- 一种特殊的通知, 在不修改类代码的前提下, 引介可以在运行期为类动态地添加一些方法或Field
 5. Target目标对象
+	- 被代理的对象
 6. Weaving织入
+	- 将增强的代码应用到目标对象以创建出代理后的对象的过程
+		- 将通知应用到连接点, 连接点变为切入点, 形成切面的过程
+	- spring采用动态代理进行织入
+	- AspectJ采用编译期织入和类加载期织入
 7. Proxy代理
+	- 一个类被AOP织入通知后, 就产生一个代理后的对象
+		- 被代理后产生的新对象
 8. Aspect切面
+	- 切入点和通知的结合
+
+![Selection_049](./assets/Selection_049.png)
+
+## AOP配置
+
+### 基于XML
+
+[XML配置完整示例](./assets/bean-aop.xml)
+
+1. aop:config节点
+	- 配置切面
+	- 子节点
+		- aop:pointcut 指定可以匹配到切入点的表达式
+			- 属性
+				- id pointcut的名称
+				- expression 切入点表达式
+		- aop:aspect
+			- 属性
+				- id 指定切面的名称
+				- ref 指定通知类的引用
+			- 子节点
+				- aop:before, aop:after-returing, aop:after-throwing, aop:after和aop:around
+				- 共有属性
+					- method 指定通知类中的方法
+					- pointcut 指定可以匹配到切入点的表达式
+					- pointcut-ref 指定 aop:pointcut 的引用
+					- arg-names 通知类方法的参数
+				- after-throwing特有
+					- throwing
+				- after-returning特有
+					- returning
