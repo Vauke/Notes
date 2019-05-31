@@ -506,10 +506,18 @@ cglibProxiedFactory.sale(1000f);
 	- 通知是指将连接点拦截后要做的增强
 	- 通知的类型
 		1. before 前置通知
-		2. after 后置通知
-		3. afterThrowing 异常通知
-		4. afterReturning 返回通知
+			- 方法执行前就会执行
+		2. afterThrowing 异常通知 和 返回通知是互斥的, 只会有一个执行到
+			- 方法执行出现异常后, 才会执行
+			- 类似于catch语句块
+		3. afterReturning 返回通知
+			- 方法正常执行后才会执行
+			- 类似于try语句块
+		4. after 后置通知
+			- 不管是否方法会抛出异常, 都会执行
+			- 类似于finally语句块
 		5. around 环绕通知
+			- 包含了将通知织入切入点的整个过程, 可以包含其他所有通知
 4. Introduction引介
 	- 一种特殊的通知, 在不修改类代码的前提下, 引介可以在运行期为类动态地添加一些方法或Field
 5. Target目标对象
@@ -533,6 +541,8 @@ cglibProxiedFactory.sale(1000f);
 
 [XML配置完整示例](./assets/bean-aop.xml)
 
+[XML对应代码示例](./assets/Logger.java)
+
 1. aop:config节点
 	- 配置切面
 	- 子节点
@@ -551,7 +561,9 @@ cglibProxiedFactory.sale(1000f);
 					- pointcut 指定可以匹配到切入点的表达式
 					- pointcut-ref 指定 aop:pointcut 的引用
 					- arg-names 通知类方法的参数
-				- after-throwing特有
+				- after-throwing特有 如果指定
 					- throwing
 				- after-returning特有
 					- returning
+
+> 环绕通知很特殊, 不仅因为它可以包含其他四中通知, 类似于整个InvocationHandler的实现(如上图), 更因为, 其他四种通知, 在方法调用的织入过程中, 只能大致知道该通知是在切入点之前还是之后执行的(比如前置在切入点执行之前执行, afterThrowing在切入点抛出异常之后才会执行...), 而环绕通知可以很明确的在代码的逻辑上就可以看出执行的顺序, 类似于上图的动态代理, 自定义程度很高.

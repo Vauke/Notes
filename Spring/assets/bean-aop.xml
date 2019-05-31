@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--  配置业务层, 需要被代理对象的bean(Target目标对象)  -->
+    <bean id="accountService" class="com.vauke.service.AccountServiceImpl">
+
+    </bean>
+
+<!--  配置通知类的bean  -->
+    <bean id="logger" class="com.vauke.utils.Logger">
+
+    </bean>
+
+<!--  配置切面, 将通知织入pointcut形成切面  -->
+    <aop:config>
+        <!-- 统一定义的切点引用 aop:pointcut节点要定义在 aop:aspect 节点之前 -->
+        <aop:pointcut id="pointcut" expression="execution(public void com.vauke.service.AccountServiceImpl.saveAccount())"/>
+        <!-- 配置切面, id切面的名称, ref通知的引用 -->
+        <aop:aspect id="logAdvice" ref="logger">
+
+        <!-- 织入 method指定通知类中的方法, pointcut或pointcut-ref指定能够匹配切入点的表达式-->
+            <!-- 使用完全匹配 前置通知 -->
+            <aop:before method="beforePrintLog" pointcut-ref="pointcut" />
+
+            <!-- 模糊匹配
+            	  后置返回通知
+                  访问修饰符可省略, 返回值为* 代表任意
+                  方法名为* 代表这个类所有方法
+                  参数列表为* 代表任意参数, 但必须有参数
+                  returning属性用于指定存放方法返回值的变量名, 要和通知方法的参数名一致
+             -->
+            <aop:after-returning method="afterReturningPrintLog" pointcut="execution(* com.vauke.service.AccountServiceImpl.*(*))" returning="result" />
+
+            <!-- 后置异常通知
+                  包名类名可以用*表示任意
+                  参数列表用 .. 表示任意, 可以没有参数
+                  throwing属性指定存放异常的变量名, 要和通知方法的参数名一致
+             -->
+            <aop:after-throwing method="afterThrowingPrintLog" pointcut="execution(* com.vauke.*.*.*(..))" throwing="throwable" />
+
+            <!-- 后置通知
+                  包名使用 .. 表示当前包及其子包
+                  参数列表使用 int 表示只匹配参数列表为int的方法
+             -->
+            <aop:after method="afterPrintLog" pointcut="execution(* com..AccountServiceImpl.*(int))" />
+
+            <!-- 环绕通知
+                  *..* 表示匹配任意包及其子包的任意类
+            -->
+            <aop:around method="aroundPrintLog" pointcut="execution(* *..*.*(..))" />
+        </aop:aspect>
+    </aop:config>
+</beans>
