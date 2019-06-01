@@ -106,18 +106,30 @@ UserService userService = applicationContext.getBean("userService", UserService.
 1. singleton
     - 单例, 默认
     - 单例对象在读取配置文件后就被创建
-    - 创建时会执行init-method指定的方法, 销毁时会执行destroy-method指定的方法, 整个生命周期都由容器控制
+    - 创建时会执行init-method指定的方法, 销毁时会执行destroy-method指定的方法, 整个生命周期都由IoC容器控制
 2. prototype
     - 多例
     - 对象并不会在读取文件时被创建, 而是在使用时才被创建
     - 创建时会执行init-method指定的方法, 而销毁时不会
-    - 具体表现为关闭容器时, 不会像singleton对象一样调用init-destroy方法
+    - 具体表现为关闭容器时, 不会像singleton对象一样调用init-destroy方法, 实例的销毁需要手动进行
 3. request
-    - web项目中, 将bean放入request域中
+    - 仅适用于Web环境中
+	- 每个HTTP请求到来都会创建一个bean, 这个bean伴随该请求的整个生命周期
 4. session
-    - web项目中, 将bean放入session域中
+	- 仅适用于Web环境中
+    - 一个存在于session生命周期中的bean
 5. global-session
-    - web项目中, 应用在Portlet环境下, 如果没有Portlet环境就相当于session
+	- deprecated since Spring 5.0
+	- 仅适用于Web环境中
+    - 应用在Portlet环境下, 如果没有Portlet环境就相当于session
+6. application
+	- as of Spring 5.0
+	- 仅适用于Web环境中
+	- 一个存在于整个ServletContext生命周期中的bean
+7. websocket
+	- as of Spring 5.0
+	- 仅适用于Web环境中
+	- 一个存在于WebSocket生命周期中的bean
 
 ## bean的生命周期
 
@@ -548,6 +560,7 @@ cglibProxiedFactory.sale(1000f);
 	- 配置切面
 	- 子节点
 		- aop:pointcut 指定可以匹配到切入点的表达式
+			- 在配置文件中的位置要在 `aop:aspect` 节点之前
 			- 属性
 				- id pointcut的名称
 				- expression 切入点表达式
