@@ -33,6 +33,8 @@ Wednesday, May 22nd 2019, 09:40
 	* [AOP配置](#aop配置)
 		* [基于XML](#基于xml)
 		* [基于Annotation](#基于annotation-1)
+* [Spring中的事务](#spring中的事务)
+	* [事务](#事务)
 
 <!-- /code_chunk_output -->
 
@@ -598,3 +600,49 @@ Spring中的事务是基于Spring AOP实现的
 ## 事务
 
 > 多个原子操作要使用同一个Connection对象才能实现事务的控制, 一般使用ThreadLocal使Connection对象与当前线程进行绑定, 因此, 不同线程的Connection也不能一样
+
+> 由于事务默认是设置为autocommit的, 因此要操作事务需要将事务设置为手动提交, 回滚...
+
+<details>
+    <summary>手动设置事务代码示例</summary>
+
+```java
+// 使用Spring transaction提供的方法将connection对象与线程进行绑定
+TransactionSynchronizationManager.initSynchronization();
+
+Connection connection = null;
+
+try {
+    // 获取与当前线程绑定的Connection对象
+    connection = DataSourceUtils.getConnection(this.dataSource);
+    // 设置事务为手动提交, 默认为自动提交
+    connection.setAutoCommit(false);
+    Account source = accountDao.findAccountByName(sourceName);
+    Account target = accountDao.findAccountByName(targetName);
+    source.setMoney(source.getMoney() - money);
+    target.setMoney(target.getMoney() + money);
+    accountDao.updateAccount(source);
+
+    // 模拟业务异常
+    int i = 1 / 0;
+
+    accountDao.updateAccount(target);
+    // 提交事务
+    connection.commit();
+} catch (Exception e) {
+    e.printStackTrace();
+    // 回滚事务
+    connection.rollback();
+} finally {
+    if (connection != null) {
+        // 关闭连接
+        connection.close();
+    }
+}
+```
+
+</details>
+
+## 使用Spring提供的事务管理
+
+和上面示例代码一样, 只是Spring自动进行了设置. 其本质也是将connection对象和线程进行绑定, 使得同一线程中的所有操作都是用同一个connection对象, 这是事务控制的基础. 然后关闭事务的自动提交, 改为手动提交, 回滚...
