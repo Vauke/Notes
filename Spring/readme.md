@@ -37,6 +37,7 @@ Wednesday, May 22nd 2019, 09:40
 	* [事务](#事务)
 	* [使用Spring提供的事务管理](#使用spring提供的事务管理)
 	* [基于XML配置](#基于xml配置-1)
+	* [基于Annotation](#基于annotation-2)
 
 <!-- /code_chunk_output -->
 
@@ -666,12 +667,16 @@ try {
 				- read-only 是否为只读事务, 默认为 false, 只有查询时才需要设置为 只读
 				- timeout 指定事务的过期时间, 默认为 -1 不过期, 单位 秒
 				- propagation 指定事务的传播行为
-					- REQUIRED 默认, 如果外层方法有事务时, 内层方法和外层使用同一事务, 外层没有时, 内层就新建一个事物, 可用于增删改
-					- SUPPORTS 外层有就用外层, 没有就不用事务, 一般用于查询
-					- REQUIRES_NEW 不管外层有没有事务, 内层都新建一个事务
+					- `REQUIRED` 默认, 如果外层方法有事务时, 内层方法和外层使用同一事务, 外层没有时, 内层就新建一个事物, 可用于增删改
+					- `SUPPORTS` 外层有就用外层, 没有就不用事务, 一般用于查询
+					- `REQUIRES_NEW` 不管外层有没有事务, 内层都新建一个事务
 				- rollback-for 用于指定一个异常, 当产生该异常时, 事务回滚
 				- no-rollback-for 用于指定一个异常, 当产生该异常时, 事务不回滚
 2. aop:config
 	- aop:pointcut 指定用于匹配切点的表达式
 	- aop:advisor
 		- advice-ref 指定通知的引用, 这里要只想TransactionManager的引用, 即 tx:advice的id
+
+## 基于Annotation
+
+在切点类或者切点上添加`@Transactional`注解, 对应于`tx:advice`, 属性也一一对应, 在配置类上添加`@EnableTransactionManagement`注解开启事务控制.
