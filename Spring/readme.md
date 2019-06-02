@@ -590,3 +590,11 @@ cglibProxiedFactory.sale(1000f);
 完全不使用配置文件, 则需要定义一个配置类, 使用`@ComponentScan(basePackages="")`配置包扫描, 使用`@EnableAspectJAutoProxy`启用自动代理, 使用`@Component`将通知类注入容器, 使用`@Aspect`指定通知类是一个切面
 
 [基于Annotation代码示例](./assets/Logger2.java)
+
+# Spring中的事务
+
+Spring中的事务是基于Spring AOP实现的
+
+## 事务
+
+> 多个原子操作要使用同一个Connection对象才能实现事务的控制, 一般使用ThreadLocal使Connection对象与当前线程进行绑定, 因此, 不同线程的Connection也不能一样
