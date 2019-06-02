@@ -35,6 +35,8 @@ Wednesday, May 22nd 2019, 09:40
 		* [基于Annotation](#基于annotation-1)
 * [Spring中的事务](#spring中的事务)
 	* [事务](#事务)
+	* [使用Spring提供的事务管理](#使用spring提供的事务管理)
+	* [基于XML配置](#基于xml配置-1)
 
 <!-- /code_chunk_output -->
 
@@ -646,3 +648,30 @@ try {
 ## 使用Spring提供的事务管理
 
 和上面示例代码一样, 只是Spring自动进行了设置. 其本质也是将connection对象和线程进行绑定, 使得同一线程中的所有操作都是用同一个connection对象, 这是事务控制的基础. 然后关闭事务的自动提交, 改为手动提交, 回滚...
+
+## 基于XML配置
+
+[事务配置示例.xml](./assets/事务配置示例.xml)
+
+1. tx:advice
+	- 用于将事务管理器作为通知类
+	- 属性
+		- id 指定名称
+		- transaction-manager 指定TransactionManger的bean
+	- tx:attributes 配置切入点信息
+		- tx:method 指定切入点
+			- 属性
+				- name 用于匹配方法, * 表示匹配所有方法
+				- isolation 指定事务的隔离级别, 默认为 DEFAULT 表示使用数据库的隔离级别
+				- read-only 是否为只读事务, 默认为 false, 只有查询时才需要设置为 只读
+				- timeout 指定事务的过期时间, 默认为 -1 不过期, 单位 秒
+				- propagation 指定事务的传播行为
+					- REQUIRED 默认, 如果外层方法有事务时, 内层方法和外层使用同一事务, 外层没有时, 内层就新建一个事物, 可用于增删改
+					- SUPPORTS 外层有就用外层, 没有就不用事务, 一般用于查询
+					- REQUIRES_NEW 不管外层有没有事务, 内层都新建一个事务
+				- rollback-for 用于指定一个异常, 当产生该异常时, 事务回滚
+				- no-rollback-for 用于指定一个异常, 当产生该异常时, 事务不回滚
+2. aop:config
+	- aop:pointcut 指定用于匹配切点的表达式
+	- aop:advisor
+		- advice-ref 指定通知的引用, 这里要只想TransactionManager的引用, 即 tx:advice的id

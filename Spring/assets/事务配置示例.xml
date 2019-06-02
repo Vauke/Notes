@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:bean="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <context:property-placeholder location="classpath*:db.properties" />
+
+    <bean id="accountService" class="com.vauke.service.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao" />
+    </bean>
+
+    <bean name="accountDao" class="com.vauke.dao.AccountDaoImpl">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- 使用Spring提供的连接池, 也可以换成c3p0 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${driverClass}" />
+        <property name="url" value="${jdbcUrl}" />
+        <property name="username" value="${user}" />
+        <property name="password" value="${password}" />
+    </bean>
+
+    <!-- 配置事务管理 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <!-- 配置事务的通知 -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <!-- 配置事务的属性 -->
+        <tx:attributes>
+            <!-- 匹配所有方法 -->
+            <tx:method name="*" read-only="false" propagation="REQUIRED" />
+            <!-- 匹配以find开头的所有方法, 一般为查询方法 -->
+            <tx:method name="find*" read-only="true" propagation="SUPPORTS" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 因为Spring的事务支持依赖于AOP, 因此将事务控制的代码作为通知织入连接点 -->
+    <aop:config>
+        <!-- 配置切点 -->
+        <aop:pointcut id="pointcut" expression="execution(* com.vauke.service.*.*(..))"/>
+
+        <!-- 配置切面 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" />
+    </aop:config>
+</beans>
