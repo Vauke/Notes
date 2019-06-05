@@ -162,10 +162,12 @@ REST: HTTP协议是无状态的, 所有的状态都存放在服务器端, 如果
 	- value 指定要获取的cookie的名称
 7. @ModelAttribute
 	- 方法和参数注解
-		- 用在方法上表示该方法会在对应的控制器方法执行之前执行
+		- 用在方法上表示该方法会在当前控制器类的*所有*方法执行之前执行
 		- 用在参数上用于获取指定的数据并赋值给参数
 	- 用途: 当表单中要提交的数据中没有实体类的某些属性时, 这些没有的属性就使用原有的, 而表单中有的数据就作为新的数据替换原有数据
 		- 例如在用于更新个人信息时, 其用户ID作为全局唯一的, 是不能进行更改的, 那么此时表单就可以不提供ID的input输入框, 这时就使用`@ModelAttribute`在方法上进行注解, 方法体为从数据库中获得user的数据并返回, 然后才会去调用对应的更新信息的controller进行数据的更新.
+
+#
 
 <details>
     <summary>@ModelAttribute代码示例</summary>
@@ -226,3 +228,5 @@ this will executed before testModelAttribute()User{loginName='hyc', username='va
 this is controller...User{loginName='hyc', username='vauke', password='123'}
 
 </details>
+
+#
