@@ -52,11 +52,7 @@ Monday, June 3rd 2019, 22:54
 3. Controller 控制器
     - 用于处理程序逻辑
 
-```sequence
-Tomcat->>web.xml: 1. Tomcat容器启动并读取web.xml中的配置信息
-web.xml->>DispatcherServlet: 2. 由于在web.xml中将DispatcherServlet配置为拦截所有请求, load-on-startup设置为1, 因此DispatcherServlet已经被创建
-DispatcherServlet->>applicationContext.xml: 根据配置的spring配置文件的位置, 读取配置文件, 初始化IoC容器
-```
+![springmvc处理流程](./assets/springmvc处理流程.png)
 
 # 注解
 
