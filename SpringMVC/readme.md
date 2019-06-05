@@ -166,3 +166,63 @@ REST: HTTP协议是无状态的, 所有的状态都存放在服务器端, 如果
 		- 用在参数上用于获取指定的数据并赋值给参数
 	- 用途: 当表单中要提交的数据中没有实体类的某些属性时, 这些没有的属性就使用原有的, 而表单中有的数据就作为新的数据替换原有数据
 		- 例如在用于更新个人信息时, 其用户ID作为全局唯一的, 是不能进行更改的, 那么此时表单就可以不提供ID的input输入框, 这时就使用`@ModelAttribute`在方法上进行注解, 方法体为从数据库中获得user的数据并返回, 然后才会去调用对应的更新信息的controller进行数据的更新.
+
+<details>
+    <summary>@ModelAttribute代码示例</summary>
+
+```html
+<form action="account/testModelAttribute">
+<!--  去掉不可更改的loginName的输入框  -->
+<%--  loginName:<input type="text" name="loginName"/> <br>  --%>
+    username: <input type="text" name="username"/><br>
+    password: <input type="password" name="password"/><br>
+    <input type="submit" value="submit"/>
+</form>
+```
+
+```java
+@RequestMapping("/testModelAttribute")
+public String testModelAttribute(User user) {
+	System.out.println("this is controller..." + user);
+	return "success";
+}
+
+@ModelAttribute
+public User thisWillExecutedBeforeController() {
+	// 模拟从数据库中读取数据
+	User user = new User();
+	user.setLoginName("hyc");
+	user.setUsername("vauke");
+	user.setPassword("123456");
+	System.out.println("this will executed before testModelAttribute()" + user);
+}
+```
+
+返回值为void时, 控制台打印:
+
+this will executed before testModelAttribute()User{loginName='hyc', username='vauke', password='123456'}
+
+this is controller...User{loginName='null', username='vauke', password='123'}
+
+返回值类型改为User后:
+
+```java
+@ModelAttribute
+public User thisWillExecutedBeforeController() {
+	// 模拟从数据库中读取数据
+	User user = new User();
+	user.setLoginName("hyc");
+	user.setUsername("vauke");
+	user.setPassword("123456");
+	System.out.println("this will executed before testModelAttribute()" + user);
+	return user;
+}
+```
+
+控制台打印:
+
+this will executed before testModelAttribute()User{loginName='hyc', username='vauke', password='123456'}
+
+this is controller...User{loginName='hyc', username='vauke', password='123'}
+
+</details>
