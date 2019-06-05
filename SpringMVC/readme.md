@@ -110,6 +110,20 @@ Monday, June 3rd 2019, 22:54
 	- 要求表单参数名和POJO类属性名保持一致, 并且参数类型也是该POJO类型的
 3. 数组和集合类型
 
+## RESTful风格的URL
+
+优点:	结构清晰, 符合标准, 易于理解, 扩展方便
+
+特性:
+
+> 资源: 网络上的一个实体或一个具体的信息
+
+> 表现层(Representation): 资源具体的呈现形式
+
+> 状态转化(State Transfer): 每发出一个请求, 即代表了客户端和服务器端的一次交互过程
+
+REST: HTTP协议是无状态的, 所有的状态都存放在服务器端, 如果客户端想要操作服务器, 就必须通过某种手段让服务器端的"状态"产生变化, 而这种状态建立在表现层上, 所以就称为"表现层的状态转化(Representational State Transfer, 即 REST)", 具体的讲, 就是HTTP协议里面四个表示操作方式的动词: GET(获取资源), POST(新建资源), PUT(更新资源), DELETE(删除资源)
+
 # 注解
 
 1. @RequestMapping
@@ -122,4 +136,12 @@ Monday, June 3rd 2019, 22:54
 			- params = {"accountName"},表示请求参数中必须要有accountName
 			- params = {"money!100"}, 表示请求参数中money不能为100
 		- headers 用于指定限制请求的消息头的条件
-2.
+2. @RequestParam
+	- 将请求参数和方法的形参进行绑定
+	- value 指定请求参数的名称
+	- required 请求参数中是否必须有某个参数, 默认true, 表示必须有, 否则报错
+3. @RequestBody
+	- 用于获取请求体, 直接使用获得的是key=value&key=value形式的数据
+	- 不适用于get请求
+	- required 是否必须有请求体, 默认 true, 为true时, 使用get请求会直接报错, 为false时使用get请求得到的是null
+4.
