@@ -8,6 +8,7 @@ Monday, June 3rd 2019, 22:54
 * [Intro](#intro)
 	* [SpringMVC的优势](#springmvc的优势)
 	* [JavaEE的三层架构与MVC的关系](#javaee的三层架构与mvc的关系)
+		* [MVC模型](#mvc模型)
 * [注解](#注解)
 
 <!-- /code_chunk_output -->
@@ -50,6 +51,12 @@ Monday, June 3rd 2019, 22:54
     - 指JSP或HTML页面, 用于展示数据
 3. Controller 控制器
     - 用于处理程序逻辑
+
+```sequence
+Tomcat->>web.xml: 1. Tomcat容器启动并读取web.xml中的配置信息
+web.xml->>DispatcherServlet: 2. 由于在web.xml中将DispatcherServlet配置为拦截所有请求, load-on-startup设置为1, 因此DispatcherServlet已经被创建
+DispatcherServlet->>applicationContext.xml: 根据配置的spring配置文件的位置, 读取配置文件, 初始化IoC容器
+```
 
 # 注解
 
