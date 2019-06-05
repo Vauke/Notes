@@ -9,6 +9,7 @@ Monday, June 3rd 2019, 22:54
 	* [SpringMVC的优势](#springmvc的优势)
 	* [JavaEE的三层架构与MVC的关系](#javaee的三层架构与mvc的关系)
 		* [MVC模型](#mvc模型)
+	* [SpringMVC处理流程](#springmvc处理流程)
 * [注解](#注解)
 
 <!-- /code_chunk_output -->
@@ -52,7 +53,18 @@ Monday, June 3rd 2019, 22:54
 3. Controller 控制器
     - 用于处理程序逻辑
 
+## SpringMVC处理流程
+
 ![springmvc处理流程](./assets/springmvc处理流程.png)
+
+1. Tomcat启动, 读取web.xml中的配置
+2. 由于web.xml中配置了DispatcherServlet并将其load-onstartup设置为1, url-pattern设置为/, 则在tomcat启动后就创建了DispatcherServlet对象
+3. 根据配置的applicationContext.xml的位置读取文件, 初始化IoC容器, 创建bean
+4. 客户端发起请求
+5. 请求到达tomcat后被DispatcherServlet拦截
+6. 此时, 根据URL匹配对应的controller
+7. 若有对应controller且请求方法也匹配, ,就调用对应controller的方法
+8. 根据ViewResolver的实现类InternalResourceViewResolver的配置找到对应的页面并显示
 
 # 注解
 
