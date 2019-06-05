@@ -10,6 +10,9 @@ Monday, June 3rd 2019, 22:54
 	* [JavaEE的三层架构与MVC的关系](#javaee的三层架构与mvc的关系)
 		* [MVC模型](#mvc模型)
 	* [SpringMVC处理流程](#springmvc处理流程)
+	* [SpringMVC组件](#springmvc组件)
+	* [<mvc:annotation-driven>说明](#mvcannotation-driven说明)
+	* [请求参数的绑定](#请求参数的绑定)
 * [注解](#注解)
 
 <!-- /code_chunk_output -->
@@ -89,8 +92,34 @@ Monday, June 3rd 2019, 22:54
     - 视图对象
         - 包括 jsp, html...
 
+## <mvc:annotation-driven>说明
+
+此标签用于在spring配置文件中, 表示注解处理器和适配器的配置
+
+> 在SpringMVC的个个组件中, 处理器映射器HandlerMapping, 处理器适配器HandlerAdapter和视图解析器ViewResolver称为SpringMVC的三大组件. 在配置文件中添加<mvc:annotation-driven>会自动加载`RequestMappingHandlerMapping(处理器映射器)`和`RequestMappingHandlerAdapter(处理器适配器)`
+
+## 请求参数的绑定
+
+参数名和方法的形参名保持一致, 可以自动绑定, 也可以使用`@RequestParam`指定参数名, 这时形参名可以为任意.
+
+支持的数据类型
+1. 基本类型
+	- 包括基本类型和String
+2. POJO类型
+	- 包括实体类及其关联实体
+	- 要求表单参数名和POJO类属性名保持一致, 并且参数类型也是该POJO类型的
+3. 数组和集合类型
+
 # 注解
 
 1. @RequestMapping
-    -
+	- 用于建立请求URL和处理请求方法之间的对应关系
+    - 属性
+		- value 指定映射的URL
+		- path 同 value
+		- method 指定限制请求的方式
+		- params 指定限制请求参数的条件, 支持简单的表达式
+			- params = {"accountName"},表示请求参数中必须要有accountName
+			- params = {"money!100"}, 表示请求参数中money不能为100
+		- headers 用于指定限制请求的消息头的条件
 2.
