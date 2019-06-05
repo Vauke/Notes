@@ -14,7 +14,9 @@ Monday, June 3rd 2019, 22:54
 	* [<mvc:annotation-driven>说明](#mvcannotation-driven说明)
 	* [请求参数的绑定](#请求参数的绑定)
 	* [RESTful风格的URL](#restful风格的url)
-* [注解](#注解)
+* [常用注解](#常用注解)
+* [响应数据和结果视图](#响应数据和结果视图)
+	* [返回值分类](#返回值分类)
 
 <!-- /code_chunk_output -->
 
@@ -125,7 +127,7 @@ Monday, June 3rd 2019, 22:54
 
 REST: HTTP协议是无状态的, 所有的状态都存放在服务器端, 如果客户端想要操作服务器, 就必须通过某种手段让服务器端的"状态"产生变化, 而这种状态建立在表现层上, 所以就称为"表现层的状态转化(Representational State Transfer, 即 REST)", 具体的讲, 就是HTTP协议里面四个表示操作方式的动词: GET(获取资源), POST(新建资源), PUT(更新资源), DELETE(删除资源), 使用不同的请求方式来区分对同一资源的不同操作.
 
-# 注解
+# 常用注解
 
 1. @RequestMapping
 	- 方法和类注解
@@ -230,3 +232,15 @@ this is controller...User{loginName='hyc', username='vauke', password='123'}
 </details>
 
 #
+
+# 响应数据和结果视图
+
+## 返回值分类
+
+1. 字符串
+	- 返回的字符串可以指定逻辑视图名, 通过视图解析器解析为物理视图的地址
+		- 具体为: 将返回的字符串和配置文件中InternalResourceViewResolver配置的前后缀进行拼接, 寻找对应页面并渲染
+2. void
+	- 返回void时, 默认会使用 *`@RequestMapping`的映射的URL作为视图的名称(不是方法名称哦)* 作为视图名并查找对应的视图
+	- 也可以使用`HttpServletRequest`进行转发或者使用`HttpServletResponse`进行重定向
+3. ModelAndView
