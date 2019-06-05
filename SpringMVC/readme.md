@@ -22,7 +22,7 @@ Monday, June 3rd 2019, 22:54
 
 1. 清晰的角色划分
     - 前端控制器 DispatcherServlet
-    - 请求到处理器映射 HandlerMapping
+    - 处理器映射器 HandlerMapping
     - 处理器适配器 HandlerAdapter
     - 视图解析器 ViewResolver
     - 页面控制器 Controller
@@ -65,6 +65,29 @@ Monday, June 3rd 2019, 22:54
 6. 此时, 根据URL匹配对应的controller
 7. 若有对应controller且请求方法也匹配, ,就调用对应controller的方法
 8. 根据ViewResolver的实现类InternalResourceViewResolver的配置找到对应的页面并显示
+
+## SpringMVC组件
+
+1. DispatcherServlet
+    - 前端控制器, 是整个流程控制的中心, 只负责拦截和转发请求
+    - 它使得组件之间的耦合性降低
+2. HandlerMapping
+    - 根据请求找到对应的Handler(Controller)
+    - 不同映射器有不同的映射方式
+        - 配置文件方式
+        - 实现接口方式
+        - 注解方式
+3. Handler
+    - 即 Controller
+4. HandlerAdapter
+    - 处理器适配器
+    - 使用到适配器模式
+    - 使用其调用适合的Handler
+5. ViewResolver
+    - 视图解析器负责将处理结果生成View视图对象
+6. View
+    - 视图对象
+        - 包括 jsp, html...
 
 # 注解
 
