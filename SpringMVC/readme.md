@@ -14,7 +14,7 @@ Monday, June 3rd 2019, 22:54
 
 # Intro
 
-> SpringMVC是一种基于Java实现MVC设计模型的请求驱动类型的轻量级Web框架, 已经融合在Spring Web FLow中. 它通过一套注解, 让一个简单的Java类成为处理请求的控制器, 而无需实现任何接口, 同时它还支持RESTful风格的请求.
+> SpringMVC是一种基于Java实现MVC设计模型的请求驱动类型的轻量级Web框架, 已经融合在Spring Web FLow中. 它通过一套注解, *让一个简单的Java类成为处理请求的控制器, 而无需实现任何接口*, 同时它还支持RESTful风格的请求.
 
 ## SpringMVC的优势
 
@@ -41,6 +41,15 @@ Monday, June 3rd 2019, 22:54
     - 可能会依赖于持久层
 3. 持久层 dao
     - 负责数据的持久化
+
+### MVC模型
+
+1. Model 模型
+    - 指数据模型, 一般情况下用于封装数据
+2. View 视图
+    - 指JSP或HTML页面, 用于展示数据
+3. Controller 控制器
+    - 用于处理程序逻辑
 
 # 注解
 
