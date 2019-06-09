@@ -244,7 +244,7 @@ this is controller...User{loginName='hyc', username='vauke', password='123'}
 	- 返回void时, 默认会使用 *`@RequestMapping`的映射的URL作为视图的名称(不是方法名称哦)* 作为视图名并查找对应的视图
 	- 也可以使用`HttpServletRequest`进行转发或者使用`HttpServletResponse`进行重定向
 3. ModelAndView
-	- addObject 将对象或集合添加到request域中
-		- 参数 String attributeName 设置属性名称
-		- 参数 Object attributeValue 键值对形式, 设置属性值
+	- addObject 将对象或集合添加到*request域*中
+		- 参数 `String attributeName` 设置属性名称
+		- 参数 `Object attributeValue` 键值对形式, 设置属性值
 	- setViewName 设置逻辑视图名称
