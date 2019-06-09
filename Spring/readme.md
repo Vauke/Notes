@@ -140,7 +140,7 @@ UserService userService = applicationContext.getBean("userService", UserService.
 	- 每个线程都会创建一个单独的bean
 	- 将`SimpleThreadScope`的bean注入到`CustomScopeConfigurer`的属性中
 9. 自定义作用域
-	- 自定义作用域类继承`CustomScopeConfigurer`, 实现方法
+	- 自定义作用域类需要实现`Scope`接口, 至少重写`get()`和`remove()`方法
 
 > 如果一个单例对象的属性是一个多例对象, 那么这个多例的属性, 在单例对象被创建后不能被改变, 如果想要在每次获得单例对象时(每次获得的是同一个单例对象), 都给多例属性注入不同的多例对象, 就需要在单例类中增加一个可以返回多例实例的抽象方法, 并在xml中指定lookup-method节点或者使用@Lookup注解.
 
@@ -149,11 +149,13 @@ example: Bean1单例, Bean2多例
 ```java
 @Component("bean1")
 public abstract class Bean1 {
-    // private Bean2 bean2;
+	/**
+    private Bean2 bean2;
 
-    // public void setBean2(Bean2 bean2) {
-    //     this.bean2 = bean2;
-    // }
+    public void setBean2(Bean2 bean2) {
+        this.bean2 = bean2;
+    }
+	*/
 
     @Lookup
     public abstract Bean2 getBean2();
