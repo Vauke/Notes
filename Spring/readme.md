@@ -12,7 +12,8 @@ Wednesday, May 22nd 2019, 09:40
 	* [bean创建的3种方式](#bean创建的3种方式)
 	* [bean的作用范围](#bean的作用范围)
 	* [bean的生命周期](#bean的生命周期)
-	* [bean的依赖注入的3种方式](#bean的依赖注入的3种方式)
+	* [bean的初始化和销毁](#bean的初始化和销毁)
+	* [bean的依赖注入的几种方式](#bean的依赖注入的几种方式)
 		* [集合类型的依赖注入](#集合类型的依赖注入)
 	* [节点](#节点)
 		* [bean节点](#bean节点)
@@ -119,10 +120,10 @@ UserService userService = applicationContext.getBean("userService", UserService.
     - 具体表现为关闭容器时, 不会像singleton对象一样调用init-destroy方法, 实例的销毁需要手动进行
 3. request
     - 仅适用于Web环境中
-	- 每个HTTP请求到来都会创建一个bean, 这个bean伴随该请求的整个生命周期
+	- 每个HTTP请求到来都会创建一个单独的bean, 这个bean伴随该请求的整个生命周期
 4. session
 	- 仅适用于Web环境中
-    - 一个存在于session生命周期中的bean
+    - 每个session都会创建一个单独的bean
 5. global-session
 	- deprecated since Spring 5.0
 	- 仅适用于Web环境中
@@ -135,12 +136,67 @@ UserService userService = applicationContext.getBean("userService", UserService.
 	- as of Spring 5.0
 	- 仅适用于Web环境中
 	- 一个存在于WebSocket生命周期中的bean
+8. SimpleThreadScope
+	- 每个线程都会创建一个单独的bean
+	- 将`SimpleThreadScope`的bean注入到`CustomScopeConfigurer`的属性中
+9. 自定义作用域
+	- 自定义作用域类继承`CustomScopeConfigurer`, 实现方法
+
+> 如果一个单例对象的属性是一个多例对象, 那么这个多例的属性, 在单例对象被创建后不能被改变, 如果想要在每次获得单例对象时(每次获得的是同一个单例对象), 都给多例属性注入不同的多例对象, 就需要在单例类中增加一个可以返回多例实例的抽象方法, 并在xml中指定lookup-method节点或者使用@Lookup注解.
+
+example: Bean1单例, Bean2多例
+
+```java
+@Component("bean1")
+public abstract class Bean1 {
+    // private Bean2 bean2;
+
+    // public void setBean2(Bean2 bean2) {
+    //     this.bean2 = bean2;
+    // }
+
+    @Lookup
+    public abstract Bean2 getBean2();
+
+    @Override
+    public String toString() {
+        return getBean2().toString();
+    }
+}
+
+@Component("bean2")
+@Scope("prototype")
+public class Bean2 {
+}
+
+@Test
+public void testScopeInAnnotation() {
+	AbstractApplicationContext applicationContext =
+			new AnnotationConfigApplicationContext(MyConfig.class);
+	Bean1 bean1_1 = applicationContext.getBean("bean1", Bean1.class);
+	System.out.println("bean1_1 = " + bean1_1);
+	Bean1 bean1_2 = applicationContext.getBean("bean1", Bean1.class);
+	System.out.println("bean1_2 = " + bean1_2);
+
+	System.out.println(bean1_1 == bean1_2); // true
+
+	Bean2 bean2 = applicationContext.getBean("bean2", Bean2.class);
+	System.out.println("bean2 = " + bean2);
+}
+
+// output:
+bean1_1 = com.vauke.Bean2@13c10b87
+bean1_2 = com.vauke.Bean2@6a01e23
+true
+bean2 = com.vauke.Bean2@5a955565
+```
 
 ## bean的生命周期
 
 1. 单例对象的生命周期
     - 出生
-        - 容器创建时, 读取配置文件后就生成
+        - 容器创建时, 读取配置文件后就生成, 如果使用懒加载, 则是在第一次使用时才创建
+		- *懒加载只针对于Singleton作用域*
     - 活着
         - 只要容器未被销毁就一直存在
     - 死亡
@@ -153,7 +209,16 @@ UserService userService = applicationContext.getBean("userService", UserService.
     - 死亡
         - 当对象没有被引用并且长时间未被使用时, Spring会将其交由GC回收
 
-## bean的依赖注入的3种方式
+## bean的初始化和销毁
+
+1. 初始化
+	- 指定init-method
+	- 实现`InitializingBean`接口的`afterPropertiesSet()`
+2. 销毁
+	- 指定destroy-method
+	- 实现`DisposableBean`接口的`destroy()`
+
+## bean的依赖注入的几种方式
 
 1. 构造注入
     - 实体类中必须要有相应的构造函数
@@ -169,6 +234,10 @@ UserService userService = applicationContext.getBean("userService", UserService.
         - 基本类型属性和String
     - p:xxx-ref
         - 容器中的其他bean类型的属性
+4. c名称空间
+	- 同p名称空间
+	- p名称空间是通过属性注入
+	- c名称空间是通过构造注入
 
 ### 集合类型的依赖注入
 
@@ -233,14 +302,13 @@ UserService userService = applicationContext.getBean("userService", UserService.
         - 当前bean节点会使用parent指定的bean的所有配置
         - 可与abstract结合使用
     - abstract
-        - 当前bean不会实例化, 可在配置很多具有相同特点(同个类, 同个属性...)的bean时, 用作模板
+        - *当前bean不会实例化,* 可在配置很多具有相同特点(同个类, 同个属性...)的bean时, 用作模板
         - 当前bean节点有abstract属性时, 可以不指定class属性, 而仅仅用其来配置公共属性的值
     - init-method
         - 用于指定实体类中的某个方法作为初始化方法, 在容器创建bean时调用
     - destroy-method
         - 同init-method, 用于在容器关闭, bean销毁时调用
         - prototype不涉及此方法
-    -
 
 ### bean的内部节点
 
@@ -299,14 +367,14 @@ UserService userService = applicationContext.getBean("userService", UserService.
 
 ### 注入容器中的其他bean类型
 
-1. @Autowired
+1. @Autowired xml中autowire的按*类型*版本
 	- 自动按*类型*注入, 只要容器中有*唯一*的类型匹配时, 就可以完成依赖的注入, 否则抛出异常
 		- *当容器中有两个及以上的相同类型的bean时, 将按照bean的id来进行自动注入*
 	- 可以省略该属性在该bean中的setter(即直接将这个注解加到属性的声明上)
 	- 属性
 		- required
 			- 是否必须, 默认为true
-2. @Qualifier
+2. @Qualifier xml中autowire的按*名称*版本
 	- 须和@Autowired结合使用, 用于指定bean的id
 	- 不能用于通过构造方法实现的注入方式, @Qualifier不能用在构造之上
 3. @Resource
