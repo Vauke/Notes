@@ -18,6 +18,9 @@ Monday, June 3rd 2019, 22:54
 * [响应数据和结果视图](#响应数据和结果视图)
 	* [返回值分类](#返回值分类)
 * [异常处理器](#异常处理器)
+* [拦截器](#拦截器)
+	* [拦截器与过滤器的区别](#拦截器与过滤器的区别)
+	* [自定义拦截器](#自定义拦截器)
 
 <!-- /code_chunk_output -->
 
@@ -259,6 +262,8 @@ this is controller...User{loginName='hyc', username='vauke', password='123'}
 3. 向IoC容器中注入自定义异常处理类
 4. 在自定义的错误页面上使用`${pageContext.findAttribute()}`或者`${requestScope.get()}`, 得到存放异常信息的属性值
 
+#
+
 <details>
     <summary>代码示例</summary>
 
@@ -302,5 +307,48 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
 
 </details>
 
+#
 
 # 拦截器
+
+## 拦截器与过滤器的区别
+
+> 过滤器是servlet规范中的一部分, 任何java web工程都可以使用. 过滤器在web.xml中配置<url-pattern>为 */** 就可以对所有资源进行拦截
+
+> 拦截器是SpringMVC框架自己的, 只有使用了SpringMVC的项目才可以使用. 只会拦截访问的控制器方法, *不会拦截像jsp, html, js这样的静态资源*
+
+*要自定义拦截器, 必须要实现HandlerInterceptor接口*
+
+## 自定义拦截器
+
+1. 自定义拦截器处理类, 实现`HandlerInterceptor`接口, 重写三个方法
+	1. `preHandle(request, response, Object handler)`
+		- 当请求被拦截后, 先执行此方法
+		- 在拦截器链中*顺序*依次执行
+		- 返回 true : 放行, 即: 如果有下一个拦截器则执行下一个, 一直到最后一个, 最后执行该请求本要执行的控制器方法
+		- 返回 false, 不放行
+	2. `postHandle(request, response, Object handler, ModelAndView)`
+		- 只有当*拦截器链中所有*`preHandle()`返回true时才调用
+		- 在拦截器链中*逆序*依次执行
+		- 在控制器方法执行完成后, `DispatcherServlet`向客户端返回响应数据前被调用, 可以在该方法中对用户请求 request 进行处理
+	3. `afterComletion(request, response, Object handler, Exception)`
+		- 只有*当前*自定义拦截器处理类的`preHandle()`返回true时才调用
+		- 在拦截器链中*逆序*依次执行
+		- 在`DispatcherServlet`完全处理完请求后被调用, 一般用于进行资源清理操作
+2. 配置拦截器要拦截的请求, 并向IoC容器中注入自定义拦截器处理类的实例
+
+```xml
+<mvc:interceptors>
+	<mvc:interceptor>
+		<!--  指定需要拦截的请求映射 /** 表示所有  -->
+		<mvc:mapping path="/**"/>
+		<!--  指定不进行拦截的请求映射  -->
+		<!--  <mvc:exclude-mapping path=""/>  -->
+		<bean id="myInterceptor1" class="com.vauke.web.interceptor.MyInterceptor1"/>
+	</mvc:interceptor>
+	<mvc:interceptor>
+		<mvc:mapping path="/**"/>
+		<bean id="myInterceptor2" class="com.vauke.web.interceptor.MyInterceptor2"/>
+	</mvc:interceptor>
+</mvc:interceptors>
+```
