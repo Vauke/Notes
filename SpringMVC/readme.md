@@ -17,6 +17,7 @@ Monday, June 3rd 2019, 22:54
 * [常用注解](#常用注解)
 * [响应数据和结果视图](#响应数据和结果视图)
 	* [返回值分类](#返回值分类)
+* [异常处理器](#异常处理器)
 
 <!-- /code_chunk_output -->
 
@@ -168,6 +169,8 @@ REST: HTTP协议是无状态的, 所有的状态都存放在服务器端, 如果
 		- 用在参数上用于获取指定的数据并赋值给参数
 	- 用途: 当表单中要提交的数据中没有实体类的某些属性时, 这些没有的属性就使用原有的, 而表单中有的数据就作为新的数据替换原有数据
 		- 例如在用于更新个人信息时, 其用户ID作为全局唯一的, 是不能进行更改的, 那么此时表单就可以不提供ID的input输入框, 这时就使用`@ModelAttribute`在方法上进行注解, 方法体为从数据库中获得user的数据并返回, 然后才会去调用对应的更新信息的controller进行数据的更新.
+8. @ResponseBody
+	- 将响应数据封装为JSON, 需要jackson依赖
 
 #
 
@@ -248,3 +251,56 @@ this is controller...User{loginName='hyc', username='vauke', password='123'}
 		- 参数 `String attributeName` 设置属性名称
 		- 参数 `Object attributeValue` 键值对形式, 设置属性值
 	- setViewName 设置逻辑视图名称
+
+# 异常处理器
+
+1. 自定义异常类
+2. 自定义异常处理类, 实现`HandlerExceptionResolver`接口, 重写`resolveException(..)`
+3. 向IoC容器中注入自定义异常处理类
+4. 在自定义的错误页面上使用`${pageContext.findAttribute()}`或者`${requestScope.get()}`, 得到存放异常信息的属性值
+
+<details>
+    <summary>代码示例</summary>
+
+```java
+// 自定义异常类
+public class CustomException extends Exception {
+    private String message;
+
+    public CustomException(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+}
+
+// 自定义异常处理器
+public class CustomExceptionResolver implements HandlerExceptionResolver {
+    @Override
+    public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        ex.printStackTrace();
+        CustomException customException = null;
+
+        if (ex instanceof CustomException) {
+            customException = (CustomException) ex;
+        } else {
+            customException = new CustomException("system error");
+        }
+
+        ModelAndView modelAndView = new ModelAndView();
+        // 设置要返回的逻辑视图名称
+        modelAndView.setViewName("error");
+        // 将自定义异常实例添加到request域的属性中
+        modelAndView.addObject("errorMessage", customException);
+        return modelAndView;
+    }
+}
+```
+
+</details>
+
+
+# 拦截器
