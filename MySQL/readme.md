@@ -14,6 +14,8 @@ Monday, June 10th 2019, 20:01
 	* [浮点型](#浮点型)
 	* [日期](#日期)
 	* [字符型](#字符型)
+* [表相关](#表相关)
+	* [查看表结构](#查看表结构)
 
 <!-- /code_chunk_output -->
 
@@ -39,6 +41,10 @@ Monday, June 10th 2019, 20:01
       # 效果
       Mon Jun 10 20:09:34 2019 vauke@localhost:mysql>
       ```
+5. SHOW DATABASES;
+6. USE db_name;
+7. SELECT DATABASE();
+8. SHOW TABLES;
 
 ## 创建数据库
 
@@ -126,3 +132,13 @@ DROP DATABASE imooc;
 6. LONGTEXT
 7. ENUM('value1','value2'..)
 8. SET('value1','value2'..)
+
+# 表相关
+
+## 查看表结构
+
+```shell
+SHOW COLUMNS FROM db_name.table_name;
+
+DESC db_name.table_name;
+```
