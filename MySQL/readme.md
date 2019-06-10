@@ -152,11 +152,16 @@ DESC db_name.table_name;
 ALTER TABLE tbl_name ADD [COLUMN] col_name col_definition [FIRST | AFTER col_name];
 
 # 增加新列使用 ADD, 修改已有列使用 MODIFY, 删除列使用DROP
+# CHANGE和MODIFY类似, 还可用来修改列名
 
 # 添加约束
 ALTER TABLE tbl_name ADD [CONSTRAINT [symbol]] PRIMARY KEY [index_type] (index_col_name, ...);
 
 ALTER TABLE users ADD CONSTRAINT PK_users_id PRIMARY KEY (id);
+
+# 表更名
+ALTER table users RENAME users1;
+RENAME table users TO users1;
 ```
 
 # 约束
