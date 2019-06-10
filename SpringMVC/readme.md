@@ -347,8 +347,8 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
 		<bean id="myInterceptor1" class="com.vauke.web.interceptor.MyInterceptor1"/>
 	</mvc:interceptor>
 	<mvc:interceptor>
-		<mvc:mapping path="/**"/>
-		<bean id="myInterceptor2" class="com.vauke.web.interceptor.MyInterceptor2"/>
+		<mvc:mapping path="/springmvc/**"/>
+		<bean class="com.vauke.web.interceptor.MyInterceptor2"/>
 	</mvc:interceptor>
 </mvc:interceptors>
 ```
