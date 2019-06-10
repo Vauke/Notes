@@ -16,6 +16,7 @@ Monday, June 10th 2019, 20:01
 	* [字符型](#字符型)
 * [表相关](#表相关)
 	* [查看表结构](#查看表结构)
+	* [修改表结构](#修改表结构)
 * [约束](#约束)
 
 <!-- /code_chunk_output -->
@@ -144,6 +145,20 @@ SHOW COLUMNS FROM db_name.table_name;
 DESC db_name.table_name;
 ```
 
+## 修改表结构
+
+```shell
+# FIRST 表示在所有列之前, AFTER col_name 表示在某一列之后
+ALTER TABLE tbl_name ADD [COLUMN] col_name col_definition [FIRST | AFTER col_name];
+
+# 增加新列使用 ADD, 修改已有列使用 MODIFY, 删除列使用DROP
+
+# 添加约束
+ALTER TABLE tbl_name ADD [CONSTRAINT [symbol]] PRIMARY KEY [index_type] (index_col_name, ...);
+
+ALTER TABLE users ADD CONSTRAINT PK_users_id PRIMARY KEY (id);
+```
+
 # 约束
 
 > 约束用来保证数据的完整性和一致性, 约束分为表级约束和列级约束.
@@ -162,3 +177,9 @@ DESC db_name.table_name;
     - 父表和子表必须使用相同的存储引擎(只能为InnoDB), 禁止使用临时表
     - 外键列和参照列的数据类型要相似
     - 外键列和参照列必须创建索引, 如果外键列无索引, 会自动创建, 而参照列必须手动创建索引
+    - 外键约束的参照操作
+        - `CASCADE` 父表在删除或更新时, 子表删除或更新匹配的行
+        - `SET NULL` 父表在删除或更新时, 子表中的外键列设为NULL, 必须保证子表外键列没有指定为NOT NULL
+        - `RESTRICT` 拒绝父表在删除或更新时的操作
+        - `NO ACTION` 在MySQL中和RESTRICT相同
+    - *实际 不推荐使用物理的外键约束*
