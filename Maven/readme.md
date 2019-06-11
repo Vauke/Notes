@@ -66,6 +66,104 @@ maven中定义了三套相互独立的生命周期, 每个生命周期又包含�
     <summary>pom.xml示例</summary>
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>公司网址反写+项目名</groupId>
+    <artifactId>项目名+模块名</artifactId>
+    <!--
+        x.y.z 大版本号.分支版本号.小版本号
+        snapshot 快照
+        alpha 内部测试
+        beta 公测
+        release 稳定
+        GA 正式发布
+    -->
+    <version>版本号</version>
+    <!--
+        默认是jar, 还可以为zip, war, pom...
+    -->
+    <packaging>jar</packaging>
+    <name>项目描述名</name>
+    <url>项目地址</url>
+    <description>项目描述</description>
+    <developers>开发人员列表</developers>
+    <licenses>证书信息</licenses>
+    <organization>组织信息</organization>
+
+    <!-- 在子模块的pom中定义要继承的父模块 -->
+    <parent>
+        <groupId></groupId>
+        <artifactId></artifactId>
+        <version></version>
+        <relativePath></relativePath>
+    </parent>
+
+    <!-- 在父模块的pom中定义哪些模块是子模块 -->
+    <modules>
+        <module>子模块名</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 指定版本 -->
+        <spring.version>5.0.2.RELEASE</spring.version>
+    </properties>
+
+    <!-- 依赖的管理, 一般用在父模块中来定义子模块共有的依赖, 子模块进行继承 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId></groupId>
+                <artifactId></artifactId>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId></groupId>
+            <artifactId></artifactId>
+            <version></version>
+            <scope></scope>
+            <type></type>
+            <!-- true or false -->
+            <optional></optional>
+            <!-- 排除传递的依赖项 -->
+            <exclusions>
+                <exclusion>
+                    <groupId></groupId>
+                    <artifactId></artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId></groupId>
+                <artifactId></artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
 ```
 
 </details>
