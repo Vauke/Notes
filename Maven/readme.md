@@ -11,6 +11,7 @@ Tuesday, June 11th 2019, 14:29
 * [pom.xml](#pomxml)
 * [<scope>](#scope)
 * [依赖冲突](#依赖冲突)
+* [聚合与继承](#聚合与继承)
 
 <!-- /code_chunk_output -->
 
@@ -86,6 +87,7 @@ maven中定义了三套相互独立的生命周期, 每个生命周期又包含�
     <version>版本号</version>
     <!--
         默认是jar, 还可以为zip, war, pom...
+        作为父模块时, 打包方式选择pom
     -->
     <packaging>jar</packaging>
     <name>项目描述名</name>
@@ -103,7 +105,7 @@ maven中定义了三套相互独立的生命周期, 每个生命周期又包含�
         <relativePath></relativePath>
     </parent>
 
-    <!-- 在父模块的pom中定义哪些模块是子模块 -->
+    <!-- 在用于聚合的模块的pom中定义哪些模块需要聚合, 用于聚合的模块的packaging要修改为pom -->
     <modules>
         <module>子模块名</module>
     </modules>
@@ -216,3 +218,9 @@ graph LR;
     B-->|依赖于|commons-io:2.5;
     A-->|依赖于|commons-io:2.6;
 ```
+
+# 聚合与继承
+
+> 在要对很多个模块的进行相同的操作时(如install), 可以挨个运行install命令, 但这样很繁琐, 就可以新建一个用于聚合这些操作的模块, 将其packaging(打包方式)改为pom, 并使用`<modules>`指定要被聚合操作的模块名后, 就可以在用于聚合的模块中执行一次命令, 所有的模块都会进行相同的操作.
+
+> 如果有很多个模块的依赖等是相同的, 那么就可以新建一个父模块用于定义这些相同的部分, 在子模块的pom中指定`parent`标签指向父模块即可, 父模块中的packaging(打包方式)修改为pom, 然后可以写明所有共同的依赖(会在父模块中引入具体的依赖)或者在父模块中使用`<dependencyManagement>`标签进行依赖的声明(不会在父模块中引入具体的依赖)
