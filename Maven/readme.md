@@ -8,6 +8,8 @@ Tuesday, June 11th 2019, 14:29
 * [常用构建命令](#常用构建命令)
 * [使用archetype创建目录](#使用archetype创建目录)
 * [maven生命周期](#maven生命周期)
+* [pom.xml](#pomxml)
+* [<scope>](#scope)
 
 <!-- /code_chunk_output -->
 
@@ -49,9 +51,44 @@ maven中定义了三套相互独立的生命周期, 每个生命周期又包含�
         - test
         - package
         - install
+    - 直接运行后面的阶段, 会依次执行前面的阶段
+        - 如 运行 package 阶段时, 会先依次运行compile, test再执行package
 3. site生命周期 用于生成项目的站点
     - 包含4个阶段
         - pre-site
         - site
         - post-site
         - site-deploy
+
+# pom.xml
+
+<details>
+    <summary>pom.xml示例</summary>
+
+```xml
+```
+
+</details>
+
+# <scope>
+
+maven中提供了3种classpath(编译, 测试, 运行)和6种scope, scope就是用来控制依赖的作用范围, 比如设置junit的scope为test时, 就是指只在测试时, 才将junit的依赖添加到运行环境中classpath
+
+1. compile
+    - 默认scope
+    - 存在于项目的所有classpath中
+2. provided
+    - 只存在于编译和测试的classpath
+    - 如果一个依赖在运行环境中存在时, 就可以使用这个scope, 方便在开发环境下进行项目的构建
+        - 如 Tomcat这类的容器本身就有Servlet的API, 就可以将开发环境的Servlet的scope设为provided
+3. runtime
+    - 只存在于测试和运行的classpath中
+    - 编译时不需要的依赖就可以设置为runtime
+        - 比如MySQL的驱动, 在开发时是使用的各类驱动的接口, 并不需要具体的实现类, 因此MySQL的驱动设置为runtime
+4. test
+    - 只存在于测试的classpath
+    - 只用于测试用途的依赖, 如junit就可以设置为test
+5. system
+    - 类似provided, 只是需要明确指定包含的jar
+6. import
+    - 只能在<dependencyManagement>中设置, 表示从其他的pom中导入依赖
