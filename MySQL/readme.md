@@ -65,7 +65,6 @@ ALTER {DATABASE | SCHEMA} [db_name] [DEFAULT] CHARACTER SET [=] charset_name
 ALTER DATABASE imooc CHARACTER SET utf8mb4;
 ```
 
-
 ## 删除数据库
 
 ```shell
