@@ -161,7 +161,6 @@ public void testMyBatisNotUsingMapper() {
     // 5. 关闭资源
     sqlSession.close();
 
-
     // ...
 
     List<User> userList = sqlSession.selectList("test.findUserByUsername", "五");
@@ -180,7 +179,6 @@ public void testMyBatisNotUsingMapper() {
 > SqlSession中封装了对数据库的操作，如：查询、插入、更新、删除等。SqlSession通过SqlSessionFactory创建。SqlSessionFactory是通过SqlSessionFactoryBuilder进行创建。
 > SqlSessionFactoryBuilder用于创建SqlSessionFacoty，SqlSessionFacoty一旦创建完成就不需要SqlSessionFactoryBuilder了，因为SqlSession是通过SqlSessionFactory创建的。所以可以将SqlSessionFactoryBuilder当成一个工具类使用，最佳使用范围是方法范围即方法体内局部变量。
 > SqlSessionFactory是一个接口，接口中定义了openSession的不同重载方法，SqlSessionFactory的*最佳使用范围是整个应用运行期间*，一旦创建后可以重复使用，通常以*单例*模式管理SqlSessionFactory
-
 
 ## Mapper动态代理
 
