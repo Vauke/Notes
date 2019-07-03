@@ -171,7 +171,7 @@ maven中定义了三套相互独立的生命周期, 每个生命周期又包含�
 
 </details>
 
-# <scope>
+# scope
 
 maven中提供了3种classpath(编译, 测试, 运行)和6种scope, scope就是用来控制依赖的作用范围, 比如设置junit的scope为test时, 就是指只在测试时, 才将junit的依赖添加到运行环境中classpath
 
