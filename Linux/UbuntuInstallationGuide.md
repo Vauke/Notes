@@ -4,65 +4,67 @@ Monday, August 13th 2018, 23:26
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
 
-* [UbuntuInstallationGuide.md](#ubuntuinstallationguidemd)
-	* [安装gnome-tweak-tool](#安装gnome-tweak-tool)
-	* [chrome](#chrome)
-	* [搜狗输入法](#搜狗输入法)
-	* [安装plank](#安装plank)
-	* [修改grub等待时间](#修改grub等待时间)
-	* [albert](#albert)
-	* [diskmount](#diskmount)
-	* [git](#git)
-		* [git proxy](#git-proxy)
-	* [zsh](#zsh)
-	* [aria2](#aria2)
-	* [apt-fast](#apt-fast)
-	* [java](#java)
-	* [trim](#trim)
-	* [password management](#password-management)
-	* [wine-qq wechat](#wine-qq-wechat)
-	* [zeal](#zeal)
-	* [shutter](#shutter)
-	* [calibre](#calibre)
-	* [axel](#axel)
-	* [uget](#uget)
-	* [vim](#vim)
-	* [取消错误通知](#取消错误通知)
-	* [y-ppa-manager](#y-ppa-manager)
-	* [meld](#meld)
-	* [jad](#jad)
-	* [GoldenDict](#goldendict)
-	* [Font](#font)
-	* [MySQL](#mysql)
-	* [Terminal](#terminal)
-	* [atom plugins](#atom-plugins)
-	* [sublime](#sublime)
-	* [ufw](#ufw)
-	* [ssh](#ssh)
-	* [nvidia](#nvidia)
-	* [neofetch](#neofetch)
-	* [vm](#vm)
-	* [htop](#htop)
-	* [stacer](#stacer)
-	* [catfish](#catfish)
-	* [tree](#tree)
-	* [music](#music)
-	* [video](#video)
-	* [打开不了设置中心](#打开不了设置中心)
-	* [误删network-manager后无法联网](#误删network-manager后无法联网)
-	* [snap安装软件太慢](#snap安装软件太慢)
-	* [e-mail client](#e-mail-client)
-	* [all in one apps](#all-in-one-apps)
-		* [built custom ones with Nativefier](#built-custom-ones-with-nativefier)
-	* [syncthing](#syncthing)
-	* [redis](#redis)
-	* [nginx](#nginx)
-	* [node.js](#nodejs)
-	* [gitmoji](#gitmoji)
-	* [commitizen](#commitizen)
-	* [docker](#docker)
-	* [wireshark](#wireshark)
-	* [博客图床](#博客图床)
+- [ UbuntuInstallationGuide.md](#ubuntuinstallationguidemd)
+  - [ 安装gnome-tweak-tool](#安装gnome-tweak-tool)
+  - [ chrome](#chrome)
+  - [ 搜狗输入法](#搜狗输入法)
+  - [ 安装plank](#安装plank)
+  - [ 修改grub等待时间](#修改grub等待时间)
+  - [ albert](#albert)
+  - [ diskmount](#diskmount)
+  - [ git](#git)
+    - [ git proxy](#git-proxy)
+  - [ zsh](#zsh)
+  - [ aria2](#aria2)
+  - [ apt-fast](#apt-fast)
+  - [ java](#java)
+  - [ trim](#trim)
+  - [ password management](#password-management)
+  - [ wine-qq wechat](#wine-qq-wechat)
+  - [ zeal](#zeal)
+  - [ shutter](#shutter)
+  - [ calibre](#calibre)
+  - [ axel](#axel)
+  - [ uget](#uget)
+  - [ vim](#vim)
+  - [ 取消错误通知](#取消错误通知)
+  - [ y-ppa-manager](#y-ppa-manager)
+  - [ meld](#meld)
+  - [ jad](#jad)
+  - [ GoldenDict](#goldendict)
+  - [ Font](#font)
+  - [ MySQL](#mysql)
+  - [ Terminal](#terminal)
+  - [ atom plugins](#atom-plugins)
+  - [ sublime](#sublime)
+  - [ ufw](#ufw)
+  - [ ssh](#ssh)
+  - [ nvidia](#nvidia)
+  - [ neofetch](#neofetch)
+  - [ vm](#vm)
+  - [ htop](#htop)
+  - [ stacer](#stacer)
+  - [ catfish](#catfish)
+  - [ tree](#tree)
+  - [ music](#music)
+  - [ video](#video)
+  - [ 打开不了设置中心](#打开不了设置中心)
+  - [ 误删network-manager后无法联网](#误删network-manager后无法联网)
+  - [ snap安装软件太慢](#snap安装软件太慢)
+  - [ e-mail client](#e-mail-client)
+  - [ all in one apps](#all-in-one-apps)
+    - [ built custom ones with Nativefier](#built-custom-ones-with-nativefier)
+  - [ syncthing](#syncthing)
+  - [ redis](#redis)
+  - [ nginx](#nginx)
+  - [ node.js](#nodejs)
+  - [ gitmoji](#gitmoji)
+  - [ commitizen](#commitizen)
+  - [ docker](#docker)
+  - [ wireshark](#wireshark)
+  - [ 博客图床](#博客图床)
+  - [ man & most](#man-most)
+- [ at](#at)
 
 <!-- /code_chunk_output -->
 
@@ -897,3 +899,25 @@ sudo chgrp wireshark /usr/sbin/tcpdump
 用[PicGo](https://github.com/Molunerfinn/PicGo)上传
 
 [使用GitHub做图床教程](https://mp.weixin.qq.com/s/hJq2bA7wv12vCmM7Rvfa9Q)
+
+## man & most
+
+```shell
+# 安装most
+sudo apt install most
+
+# 修改.zshrc
+# 为man添加颜色区分, 使用most
+export PAGER=most
+# 设置行宽
+export MANWIDTH=80
+```
+
+# at
+
+```shell
+sudo apt install at
+
+# 使用at作定时任务, 具体:
+man at
+```

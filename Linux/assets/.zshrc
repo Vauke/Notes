@@ -111,6 +111,11 @@ alias lc="cd /media/Program/IDEA_Projects/leetcode/src/com/vauke"
 
 setopt no_nomatch
 
+# 为man添加颜色区分, 使用most
+export PAGER=most
+# 设置行宽
+# export MANWIDTH=80
+
 # export ALL_PROXY="http://127.0.0.1:1080"
 export http_proxy="http://127.0.0.1:1080"
 export https_proxy="http://127.0.0.1:1080"
