@@ -134,6 +134,22 @@ mapper.xml文件即sql映射文件，文件中配置了操作数据库的sql语�
 		(username,birthday,sex,address) VALUES
 		(#{username},#{birthday},#{sex},#{address})
 	</insert>
+
+<!-- 以下为orders表的mapper.xml -->
+    <!-- 查询所有订单, 由于表中为user_id而属性为userId, 不一致, 直接这样查会有结果但结果中userId没有值 -->
+    <select id="selectOrdersList" resultType="orders">
+        select * from orders
+    </select>
+
+    <!-- 使用resultMap解决 -->
+    <select id="selectOrdersList" resultMap="ordersResultMap">
+        select * from orders
+    </select>
+
+    <resultMap id="ordersResultMap" type="orders">
+        <!-- 只需指定属性和表列名不同的属性, 相同的不用配置, 会自动识别 -->
+        <result column="user_id" property="userId"/>
+    </resultMap>
 </mapper>
 ```
 
