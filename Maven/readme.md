@@ -4,14 +4,14 @@ Tuesday, June 11th 2019, 14:29
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 <!-- code_chunk_output -->
 
-- [ readme.md](#readmemd)
-- [ 常用构建命令](#常用构建命令)
-- [ 使用archetype创建目录](#使用archetype创建目录)
-- [ maven生命周期](#maven生命周期)
-- [ pom.xml](#pomxml)
-- [ scope](#scope)
-- [ 依赖冲突](#依赖冲突)
-- [ 聚合与继承](#聚合与继承)
+- [readme.md](#readmemd)
+- [常用构建命令](#常用构建命令)
+- [使用archetype创建目录](#使用archetype创建目录)
+- [maven生命周期](#maven生命周期)
+- [pom.xml](#pomxml)
+- [scope](#scope)
+- [依赖冲突](#依赖冲突)
+- [聚合与继承](#聚合与继承)
 
 <!-- /code_chunk_output -->
 
