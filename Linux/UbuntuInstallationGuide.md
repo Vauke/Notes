@@ -534,7 +534,7 @@ sudo apt install neofetchneofetch
 
 ## vm
 
-安装vbox要额外装extension pack才能用u盘
+安装vbox要额外装extension pack才能用u盘, 并且要将用户添加到`vboxusers`用户组(`sudo usermod -a -G vboxusers vauke`并重新登录才生效)
 
 Settings->System->Motherboard->Enable I/O APIC
 
