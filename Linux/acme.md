@@ -4,7 +4,7 @@ Tuesday, October 1st 2019, 19:35
 # 安装
 
 ```shell
-curl  https://get.acme.sh | sh
+curl https://get.acme.sh | sh
 ```
 
 # 配置证书
@@ -16,8 +16,8 @@ curl  https://get.acme.sh | sh
 3. 更新证书
     - `sudo ~/.acme.sh/acme.sh --renew -d mydomain.com --force --ecc`
 4. 安装证书
-    - `sudo ./acme.sh  --installcert  -d  <domain>.com   \
-        --key-file   /etc/nginx/ssl/<domain>.key \
+    - `sudo ./acme.sh --installcert -d <domain>.com \
+        --key-file /etc/nginx/ssl/<domain>.key \
         --fullchain-file /etc/nginx/ssl/fullchain.cer --ecc --force`
 5. 配置nginx
     - ```
@@ -32,3 +32,5 @@ curl  https://get.acme.sh | sh
 
               ...
       ```
+6. acme.sh自动更新
+    - `acme.sh --upgrade --auto-upgrade`
