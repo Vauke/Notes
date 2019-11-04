@@ -1,6 +1,14 @@
 # MacInstallationGuide.md
 Sunday, November 3rd 2019, 16:50
 
+boot from install mac
+boot from mac hd
+boot from mac hd
+
+安装clover到系统EFI分区
+初始kext就要有 AppleALC RTL8111 FakeSMC WEG Lilu
+替换config.plist,改clover主题, 用configurator修改主题
+
 修改机型15,1
 注入igpu
 
