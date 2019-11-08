@@ -55,3 +55,8 @@ http://bbs.pcbeta.com/forum.php?mod=viewthread&tid=1829036&highlight=
 
 
 如果鼠标卡顿添加ps2kext
+
+https://blog.csdn.net/sky_miange/article/details/68067989
+
+defaults write com.apple.finder AppleShowAllFiles TRUE
+killall Finder
