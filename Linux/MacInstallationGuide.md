@@ -58,5 +58,28 @@ http://bbs.pcbeta.com/forum.php?mod=viewthread&tid=1829036&highlight=
 
 https://blog.csdn.net/sky_miange/article/details/68067989
 
+# Finder
+
+```shell
+# 显示隐藏文件
 defaults write com.apple.finder AppleShowAllFiles TRUE
+
+# 在Finder的标题栏显示文件路径
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+
+# 重启Finder
 killall Finder
+```
+
+# misc
+
+```shell
+# 允许从第三方来源安装程序
+sudo spctl --master-disable
+
+# 关闭Thunderbolt更新
+sudo softwareupdate --ignore ThunderboltFirmwareUpdate1.2
+
+# 为第三方SSD启用TRIM
+sudo trimforce enable
+```
