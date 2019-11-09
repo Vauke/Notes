@@ -230,3 +230,17 @@ CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
 PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 export JAVA_HOME JRE_HOME CLASSPATH PATH
 ```
+
+# vim
+
+```shell
+# install vim-plug plugin manager
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# then copy vimrc into ~/.vim/
+# then type vim in shell to enter vim
+# install plugins
+:PlugInstall
+# exit vim, done
+```
