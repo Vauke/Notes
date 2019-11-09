@@ -93,6 +93,9 @@ brew upgrade 软件名
 brew list
 ```
 
+关闭brew每次执行前的更新检查
+export HOMEBREW_NO_AUTO_UPDATE=true
+
 FYI :point_right: https://juejin.im/post/5cd2a50e518825356d54b847
 
 ## Homebrew cask
@@ -167,8 +170,6 @@ CheatSheet
 ```shell
 brew cask install visual-studio-code
 ```
-
-
 
 |        extensions         |       author        |
 |:-------------------------:|:-------------------:|
