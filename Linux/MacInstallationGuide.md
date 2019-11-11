@@ -145,6 +145,40 @@ Vanilla
 
 iTerm2
 
+```shell
+brew cask install iterm2
+```
+
+### 让iTerm像Tilda一样显示在屏幕左上角
+
+1. 打开iTerm2，然后iTerm2—>Preferences…–>Profiles->创建一个新Profiles，命名为Tilda
+2. 设置
+    1. Keys->Hotkey Window->Configure Hotkey Window
+        1. 指定快捷键
+        2. 勾选`Pin hotkey window`, `Animate showing and hiding`, `Floating window`
+    2. Window->Settings for new windows->Style, 先设置为`Full screen`，并按下快捷键触发，然后command+w关闭，然后设置为`No title bar`, 这时按下快捷键，窗口就到左上角了（原因为No title bar样式会根据上次终端所在位置来打开新终端，也因此，这样设置后，如果又打开其他终端，那么tilda后续打开的位置就可能不在屏幕左上角了，解决方法: 使用下方`misc`中的方法, 将tilda的位置保存为Arrangements
+    3. Session->Miscellaneous->Status bar enabled->Configure status bar，选择需要的监视器
+
+### 让iTerm像Guake一样成为下拉式终端
+
+1. 打开iTerm2，然后iTerm2—>Preferences…–>Profiles->创建一个新Profiles，命名为Guake
+2. 设置同上，区别是Window->Settings for new windows->Style, 设置为`Full-width top of screen`，Keys->Hotkey window指定不同快捷键
+
+### misc
+
+1. 启动iTerm2时不打开终端窗口
+    1. 菜单栏->Shell->Close关闭所有终端
+    2. 菜单栏->Window->Save Window Arrangement
+    3. 菜单栏->iTerm2->Preferences->Arrangments->No Windows->set default
+    4. Preferences->General->Startup->Window restoration policy，选择`open default window arrangement`
+2. 启动iTerm2时打开Tilda终端窗口
+    1. 菜单栏->Shell->Close关闭所有终端
+    2. 快捷键调出Tilda，用于记录窗口排列位置
+    3. 菜单栏->Window->Save Window Arrangement
+    4. 菜单栏->iTerm2->Preferences->Arrangments->Tilda->set default
+    5. Preferences->general->Startup->Window restoration policy，选择`open default window arrangement`
+
+
 ## 阻止熄屏
 
 MAS -> Amphetamine
