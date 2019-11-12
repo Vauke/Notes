@@ -119,6 +119,8 @@ FYI :point_right: https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
 
 ## Atom
 
+[same as on ubuntu](./UbuntuInstallationGuide.md#atom-plugins)
+
 ## 剪切板历史
 
 CopyQ
@@ -137,9 +139,9 @@ HWMonitor
 
 Inter Power Gadget
 
-Itsycal
+Itsycal日历
 
-Vanilla
+Vanilla隐藏多余图标
 
 ## 终端
 
@@ -178,6 +180,7 @@ brew cask install iterm2
     4. 菜单栏->iTerm2->Preferences->Arrangments->Tilda->set default
     5. Preferences->general->Startup->Window restoration policy，选择`open default window arrangement`
 
+FYI :point_right: http://ju.outofmemory.cn/entry/150383
 
 ## 阻止熄屏
 
@@ -194,6 +197,8 @@ IINA
 ## 文档工具
 
 Dash
+
+Calibre
 
 ## 快捷键查看工具
 
@@ -266,7 +271,7 @@ PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 export JAVA_HOME JRE_HOME CLASSPATH PATH
 ```
 
-# vim
+## vim
 
 ```shell
 # install vim-plug plugin manager
@@ -279,3 +284,17 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 :PlugInstall
 # exit vim, done
 ```
+
+## 窗口管理
+
+[spectacle](https://github.com/eczarny/spectacle) 不再更新
+
+[Rectangle](https://github.com/rxhanson/Rectangle) 基于spectacle
+
+### 窗口置顶
+
+先安装macforge插件管理器, 然后安装afloat或AfloatX插件, 完成后在Dock上右键开启的图标, 选择置顶
+
+[macforge插件管理](https://github.com/w0lfschild/MacForge)
+
+[AfloatX插件](https://github.com/jslegendre/AfloatX)
