@@ -160,6 +160,7 @@ brew cask install iterm2
         2. 勾选`Pin hotkey window`, `Animate showing and hiding`, `Floating window`
     2. Window->Settings for new windows->Style, 先设置为`Full screen`，并按下快捷键触发，然后command+w关闭，然后设置为`No title bar`, 这时按下快捷键，窗口就到左上角了（原因为No title bar样式会根据上次终端所在位置来打开新终端，也因此，这样设置后，如果又打开其他终端，那么tilda后续打开的位置就可能不在屏幕左上角了，解决方法: 使用下方`misc`中的方法, 将tilda的位置保存为Arrangements
     3. Session->Miscellaneous->Status bar enabled->Configure status bar，选择需要的监视器
+3. 在上一步中设置Window的透明度时, 勾选`Keep background colors opaque`, 这样vim中使用主题时, 主题的背景就不会再是透明的
 
 ### 让iTerm像Guake一样成为下拉式终端
 
@@ -298,3 +299,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 [macforge插件管理](https://github.com/w0lfschild/MacForge)
 
 [AfloatX插件](https://github.com/jslegendre/AfloatX)
+
+## 鼠标侧键
+
+安装logi G Hub·
