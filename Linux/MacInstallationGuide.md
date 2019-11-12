@@ -1,58 +1,74 @@
 # MacInstallationGuide.md
 Sunday, November 3rd 2019, 16:50
 
-<!-- TOC -->
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<!-- code_chunk_output -->
 
 - [MacInstallationGuide.md](#macinstallationguidemd)
-    - [安装系统](#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F)
-    - [Finder](#finder)
-    - [misc](#misc)
-    - [Homebrew](#homebrew)
-    - [Homebrew cask](#homebrew-cask)
-    - [MAS](#mas)
-    - [Dash](#dash)
-    - [Sublime](#sublime)
-    - [Eudic](#eudic)
-    - [Atom](#atom)
-    - [剪切板历史](#%E5%89%AA%E5%88%87%E6%9D%BF%E5%8E%86%E5%8F%B2)
-    - [密码管理](#%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86)
-    - [菜单栏](#%E8%8F%9C%E5%8D%95%E6%A0%8F)
-    - [终端](#%E7%BB%88%E7%AB%AF)
-        - [让iTerm像Tilda一样显示在屏幕左上角](#%E8%AE%A9iterm%E5%83%8Ftilda%E4%B8%80%E6%A0%B7%E6%98%BE%E7%A4%BA%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%B7%A6%E4%B8%8A%E8%A7%92)
-        - [让iTerm像Guake一样成为下拉式终端](#%E8%AE%A9iterm%E5%83%8Fguake%E4%B8%80%E6%A0%B7%E6%88%90%E4%B8%BA%E4%B8%8B%E6%8B%89%E5%BC%8F%E7%BB%88%E7%AB%AF)
-        - [misc](#misc-1)
-    - [阻止熄屏](#%E9%98%BB%E6%AD%A2%E7%86%84%E5%B1%8F)
-    - [压缩](#%E5%8E%8B%E7%BC%A9)
-    - [视频](#%E8%A7%86%E9%A2%91)
-    - [文档工具](#%E6%96%87%E6%A1%A3%E5%B7%A5%E5%85%B7)
-    - [快捷键查看工具](#%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%9F%A5%E7%9C%8B%E5%B7%A5%E5%85%B7)
-    - [VSCode](#vscode)
-    - [JDK](#jdk)
-    - [vim](#vim)
-    - [窗口管理](#%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86)
-        - [窗口置顶](#%E7%AA%97%E5%8F%A3%E7%BD%AE%E9%A1%B6)
-    - [鼠标侧键](#%E9%BC%A0%E6%A0%87%E4%BE%A7%E9%94%AE)
+  - [安装系统](#安装系统)
+    - [开机跳过Clover引导界面](#开机跳过clover引导界面)
+    - [ig-platform-id注入错误可能无法启动卡在进度条](#ig-platform-id注入错误可能无法启动卡在进度条)
+  - [Finder](#finder)
+  - [misc](#misc)
+  - [Homebrew](#homebrew)
+  - [Homebrew cask](#homebrew-cask)
+  - [MAS](#mas)
+  - [Dash](#dash)
+  - [Sublime](#sublime)
+  - [Eudic](#eudic)
+  - [Atom](#atom)
+  - [剪切板历史](#剪切板历史)
+  - [密码管理](#密码管理)
+  - [菜单栏](#菜单栏)
+  - [终端](#终端)
+    - [让iTerm像Tilda一样显示在屏幕左上角](#让iterm像tilda一样显示在屏幕左上角)
+    - [让iTerm像Guake一样成为下拉式终端](#让iterm像guake一样成为下拉式终端)
+    - [misc](#misc-1)
+  - [阻止熄屏](#阻止熄屏)
+  - [压缩](#压缩)
+  - [视频](#视频)
+  - [文档工具](#文档工具)
+  - [快捷键查看工具](#快捷键查看工具)
+  - [VSCode](#vscode)
+  - [JDK](#jdk)
+  - [vim](#vim)
+  - [窗口管理](#窗口管理)
+    - [窗口置顶](#窗口置顶)
+  - [鼠标侧键](#鼠标侧键)
 
-<!-- /TOC -->·
+<!-- /code_chunk_output -->
 
 ## 安装系统
-boot from install mac
-boot from mac hd
-boot from mac hd
 
-安装clover到系统EFI分区
-初始kext就要有 AppleALC RTL8111 FakeSMC WEG Lilu
-替换config.plist,改clover主题, 用configurator修改主题
+1. 下载镜像并格式化U盘
+2. 终端执行`sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/U盘名称 /Applications/Install\ macOS\ Catalina.app --nointeraction`, 将镜写入U盘
+3. 下载[Clover](https://github.com/CloverHackyColor/CloverBootloader), 选择安装到U盘, 勾选仅安装UEFI, 启动盘需要安装的UEFI驱动和kexts参考 ![Screen Shot 2019-11-12 at 23.25.05](./assets/Screen%20Shot%202019-11-12%20at%2023.25.05.png)
+4. 完成后使用[Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/)挂载U盘的EFI分区, 使用CCG打开`config.plist`, 下载`FakeSMC.kext`, `Lilu.kext`和`WhateverGreen.kext`, 并下载所有sensor的kext
+5. 下载[Vanilla极简版config.plist](https://github.com/corpnewt/Hackintosh-Guide/blob/master/Configs/Haswell/config.plist), 替换Clover自带的config.plist
+6. 测试U盘是否可引导, 将常用的`Clover`, `CCG`等放到U盘下, 方便系统安装好后使用
+7. 重启, U盘引导, 选择boot from install mac, 格式化硬盘选择APFS格式, 若安装时出现提示文件损坏就找到菜单栏的终端打开, 使用`date`命令设置一个过去的时间点即可, 可能需要拔掉网线, 防止自动获取时间
+8. 接下来安装过程会重启两次, 都选择boot from mac hd, mac hd是系统盘的名字
+9. 进入系统后, 打开CCG挂载系统盘的EFI分区, 把U盘中的EFI分区的EFI文件夹复制进去
+10. 拔掉U盘, 验证是否可以通过系统盘引导
+11. 按需求将UEFI驱动和kext复制进对应目录
+12. 使用CCG打开config.plist, 设置相应机型
+13. 下载[macinfo生成序列号](https://github.com/acidanthera/MacInfoPkg/), 解压, 执行`macserial -a | grep -i iMac15,1`机型做相应替换,
+    1. 第二列填到SMBIOS -> Serial Number
+    2. 第三列填到SMBIOS -> Board Serial Number和Rt Variables -> MLB
 
-修改机型15,1
+[安装过程参考](https://zhuanlan.zhihu.com/p/55991446)
 
+[Vanilla config.plist的讲解](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/haswell)
 
-引导处 lastbootvolume 时间 0
+### 开机跳过Clover引导界面
 
-0x0d220003
+使用CCG编辑config.plist Boot -> Default Boot Volume改为 lastbootvolume timeout设置为0
 
-ig-platform-id注入错误可能无法启动卡在进度条,可重启在clover页面临时修改
-clover->OPtions->Graphics Injector->*-platform-id:0x12345678, 不会写入config.plist文件中
+开机时按任意键可以调出Clover引导界面
+
+### ig-platform-id注入错误可能无法启动卡在进度条
+·
+重启在clover options页面临时修改该id, clover->Options->Graphics Injector->*-platform-id:0x12345678, 这里的修改并不会写入config.plist文件中
 
 ACPI
 
@@ -67,7 +83,6 @@ HFSPlus.efi（或vboxhfs-64-efi）
 hibernationfixup.kext
 
 
-https://zhuanlan.zhihu.com/p/55991446
 
 https://blog.daliansky.net/Mac-frequently-used-to-the-command---continuous-update.html
 
