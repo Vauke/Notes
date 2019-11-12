@@ -1,6 +1,41 @@
 # MacInstallationGuide.md
 Sunday, November 3rd 2019, 16:50
 
+<!-- TOC -->
+
+- [MacInstallationGuide.md](#macinstallationguidemd)
+    - [安装系统](#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F)
+    - [Finder](#finder)
+    - [misc](#misc)
+    - [Homebrew](#homebrew)
+    - [Homebrew cask](#homebrew-cask)
+    - [MAS](#mas)
+    - [Dash](#dash)
+    - [Sublime](#sublime)
+    - [Eudic](#eudic)
+    - [Atom](#atom)
+    - [剪切板历史](#%E5%89%AA%E5%88%87%E6%9D%BF%E5%8E%86%E5%8F%B2)
+    - [密码管理](#%E5%AF%86%E7%A0%81%E7%AE%A1%E7%90%86)
+    - [菜单栏](#%E8%8F%9C%E5%8D%95%E6%A0%8F)
+    - [终端](#%E7%BB%88%E7%AB%AF)
+        - [让iTerm像Tilda一样显示在屏幕左上角](#%E8%AE%A9iterm%E5%83%8Ftilda%E4%B8%80%E6%A0%B7%E6%98%BE%E7%A4%BA%E5%9C%A8%E5%B1%8F%E5%B9%95%E5%B7%A6%E4%B8%8A%E8%A7%92)
+        - [让iTerm像Guake一样成为下拉式终端](#%E8%AE%A9iterm%E5%83%8Fguake%E4%B8%80%E6%A0%B7%E6%88%90%E4%B8%BA%E4%B8%8B%E6%8B%89%E5%BC%8F%E7%BB%88%E7%AB%AF)
+        - [misc](#misc-1)
+    - [阻止熄屏](#%E9%98%BB%E6%AD%A2%E7%86%84%E5%B1%8F)
+    - [压缩](#%E5%8E%8B%E7%BC%A9)
+    - [视频](#%E8%A7%86%E9%A2%91)
+    - [文档工具](#%E6%96%87%E6%A1%A3%E5%B7%A5%E5%85%B7)
+    - [快捷键查看工具](#%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%9F%A5%E7%9C%8B%E5%B7%A5%E5%85%B7)
+    - [VSCode](#vscode)
+    - [JDK](#jdk)
+    - [vim](#vim)
+    - [窗口管理](#%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86)
+        - [窗口置顶](#%E7%AA%97%E5%8F%A3%E7%BD%AE%E9%A1%B6)
+    - [鼠标侧键](#%E9%BC%A0%E6%A0%87%E4%BE%A7%E9%94%AE)
+
+<!-- /TOC -->·
+
+## 安装系统
 boot from install mac
 boot from mac hd
 boot from mac hd
