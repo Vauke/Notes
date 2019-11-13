@@ -39,6 +39,7 @@ Sunday, November 3rd 2019, 16:50
   - [鼠标侧键](#鼠标侧键)
   - [截图](#截图)
   - [MySQL](#mysql)
+  - [修改为简单密码](#修改为简单密码)
 
 <!-- /code_chunk_output -->
 
@@ -386,6 +387,12 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 # 安装
 brew install mysql
 
+# 安装后默认是没有后台服务的, 不会开机自启, 可执行以下命令, 开启自启
+brew services start mysql
+
+# 手动启动|关闭|重启|状态
+mysql.server start | stop | restart | status
+
 # 初始化MySQL, 设置加密方式和root密码
 mysql_secure_installation
 ```
@@ -403,4 +410,17 @@ grant all privileges on *.* to 'vauke'@'localhost' with grant option;
 flush privileges;
 - 查看当前用户的权限
 show grants;
+```
+
+## 修改为简单密码
+
+```sql
+- 查看密码策略
+SHOW VARIABLES LIKE 'validate_password%';
+- 设置密码强度等级为LOW
+SET GLOBAL validate_password.policy=LOW;
+- 设置密码最小长度为6
+SET GLOBAL validate_password.length=6;
+- 修改密码
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 ```
