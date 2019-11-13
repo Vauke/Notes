@@ -42,8 +42,9 @@ Sunday, November 3rd 2019, 16:50
   - [鼠标侧键](#鼠标侧键)
   - [截图](#截图)
   - [MySQL](#mysql)
-  - [修改为简单密码](#修改为简单密码)
-  - [连接工具](#连接工具)
+    - [修改为简单密码](#修改为简单密码)
+    - [连接工具](#连接工具)
+  - [使用bat替换cat](#使用bat替换cat)
 
 <!-- /code_chunk_output -->
 
@@ -295,7 +296,8 @@ FYI :point_right: http://ju.outofmemory.cn/entry/150383
 [eZip支持预览](https://ezip.awehunt.com/)
 
 ## 视频
-)
+
+[IINA](https://iina.io/)
 
 ## 文档工具
 
@@ -370,11 +372,10 @@ sudo vi /etc/profile
 
 # 添加：
 # Java
-JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home
-JRE_HOME=$JAVA_HOME/jre
-CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
-PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
-export JAVA_HOME JRE_HOME CLASSPATH PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 ```
 
 ## vim
@@ -447,7 +448,7 @@ flush privileges;
 show grants;
 ```
 
-## 修改为简单密码
+### 修改为简单密码
 
 ```sql
 - 查看密码策略
@@ -460,9 +461,17 @@ SET GLOBAL validate_password.length=6;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 ```
 
-## 连接工具
+### 连接工具
 
 ```shell
 brew cask install dbeaver
+```
+
+## 使用bat替换cat
+
+[bat](https://github.com/sharkdp/bat)
+
+```shell
+brew install bat
 ```
 ·
