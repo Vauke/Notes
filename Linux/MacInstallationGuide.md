@@ -46,7 +46,8 @@ Sunday, November 3rd 2019, 16:50
 4. 完成后使用[Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/)挂载U盘的EFI分区, 使用CCG打开`config.plist`, 下载`FakeSMC.kext`, `Lilu.kext`和`WhateverGreen.kext`, 并下载所有sensor的kext
 5. 下载[Vanilla极简版config.plist](https://github.com/corpnewt/Hackintosh-Guide/blob/master/Configs/Haswell/config.plist), 替换Clover自带的config.plist
 6. 测试U盘是否可引导, 将常用的`Clover`, `CCG`等放到U盘下, 方便系统安装好后使用
-7. 重启, U盘引导, 选择boot from install mac, 格式化硬盘选择APFS格式, 若安装时出现提示文件损坏就找到菜单栏的终端打开, 使用`date`命令设置一个过去的时间点即可, 可能需要拔掉网线, 防止自动获取时间
+7. 重启, U盘引导, 选择boot from install mac, 格式化硬盘选择APFS格式, 若安装时出现提示文件损坏就找到菜单栏的工具选项中的终端打开, 使用`date`命令设置一个过去的时间点即可, 可能需要拔掉网线, 防止自动获取时间
+    1. 如`date 092614102019` 按回车键确认 09是月，26是日，14是时，10是分，2019是年
 8. 接下来安装过程会重启两次, 都选择boot from mac hd, mac hd是系统盘的名字
 9. 进入系统后, 打开CCG挂载系统盘的EFI分区, 把U盘中的EFI分区的EFI文件夹复制进去
 10. 拔掉U盘, 验证是否可以通过系统盘引导
@@ -55,10 +56,18 @@ Sunday, November 3rd 2019, 16:50
 13. 下载[macinfo生成序列号](https://github.com/acidanthera/MacInfoPkg/), 解压, 执行`macserial -a | grep -i iMac15,1`机型做相应替换,
     1. 第二列填到SMBIOS -> Serial Number
     2. 第三列填到SMBIOS -> Board Serial Number和Rt Variables -> MLB
+14. 打开CCG, Rt Variables -> CsrActiveConfig 设置系统SIP控制为0x11(允许安装未签名第三方kext)或0x10(完全开启SIP)
+    1. CsrActiveConfig默认为0x3E7, 系统升级前改回此值
+    2. [Clover设置SIP详细介绍](http://www.memacx.com/thread-6874-1-1.html)
+    3. SIP和BooterConfig介绍 [原文](http://www.yekki.me/apple-sip-overview-and-how-to-disable-it-in-clover/) [图片](./assets/SIP和BooterConfig介绍.png)·
 
 [安装过程参考](https://zhuanlan.zhihu.com/p/55991446)
 
 [Vanilla config.plist的讲解](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/haswell)
+
+[安装后注意事项参考](https://www.itpwd.com/292.html)
+
+[系统升级注意项](https://www.itpwd.com/397.html)
 
 ### 开机跳过Clover引导界面
 
@@ -67,7 +76,7 @@ Sunday, November 3rd 2019, 16:50
 开机时按任意键可以调出Clover引导界面
 
 ### ig-platform-id注入错误可能无法启动卡在进度条
-·
+
 重启在clover options页面临时修改该id, clover->Options->Graphics Injector->*-platform-id:0x12345678, 这里的修改并不会写入config.plist文件中
 
 ACPI
