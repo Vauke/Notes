@@ -9,8 +9,9 @@ Sunday, November 3rd 2019, 16:50
     - [开机跳过Clover引导界面](#开机跳过clover引导界面)
     - [ig-platform-id注入错误可能无法启动卡在进度条](#ig-platform-id注入错误可能无法启动卡在进度条)
     - [UEFI驱动和kext](#uefi驱动和kext)
+    - [misc](#misc)
   - [Finder](#finder)
-  - [misc](#misc)
+  - [misc](#misc-1)
   - [Homebrew](#homebrew)
   - [Homebrew cask](#homebrew-cask)
   - [MAS](#mas)
@@ -24,7 +25,7 @@ Sunday, November 3rd 2019, 16:50
   - [终端](#终端)
     - [让iTerm像Tilda一样显示在屏幕左上角](#让iterm像tilda一样显示在屏幕左上角)
     - [让iTerm像Guake一样成为下拉式终端](#让iterm像guake一样成为下拉式终端)
-    - [misc](#misc-1)
+    - [misc](#misc-2)
   - [压缩工具](#压缩工具)
   - [视频](#视频)
   - [文档工具](#文档工具)
@@ -37,6 +38,7 @@ Sunday, November 3rd 2019, 16:50
     - [窗口置顶](#窗口置顶)
   - [鼠标侧键](#鼠标侧键)
   - [截图](#截图)
+  - [MySQL](#mysql)
 
 <!-- /code_chunk_output -->
 
@@ -64,7 +66,7 @@ Sunday, November 3rd 2019, 16:50
     3. SIP和BooterConfig介绍 [原文](http://www.yekki.me/apple-sip-overview-and-how-to-disable-it-in-clover/) [图片](./assets/SIP和BooterConfig介绍.png)
 15. 后续使用[OpenCore](https://github.com/acidanthera/OpenCorePkg)
 
-[安装过程参考](https://zhuanlan.zhihu.com/p/55991446)
+[安装过程和BIOS设置参考](https://zhuanlan.zhihu.com/p/55991446)
 
 [Vanilla config.plist的讲解](https://hackintosh.gitbook.io/-r-hackintosh-vanilla-desktop-guide/config.plist-per-hardware/haswell)
 
@@ -87,11 +89,21 @@ Sunday, November 3rd 2019, 16:50
 ### UEFI驱动和kext
 
 1. [UEFI驱动介绍](UEFI驱动介绍.md)
-2. kext
+2. kext介绍
     1. U盘启动盘中只需要安装FakeSMC, Lilu, WEG和各类sensor的kext, 最多再添加网卡和声卡
     2. 安装完成后, 在系统EFI分区中对应目录依次添加所需kext
     3. 如果睡眠有问题, 添加hibernationfixup.kext
     4. [现在添加的kext](./assets/Screen%20Shot%202019-11-13%20at%2013.33.33.png)
+
+### misc
+
+[硬件加速和USB注入](https://zhongce.sina.com.cn/article/view/20503)
+
+[常用到的命令](https://blog.daliansky.net/Mac-frequently-used-to-the-command---continuous-update.html)
+
+[clover使用教程](https://blog.daliansky.net/clover-user-manual.html)
+
+[苹果三码](https://www.zhihu.com/question/35340215/answer/125643224)
 
 ## Finder
 
@@ -367,3 +379,28 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 2. <kbd>command-shift-4</kbd> 截取选定窗口
 3. 上述两个命令添加<kbd>control</kbd>后, 改变截图的保存方式为保存到剪切板
 4. [xnip](https://zh.xnipapp.com/) 支持滚动截图
+
+## MySQL
+
+```shell
+# 安装
+brew install mysql
+
+# 初始化MySQL, 设置加密方式和root密码
+mysql_secure_installation
+```
+
+```sql
+- 查看编码和引擎
+show variables like 'char%';
+show engines;
+
+- 创建用户
+create user 'vauke'@'localhost' identified by '123456';
+- 赋予权限
+grant all privileges on *.* to 'vauke'@'localhost' with grant option;
+- 刷新权限
+flush privileges;
+- 查看当前用户的权限
+show grants;
+```
