@@ -13,7 +13,10 @@ Sunday, November 3rd 2019, 16:50
   - [Finder](#finder)
   - [misc](#misc-1)
   - [Homebrew](#homebrew)
-  - [Homebrew cask](#homebrew-cask)
+    - [Homebrew cask](#homebrew-cask)
+    - [Homebrew GUI](#homebrew-gui)
+    - [重装系统环境迁移](#重装系统环境迁移)
+    - [Homebrew安装的软件的服务管理](#homebrew安装的软件的服务管理)
   - [MAS](#mas)
   - [Dash](#dash)
   - [Sublime](#sublime)
@@ -35,11 +38,12 @@ Sunday, November 3rd 2019, 16:50
   - [JDK](#jdk)
   - [vim](#vim)
   - [窗口管理](#窗口管理)
-    - [窗口置顶](#窗口置顶)
+    - [窗口置顶 [deprecated]](#窗口置顶-deprecated)
   - [鼠标侧键](#鼠标侧键)
   - [截图](#截图)
   - [MySQL](#mysql)
   - [修改为简单密码](#修改为简单密码)
+  - [连接工具](#连接工具)
 
 <!-- /code_chunk_output -->
 
@@ -160,16 +164,47 @@ brew list
 
 `export HOMEBREW_NO_AUTO_UPDATE=true`
 
-FYI :point_right: https://juejin.im/post/5cd2a50e518825356d54b847
+FYI :point_right: [安装](https://juejin.im/post/5cd2a50e518825356d54b847) & [常用命令和换源](https://sspai.com/post/56009)
 
-## Homebrew cask
+### Homebrew cask
 
 ```shell
 # install
-brew
+brew tap Homebrew/homebrew-cask
 ```
 
 FYI :point_right: https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
+
+### Homebrew GUI
+
+[Cakebrew](https://www.cakebrew.com/)
+
+```shell
+brew cask install cakebrew
+```
+
+### 重装系统环境迁移
+
+执行`brew bundle dump`来完成当前环境的导出, 导出完成后, 会得到一个`Brewfile`
+
+将`Brewfile`复制到新的系统中，并执行`brew bundle`来开始安装
+
+### Homebrew安装的软件的服务管理
+
+```shell
+# 查看所有服务
+brew services list
+# 单次运行某个服务
+brew services run [服务名]
+# 运行某个服务，并设置开机自动运行
+brew services start [服务名]
+# 停止某个服务
+brew services stop [服务名]
+# 重启某个服务
+brew services restart
+```
+
+可使用[LaunchRocket](https://github.com/jimbojsb/launchrocket)图形化管理
 
 ## MAS
 
@@ -362,7 +397,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 [Rectangle](https://github.com/rxhanson/Rectangle) 基于spectacle
 
-### 窗口置顶
+### 窗口置顶 [deprecated]
 
 先安装macforge插件管理器, 然后安装afloat或AfloatX插件, 完成后在Dock上右键开启的图标, 选择置顶
 
@@ -372,7 +407,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ## 鼠标侧键
 
-安装logi G Hub
+安装logi G Hub设置键或者宏
 
 ## 截图
 
@@ -424,3 +459,10 @@ SET GLOBAL validate_password.length=6;
 - 修改密码
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 ```
+
+## 连接工具
+
+```shell
+brew cask install dbeaver
+```
+·
