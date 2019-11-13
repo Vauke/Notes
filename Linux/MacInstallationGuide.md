@@ -8,6 +8,7 @@ Sunday, November 3rd 2019, 16:50
   - [安装系统](#安装系统)
     - [开机跳过Clover引导界面](#开机跳过clover引导界面)
     - [ig-platform-id注入错误可能无法启动卡在进度条](#ig-platform-id注入错误可能无法启动卡在进度条)
+    - [UEFI驱动和kext](#uefi驱动和kext)
   - [Finder](#finder)
   - [misc](#misc)
   - [Homebrew](#homebrew)
@@ -24,17 +25,18 @@ Sunday, November 3rd 2019, 16:50
     - [让iTerm像Tilda一样显示在屏幕左上角](#让iterm像tilda一样显示在屏幕左上角)
     - [让iTerm像Guake一样成为下拉式终端](#让iterm像guake一样成为下拉式终端)
     - [misc](#misc-1)
-  - [阻止熄屏](#阻止熄屏)
-  - [压缩](#压缩)
+  - [压缩工具](#压缩工具)
   - [视频](#视频)
   - [文档工具](#文档工具)
   - [快捷键查看工具](#快捷键查看工具)
   - [VSCode](#vscode)
+    - [Plugins](#plugins)
   - [JDK](#jdk)
   - [vim](#vim)
   - [窗口管理](#窗口管理)
     - [窗口置顶](#窗口置顶)
   - [鼠标侧键](#鼠标侧键)
+  - [截图](#截图)
 
 <!-- /code_chunk_output -->
 
@@ -53,13 +55,14 @@ Sunday, November 3rd 2019, 16:50
 10. 拔掉U盘, 验证是否可以通过系统盘引导
 11. 按需求将UEFI驱动和kext复制进对应目录
 12. 使用CCG打开config.plist, 设置相应机型
-13. 下载[macinfo生成序列号](https://github.com/acidanthera/MacInfoPkg/), 解压, 执行`macserial -a | grep -i iMac15,1`机型做相应替换,
+13. 使用[macinfo生成序列号](https://github.com/acidanthera/MacInfoPkg/), 解压, 执行`macserial -a | grep -i iMac15,1`在机型设置中做相应替换,
     1. 第二列填到SMBIOS -> Serial Number
     2. 第三列填到SMBIOS -> Board Serial Number和Rt Variables -> MLB
 14. 打开CCG, Rt Variables -> CsrActiveConfig 设置系统SIP控制为0x11(允许安装未签名第三方kext)或0x10(完全开启SIP)
     1. CsrActiveConfig默认为0x3E7, 系统升级前改回此值
     2. [Clover设置SIP详细介绍](http://www.memacx.com/thread-6874-1-1.html)
-    3. SIP和BooterConfig介绍 [原文](http://www.yekki.me/apple-sip-overview-and-how-to-disable-it-in-clover/) [图片](./assets/SIP和BooterConfig介绍.png)·
+    3. SIP和BooterConfig介绍 [原文](http://www.yekki.me/apple-sip-overview-and-how-to-disable-it-in-clover/) [图片](./assets/SIP和BooterConfig介绍.png)
+15. 后续使用[OpenCore](https://github.com/acidanthera/OpenCorePkg)
 
 [安装过程参考](https://zhuanlan.zhihu.com/p/55991446)
 
@@ -67,11 +70,13 @@ Sunday, November 3rd 2019, 16:50
 
 [安装后注意事项参考](https://www.itpwd.com/292.html)
 
+[搭建黑苹果的22条军规](http://bbs.pcbeta.com/forum.php?mod=viewthread&tid=1829036&highlight=)
+
 [系统升级注意项](https://www.itpwd.com/397.html)
 
 ### 开机跳过Clover引导界面
 
-使用CCG编辑config.plist Boot -> Default Boot Volume改为 lastbootvolume timeout设置为0
+使用CCG编辑config.plist Boot -> Default Boot Volume改为 LastBootVolume timeout设置为0
 
 开机时按任意键可以调出Clover引导界面
 
@@ -79,28 +84,14 @@ Sunday, November 3rd 2019, 16:50
 
 重启在clover options页面临时修改该id, clover->Options->Graphics Injector->*-platform-id:0x12345678, 这里的修改并不会写入config.plist文件中
 
-ACPI
+### UEFI驱动和kext
 
-大多数人只需要：
-ApfsDriverLoader-64.efi（或apfs.efi）
-AptioMemoryFix-64.efi
-FSInject-64.efi
-HFSPlus.efi（或vboxhfs-64-efi）
-
-所以请确保至少有这四个。
-
-hibernationfixup.kext
-
-
-
-https://blog.daliansky.net/Mac-frequently-used-to-the-command---continuous-update.html
-
-http://bbs.pcbeta.com/forum.php?mod=viewthread&tid=1829036&highlight=
-
-
-如果鼠标卡顿添加ps2kext
-
-https://blog.csdn.net/sky_miange/article/details/68067989
+1. [UEFI驱动介绍](UEFI驱动介绍.md)
+2. kext
+    1. U盘启动盘中只需要安装FakeSMC, Lilu, WEG和各类sensor的kext, 最多再添加网卡和声卡
+    2. 安装完成后, 在系统EFI分区中对应目录依次添加所需kext
+    3. 如果睡眠有问题, 添加hibernationfixup.kext
+    4. [现在添加的kext](./assets/Screen%20Shot%202019-11-13%20at%2013.33.33.png)
 
 ## Finder
 
@@ -152,8 +143,9 @@ brew upgrade 软件名
 brew list
 ```
 
-关闭brew每次执行前的更新检查
-export HOMEBREW_NO_AUTO_UPDATE=true
+关闭brew每次执行前的更新检查:
+
+`export HOMEBREW_NO_AUTO_UPDATE=true`
 
 FYI :point_right: https://juejin.im/post/5cd2a50e518825356d54b847
 
@@ -168,7 +160,9 @@ FYI :point_right: https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
 
 ## MAS
 
-`QQ`
+1. QQ
+2. Amphetamine 阻止熄屏
+3. xnip 截图·
 
 ## Dash
 
@@ -178,13 +172,17 @@ FYI :point_right: https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md
 
 ## Atom
 
+```shell
+brew cask install atom
+```
+
 [same as on ubuntu](./UbuntuInstallationGuide.md#atom-plugins)
 
 ## 剪切板历史
 
-CopyQ
+[CopyQ](https://hluk.github.io/CopyQ/)
 
-Clipy
+[Clipy](https://clipy-app.com/) 不够直观
 
 ## 密码管理
 
@@ -200,7 +198,7 @@ Inter Power Gadget
 
 Itsycal日历
 
-Vanilla隐藏多余图标
+[Vanilla](https://matthewpalmer.net/vanilla/)隐藏多余图标
 
 ## 终端
 
@@ -219,7 +217,7 @@ brew cask install iterm2
         2. 勾选`Pin hotkey window`, `Animate showing and hiding`, `Floating window`
     2. Window->Settings for new windows->Style, 先设置为`Full screen`，并按下快捷键触发，然后command+w关闭，然后设置为`No title bar`, 这时按下快捷键，窗口就到左上角了（原因为No title bar样式会根据上次终端所在位置来打开新终端，也因此，这样设置后，如果又打开其他终端，那么tilda后续打开的位置就可能不在屏幕左上角了，解决方法: 使用下方`misc`中的方法, 将tilda的位置保存为Arrangements
     3. Session->Miscellaneous->Status bar enabled->Configure status bar，选择需要的监视器
-3. 在上一步中设置Window的透明度时, 勾选`Keep background colors opaque`, 这样vim中使用主题时, 主题的背景就不会再是透明的
+3. 在上一步中设置Window的透明度时, 勾选`Keep background colors opaque`, 这样vim中使用主题时, 主题的背景就不会变为透明的
 
 ### 让iTerm像Guake一样成为下拉式终端
 
@@ -230,45 +228,44 @@ brew cask install iterm2
 
 1. 启动iTerm2时不打开终端窗口
     1. 菜单栏->Shell->Close关闭所有终端
-    2. 菜单栏->Window->Save Window Arrangement
+    2. 菜单栏->Window->Save Window Arrangement命名为No Windows
     3. 菜单栏->iTerm2->Preferences->Arrangments->No Windows->set default
     4. Preferences->General->Startup->Window restoration policy，选择`open default window arrangement`
 2. 启动iTerm2时打开Tilda终端窗口
     1. 菜单栏->Shell->Close关闭所有终端
     2. 快捷键调出Tilda，用于记录窗口排列位置
-    3. 菜单栏->Window->Save Window Arrangement
+    3. 菜单栏->Window->Save Window Arrangement命名为Tilda
     4. 菜单栏->iTerm2->Preferences->Arrangments->Tilda->set default
     5. Preferences->general->Startup->Window restoration policy，选择`open default window arrangement`
 
 FYI :point_right: http://ju.outofmemory.cn/entry/150383
 
-## 阻止熄屏
+## 压缩工具
 
-MAS -> Amphetamine
+[Keka](https://www.keka.io/en/)
 
-## 压缩
-
-Keka
+[eZip支持预览](https://ezip.awehunt.com/)
 
 ## 视频
-
-IINA
+)
 
 ## 文档工具
 
-Dash
+[Dash](https://kapeli.com/dash)
 
 Calibre
 
 ## 快捷键查看工具
 
-CheatSheet
+[CheatSheet](https://mediaatelier.com/CheatSheet/)
 
 ## VSCode
 
 ```shell
 brew cask install visual-studio-code
 ```
+
+### Plugins
 
 |        extensions         |       author        |
 |:-------------------------:|:-------------------:|
@@ -322,7 +319,8 @@ brew cask install visual-studio-code
 /usr/libexec/java_home -v 1.8
 
 sudo vi /etc/profile
-添加：
+
+# 添加：
 # Java
 JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home
 JRE_HOME=$JAVA_HOME/jre
@@ -361,4 +359,11 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ## 鼠标侧键
 
-安装logi G Hub·
+安装logi G Hub
+
+## 截图
+
+1. <kbd>command-shift-3</kbd> 截取整个屏幕
+2. <kbd>command-shift-4</kbd> 截取选定窗口
+3. 上述两个命令添加<kbd>control</kbd>后, 改变截图的保存方式为保存到剪切板
+4. [xnip](https://zh.xnipapp.com/) 支持滚动截图
