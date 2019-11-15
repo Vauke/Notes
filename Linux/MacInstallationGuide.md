@@ -45,6 +45,8 @@ Sunday, November 3rd 2019, 16:50
     - [修改为简单密码](#修改为简单密码)
     - [连接工具](#连接工具)
   - [使用bat替换cat](#使用bat替换cat)
+  - [Quick Look plugins](#quick-look-plugins)
+  - [自动化](#自动化)
 
 <!-- /code_chunk_output -->
 
@@ -205,13 +207,13 @@ brew services stop [服务名]
 brew services restart
 ```
 
-可使用[LaunchRocket](https://github.com/jimbojsb/launchrocket)图形化管理
+可使用[LaunchRocket](https://github.com/jimbojsb/launchrocket)图形化管理所有服务
 
 ## MAS
 
 1. QQ
 2. Amphetamine 阻止熄屏
-3. xnip 截图·
+3. xnip 截图
 
 ## Dash
 
@@ -228,6 +230,12 @@ brew cask install atom
 [same as on ubuntu](./UbuntuInstallationGuide.md#atom-plugins)
 
 ## 剪切板历史
+
+[Maccy](https://maccy.app/)
+
+```shell
+brew cask install maccy
+```
 
 [CopyQ](https://hluk.github.io/CopyQ/)
 
@@ -394,9 +402,15 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ## 窗口管理
 
-[spectacle](https://github.com/eczarny/spectacle) 不再更新
+[Spectacle](https://github.com/eczarny/spectacle) 不再更新
 
 [Rectangle](https://github.com/rxhanson/Rectangle) 基于spectacle
+
+[Amethyst](https://github.com/ianyh/Amethyst)
+
+```shell
+brew cask install amethyst
+```
 
 ### 窗口置顶 [deprecated]
 
@@ -408,7 +422,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ## 鼠标侧键
 
-安装logi G Hub设置键或者宏
+罗技鼠标可以安装logi G Hub设置键或者宏
+
+[其他鼠标](https://github.com/archagon/sensible-side-buttons)
 
 ## 截图
 
@@ -474,4 +490,17 @@ brew cask install dbeaver
 ```shell
 brew install bat
 ```
-·
+
+## Quick Look plugins
+
+https://github.com/sindresorhus/quick-look-plugins
+
+```shell
+brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package qlvideo
+```
+
+## 自动化
+
+Automator 系统自带
+
+[Hazel](https://www.noodlesoft.com/)
