@@ -25,6 +25,7 @@ Sunday, November 3rd 2019, 16:50
   - [剪切板历史](#剪切板历史)
   - [密码管理](#密码管理)
   - [菜单栏](#菜单栏)
+    - [隐藏多余图标](#隐藏多余图标)
   - [终端](#终端)
     - [让iTerm像Tilda一样显示在屏幕左上角](#让iterm像tilda一样显示在屏幕左上角)
     - [让iTerm像Guake一样成为下拉式终端](#让iterm像guake一样成为下拉式终端)
@@ -38,7 +39,7 @@ Sunday, November 3rd 2019, 16:50
   - [JDK](#jdk)
   - [vim](#vim)
   - [窗口管理](#窗口管理)
-    - [窗口置顶 [deprecated]](#窗口置顶-deprecated)
+      - [窗口置顶 [deprecated]](#窗口置顶-deprecated)
   - [鼠标侧键](#鼠标侧键)
   - [截图](#截图)
   - [MySQL](#mysql)
@@ -46,6 +47,7 @@ Sunday, November 3rd 2019, 16:50
     - [连接工具](#连接工具)
   - [使用bat替换cat](#使用bat替换cat)
   - [Quick Look plugins](#quick-look-plugins)
+  - [在Finder中打开终端](#在finder中打开终端)
   - [自动化](#自动化)
 
 <!-- /code_chunk_output -->
@@ -235,6 +237,15 @@ brew cask install atom
 
 ```shell
 brew cask install maccy
+
+# 修改大小
+defaults write org.p0deje.Maccy historySize 100 # default is 200
+
+# 修改快捷键
+defaults write org.p0deje.Maccy hotKey control+option+m # default is command+shift+c
+
+# 开启模糊搜索
+defaults write org.p0deje.Maccy fuzzySearch true # default is false
 ```
 
 [CopyQ](https://hluk.github.io/CopyQ/)
@@ -255,7 +266,15 @@ Inter Power Gadget
 
 Itsycal日历
 
-[Vanilla](https://matthewpalmer.net/vanilla/)隐藏多余图标
+### 隐藏多余图标
+
+[Vanilla](https://matthewpalmer.net/vanilla/)
+
+[Dozer](https://github.com/Mortennn/Dozer)
+
+```shell
+brew cask install dozer
+```
 
 ## 终端
 
@@ -406,13 +425,18 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 [Rectangle](https://github.com/rxhanson/Rectangle) 基于spectacle
 
+```shell
+# 默认快捷键和Spectacle一致, 这里改为Magnet的快捷键
+defaults write com.knollsoft.Rectangle alternateDefaultShortcuts -bool true
+```
+
 [Amethyst](https://github.com/ianyh/Amethyst)
 
 ```shell
 brew cask install amethyst
 ```
 
-### 窗口置顶 [deprecated]
+#### 窗口置顶 [deprecated]
 
 先安装macforge插件管理器, 然后安装afloat或AfloatX插件, 完成后在Dock上右键开启的图标, 选择置顶
 
@@ -497,7 +521,14 @@ https://github.com/sindresorhus/quick-look-plugins
 
 ```shell
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package qlvideo
+
+# 预览java class 文件, 需安装jad到/usr/local/bin/jad
+brew cask install jad
 ```
+
+## 在Finder中打开终端
+
+[OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal/)
 
 ## 自动化
 
