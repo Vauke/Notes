@@ -9,6 +9,7 @@ Sunday, November 3rd 2019, 16:50
     - [开机跳过Clover引导界面](#开机跳过clover引导界面)
     - [ig-platform-id注入错误可能无法启动卡在进度条](#ig-platform-id注入错误可能无法启动卡在进度条)
     - [UEFI驱动和kext](#uefi驱动和kext)
+    - [kext操作的相关命令](#kext操作的相关命令)
     - [misc](#misc)
   - [Finder](#finder)
   - [misc](#misc-1)
@@ -18,7 +19,6 @@ Sunday, November 3rd 2019, 16:50
     - [重装系统环境迁移](#重装系统环境迁移)
     - [Homebrew安装的软件的服务管理](#homebrew安装的软件的服务管理)
   - [MAS](#mas)
-  - [Dash](#dash)
   - [Sublime](#sublime)
   - [Eudic](#eudic)
   - [Atom](#atom)
@@ -40,7 +40,7 @@ Sunday, November 3rd 2019, 16:50
   - [vim](#vim)
   - [窗口管理](#窗口管理)
       - [窗口置顶 [deprecated]](#窗口置顶-deprecated)
-  - [鼠标侧键](#鼠标侧键)
+  - [鼠标键盘](#鼠标键盘)
   - [截图](#截图)
   - [MySQL](#mysql)
     - [修改为简单密码](#修改为简单密码)
@@ -49,13 +49,17 @@ Sunday, November 3rd 2019, 16:50
   - [Quick Look plugins](#quick-look-plugins)
   - [在Finder中打开终端](#在finder中打开终端)
   - [自动化](#自动化)
+  - [清理](#清理)
+  - [zsh plugins](#zsh-plugins)
+  - [检测pkg安装包内容](#检测pkg安装包内容)
+  - [代码片段管理](#代码片段管理)
 
 <!-- /code_chunk_output -->
 
 ## 安装系统
 
 1. 下载镜像并格式化U盘
-2. 终端执行`sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/U盘名称 /Applications/Install\ macOS\ Catalina.app --nointeraction`, 将镜写入U盘
+2. 终端执行`sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/U盘名称`, 将镜写入U盘
 3. 下载[Clover](https://github.com/CloverHackyColor/CloverBootloader), 选择安装到U盘, 勾选仅安装UEFI, 启动盘需要安装的UEFI驱动和kexts参考 ![Screen Shot 2019-11-12 at 23.25.05](./assets/Screen%20Shot%202019-11-12%20at%2023.25.05.png)
 4. 完成后使用[Clover Configurator](https://mackie100projects.altervista.org/download-clover-configurator/)挂载U盘的EFI分区, 使用CCG打开`config.plist`, 下载`FakeSMC.kext`, `Lilu.kext`和`WhateverGreen.kext`, 并下载所有sensor的kext
 5. 下载[Vanilla极简版config.plist](https://github.com/corpnewt/Hackintosh-Guide/blob/master/Configs/Haswell/config.plist), 替换Clover自带的config.plist
@@ -104,6 +108,17 @@ Sunday, November 3rd 2019, 16:50
     2. 安装完成后, 在系统EFI分区中对应目录依次添加所需kext
     3. 如果睡眠有问题, 添加hibernationfixup.kext
     4. [现在添加的kext](./assets/Screen%20Shot%202019-11-13%20at%2013.33.33.png)
+
+### kext操作的相关命令
+
+```shell
+# 查看已经加载的kext
+kextstat
+
+# kext缓存相关的命令使用kextcache
+```
+
+使用[KextViewr](https://objective-see.com/products/kextviewr.html)可以查看已经加载的kext及其详细信息
 
 ### misc
 
@@ -217,8 +232,6 @@ brew services restart
 2. Amphetamine 阻止熄屏
 3. xnip 截图
 
-## Dash
-
 ## Sublime
 
 ## Eudic
@@ -247,6 +260,8 @@ defaults write org.p0deje.Maccy hotKey control+option+m # default is command+shi
 # 开启模糊搜索
 defaults write org.p0deje.Maccy fuzzySearch true # default is false
 ```
+
+[iPaste](https://en.toolinbox.net/iPaste/) [他家还有iText OCR和图床工具iPic](https://en.toolinbox.net/)
 
 [CopyQ](https://hluk.github.io/CopyQ/)
 
@@ -444,11 +459,13 @@ brew cask install amethyst
 
 [AfloatX插件](https://github.com/jslegendre/AfloatX)
 
-## 鼠标侧键
+## 鼠标键盘
 
 罗技鼠标可以安装logi G Hub设置键或者宏
 
 [其他鼠标](https://github.com/archagon/sensible-side-buttons)
+
+[Karabiner-Elements按键映射](https://pqrs.org/osx/karabiner/)
 
 ## 截图
 
@@ -505,6 +522,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 
 ```shell
 brew cask install dbeaver
+brew cask install sequel-pro
 ```
 
 ## 使用bat替换cat
@@ -522,9 +540,11 @@ https://github.com/sindresorhus/quick-look-plugins
 ```shell
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package qlvideo
 
-# 预览java class 文件, 需安装jad到/usr/local/bin/jad
+# 预览java class文件, 需安装jad到/usr/local/bin/jad
 brew cask install jad
 ```
+
+[自定义需要高亮的文件](https://github.com/anthonygelibert/QLColorCode#handled-languages)
 
 ## 在Finder中打开终端
 
@@ -535,3 +555,33 @@ brew cask install jad
 Automator 系统自带
 
 [Hazel](https://www.noodlesoft.com/)
+
+[Hammerspoon](http://www.hammerspoon.org/)
+
+[Keyboard Maestro](http://www.keyboardmaestro.com/)
+
+## 清理
+
+[AppCleaner](http://freemacsoft.net/appcleaner/)
+
+## zsh plugins
+
+[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+
+```shell
+# 开启命令的高亮 clone到~/.oh-my-zsh/plugins目录下 然后在.zshrc中添加插件
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+```
+
+## 检测pkg安装包内容
+
+[Suspicious Package](https://www.mothersruin.com/software/SuspiciousPackage/)
+
+```shell
+# 会同时安装Quick Look的插件
+brew cask install suspicious-package
+```
+
+## 代码片段管理
+
+[SnippetsLab](https://www.renfei.org/snippets-lab/)
