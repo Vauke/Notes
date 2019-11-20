@@ -252,7 +252,7 @@ brew cask install atom
 brew cask install maccy
 
 # 修改大小
-defaults write org.p0deje.Maccy historySize 100 # default is 200
+defaults write org.p0deje.Maccy historySize 20 # default is 200
 
 # 修改快捷键
 defaults write org.p0deje.Maccy hotKey control+option+m # default is command+shift+c
@@ -464,6 +464,8 @@ brew cask install amethyst
 罗技鼠标可以安装logi G Hub设置键或者宏
 
 [其他鼠标](https://github.com/archagon/sensible-side-buttons)
+
+[MOS让鼠标像触控板一样丝滑滚动](https://github.com/Caldis/Mos)·
 
 [Karabiner-Elements按键映射](https://pqrs.org/osx/karabiner/)
 
