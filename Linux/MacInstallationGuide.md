@@ -441,6 +441,8 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 [Rectangle](https://github.com/rxhanson/Rectangle) 基于spectacle
 
 ```shell
+brew cask install rectangle
+
 # 默认快捷键和Spectacle一致, 这里改为Magnet的快捷键
 defaults write com.knollsoft.Rectangle alternateDefaultShortcuts -bool true
 ```
@@ -465,7 +467,7 @@ brew cask install amethyst
 
 [其他鼠标](https://github.com/archagon/sensible-side-buttons)
 
-[MOS让鼠标像触控板一样丝滑滚动](https://github.com/Caldis/Mos)·
+[MOS让鼠标像触控板一样丝滑滚动](https://github.com/Caldis/Mos)
 
 [Karabiner-Elements按键映射](https://pqrs.org/osx/karabiner/)
 
