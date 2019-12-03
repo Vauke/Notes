@@ -53,6 +53,7 @@ Sunday, November 3rd 2019, 16:50
   - [zsh plugins](#zsh-plugins)
   - [检测pkg安装包内容](#检测pkg安装包内容)
   - [代码片段管理](#代码片段管理)
+  - [better365系列](#better365系列)
 
 <!-- /code_chunk_output -->
 
@@ -231,6 +232,7 @@ brew services restart
 1. QQ
 2. Amphetamine 阻止熄屏
 3. xnip 截图
+4. [iShot](https://www.better365.cn/) 截图
 
 ## Sublime
 
@@ -595,3 +597,14 @@ brew cask install suspicious-package
 ## 代码片段管理
 
 [SnippetsLab](https://www.renfei.org/snippets-lab/)
+
+## better365系列
+
+1. [Better And Better工具集](https://www.better365.cn/bab.html)
+
+2. [Better NTFS挂载NTFS硬盘](https://www.better365.cn/betterntfs.html)
+    1. [Mounty](https://mounty.app/)
+
+3. [自动切换输入法](https://www.better365.cn/)
+
+4. [Better Menubar系统监视](https://www.better365.cn/)
