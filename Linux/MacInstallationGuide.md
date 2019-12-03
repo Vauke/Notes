@@ -524,7 +524,13 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 
 ### 连接工具
 
+[mycli](https://github.com/dbcli/mycli)
+
 ```shell
+# CLI
+brew install mycli
+
+# GUI
 brew cask install dbeaver
 brew cask install sequel-pro
 ```
