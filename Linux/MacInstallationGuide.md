@@ -532,6 +532,15 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 # CLI
 brew install mycli
 
+# 修改myclirc
+vi ~/.myclirc
+
+multi_line = True
+syntax_style = fruity
+prompt = '\R:\m:\s \t \u@\h:\d > '
+# 关闭pager可以让查询结果和SQL语句显示在同一页面
+enable_pager = False
+
 # GUI
 brew cask install dbeaver
 brew cask install sequel-pro
