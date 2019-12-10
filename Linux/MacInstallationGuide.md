@@ -227,12 +227,9 @@ brew services restart
 
 可使用[LaunchRocket](https://github.com/jimbojsb/launchrocket)图形化管理所有服务
 
-## MAS
+# 阻止熄屏
 
-1. QQ
-2. Amphetamine 阻止熄屏
-3. xnip 截图
-4. [iShot](https://www.better365.cn/) 截图
+Amphetamine
 
 ## Sublime
 
@@ -479,6 +476,7 @@ brew cask install amethyst
 2. <kbd>command-shift-4</kbd> 截取选定窗口
 3. 上述两个命令添加<kbd>control</kbd>后, 改变截图的保存方式为保存到剪切板
 4. [xnip](https://zh.xnipapp.com/) 支持滚动截图
+5. [iShot](https://www.better365.cn/)
 
 ## MySQL
 
