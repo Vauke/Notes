@@ -10,7 +10,9 @@ Sunday, November 3rd 2019, 16:50
     - [ig-platform-id注入错误可能无法启动卡在进度条](#ig-platform-id注入错误可能无法启动卡在进度条)
     - [UEFI驱动和kext](#uefi驱动和kext)
     - [kext操作的相关命令](#kext操作的相关命令)
+    - [Intel核显输出](#intel核显输出)
     - [misc](#misc)
+    - [系统更新](#系统更新)
   - [Finder](#finder)
   - [misc](#misc-1)
   - [Homebrew](#homebrew)
@@ -18,7 +20,7 @@ Sunday, November 3rd 2019, 16:50
     - [Homebrew GUI](#homebrew-gui)
     - [重装系统环境迁移](#重装系统环境迁移)
     - [Homebrew安装的软件的服务管理](#homebrew安装的软件的服务管理)
-  - [MAS](#mas)
+- [阻止熄屏](#阻止熄屏)
   - [Sublime](#sublime)
   - [Eudic](#eudic)
   - [Atom](#atom)
@@ -121,6 +123,25 @@ kextstat
 
 使用[KextViewr](https://objective-see.com/products/kextviewr.html)可以查看已经加载的kext及其详细信息
 
+### Intel核显输出
+
+[Hackintool使用教程及插入姿势](https://blog.daliansky.net/Intel-FB-Patcher-tutorial-and-insertion-pose.html) 还包括USB端口限制补丁, 音频补丁
+
+[利用Hackintool打开第8代核显HDMI/DVI输出的正确姿势](https://blog.daliansky.net/Tutorial-Using-Hackintool-to-open-the-correct-pose-of-the-8th-generation-core-display-HDMI-or-DVI-output.html)
+
+[Intel Framebuffer patching using WhateverGreen](https://www.tonymacx86.com/threads/guide-intel-framebuffer-patching-using-whatevergreen.256490/)
+
+[Hackintool on tonymac](https://www.tonymacx86.com/threads/release-hackintool-v2-8-6.254559/)
+
+大致步骤:
+
+1. 备份EFI
+2. 打开Hackintool, 菜单栏->Framebuffer->macOS 10.14, Patch->Apply Current Patches
+3. Hackintool->Patch->选择正确的Intel Generation和Platform ID
+4. 切换到Connectors标签, 绑定对应的Bus ID和接口类型
+5. 切换到Patch标签页, 勾选图示:
+    ![Screen Shot 2019-12-13 at 22.05.39](./assets/Screen%20Shot%202019-12-13%20at%2022.05.39.png)
+
 ### misc
 
 [硬件加速和USB注入](https://zhongce.sina.com.cn/article/view/20503)
@@ -138,7 +159,6 @@ kextstat
     2. 也可以在设置的clover面板中更新
 2. 更新kext文件, 如果有万能驱动, 暂时移除万能驱动
 3. 打开clover开机引导界面, 如果忘记可以在开机时按任意键进入引导界面
-
 
 ## Finder
 
