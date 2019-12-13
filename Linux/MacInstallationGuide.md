@@ -140,7 +140,10 @@ kextstat
 3. Hackintool->Patch->选择正确的Intel Generation和Platform ID
 4. 切换到Connectors标签, 绑定对应的Bus ID和接口类型
 5. 切换到Patch标签页, 勾选图示:
-    ![Screen Shot 2019-12-13 at 22.05.39](./assets/Screen%20Shot%202019-12-13%20at%2022.05.39.png)
+    - ![Screen Shot 2019-12-13 at 22.08.05](./assets/Screen%20Shot%202019-12-13%20at%2022.08.05.png)
+    - ![Screen Shot 2019-12-13 at 22.12.36](./assets/Screen%20Shot%202019-12-13%20at%2022.12.36.png)
+6. 点击Generate Patch, 然后菜单栏->File->Export->Bootloader config.plist 操作后会备份并替换掉原有的config.plist,
+7. 重启, 如果不能点亮显示器, 重复4-6, 如果不能进入系统, 在clover引导界面进入显卡设置, 临时修改platform id为0x12345678
 
 ### misc
 
