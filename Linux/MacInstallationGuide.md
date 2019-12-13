@@ -131,6 +131,15 @@ kextstat
 
 [苹果三码](https://www.zhihu.com/question/35340215/answer/125643224)
 
+### 系统更新
+
+1. 更新clover, 安装最新的efi文件
+    1. 如果pkg包的clover无法安装可直接下载使用app文件
+    2. 也可以在设置的clover面板中更新
+2. 更新kext文件, 如果有万能驱动, 暂时移除万能驱动
+3. 打开clover开机引导界面, 如果忘记可以在开机时按任意键进入引导界面
+
+
 ## Finder
 
 ```shell
