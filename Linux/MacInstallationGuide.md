@@ -318,6 +318,8 @@ Itsycal日历
 
 [Dozer](https://github.com/Mortennn/Dozer)
 
+[Hidden](https://github.com/dwarvesf/hidden) 可以在MAS中下载
+
 ```shell
 brew cask install dozer
 ```
