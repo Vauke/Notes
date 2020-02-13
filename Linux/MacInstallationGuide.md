@@ -40,6 +40,8 @@ Sunday, November 3rd 2019, 16:50
     - [Plugins](#plugins)
   - [JDK](#jdk)
   - [vim](#vim)
+  - [emacs](#emacs)
+    - [org-mode](#org-mode)
   - [窗口管理](#窗口管理)
       - [窗口置顶 [deprecated]](#窗口置顶-deprecated)
   - [鼠标键盘](#鼠标键盘)
@@ -467,6 +469,22 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 # exit vim, done
 ```
 
+## emacs
+
+使用spacemacs
+
+```shell
+brew tap d12frosted/emacs-plus
+brew install emacs-plus
+
+# 下载spacemacs
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+```
+
+### org-mode
+
+[org-mode](https://orgmode.org/)
+
 ## 窗口管理
 
 [Spectacle](https://github.com/eczarny/spectacle) 不再更新
@@ -637,7 +655,17 @@ brew cask install suspicious-package
 
 ## 代码片段管理
 
-[SnippetsLab](https://www.renfei.org/snippets-lab/)
+[Lepton](http://hackjutsu.com/Lepton/) 可以预览
+
+```shell
+brew cask install lepton
+```
+
+[Gisto](https://www.gistoapp.com/) 不可预览
+
+[SnippetsLab](https://www.renfei.org/snippets-lab/) 付费
+
+[Cacher](https://www.cacher.io/) 界面最好看, 功能最多, 免费版无ide插件, 代码片段保存在自有服务中, 有空间大小限制·
 
 ## better365系列
 
