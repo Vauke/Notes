@@ -574,7 +574,7 @@ SET GLOBAL validate_password.length=6;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 ```
 
-### 连接工具
+### 命令行客户端
 
 [mycli](https://github.com/dbcli/mycli)
 
@@ -595,6 +595,8 @@ enable_pager = False
 brew cask install dbeaver
 brew cask install sequel-pro
 ```
+
+[gitsome](https://github.com/donnemartin/gitsome)
 
 ## 使用bat替换cat
 
