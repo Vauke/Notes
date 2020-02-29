@@ -663,7 +663,7 @@ brew cask install lepton
 
 [Gisto](https://www.gistoapp.com/) 不可预览
 
-[CodeExpander](https://once.work/) 可以自动展开
+[CodeExpander](https://codeexpander.com/) 可以自动展开
 
 [SnippetsLab](https://www.renfei.org/snippets-lab/) 付费
 
