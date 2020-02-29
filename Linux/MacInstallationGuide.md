@@ -663,6 +663,8 @@ brew cask install lepton
 
 [Gisto](https://www.gistoapp.com/) 不可预览
 
+[CodeExpander](https://once.work/) 可以自动展开
+
 [SnippetsLab](https://www.renfei.org/snippets-lab/) 付费
 
 [Cacher](https://www.cacher.io/) 界面最好看, 功能最多, 免费版无ide插件, 代码片段保存在自有服务中, 有空间大小限制·
@@ -677,3 +679,9 @@ brew cask install lepton
 3. [自动切换输入法](https://www.better365.cn/)
 
 4. [Better Menubar系统监视](https://www.better365.cn/)
+
+## ag
+
+```shell
+brew install the_silver_searcher
+```
