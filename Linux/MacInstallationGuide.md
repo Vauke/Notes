@@ -685,3 +685,17 @@ brew cask install lepton
 ```shell
 brew install the_silver_searcher
 ```
+
+## Gif制作
+
+[Gif Brewery](https://gfycat.com/gifbrewery)
+
+[GIPHY Capture](https://giphy.com/apps)
+
+## 录屏时显示按键
+
+[KeyCastr](https://github.com/keycastr/keycastr)
+
+```shell
+brew cask install keycastr
+```
