@@ -48,7 +48,7 @@ Sunday, November 3rd 2019, 16:50
   - [截图](#截图)
   - [MySQL](#mysql)
     - [修改为简单密码](#修改为简单密码)
-    - [连接工具](#连接工具)
+    - [命令行客户端](#命令行客户端)
   - [使用bat替换cat](#使用bat替换cat)
   - [Quick Look plugins](#quick-look-plugins)
   - [在Finder中打开终端](#在finder中打开终端)
@@ -58,6 +58,11 @@ Sunday, November 3rd 2019, 16:50
   - [检测pkg安装包内容](#检测pkg安装包内容)
   - [代码片段管理](#代码片段管理)
   - [better365系列](#better365系列)
+  - [ag](#ag)
+  - [Gif制作](#gif制作)
+  - [录屏](#录屏)
+  - [录屏时显示按键](#录屏时显示按键)
+  - [Sloth GUI of lsof](#sloth-gui-of-lsof)
 
 <!-- /code_chunk_output -->
 
@@ -113,6 +118,7 @@ Sunday, November 3rd 2019, 16:50
     2. 安装完成后, 在系统EFI分区中对应目录依次添加所需kext
     3. 如果睡眠有问题, 添加hibernationfixup.kext
     4. [现在添加的kext](./assets/Screen%20Shot%202019-11-13%20at%2013.33.33.png)
+    5. [使用hackintool将kext安装到/Library/Extensions下](https://www.tonymacx86.com/threads/guide-installing-3rd-party-kexts-el-capitan-sierra-high-sierra-mojave-catalina.268964/)
 
 ### kext操作的相关命令
 
@@ -126,6 +132,16 @@ kextstat
 使用[KextViewr](https://objective-see.com/products/kextviewr.html)可以查看已经加载的kext及其详细信息
 
 ### Intel核显输出
+
+[先看这篇再看其它](https://bbs.pcbeta.org/viewthread-1834690-1-1.html)
+
+[详细教程](https://www.tonymacx86.com/threads/an-idiots-guide-to-lilu-and-its-plug-ins.260063/)
+
+[两个教程](https://www.tonymacx86.com/threads/guide-intel-framebuffer-patching-using-whatevergreen.256490/#post-1780416)
+
+[HD4600](https://www.tonymacx86.com/threads/guide-writing-your-own-intel-4600-framebuffer-patch-by-example-of-asus-z-87-a-mobo-clover.203109/)
+
+[HDMI输出黑屏](https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149/)
 
 [Hackintool使用教程及插入姿势](https://blog.daliansky.net/Intel-FB-Patcher-tutorial-and-insertion-pose.html) 还包括USB端口限制补丁, 音频补丁
 
@@ -504,6 +520,10 @@ defaults write com.knollsoft.Rectangle alternateDefaultShortcuts -bool true
 brew cask install amethyst
 ```
 
+[Shiftit](https://github.com/fikovnik/ShiftIt/#alternatives)
+
+[hammerspoon-shiftit](https://github.com/peterklijn/hammerspoon-shiftit)
+
 #### 窗口置顶 [deprecated]
 
 先安装macforge插件管理器, 然后安装afloat或AfloatX插件, 完成后在Dock上右键开启的图标, 选择置顶
@@ -574,7 +594,7 @@ SET GLOBAL validate_password.length=6;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 ```
 
-### 连接工具
+### 命令行客户端
 
 [mycli](https://github.com/dbcli/mycli)
 
@@ -595,6 +615,8 @@ enable_pager = False
 brew cask install dbeaver
 brew cask install sequel-pro
 ```
+
+[gitsome](https://github.com/donnemartin/gitsome)
 
 ## 使用bat替换cat
 
@@ -663,6 +685,8 @@ brew cask install lepton
 
 [Gisto](https://www.gistoapp.com/) 不可预览
 
+[CodeExpander](https://codeexpander.com/) 可以自动展开
+
 [SnippetsLab](https://www.renfei.org/snippets-lab/) 付费
 
 [Cacher](https://www.cacher.io/) 界面最好看, 功能最多, 免费版无ide插件, 代码片段保存在自有服务中, 有空间大小限制·
@@ -677,3 +701,41 @@ brew cask install lepton
 3. [自动切换输入法](https://www.better365.cn/)
 
 4. [Better Menubar系统监视](https://www.better365.cn/)
+
+## ag
+
+```shell
+brew install the_silver_searcher
+```
+
+## Gif制作
+
+[Gif Brewery](https://gfycat.com/gifbrewery)
+
+[GIPHY Capture](https://giphy.com/apps)
+
+[Kap](https://github.com/wulkano/kap)
+
+```shell
+brew cask install kap
+```
+
+## 录屏
+
+[Aperture](https://github.com/wulkano/aperture)
+
+## 录屏时显示按键
+
+[KeyCastr](https://github.com/keycastr/keycastr)
+
+```shell
+brew cask install keycastr
+```
+
+## Sloth GUI of lsof
+
+[Sloth](https://github.com/sveinbjornt/Sloth)
+
+```shell
+brew cask install sloth
+```
