@@ -504,6 +504,10 @@ defaults write com.knollsoft.Rectangle alternateDefaultShortcuts -bool true
 brew cask install amethyst
 ```
 
+[Shiftit](https://github.com/fikovnik/ShiftIt/#alternatives)
+
+[hammerspoon-shiftit](https://github.com/peterklijn/hammerspoon-shiftit)
+
 #### 窗口置顶 [deprecated]
 
 先安装macforge插件管理器, 然后安装afloat或AfloatX插件, 完成后在Dock上右键开启的图标, 选择置顶
@@ -694,10 +698,28 @@ brew install the_silver_searcher
 
 [GIPHY Capture](https://giphy.com/apps)
 
+[Kap](https://github.com/wulkano/kap)
+
+```shell
+brew cask install kap
+```
+
+## 录屏
+
+[Aperture](https://github.com/wulkano/aperture)
+
 ## 录屏时显示按键
 
 [KeyCastr](https://github.com/keycastr/keycastr)
 
 ```shell
 brew cask install keycastr
+```
+
+## Sloth GUI of lsof
+
+[Sloth](https://github.com/sveinbjornt/Sloth)
+
+```shell
+brew cask install sloth
 ```
