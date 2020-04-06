@@ -113,6 +113,7 @@ Sunday, November 3rd 2019, 16:50
     2. 安装完成后, 在系统EFI分区中对应目录依次添加所需kext
     3. 如果睡眠有问题, 添加hibernationfixup.kext
     4. [现在添加的kext](./assets/Screen%20Shot%202019-11-13%20at%2013.33.33.png)
+    5. [使用hackintool将kext安装到/Library/Extensions下](https://www.tonymacx86.com/threads/guide-installing-3rd-party-kexts-el-capitan-sierra-high-sierra-mojave-catalina.268964/)
 
 ### kext操作的相关命令
 
@@ -126,6 +127,16 @@ kextstat
 使用[KextViewr](https://objective-see.com/products/kextviewr.html)可以查看已经加载的kext及其详细信息
 
 ### Intel核显输出
+
+[先看这篇再看其它](https://bbs.pcbeta.org/viewthread-1834690-1-1.html)
+
+[详细教程](https://www.tonymacx86.com/threads/an-idiots-guide-to-lilu-and-its-plug-ins.260063/)
+
+[两个教程](https://www.tonymacx86.com/threads/guide-intel-framebuffer-patching-using-whatevergreen.256490/#post-1780416)
+
+[HD4600](https://www.tonymacx86.com/threads/guide-writing-your-own-intel-4600-framebuffer-patch-by-example-of-asus-z-87-a-mobo-clover.203109/)
+
+[HDMI输出黑屏](https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149/)
 
 [Hackintool使用教程及插入姿势](https://blog.daliansky.net/Intel-FB-Patcher-tutorial-and-insertion-pose.html) 还包括USB端口限制补丁, 音频补丁
 
