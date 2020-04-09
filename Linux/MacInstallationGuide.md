@@ -549,6 +549,7 @@ brew cask install amethyst
 3. 上述两个命令添加<kbd>control</kbd>后, 改变截图的保存方式为保存到剪切板
 4. [xnip](https://zh.xnipapp.com/) 支持滚动截图
 5. [iShot](https://www.better365.cn/)
+6. [Zappy](https://zapier.com/zappy)
 
 ## MySQL
 
