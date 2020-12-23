@@ -25,7 +25,6 @@ Sunday, November 3rd 2019, 16:50
   - [Eudic](#eudic)
   - [Atom](#atom)
   - [剪切板历史](#剪切板历史)
-  - [密码管理](#密码管理)
   - [菜单栏](#菜单栏)
     - [隐藏多余图标](#隐藏多余图标)
   - [终端](#终端)
@@ -299,15 +298,6 @@ brew cask install atom
 
 ```shell
 brew cask install maccy
-
-# 修改大小
-defaults write org.p0deje.Maccy historySize 20 # default is 200
-
-# 修改快捷键
-defaults write org.p0deje.Maccy hotKey control+option+m # default is command+shift+c
-
-# 开启模糊搜索
-defaults write org.p0deje.Maccy fuzzySearch true # default is false
 ```
 
 [iPaste](https://en.toolinbox.net/iPaste/) [他家还有iText OCR和图床工具iPic](https://en.toolinbox.net/)
@@ -315,10 +305,6 @@ defaults write org.p0deje.Maccy fuzzySearch true # default is false
 [CopyQ](https://hluk.github.io/CopyQ/)
 
 [Clipy](https://clipy-app.com/) 不够直观
-
-## 密码管理
-
-Bitwarden
 
 ## 菜单栏
 
@@ -657,6 +643,18 @@ Automator 系统自带
 ## 清理
 
 [AppCleaner](http://freemacsoft.net/appcleaner/)
+
+```
+# 清除开机启动项
+/System/Library/LaunchAgents
+/System/Library/LaunchDaemons
+/System/Library/StartupItems
+/Library/LaunchAgents
+/Library/LaunchDaemons
+/Library/StartupItems
+~/Library/LaunchAgents
+~/Library/LaunchDaemons
+```
 
 ## zsh plugins
 
